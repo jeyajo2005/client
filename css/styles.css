@@ -1,0 +1,291 @@
+/* ==========================================================================
+   THIRUPATHI ENGINEERS — Construction Theme Design System
+   Matching the Reference Portfolio Layout:
+     - Header: Pure white with clean uppercase navigation
+     - Hero: Immersive video1.mp4 with bold construction typography
+     - Accent: Construction Golden Amber (#F59E0B / #D97706)
+     - Angled ribbon counter strip
+     - Overlapping service & project cards
+     - Dark leadership quote banner
+     - Deep charcoal footer (#16191E)
+     - Wall-Hanging Vintage / Architectural Frame Timeline (Spine Layout)
+   ========================================================================== */
+
+:root {
+  --color-accent: #F59E0B;
+  --color-accent-hover: #D97706;
+  --color-accent-dark: #B45309;
+  --color-primary: #1A202C;
+  --color-charcoal: #2D3748;
+  --color-muted: #718096;
+  --color-border: #E2E8F0;
+  --color-dark-bg: #16191E;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #2D3748;
+  background-color: #FFFFFF;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #FFFFFF;
+  color: #2D3748;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Reference Angled Ribbon Strip */
+.angled-ribbon-strip {
+  position: relative;
+  background: linear-gradient(135deg, #F59E0B 0%, #EAB308 100%);
+  clip-path: polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%);
+}
+
+@media (max-width: 768px) {
+  .angled-ribbon-strip {
+    clip-path: none;
+  }
+}
+
+/* Card Hover Elevation */
+.service-card-ref {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.service-card-ref:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.12);
+}
+
+.service-card-btn {
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.service-card-ref:hover .service-card-btn {
+  background-color: #F59E0B;
+  color: #FFFFFF;
+}
+
+/* Quote Icon Tab on Testimonial Cards */
+.quote-badge-tab {
+  position: absolute;
+  top: -16px;
+  left: 24px;
+  width: 36px;
+  height: 36px;
+  background-color: #F59E0B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+/* Video Container */
+.hero-video-wrap {
+  position: relative;
+  width: 100%;
+  height: 82vh;
+  min-height: 560px;
+  max-height: 850px;
+  overflow: hidden;
+  background-color: #16191E;
+}
+
+@media (max-width: 640px) {
+  .hero-video-wrap {
+    height: 65vh;
+    min-height: 440px;
+  }
+}
+
+.hero-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(1.15) contrast(1.06) saturate(1.12);
+}
+
+/* Image Zoom */
+.img-zoom-container {
+  overflow: hidden;
+}
+
+.img-zoom-container img {
+  transition: transform 0.5s ease;
+}
+
+.service-card-ref:hover .img-zoom-container img,
+.project-card-ref:hover .img-zoom-container img {
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   WALL-HANGING PICTURE FRAME TIMELINE (Matching Reference Image)
+   ========================================================================== */
+.vintage-parchment-bg {
+  background-color: #FAF7F2;
+  background-image: radial-gradient(#E8E2D5 0.75px, transparent 0.75px), radial-gradient(#F0EAE0 0.75px, #FAF7F2 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  position: relative;
+}
+
+.vintage-parchment-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: repeating-linear-gradient(45deg, #1A202C 0, #1A202C 1px, transparent 0, transparent 50px);
+}
+
+.timeline-year {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+  color: #2D2535;
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.timeline-event-badge {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #374151;
+  margin-top: 0.45rem;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.hanging-pin {
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at 35% 35%, #FFF08A, #CA8A04 55%, #78350F 100%);
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  position: relative;
+  margin: 0 auto;
+  z-index: 5;
+}
+
+.hanging-strings {
+  width: 84px;
+  height: 22px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hanging-strings::before,
+.hanging-strings::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  width: 1.5px;
+  height: 26px;
+  background: #92400E;
+  opacity: 0.85;
+}
+
+.hanging-strings::before {
+  left: 50%;
+  transform: rotate(-38deg);
+  transform-origin: top center;
+}
+
+.hanging-strings::after {
+  left: 50%;
+  transform: rotate(38deg);
+  transform-origin: top center;
+}
+
+/* Gold Moulded Frame (Rectangular) */
+.gold-frame-rect {
+  border: 7px solid #B47818;
+  outline: 3px solid #FDF0A6;
+  outline-offset: -5px;
+  box-shadow: 
+    0 18px 32px -6px rgba(0, 0, 0, 0.28), 
+    0 6px 14px -3px rgba(0, 0, 0, 0.16),
+    inset 0 0 10px rgba(0, 0, 0, 0.4);
+  background-color: #1E1B18;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gold-frame-rect:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 24px 38px -4px rgba(0, 0, 0, 0.35);
+}
+
+/* Gold Moulded Frame (Oval / Circular) */
+.gold-frame-oval {
+  border: 7px solid #B47818;
+  outline: 3px dotted #FDF0A6;
+  outline-offset: -5px;
+  border-radius: 9999px;
+  box-shadow: 
+    0 18px 32px -6px rgba(0, 0, 0, 0.28), 
+    0 6px 14px -3px rgba(0, 0, 0, 0.16),
+    inset 0 0 10px rgba(0, 0, 0, 0.4);
+  background-color: #1E1B18;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gold-frame-oval:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 24px 38px -4px rgba(0, 0, 0, 0.35);
+}
+
+/* Timeline Center Spine Node (Solid Dark Dot matching reference) */
+.timeline-center-node {
+  width: 16px;
+  height: 16px;
+  background-color: #2D3748;
+  border-radius: 50%;
+  position: absolute;
+  top: 14px;
+  transform: translateX(-50%);
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F59E0B;
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.lightbox-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
