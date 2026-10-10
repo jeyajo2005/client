@@ -1,533 +1,427 @@
 /**
- * THIRUPATHI ENGINEERS — Interactive Core Logic
- * High performance Vanilla JavaScript
- * Partnership Firm: M. Mohan & K. Gopalakrishnan
+ * Thirupathi Engineers - Portfolio Website Interactive Engine
+ * Inspired by architectural minimalism and modern engineering aesthetics
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initHeroVideo();
-  initCounters();
-  initProjectModals();
-  initGallery();
-  initContactForm();
-  initBackToTop();
-  initMobileNav();
-  initBlueprintDetails();
-});
+  // 0. Hero Names Sequential Typing Animation (M. Mohan -> K. Gopala Krishnan)
+  const name1Text = "M. Mohan";
+  const name2Text = "K. Gopala Krishnan";
+  const el1 = document.getElementById('heroName1');
+  const el2 = document.getElementById('heroName2');
+  const cursor1 = document.getElementById('cursor1');
+  const cursor2 = document.getElementById('cursor2');
 
-/* ==========================================================================
-   1. HERO VIDEO CONTROLS
-   ========================================================================== */
-function initHeroVideo() {
-  const video = document.getElementById('hero-video');
-  const playBtn = document.getElementById('video-play-btn');
-  const muteBtn = document.getElementById('video-mute-btn');
-  const fullscreenBtn = document.getElementById('video-fs-btn');
-  const statusBadge = document.getElementById('video-status');
+  if (el1 && el2) {
+    el1.textContent = '';
+    el2.textContent = '';
+    let i = 0;
+    let j = 0;
+    const typingSpeed = 80; // ms per char
+    const lineDelay = 350;  // pause before typing second line
 
-  if (!video) return;
-
-  video.muted = true;
-  const playPromise = video.play();
-  if (playPromise !== undefined) {
-    playPromise.catch(() => {
-      if (playBtn) updatePlayBtnIcon(false);
-    });
-  }
-
-  if (playBtn) {
-    playBtn.addEventListener('click', () => {
-      if (video.paused) {
-        video.play();
-        updatePlayBtnIcon(true);
+    function typeName1() {
+      if (i < name1Text.length) {
+        el1.textContent += name1Text.charAt(i);
+        i++;
+        setTimeout(typeName1, typingSpeed);
       } else {
-        video.pause();
-        updatePlayBtnIcon(false);
+        // Name 1 complete: switch cursor to name 2
+        if (cursor1) cursor1.style.display = 'none';
+        if (cursor2) cursor2.style.display = 'inline-block';
+        setTimeout(typeName2, lineDelay);
       }
-    });
+    }
+
+    function typeName2() {
+      if (j < name2Text.length) {
+        el2.textContent += name2Text.charAt(j);
+        j++;
+        setTimeout(typeName2, typingSpeed);
+      } else {
+        // Complete: hide cursor and keep permanently visible
+        if (cursor2) cursor2.style.display = 'none';
+      }
+    }
+
+    // Begin typing on page load
+    setTimeout(typeName1, 300);
   }
 
-  function updatePlayBtnIcon(isPlaying) {
-    if (!playBtn) return;
-    if (isPlaying) {
-      playBtn.innerHTML = `
-        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-        </svg>`;
-      playBtn.setAttribute('title', 'Pause Video');
-      if (statusBadge) statusBadge.textContent = 'PLAYING';
+  // 1. Sticky Navbar & Active Navigation State
+  const navbar = document.getElementById('navbar');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navMenu = document.getElementById('navMenu');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      navbar.classList.add('scrolled');
     } else {
-      playBtn.innerHTML = `
-        <svg class="w-4 h-4 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M8 5v14l11-7z"/>
-        </svg>`;
-      playBtn.setAttribute('title', 'Play Video');
-      if (statusBadge) statusBadge.textContent = 'PAUSED';
+      navbar.classList.remove('scrolled');
     }
-  }
 
-  if (muteBtn) {
-    muteBtn.addEventListener('click', () => {
-      video.muted = !video.muted;
-      if (video.muted) {
-        muteBtn.innerHTML = `
-          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/>
-          </svg>`;
-        muteBtn.setAttribute('title', 'Unmute Sound');
-      } else {
-        muteBtn.innerHTML = `
-          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
-          </svg>`;
-        muteBtn.setAttribute('title', 'Mute Sound');
+    // Scroll spy for active menu items
+    let currentSectionId = '';
+    const scrollPosition = window.scrollY + 120;
+
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      if (scrollPosition >= top && scrollPosition < top + height) {
+        currentSectionId = section.getAttribute('id');
       }
     });
-  }
 
-  if (fullscreenBtn) {
-    fullscreenBtn.addEventListener('click', () => {
-      if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.webkitRequestFullscreen) {
-        video.webkitRequestFullscreen();
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${currentSectionId}`) {
+        link.classList.add('active');
       }
-    });
-  }
-}
-
-/* ==========================================================================
-   2. ANIMATED STATISTICS COUNTERS
-   ========================================================================== */
-function initCounters() {
-  const counterElements = document.querySelectorAll('.stat-counter');
-  let hasAnimated = false;
-
-  const countObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !hasAnimated) {
-        hasAnimated = true;
-        counterElements.forEach(counter => {
-          const target = parseInt(counter.getAttribute('data-target'), 10);
-          const suffix = counter.getAttribute('data-suffix') || '';
-          const prefix = counter.getAttribute('data-prefix') || '';
-          const duration = 1800;
-          const stepTime = 20;
-          const steps = duration / stepTime;
-          const increment = target / steps;
-          let current = 0;
-
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-              counter.textContent = prefix + target + suffix;
-              clearInterval(timer);
-            } else {
-              counter.textContent = prefix + Math.floor(current) + suffix;
-            }
-          }, stepTime);
-        });
-      }
-    });
-  }, { threshold: 0.3 });
-
-  const statsSection = document.getElementById('experience');
-  if (statsSection) {
-    countObserver.observe(statsSection);
-  }
-}
-
-/* ==========================================================================
-   3. VERIFIED PROJECTS MODAL DATA & HANDLER
-   ========================================================================== */
-const projectData = {
-  "drymix": {
-    title: "Dry Mix Unit, Packing Plant & Hopper Work",
-    year: "2026 – Ongoing",
-    clients: "The Ramco Cements Ltd.",
-    location: "R.R. Nagar, Virudhunagar, Tamil Nadu",
-    scope: "Structural steel erection, heavy storage hopper fabrication, elevated conveyor galleries, and turnkey packing plant facility assembly.",
-    status: "Active Ongoing Contract",
-    category: "Cement Plant Infrastructure",
-    image: "assets/project-drymix-packing.jpg",
-    specs: [
-      { label: "Client", value: "The Ramco Cements Ltd." },
-      { label: "Site Location", value: "R.R. Nagar, Virudhunagar" },
-      { label: "Execution Timeline", value: "2026 – Ongoing Execution" },
-      { label: "Core Scope", value: "Dry Mix Unit, Automated Packing Plant & Storage Hoppers" },
-      { label: "Structural Work", value: "Heavy Steel Fabrication, Conveyor Galleries & Support Trusses" },
-      { label: "Safety Benchmark", value: "Daily Toolbox Safety Audits, Certified High-Rise Rigging" }
-    ],
-    description: "Currently underway at The Ramco Cements Ltd. in R.R. Nagar, Virudhunagar, Thirupathi Engineers is executing the comprehensive structural erection of the new Dry Mix Unit, mechanized Packing Plant building, and heavy-duty industrial storage hoppers. The project requires precision alignment of bulk material feeding structures, multi-tier equipment platforms, and high-capacity conveyor galleries adhering strictly to Ramco's rigorous industrial safety standards."
-  },
-  "crusher": {
-    title: "Sizer Crusher Work",
-    year: "2026 – Completed",
-    clients: "Ramco Mines",
-    location: "Virudhunagar, Tamil Nadu",
-    scope: "Heavy industrial structural erection, massive crusher machinery chutes, feed hopper supports, and high-impact structural framework.",
-    status: "Completed & Commissioned",
-    category: "Limestone Mining Installation",
-    image: "assets/project-sizer-crusher.jpg",
-    specs: [
-      { label: "Client", value: "Ramco Mines (The Ramco Cements Ltd.)" },
-      { label: "Site Location", value: "Virudhunagar Mining Quarry" },
-      { label: "Status", value: "2026 Successfully Commissioned" },
-      { label: "Machinery Installed", value: "High-Capacity Primary Sizer Crusher Complex" },
-      { label: "Structural Weight", value: "Heavy-Gauge Steel Chutes & Dynamic Vibration Supports" },
-      { label: "Engineering Scope", value: "Heavy Mobile Rigging, Torque Anchoring & Load Alignment" }
-    ],
-    description: "Successfully executed and commissioned for Ramco Mines at Virudhunagar. Thirupathi Engineers completed the heavy structural fabrication and erection of the Sizer Crusher plant. Built to withstand dynamic aggregate impact and rigorous crushing forces, our structural crew installed heavy plate chutes, discharge conveyor framing, and robust heavy-section foundation beams under strict mechanical tolerance guidelines."
-  },
-  "power": {
-    title: "20 MW Power Plant – Non-IBR Structures & ACC Cooling Tower Work Erection",
-    year: "2025",
-    clients: "TECKSK Projects & ISGEC",
-    location: "Thermal / Captive Power Facility",
-    scope: "Turnkey structural steel erection for 20 MW generation unit, complete Non-IBR pipeline supports, duct framing, and multi-module Air Cooled Condenser (ACC) cooling tower erection.",
-    status: "Verified Milestone Project",
-    category: "Power Plant Construction",
-    image: "assets/project-power-plant.jpg",
-    specs: [
-      { label: "Capacity", value: "20 MW Captive Power Generation" },
-      { label: "Principal Clients", value: "TECKSK Projects and ISGEC" },
-      { label: "Execution Year", value: "2025" },
-      { label: "Key Components", value: "Non-IBR Steel Supports, ACC Modular Frame & Fan Deck" },
-      { label: "Inspection Standards", value: "Ultrasonic NDT Weld Testing, High-Torque Bolt Inspection" },
-      { label: "Execution Leadership", value: "M. Mohan & K. Gopalakrishnan Direct Supervision" }
-    ],
-    description: "Spearheaded by Thirupathi Engineers in collaboration with leading EPC contractors ISGEC and TECKSK Projects, this flagship 20 MW captive power plant project involved heavy structural frameworks, high-altitude pipe racks, and the intricate multi-tiered Air Cooled Condenser (ACC) cooling tower installation. Precision laser alignment ensured zero-deviation compliance across all structural junctions."
-  },
-  "silo": {
-    title: "Clinker Silo Structures Work",
-    year: "2025",
-    clients: "The Ramco Cements Ltd.",
-    location: "Major Cement Manufacturing Facility",
-    scope: "Heavy industrial structural fabrication, high-elevation silo roof and shell erection, material conveyor galleries, and high-load anchorages.",
-    status: "Verified Milestone Project",
-    category: "Cement Plant Infrastructure",
-    image: "assets/project-clinker-silo.jpg",
-    specs: [
-      { label: "Principal Client", value: "The Ramco Cements Ltd." },
-      { label: "Execution Year", value: "2025" },
-      { label: "Structure", value: "Tall Industrial Clinker Storage Silo & Penthouse" },
-      { label: "Scope Highlights", value: "Heavy Crane Rigging, Roof Truss Assembly, Conveyor Galleries" },
-      { label: "Safety Benchmarks", value: "100% Fall Protection Systems, Certified Crane Operators" },
-      { label: "Engineering Quality", value: "Zero-Incident Rigging and IS Code Conformance" }
-    ],
-    description: "Commissioned by The Ramco Cements Ltd., Thirupathi Engineers delivered specialized high-elevation structural fabrication and erection for major clinker silo storage infrastructure. Operating at significant elevation with massive steel structural members demanded meticulous crane rigging engineering, dynamic wind load compensation, and flawless plumb alignment."
-  }
-};
-
-function initProjectModals() {
-  const modal = document.getElementById('project-modal');
-  const modalContent = document.getElementById('project-modal-content');
-  const modalCloseBtn = document.getElementById('project-modal-close');
-  const projectButtons = document.querySelectorAll('.view-project-btn');
-
-  if (!modal || !modalContent) return;
-
-  projectButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const projectId = btn.getAttribute('data-project');
-      const data = projectData[projectId];
-      if (!data) return;
-
-      renderProjectModal(data);
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      document.body.style.overflow = 'hidden';
     });
   });
 
-  function renderProjectModal(data) {
-    modalContent.innerHTML = `
-      <div class="relative">
-        <div class="h-64 sm:h-80 w-full overflow-hidden bg-[#142B45] relative">
-          <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#142B45] via-transparent to-transparent opacity-85"></div>
-          <div class="absolute bottom-6 left-6 right-6">
-            <span class="inline-block px-3 py-1 bg-[#3977A8] text-white text-xs font-mono tracking-wider uppercase mb-2">
-              ${data.category} // ${data.year}
-            </span>
-            <h3 class="text-xl sm:text-2xl font-display font-bold text-white leading-tight">
-              ${data.title}
-            </h3>
-          </div>
-        </div>
+  // Mobile Menu Toggle
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('mobile-open');
+    });
 
-        <div class="p-6 sm:p-8 space-y-6">
-          <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#E5E9EF]">
-            <div>
-              <p class="text-xs uppercase font-mono text-[#616E7D]">Principal Client</p>
-              <p class="text-base font-semibold text-[#142B45]">${data.clients}</p>
-            </div>
-            <div>
-              <p class="text-xs uppercase font-mono text-[#616E7D]">Project Location</p>
-              <p class="text-base font-semibold text-[#142B45]">${data.location}</p>
-            </div>
-            <div>
-              <p class="text-xs uppercase font-mono text-[#616E7D]">Contract Status</p>
-              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                ${data.status}
-              </span>
-            </div>
-          </div>
-
-          <div>
-            <h4 class="text-xs font-mono uppercase tracking-wider text-[#142B45] font-semibold mb-2">Scope Overview & Execution Details</h4>
-            <p class="text-sm text-[#252B33] leading-relaxed">${data.description}</p>
-          </div>
-
-          <div>
-            <h4 class="text-xs font-mono uppercase tracking-wider text-[#142B45] font-semibold mb-3">Key Technical Specifications</h4>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-[#F9FAFC] p-4 border border-[#E5E9EF] rounded">
-              ${data.specs.map(spec => `
-                <div class="border-b sm:border-b-0 pb-2 sm:pb-0 border-[#E5E9EF]">
-                  <span class="block text-xs font-mono text-[#616E7D]">${spec.label}</span>
-                  <span class="text-xs sm:text-sm font-medium text-[#142B45]">${spec.value}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-
-          <div class="pt-4 flex flex-col sm:flex-row justify-between items-center gap-3 border-t border-[#E5E9EF]">
-            <a href="#contacts" onclick="closeProjectModal()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-construction-yellow hover:bg-construction-yellowDark text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-6 py-3 transition">
-              Inquire Similar Project
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-              </svg>
-            </a>
-            <button onclick="closeProjectModal()" class="text-xs font-mono text-[#616E7D] hover:text-[#142B45] underline cursor-pointer">
-              Close Window [ESC]
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  window.closeProjectModal = function() {
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-    document.body.style.overflow = 'auto';
-  };
-
-  if (modalCloseBtn) {
-    modalCloseBtn.addEventListener('click', closeProjectModal);
-  }
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeProjectModal();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-      closeProjectModal();
-    }
-  });
-}
-
-/* ==========================================================================
-   4. GALLERY FILTERING & LIGHTBOX
-   ========================================================================== */
-function initGallery() {
-  const filterBtns = document.querySelectorAll('.gallery-filter-btn');
-  const galleryItems = document.querySelectorAll('.gallery-item');
-  const lightbox = document.getElementById('lightbox-modal');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const lightboxTitle = document.getElementById('lightbox-title');
-  const lightboxTag = document.getElementById('lightbox-tag');
-  const lightboxClose = document.getElementById('lightbox-close');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => {
-        b.classList.remove('bg-[#142B45]', 'text-white', 'border-[#142B45]');
-        b.classList.add('bg-white', 'text-[#252B33]', 'border-[#E5E9EF]', 'hover:border-[#3977A8]');
+    // Close menu when clicking link
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('mobile-open');
       });
-      btn.classList.remove('bg-white', 'text-[#252B33]', 'border-[#E5E9EF]', 'hover:border-[#3977A8]');
-      btn.classList.add('bg-[#142B45]', 'text-white', 'border-[#142B45]');
+    });
+  }
 
-      const filter = btn.getAttribute('data-filter');
+  // 2. Project Filter Tabs
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-case-card');
 
-      galleryItems.forEach(item => {
-        const category = item.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
-          item.classList.remove('hidden');
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filterCategory = btn.getAttribute('data-filter');
+
+      projectCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (filterCategory === 'all' || cardCategory === filterCategory) {
+          card.style.display = 'block';
+          card.style.animation = 'fadeInCard 0.4s ease forwards';
         } else {
-          item.classList.add('hidden');
+          card.style.display = 'none';
         }
       });
     });
   });
 
-  galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      const title = item.getAttribute('data-title') || 'Engineering Project Site';
-      const tag = item.getAttribute('data-category-label') || 'Industrial Structural Work';
+  // 3. Project Inquiry Form - Chip Selector & Submission
+  const typeChips = document.querySelectorAll('.type-chip');
+  const selectedTypeInput = document.getElementById('selectedProjectType');
+  const inquiryForm = document.getElementById('inquiryForm');
 
-      if (lightbox && lightboxImg) {
-        lightboxImg.src = img.src;
-        if (lightboxTitle) lightboxTitle.textContent = title;
-        if (lightboxTag) lightboxTag.textContent = tag;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
+  typeChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      typeChips.forEach(c => c.classList.remove('selected'));
+      chip.classList.add('selected');
+      if (selectedTypeInput) {
+        selectedTypeInput.value = chip.getAttribute('data-type');
       }
     });
   });
 
-  if (lightboxClose && lightbox) {
-    lightboxClose.addEventListener('click', () => {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    });
+  if (inquiryForm) {
+    inquiryForm.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = 'auto';
+      const firmName = document.getElementById('firmName').value.trim();
+      const contactName = document.getElementById('contactName').value.trim();
+      const email = document.getElementById('contactEmail').value.trim();
+      const phone = document.getElementById('contactPhone').value.trim();
+      const notes = document.getElementById('projectNotes').value.trim();
+      const type = selectedTypeInput ? selectedTypeInput.value : 'General Inquiry';
+
+      if (!firmName || !contactName || !email) {
+        showToast('Please fill out the required firm name, contact person, and email.', 'error');
+        return;
       }
-    });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = 'auto';
+      // Simulated instant dispatch
+      showToast(`Thank you, ${contactName}! Your inquiry for ${firmName} (${type}) has been logged. M. Mohan and K. Gopalakrishnan will review your project parameters within 24 hours.`, 'success');
+
+      inquiryForm.reset();
+      typeChips.forEach(c => c.classList.remove('selected'));
+      if (typeChips[0]) typeChips[0].classList.add('selected');
+    });
+  }
+
+  // 4. Modal Engine for Project Deep-Dive & Capability Statement
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const modalContainer = document.getElementById('modalContent');
+  const modalClose = document.getElementById('modalClose');
+
+  const projectDetailsData = {
+    'power-plant': {
+      title: '20 MW Thermal Power Plant — Non-IBR & ACC Cooling Tower Erection',
+      year: '2025 Completion',
+      clients: 'Tecksk Projects & ISGEC Heavy Engineering',
+      image: 'assets/images/power_plant_acc.jpg',
+      specs: [
+        { label: 'Plant Capacity', val: '20 MW Thermal Power Unit' },
+        { label: 'Scope', val: 'Non-IBR Structures, Ducting & ACC Erection' },
+        { label: 'Prime Clients', val: 'Tecksk Projects / ISGEC' },
+        { label: 'Safety Record', val: 'Zero Lost-Time Incidents (LTI)' },
+        { label: 'Erection Weight', val: '1,450+ Metric Tonnes Steel' },
+        { label: 'Key Equipment', val: 'Air-Cooled Condenser Fan Decks' }
+      ],
+      description: `Executed structural steel erection for high-capacity 20 MW thermal power generation unit. Scope encompassed complete non-IBR structural framing, boiler support auxiliary steelwork, air-cooled condenser (ACC) towers, industrial ducting arrays, and elevated pipe racks. All structural alignment was verified with optical laser levels and calibrated torque wrenches in strict compliance with IS 800 and EPC partner criteria.`
+    },
+    'clinker-silo': {
+      title: 'Cement Plant Clinker Silo Structures & Heavy Concrete Framing',
+      year: '2025 Completion',
+      clients: 'The Ramco Cements Ltd.',
+      image: 'assets/images/clinker_silo.jpg',
+      specs: [
+        { label: 'Facility Type', val: 'Clinker Storage Silos & Transfer Towers' },
+        { label: 'Client', val: 'The Ramco Cements Ltd.' },
+        { label: 'Execution Year', val: '2025' },
+        { label: 'Structural Method', val: 'Heavy Reinforced Concrete & Slipform' },
+        { label: 'Elevation', val: 'Up to 54m Structure Apex' },
+        { label: 'Safety Protocol', val: 'Strict Operational Plant HSE' }
+      ],
+      description: `Comprehensive structural civil execution for clinker storage silos and conveyor transfer galleries at The Ramco Cements Ltd. Delivered monolithic concrete silo frameworks, high-capacity hopper support beams, and structural overhead galleries. Engineered to withstand continuous dynamic vibration, high thermal differentials, and heavy abrasive bulk storage loads.`
+    },
+    'peb-framing': {
+      title: 'Heavy Industrial PEB Framing & Overhead EOT Crane Gantry Assembly',
+      year: 'Structural Engineering',
+      clients: 'Industrial Manufacturing EPCs',
+      image: 'assets/images/peb_erection.jpg',
+      specs: [
+        { label: 'Clear Span', val: '38m Column-Free Internal Bay' },
+        { label: 'Crane Rating', val: 'Up to 50T Dual EOT Gantry Runways' },
+        { label: 'Framing Type', val: 'Custom Built-Up Plate Portal Frames' },
+        { label: 'Wind Load Standard', val: 'IS 875 Part 3 Engineered' },
+        { label: 'QA/QC Check', val: '100% UT / MPI Weld Inspection' },
+        { label: 'Fasteners', val: 'High-Strength Friction Grip (HSFG)' }
+      ],
+      description: `Design coordination and field erection of massive pre-engineered industrial plant buildings. Includes high-capacity crane runway girders, precision rail alignment for smooth crane movement, braced portal frames, and insulated wall/roof envelope systems.`
+    },
+    'civil-foundations': {
+      title: 'Heavy Machine RCC Plinths, Deep Foundations & Retaining Systems',
+      year: 'Heavy Civil Execution',
+      clients: 'Core Infrastructure Clients',
+      image: 'assets/images/civil_foundations.jpg',
+      specs: [
+        { label: 'Concrete Grade', val: 'M35 / M40 High-Strength Controlled Mix' },
+        { label: 'Rebar Standard', val: 'Fe 550D High Ductility TMT Reinforcement' },
+        { label: 'Foundation Scope', val: 'Turbine Plinths, Piling & Raft Works' },
+        { label: 'Vibration Control', val: 'Dynamic Damping Embedded Plates' },
+        { label: 'Quality Test', val: 'Cube Compression & Core Testing' },
+        { label: 'Execution', val: 'Direct Supervision by K. Gopalakrishnan' }
+      ],
+      description: `Specialized heavy reinforced concrete foundations engineered for reciprocating and rotating machinery, heavy crushers, and multi-story structural columns. Featuring deep earthwork shoring, waterproofed basement rafts, and micron-accurate anchor bolt pocket installations.`
+    }
+  };
+
+  // Attach modal trigger to buttons
+  document.querySelectorAll('[data-open-project]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const projKey = btn.getAttribute('data-open-project');
+      const data = projectDetailsData[projKey];
+      if (!data) return;
+
+      modalContainer.innerHTML = `
+        <div class="modal-project-view">
+          <div style="margin-bottom: 1.5rem;">
+            <div class="mono-label">${data.year} · ${data.clients}</div>
+            <h3 style="font-size: 1.7rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem; line-height: 1.25;">
+              ${data.title}
+            </h3>
+          </div>
+          <div style="border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 2rem; border: 1px solid var(--border-hairline);">
+            <img src="${data.image}" alt="${data.title}" style="width: 100%; height: 360px; object-fit: cover;">
+          </div>
+          
+          <div style="margin-bottom: 2rem;">
+            <h4 style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--accent-gold-dark); margin-bottom: 1rem;">
+              Key Engineering Parameters
+            </h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; background: var(--bg-secondary); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-hairline);">
+              ${data.specs.map(s => `
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; color: var(--text-muted);">${s.label}</div>
+                  <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary); margin-top: 0.2rem;">${s.val}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div>
+            <h4 style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--accent-gold-dark); margin-bottom: 0.75rem;">
+              Scope of Engineering & Execution
+            </h4>
+            <p style="font-size: 0.98rem; line-height: 1.75; color: var(--text-secondary); margin-bottom: 1.5rem;">
+              ${data.description}
+            </p>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border-hairline);">
+            <a href="#contact" class="btn btn-primary" onclick="closeAppModal()">Discuss Similar Scope →</a>
+          </div>
+        </div>
+      `;
+
+      openAppModal();
+    });
+  });
+
+  // Capability Statement Preview Trigger
+  document.querySelectorAll('[data-open-capability]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      modalContainer.innerHTML = `
+        <div class="modal-capability-view">
+          <div class="mono-label">FIRM CREDENTIALS & CAPABILITY BRIEF</div>
+          <h3 style="font-size: 1.75rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">
+            Thirupathi Engineers — Capability Statement
+          </h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.75rem;">
+            Partnership Firm: Led by M. Mohan & K. Gopalakrishnan · Tamil Nadu, India
+          </p>
+
+          <div style="background: var(--bg-secondary); border: 1px solid var(--border-hairline); padding: 1.75rem; border-radius: var(--radius-sm); margin-bottom: 1.75rem;">
+            <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-primary);">Core Competencies</h4>
+            <ul style="padding-left: 1.25rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.8;">
+              <li>Thermal & Captive Power Plant non-IBR structural fabrication and erection.</li>
+              <li>Air Cooled Condenser (ACC) cooling towers structural erection & duct assembly.</li>
+              <li>Cement plant clinker silo structures, raw material handling, and slipform works.</li>
+              <li>Heavy industrial PEB factories, crane gantry framing, and machine foundations.</li>
+              <li>IS Code compliance (IS 800, IS 456, IS 875) & certified industrial safety protocols.</li>
+            </ul>
+          </div>
+
+          <div style="background: #FAFAFA; border: 1px dashed var(--accent-gold); padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1.75rem; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Official Partnership Inquiries</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Direct Partner Lines: 9043288002 | 9790520126</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">Email: thirupathiengineerss@gmail.com | gopalkannan5@gmail.com</div>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold-dark); font-weight: 700; padding: 0.35rem 0.65rem; background: var(--accent-gold-bg); border-radius: 4px;">VERIFIED 2025</span>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid var(--border-hairline);">
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Document: TE-CAP-2025-V1.PDF (Ready for Procurement Review)</span>
+            <button class="btn btn-primary" onclick="triggerMockDownload()">
+              Download PDF Summary ↓
+            </button>
+          </div>
+        </div>
+      `;
+      openAppModal();
+    });
+  });
+
+  function openAppModal() {
+    if (modalBackdrop) {
+      modalBackdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  window.closeAppModal = function() {
+    if (modalBackdrop) {
+      modalBackdrop.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  };
+
+  if (modalClose) {
+    modalClose.addEventListener('click', closeAppModal);
+  }
+
+  if (modalBackdrop) {
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) {
+        closeAppModal();
       }
     });
   }
-}
 
-/* ==========================================================================
-   5. CONTACT FORM & VALIDATION
-   ========================================================================== */
-function initContactForm() {
-  const form = document.getElementById('inquiry-form');
-  const submitBtn = document.getElementById('inquiry-submit-btn');
-  const toast = document.getElementById('form-toast');
-  const toastMessage = document.getElementById('form-toast-msg');
+  window.triggerMockDownload = function() {
+    showToast('Downloading Thirupathi Engineers Capability Statement (TE-CAP-2025.pdf)...', 'success');
+    closeAppModal();
+  };
 
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const name = form.elements['name'] ? form.elements['name'].value.trim() : '';
-    const email = form.elements['email'] ? form.elements['email'].value.trim() : '';
-    const requirements = form.elements['requirements'] ? form.elements['requirements'].value.trim() : '';
-
-    if (!name || !email || !requirements) {
-      showToast('Please fill in your name, email, and project scope details.', 'error');
-      return;
+  // 5. Toast Notification System
+  function showToast(message, type = 'success') {
+    let toast = document.getElementById('toastNotice');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'toastNotice';
+      toast.className = 'toast-notice';
+      document.body.appendChild(toast);
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      showToast('Please enter a valid email address.', 'error');
-      return;
-    }
-
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = `
-        <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    toast.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${type === 'success' ? '#C5A059' : '#EF4444'}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          ${type === 'success' ? '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>' : '<circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>'}
         </svg>
-        Transmitting RFQ Inquiry...`;
-    }
+        <span style="font-size: 0.9rem; font-weight: 500;">${message}</span>
+      </div>
+    `;
 
+    toast.classList.add('show');
     setTimeout(() => {
-      form.reset();
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = `
-          <span>Submit Project Inquiry</span>
-          <svg class="w-4 h-4 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-          </svg>`;
-      }
-      showToast('Inquiry Received! Thirupathi Engineers management will contact you promptly.', 'success');
-    }, 1000);
-  });
-
-  function showToast(message, type) {
-    if (!toast || !toastMessage) return;
-    toastMessage.textContent = message;
-    
-    if (type === 'error') {
-      toast.classList.remove('border-[#142B45]', 'bg-[#142B45]');
-      toast.classList.add('border-red-600', 'bg-red-900');
-    } else {
-      toast.classList.remove('border-red-600', 'bg-red-900');
-      toast.classList.add('border-[#3977A8]', 'bg-[#142B45]');
-    }
-
-    toast.classList.remove('translate-y-20', 'opacity-0');
-    toast.classList.add('translate-y-0', 'opacity-100');
-
-    setTimeout(() => {
-      toast.classList.remove('translate-y-0', 'opacity-100');
-      toast.classList.add('translate-y-20', 'opacity-0');
+      toast.classList.remove('show');
     }, 4500);
   }
-}
 
-/* ==========================================================================
-   6. BACK TO TOP
-   ========================================================================== */
-function initBackToTop() {
-  const topBtn = document.getElementById('back-to-top');
-  if (!topBtn) return;
+  // 6. Number Counter Animation on Scroll
+  const statNumbers = document.querySelectorAll('.stat-number');
+  let animatedStats = false;
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-      topBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
-      topBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
-    } else {
-      topBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
-      topBtn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
-    }
-  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !animatedStats) {
+        animatedStats = true;
+        statNumbers.forEach(stat => {
+          const target = parseInt(stat.getAttribute('data-target'), 10);
+          if (isNaN(target)) return;
+          let count = 0;
+          const duration = 1200;
+          const step = Math.max(1, Math.floor(target / (duration / 20)));
 
-  topBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+          const timer = setInterval(() => {
+            count += step;
+            if (count >= target) {
+              stat.textContent = target;
+              clearInterval(timer);
+            } else {
+              stat.textContent = count;
+            }
+          }, 20);
+        });
+      }
     });
-  });
-}
+  }, { threshold: 0.4 });
 
-function initMobileNav() {
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const links = document.querySelectorAll('.mobile-nav-link');
+  const statsSection = document.getElementById('stats');
+  if (statsSection) {
+    observer.observe(statsSection);
+  }
 
-  if (!menuBtn || !mobileMenu) return;
-
-  menuBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    mobileMenu.classList.toggle('hidden');
-  });
-
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
+  // 7. Back to Top Button
+  const backToTopBtn = document.getElementById('backToTop');
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-      mobileMenu.classList.add('hidden');
-    }
-  });
-}
-
-function initBlueprintDetails() {
-  // Reserved for technical decorations
-}
+  }
+});
