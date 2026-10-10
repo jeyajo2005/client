@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THIRUPATHI ENGINEERS — Industrial Construction & Engineering Excellence</title>
-  <meta name="description" content="Thirupathi Engineers is a premier partnership firm specializing in industrial construction, steel structure erection, cement plant projects, power plant structures, and heavy industrial installations. Over 34 years of proven excellence since 1992. Partners: M. Mohan & K. Gopalakrishnan.">
-  <meta name="theme-color" content="#F59E0B">
+  <title>THIRUPATHI ENGINEERS — Industrial Civil & Structural Erection of Record</title>
+  <meta name="description" content="Thirupathi Engineers is a premier industrial construction & structural steel erection partnership firm. Specializing in cement plant projects, 20 MW captive power plants, mining sizer crushers, and clinker silos across 34+ years. Partners: M. Mohan & K. Gopalakrishnan.">
+  <meta name="theme-color" content="#09080F">
 
-  <!-- Google Fonts: Outfit (Display & Numbers), Plus Jakarta Sans (Clean Body) -->
+  <!-- Google Fonts: Plus Jakarta Sans & Space Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,21 +19,22 @@
       theme: {
         extend: {
           colors: {
-            construction: {
-              yellow: '#F59E0B',
-              yellowDark: '#D97706',
-              yellowLight: '#FEF3C7',
-              dark: '#16191E',
-              darkGray: '#22272F',
-              charcoal: '#2D3748',
-              muted: '#718096',
-              lightBg: '#F8F9FA',
-              border: '#E2E8F0'
+            span: {
+              bg: '#09080F',
+              card: '#120F1D',
+              cardHover: '#181427',
+              border: '#231E34',
+              borderLight: '#322B4A',
+              purple: '#7C3AED',
+              purpleHover: '#6D28D9',
+              purpleLight: '#A78BFA',
+              textMuted: '#64748B',
+              textSlate: '#94A3B8',
+              white: '#F8FAFC'
             }
           },
           fontFamily: {
-            display: ['Outfit', 'sans-serif'],
-            body: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
             mono: ['"Space Mono"', 'monospace']
           }
         }
@@ -44,53 +45,50 @@
   <!-- Custom Design System Styles -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-white text-construction-charcoal antialiased selection:bg-amber-500 selection:text-white">
+<body class="bg-[#09080F] text-[#94A3B8] antialiased selection:bg-[#7C3AED] selection:text-white">
 
   <!-- =========================================================================
-       1. TOP NAVBAR (Clean White with Construction Logo & Uppercase Navigation)
+       1. TOP NAVBAR (SPAN Architectural Dark Navbar)
        ========================================================================= -->
-  <header id="navbar" class="sticky top-0 z-50 bg-white border-b border-construction-border shadow-xs">
+  <header id="navbar" class="sticky top-0 z-50 bg-[#09080F]/90 backdrop-blur-md border-b border-[#231E34]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
         
-        <!-- Construction Logo with Geometric Icon -->
+        <!-- Architectural SPAN-style Geometric Logo -->
         <a href="#home" class="flex items-center gap-3 group">
-          <div class="w-10 h-10 bg-construction-yellow text-white flex items-center justify-center font-bold shadow-xs">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h12a1 1 0 001-1V10"/>
+          <div class="w-9 h-9 rounded-lg bg-[#181329] border border-[#3A3157] text-[#A78BFA] flex items-center justify-center font-bold shadow-sm group-hover:border-[#7C3AED] transition">
+            <svg class="w-5 h-5 text-[#A78BFA]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
             </svg>
           </div>
           <div class="flex flex-col">
-            <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight text-construction-dark group-hover:text-construction-yellow transition-colors leading-none">
-              THIRUPATHI ENGINEERS
+            <span class="font-bold text-base sm:text-lg tracking-wider text-white group-hover:text-[#A78BFA] transition-colors leading-none uppercase">
+              THIRUPATHI
             </span>
-            <span class="text-[10px] font-mono tracking-widest text-construction-muted uppercase mt-1">
-              Industrial Civil & Plant Erection
+            <span class="text-[9px] font-mono tracking-widest text-[#7E7991] uppercase mt-1">
+              STRUCTURAL RECORD · 1992–2026
             </span>
           </div>
         </a>
 
-        <!-- Desktop Navigation Links (Uppercase matching reference image) -->
-        <nav class="hidden md:flex items-center gap-7 text-xs font-bold uppercase tracking-wider text-construction-dark">
-          <a href="#home" class="hover:text-construction-yellow transition-colors">MAIN</a>
-          <a href="#about" class="hover:text-construction-yellow transition-colors">ABOUT</a>
-          <a href="#services" class="hover:text-construction-yellow transition-colors">SERVICE</a>
-          <a href="#projects" class="hover:text-construction-yellow transition-colors">PROJECT</a>
-          <a href="#timeline" class="hover:text-construction-yellow transition-colors">TIMELINE</a>
-          <a href="#leadership" class="hover:text-construction-yellow transition-colors">PARTNERS</a>
-          <a href="#contacts" class="hover:text-construction-yellow transition-colors">CONTACTS</a>
+        <!-- Desktop Navigation Links (Matching SPAN Style) -->
+        <nav class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-wider text-[#94A3B8]">
+          <a href="#projects" class="hover:text-white transition-colors">PROJECTS</a>
+          <a href="#services" class="hover:text-white transition-colors">SERVICES</a>
+          <a href="#credentials" class="hover:text-white transition-colors">CREDENTIALS</a>
+          <a href="#leadership" class="hover:text-white transition-colors">PARTNERS</a>
         </nav>
 
-        <!-- Right Action Button -->
-        <div class="hidden lg:flex items-center">
-          <a href="#contacts" class="bg-construction-yellow hover:bg-construction-yellowDark text-white text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-lg transition shadow-xs">
-            Get a Quote
+        <!-- Right Action Button (Matching SPAN Purple Button) -->
+        <div class="hidden sm:flex items-center">
+          <a href="#contacts" class="bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-lg transition shadow-sm">
+            Discuss Your Structure
           </a>
         </div>
 
         <!-- Mobile Menu Toggle Button -->
         <div class="flex md:hidden">
-          <button id="mobile-menu-btn" type="button" class="p-2 text-construction-dark hover:text-construction-yellow rounded-lg" aria-label="Toggle Navigation">
+          <button id="mobile-menu-btn" type="button" class="p-2 text-[#94A3B8] hover:text-white rounded-lg" aria-label="Toggle Navigation">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
@@ -101,56 +99,64 @@
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-construction-border px-6 py-5 space-y-3">
-      <a href="#home" class="mobile-nav-link block text-xs font-bold uppercase text-construction-dark hover:text-construction-yellow py-1.5 border-b border-construction-border/60">MAIN</a>
-      <a href="#about" class="mobile-nav-link block text-xs font-bold uppercase text-construction-dark hover:text-construction-yellow py-1.5 border-b border-construction-border/60">ABOUT</a>
-      <a href="#services" class="mobile-nav-link block text-xs font-bold uppercase text-construction-dark hover:text-construction-yellow py-1.5 border-b border-construction-border/60">SERVICE</a>
-      <a href="#projects" class="mobile-nav-link block text-xs font-bold uppercase text-construction-dark hover:text-construction-yellow py-1.5 border-b border-construction-border/60">PROJECT</a>
-      <a href="#timeline" class="mobile-nav-link block text-xs font-bold uppercase text-construction-dark hover:text-construction-yellow py-1.5 border-b border-construction-border/60">TIMELINE</a>
-      <a href="#leadership" class="mobile-nav-link block text-xs font-bold uppercase text-construction-dark hover:text-construction-yellow py-1.5 border-b border-construction-border/60">PARTNERS</a>
-      <a href="#contacts" class="mobile-nav-link block text-xs font-bold uppercase text-construction-dark hover:text-construction-yellow py-1.5">CONTACTS</a>
+    <div id="mobile-menu" class="hidden md:hidden bg-[#0F0D18] border-t border-[#231E34] px-6 py-5 space-y-3">
+      <a href="#projects" class="mobile-nav-link block text-xs font-bold uppercase text-[#94A3B8] hover:text-white py-1.5 border-b border-[#231E34]/60">PROJECTS</a>
+      <a href="#services" class="mobile-nav-link block text-xs font-bold uppercase text-[#94A3B8] hover:text-white py-1.5 border-b border-[#231E34]/60">SERVICES</a>
+      <a href="#credentials" class="mobile-nav-link block text-xs font-bold uppercase text-[#94A3B8] hover:text-white py-1.5 border-b border-[#231E34]/60">CREDENTIALS</a>
+      <a href="#leadership" class="mobile-nav-link block text-xs font-bold uppercase text-[#94A3B8] hover:text-white py-1.5 border-b border-[#231E34]/60">PARTNERS</a>
+      <a href="#contacts" class="mobile-nav-link block text-xs font-bold uppercase text-[#A78BFA] hover:text-white py-1.5">DISCUSS STRUCTURE →</a>
     </div>
   </header>
 
   <!-- =========================================================================
-       2. HERO SECTION (Immersive Video video1.mp4 with Bold Construction Typography)
+       2. HERO SECTION (Matching SPAN Screenshot 1)
        ========================================================================= -->
-  <section id="home" class="relative hero-video-wrap">
+  <section id="home" class="relative span-video-wrap hero-duotone-bg flex items-center tech-grid-pattern">
     
-    <!-- Full-Bleed Video Element -->
-    <video id="hero-video" autoplay loop muted playsinline preload="auto" poster="assets/project-power-plant.jpg" class="w-full h-full object-cover">
+    <!-- Full-Bleed Video Element with Atmospheric Desaturation -->
+    <video id="hero-video" autoplay loop muted playsinline preload="auto" poster="assets/project-power-plant.jpg" class="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-45">
       <source src="video1.mp4" type="video/mp4">
       <source src="assets/video1.mp4" type="video/mp4">
-      Your browser does not support HTML5 video playback.
     </video>
 
-    <!-- Bright Clear Video Overlay (Light soft gradient for maximum brightness & clarity) -->
-    <div class="absolute inset-0 bg-gradient-to-r from-black/10 via-black/20 to-black/55 z-10 pointer-events-none"></div>
+    <!-- Top Right Floating Badge (Matching Screenshot 1: LICENSED PE CA NY TX FL) -->
+    <div class="absolute top-8 right-4 sm:right-12 z-20">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#171328]/90 border border-[#372E54] text-[10px] font-mono tracking-wider uppercase text-[#C4B5FD] backdrop-blur-md shadow-lg">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#A78BFA] animate-pulse"></span>
+        <span>LICENSED EPC CONTRACTOR · TAMIL NADU · 34+ YRS</span>
+      </div>
+    </div>
 
-    <!-- Hero Content Overlay (Right-Aligned Typography Matching Reference) -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-end relative z-20">
-      <div class="max-w-2xl text-right sm:text-right space-y-4 pt-8 drop-shadow-lg">
+    <!-- Hero Content (Matching SPAN Screenshot 1 Layout) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20 py-20">
+      <div class="max-w-2xl space-y-5">
         
-        <p class="text-xs sm:text-sm font-mono tracking-widest uppercase text-white/90">
-          WE BUILD YOUR
+        <!-- Big Bold Architectural Name Headline -->
+        <div class="space-y-1">
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-none">
+            Thirupathi
+          </h1>
+          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#A78BFA] tracking-tight leading-none">
+            Engineers
+          </h2>
+        </div>
+
+        <p class="text-xs sm:text-sm font-mono tracking-widest text-[#94A3B8] uppercase">
+          PE. SE · INDUSTRIAL STRUCTURAL ERECTION OF RECORD
         </p>
 
-        <!-- Bold 2-Tone Headline (DREAM HOUSE -> DREAM INDUSTRIAL PLANTS) -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-white leading-tight uppercase tracking-tight">
-          <span class="text-construction-yellow">INDUSTRIAL</span> PLANTS
-        </h1>
-
-        <p class="text-xs sm:text-sm text-gray-200 leading-relaxed font-normal max-w-lg ml-auto">
-          Thirupathi Engineers delivers turnkey industrial structures, heavy steel fabrication, cement plant infrastructure, and 20 MW power plant erection with unmatched precision and safety.
+        <p class="text-xs sm:text-sm text-[#94A3B8] leading-relaxed max-w-xl font-normal">
+          Signed off on 34+ years of industrial steel structures, 20 MW captive power plants, cement plant kilns, clinker silos, and limestone crushers. Available as principal erection contractor for heavy infrastructure projects requiring zero-incident rigging.
         </p>
 
-        <!-- Action Button (Matching Reference Orange Button) -->
-        <div class="pt-2 flex items-center justify-end gap-3">
-          <a href="#projects" class="inline-block bg-construction-yellow hover:bg-construction-yellowDark text-white text-xs font-bold uppercase tracking-wider px-8 py-3.5 rounded-lg shadow-md transition-all">
-            READ MORE
+        <!-- CTA Action Buttons (Matching Screenshot 1) -->
+        <div class="pt-4 flex flex-wrap items-center gap-4">
+          <a href="#contacts" class="inline-flex items-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-6 py-3.5 rounded-lg transition shadow-lg">
+            <span>Discuss Your Next Structure</span>
+            <span>&rarr;</span>
           </a>
-          <a href="#contacts" class="inline-block bg-white/20 hover:bg-white/30 backdrop-blur text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-lg border border-white/30 transition-all">
-            GET IN TOUCH
+          <a href="#projects" class="inline-block bg-[#161224]/80 hover:bg-[#201A33] border border-[#372E54] hover:border-[#7C3AED] text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-6 py-3.5 rounded-lg transition backdrop-blur-md">
+            View Project Record
           </a>
         </div>
 
@@ -159,12 +165,12 @@
 
     <!-- Video Playback Minimal Controls (Bottom Left) -->
     <div class="absolute bottom-6 left-6 z-30 flex items-center gap-2">
-      <button id="video-play-btn" type="button" class="w-8 h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur flex items-center justify-center text-white transition cursor-pointer" title="Play / Pause">
+      <button id="video-play-btn" type="button" class="w-8 h-8 rounded-full bg-[#181329]/80 hover:bg-[#7C3AED] border border-[#3A3157] flex items-center justify-center text-white transition cursor-pointer" title="Play / Pause">
         <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
           <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
         </svg>
       </button>
-      <button id="video-mute-btn" type="button" class="w-8 h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur flex items-center justify-center text-white transition cursor-pointer" title="Mute / Unmute">
+      <button id="video-mute-btn" type="button" class="w-8 h-8 rounded-full bg-[#181329]/80 hover:bg-[#7C3AED] border border-[#3A3157] flex items-center justify-center text-white transition cursor-pointer" title="Mute / Unmute">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/>
@@ -175,962 +181,522 @@
   </section>
 
   <!-- =========================================================================
-       3. SIGNATURE ANGLED YELLOW RIBBON COUNTER STRIP (Exact Reference Match)
+       3. PROJECT RECORD SECTION (Matching SPAN Screenshots 2, 3, 4)
        ========================================================================= -->
-  <div class="relative z-30 -mt-8 sm:-mt-12 max-w-6xl mx-auto px-4">
-    <div class="angled-ribbon-strip py-6 px-6 sm:px-12 shadow-xl">
-      <div id="experience" class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-construction-dark font-display">
-        
-        <!-- Stat 1: Projects -->
-        <div class="space-y-1">
-          <div class="flex items-center justify-center mb-1 text-construction-dark">
-            <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-            </svg>
-          </div>
-          <div class="stat-counter text-2xl sm:text-3xl font-black text-construction-dark" data-target="24" data-suffix="+">
-            0
-          </div>
-          <p class="text-[11px] font-extrabold uppercase tracking-widest text-construction-dark">
-            24+ PROJECTS
-          </p>
-        </div>
-
-        <!-- Stat 2: Clients -->
-        <div class="space-y-1">
-          <div class="flex items-center justify-center mb-1 text-construction-dark">
-            <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-            </svg>
-          </div>
-          <div class="stat-counter text-2xl sm:text-3xl font-black text-construction-dark" data-target="7" data-suffix="+">
-            0
-          </div>
-          <p class="text-[11px] font-extrabold uppercase tracking-widest text-construction-dark">
-            7+ MAJOR CLIENTS
-          </p>
-        </div>
-
-        <!-- Stat 3: Safety & Success -->
-        <div class="space-y-1">
-          <div class="flex items-center justify-center mb-1 text-construction-dark">
-            <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-            </svg>
-          </div>
-          <div class="stat-counter text-2xl sm:text-3xl font-black text-construction-dark" data-target="100" data-suffix="%">
-            0
-          </div>
-          <p class="text-[11px] font-extrabold uppercase tracking-widest text-construction-dark">
-            100% SAFETY RECORD
-          </p>
-        </div>
-
-        <!-- Stat 4: Years of Legacy -->
-        <div class="space-y-1">
-          <div class="flex items-center justify-center mb-1 text-construction-dark">
-            <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-          </div>
-          <div class="stat-counter text-2xl sm:text-3xl font-black text-construction-dark" data-target="34" data-suffix="+">
-            0
-          </div>
-          <p class="text-[11px] font-extrabold uppercase tracking-widest text-construction-dark">
-            34+ YEARS (1992–2026)
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       4. OUR SERVICES SECTION (Matching Reference "OUR SERVICES" 3-Card Layout)
-       ========================================================================= -->
-  <section id="services" class="py-20 sm:py-24 bg-white">
+  <section id="projects" class="py-24 sm:py-32 bg-[#09080F] border-t border-[#1E192D] relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Section Header -->
-      <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
-        <h2 class="text-3xl sm:text-4xl font-display font-black tracking-tight text-construction-dark uppercase">
-          OUR <span class="text-construction-yellow">SERVICES</span>
-        </h2>
-        <p class="text-xs sm:text-sm text-construction-muted leading-relaxed">
-          Thirupathi Engineers provides high-tolerance industrial steel fabrication, cement plant systems, captive power installations, and crane rigging across South India.
-        </p>
+      <!-- Section Header (Matching Screenshot 2: "Three projects. Every scale.") -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-24 pb-12 border-b border-[#1E192D]">
+        <div class="lg:col-span-6 space-y-2">
+          <p class="text-xs font-mono tracking-widest uppercase text-[#A78BFA] font-bold">
+            PROJECT RECORD
+          </p>
+          <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Four projects.<br>
+            <span class="text-[#716A87]">Every scale.</span>
+          </h2>
+        </div>
+        <div class="lg:col-span-6 text-xs sm:text-sm text-[#847E99] leading-relaxed max-w-lg lg:ml-auto">
+          From heavy mining sizer crushers to 20 MW captive power plant ACC towers and line-3 cement kilns — the engineering discipline is identical. Read the blueprints. Erect with sub-millimeter precision. Sign off when it's safe.
+        </div>
       </div>
 
-      <!-- 3 Service Cards with Real Photos & Clean Overlapping Structure -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- Card 1: Cement Plant Infrastructure -->
-        <div class="service-card-ref bg-white border border-construction-border shadow-xs overflow-hidden flex flex-col justify-between">
-          <div>
-            <div class="img-zoom-container aspect-[16/11] bg-gray-100">
-              <img src="assets/project-clinker-silo.jpg" alt="Cement Plant Projects & Kilns" class="w-full h-full object-cover">
-            </div>
-            <div class="p-6 text-center space-y-3">
-              <h3 class="font-display font-black text-base uppercase text-construction-dark">
-                CEMENT PLANT PROJECTS
-              </h3>
-              <p class="text-xs text-construction-muted leading-relaxed">
-                Complete structural erection for Line-3 Kilns, Coal Mills, Clinker Silos, Conveyor Galleries, and automated bulk packaging units.
-              </p>
-            </div>
+      <div class="space-y-32">
+
+        <!-- ===================================================================
+             PROJECT 01: Dry Mix Unit & Packing Plant (Screenshot 2 Style)
+             =================================================================== -->
+        <div class="relative group">
+          <!-- Big Background Architectural Numeral 01 -->
+          <div class="text-[7rem] sm:text-[10rem] font-mono font-bold text-[#141021] select-none absolute -top-16 -left-4 pointer-events-none z-0">
+            01
           </div>
-          <div class="p-6 pt-0 text-center">
-            <a href="#projects" class="service-card-btn inline-block text-xs font-bold uppercase text-construction-yellow hover:text-construction-yellowDark transition py-2 px-5 rounded-md border border-construction-yellow/40 hover:border-construction-yellow">
-              READ MORE
-            </a>
-          </div>
-        </div>
 
-        <!-- Card 2: Steel Structure Erection -->
-        <div class="service-card-ref bg-white border border-construction-border shadow-xs overflow-hidden flex flex-col justify-between">
-          <div>
-            <div class="img-zoom-container aspect-[16/11] bg-gray-100">
-              <img src="assets/about-engineering.jpg" alt="Structural Steel Fabrication & Erection" class="w-full h-full object-cover">
-            </div>
-            <div class="p-6 text-center space-y-3">
-              <h3 class="font-display font-black text-base uppercase text-construction-dark">
-                STEEL STRUCTURE ERECTION
-              </h3>
-              <p class="text-xs text-construction-muted leading-relaxed">
-                Precision shop fabrication and on-site crane erection of heavy built-up plate girders, columns, portal frames, and high-altitude trusses.
-              </p>
-            </div>
-          </div>
-          <div class="p-6 pt-0 text-center">
-            <a href="#projects" class="service-card-btn inline-block text-xs font-bold uppercase text-construction-yellow hover:text-construction-yellowDark transition py-2 px-5 rounded-md border border-construction-yellow/40 hover:border-construction-yellow">
-              READ MORE
-            </a>
-          </div>
-        </div>
-
-        <!-- Card 3: Power Plant & ACC Works -->
-        <div class="service-card-ref bg-white border border-construction-border shadow-xs overflow-hidden flex flex-col justify-between">
-          <div>
-            <div class="img-zoom-container aspect-[16/11] bg-gray-100">
-              <img src="assets/project-power-plant.jpg" alt="Power Plant Structures & ACC Towers" class="w-full h-full object-cover">
-            </div>
-            <div class="p-6 text-center space-y-3">
-              <h3 class="font-display font-black text-base uppercase text-construction-dark">
-                POWER PLANT STRUCTURES
-              </h3>
-              <p class="text-xs text-construction-muted leading-relaxed">
-                Turnkey erection of 20 MW captive power generation units, Non-IBR pipeline supports, and Air Cooled Condenser (ACC) cooling towers.
-              </p>
-            </div>
-          </div>
-          <div class="p-6 pt-0 text-center">
-            <a href="#projects" class="service-card-btn inline-block text-xs font-bold uppercase text-construction-yellow hover:text-construction-yellowDark transition py-2 px-5 rounded-md border border-construction-yellow/40 hover:border-construction-yellow">
-              READ MORE
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       5. LEADERSHIP / PARTNERS QUOTE SPOTLIGHT BANNER (Matching Reference Dark Band)
-       ========================================================================= -->
-  <section id="leadership-spotlight" class="py-16 sm:py-20 bg-construction-dark text-white relative overflow-hidden">
-    <!-- Subtle Blueprint Background Graphic -->
-    <div class="absolute inset-0 opacity-10 pointer-events-none blueprint-grid"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        
-        <!-- Left Image of Partners Side-by-Side -->
-        <div class="lg:col-span-5">
-          <div class="grid grid-cols-2 gap-4">
-            
-            <!-- M. Mohan Portrait -->
-            <div class="relative border-2 border-construction-yellow shadow-xl overflow-hidden aspect-[3/4] bg-construction-dark">
-              <img src="assets/partner-mohan.png" alt="M. Mohan — Senior Partner" class="w-full h-full object-cover">
-              <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/70 to-transparent p-3 pt-6 text-center">
-                <span class="block text-xs font-bold text-white uppercase font-display">M. MOHAN</span>
-                <span class="text-[9px] font-mono text-construction-yellow uppercase">Senior Partner (50+ Yrs)</span>
-              </div>
-            </div>
-
-            <!-- K. Gopalakrishnan Portrait -->
-            <div class="relative border-2 border-construction-yellow shadow-xl overflow-hidden aspect-[3/4] bg-construction-dark">
-              <img src="assets/partner-gopalakrishnan.jpg" alt="K. Gopalakrishnan — Partner" class="w-full h-full object-cover">
-              <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/70 to-transparent p-3 pt-6 text-center">
-                <span class="block text-xs font-bold text-white uppercase font-display">K. GOPALAKRISHNAN</span>
-                <span class="text-[9px] font-mono text-construction-yellow uppercase">Partner (15+ Yrs)</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Right Quote Content (Matching Reference Layout) -->
-        <div class="lg:col-span-7 space-y-4">
-          <div class="text-construction-yellow text-4xl font-serif">
-            “
-          </div>
-          <h3 class="text-xl sm:text-2xl font-display font-black uppercase tracking-tight text-white">
-            M. MOHAN & <span class="text-construction-yellow">K. GOPALAKRISHNAN</span>
-          </h3>
-          <p class="text-xs font-mono uppercase tracking-widest text-gray-400">
-            SENIOR PARTNER (50+ YRS EXP) & PARTNER (15+ YRS EXP)
-          </p>
-          <p class="text-xs sm:text-sm text-gray-300 leading-relaxed max-w-xl font-normal">
-            “At Thirupathi Engineers, our five decades of steel and cement plant construction expertise guarantee that every beam, silo, hopper, and power structure is erected with absolute geometrical precision, verified weld testing, and zero-compromise safety.”
-          </p>
-
-          <!-- Navigation Arrow Indicator Controls (Matching Reference < >) -->
-          <div class="flex items-center gap-2 pt-2">
-            <a href="#leadership" class="w-8 h-8 rounded-full bg-construction-yellow hover:bg-construction-yellowDark text-white flex items-center justify-center text-xs font-bold transition">
-              &lt;
-            </a>
-            <a href="#leadership" class="w-8 h-8 rounded-full bg-construction-yellow hover:bg-construction-yellowDark text-white flex items-center justify-center text-xs font-bold transition">
-              &gt;
-            </a>
-            <span class="text-[11px] font-mono text-gray-400 ml-2">
-              DISCOVER FULL LEADERSHIP RESUME
+          <div class="relative z-10 space-y-3 mb-6">
+            <span class="text-xs font-mono font-bold tracking-widest text-[#A78BFA] uppercase">
+              CEMENT PLANT INFRASTRUCTURE // THE RAMCO CEMENTS LTD. · 2026 ONGOING
             </span>
           </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+            
+            <!-- Left: High-Res Project Photo with Stats Banner -->
+            <div class="lg:col-span-6">
+              <div class="span-card overflow-hidden">
+                <div class="img-zoom-container aspect-[16/11] bg-[#120F1D] relative">
+                  <img src="assets/project-drymix-packing.jpg" alt="Dry Mix Unit & Packing Plant" class="w-full h-full object-cover">
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#09080F] via-transparent to-transparent opacity-80"></div>
+                  <!-- Bottom Stats Ribbon (Matching SPAN Style) -->
+                  <div class="absolute bottom-4 inset-x-4 flex items-center justify-between text-[11px] font-mono text-white/90 bg-[#120F1D]/80 backdrop-blur-md px-4 py-2 border border-[#2B2342] rounded">
+                    <div>
+                      <span class="text-emerald-400 font-bold block">ACTIVE ONGOING</span>
+                      <span class="text-[9px] text-[#847E99]">2026 EXECUTION</span>
+                    </div>
+                    <div>
+                      <span class="text-white font-bold block">HEAVY STEEL</span>
+                      <span class="text-[9px] text-[#847E99]">STRUCTURAL RIGGING</span>
+                    </div>
+                    <div>
+                      <span class="text-[#A78BFA] font-bold block">AUTOMATED</span>
+                      <span class="text-[9px] text-[#847E99]">PACKING FACILITY</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Technical Specification & Narrative Grid -->
+            <div class="lg:col-span-6 space-y-6">
+              <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-snug">
+                Dry Mix Unit, Packing Plant & Hopper Work
+              </h3>
+
+              <!-- 2x2 Technical Metric Grid (Matching SPAN Screenshot 2) -->
+              <div class="grid grid-cols-2 gap-4 py-4 border-y border-[#1E192D]">
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">SOIL / SITE LOCATION</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">R.R. Nagar, Virudhunagar</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">SYSTEM SELECTED</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Heavy Built-up Plate Girders</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">STORAGE SYSTEM</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Bulk Feed Hoppers & Silos</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">SAFETY STANDARD</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Zero Incident Rigging Protocol</p>
+                </div>
+              </div>
+
+              <p class="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
+                Comprehensive turnkey structural steel erection for the new dry mix processing facility, automated high-speed bagging and packaging plants, and bulk feed hoppers at The Ramco Cements Ltd. Requires precision alignment of multi-tier equipment platforms and high-capacity conveyor galleries.
+              </p>
+
+              <!-- Signature Purple Callout Box (Matching Screenshot 2 & 3) -->
+              <div class="purple-callout-box text-xs sm:text-sm text-[#C4B5FD] italic leading-relaxed">
+                “Active milestone execution adhering strictly to Ramco's rigorous industrial guidelines. Certified heavy crane rigging with 100% daily toolbox compliance.”
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             PROJECT 02: Sizer Crusher Work (Screenshot 3 Alternating Style)
+             =================================================================== -->
+        <div class="relative group">
+          <!-- Big Background Architectural Numeral 02 -->
+          <div class="text-[7rem] sm:text-[10rem] font-mono font-bold text-[#141021] select-none absolute -top-16 -left-4 pointer-events-none z-0">
+            02
+          </div>
+
+          <div class="relative z-10 space-y-3 mb-6">
+            <span class="text-xs font-mono font-bold tracking-widest text-[#A78BFA] uppercase">
+              HEAVY MINING INSTALLATION // RAMCO MINES · 2026 COMPLETED
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+            
+            <!-- Left: Technical Specification & Narrative Grid (Alternating Left) -->
+            <div class="lg:col-span-6 space-y-6 order-2 lg:order-1">
+              <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-snug">
+                Primary Sizer Crusher Erection
+              </h3>
+
+              <!-- 2x2 Technical Metric Grid -->
+              <div class="grid grid-cols-2 gap-4 py-4 border-y border-[#1E192D]">
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">SITE LOCATION</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Virudhunagar Quarry Mines</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">MACHINERY INSTALLED</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">High-Capacity Sizer Crusher</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">STRUCTURAL WEIGHT</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Heavy Steel Vibration Chutes</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">RIGGING METHOD</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Tandem Crane Alignment</p>
+                </div>
+              </div>
+
+              <p class="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
+                Heavy structural fabrication and erection of the primary limestone sizer crusher complex, dynamic vibration-damped support frames, and heavy discharge conveyor transfers. Designed for continuous high-impact mining quarry operations.
+              </p>
+
+              <!-- Signature Purple Callout Box -->
+              <div class="purple-callout-box text-xs sm:text-sm text-[#C4B5FD] italic leading-relaxed">
+                “Passed full-load crushing trial without vibration defects. Handed over to mine operations ahead of targeted commissioning schedule.”
+              </div>
+            </div>
+
+            <!-- Right: High-Res Project Photo with Stats Banner -->
+            <div class="lg:col-span-6 order-1 lg:order-2">
+              <div class="span-card overflow-hidden">
+                <div class="img-zoom-container aspect-[16/11] bg-[#120F1D] relative">
+                  <img src="assets/project-sizer-crusher.jpg" alt="Primary Sizer Crusher Erection" class="w-full h-full object-cover">
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#09080F] via-transparent to-transparent opacity-80"></div>
+                  <!-- Bottom Stats Ribbon -->
+                  <div class="absolute bottom-4 inset-x-4 flex items-center justify-between text-[11px] font-mono text-white/90 bg-[#120F1D]/80 backdrop-blur-md px-4 py-2 border border-[#2B2342] rounded">
+                    <div>
+                      <span class="text-white font-bold block">2026 COMPLETED</span>
+                      <span class="text-[9px] text-[#847E99]">SUCCESSFULLY COMMISSIONED</span>
+                    </div>
+                    <div>
+                      <span class="text-[#A78BFA] font-bold block">100% OPERATIONAL</span>
+                      <span class="text-[9px] text-[#847E99]">HIGH-IMPACT STEEL</span>
+                    </div>
+                    <div>
+                      <span class="text-emerald-400 font-bold block">ZERO DEFECT</span>
+                      <span class="text-[9px] text-[#847E99]">TORQUE INSPECTED</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             PROJECT 03: 20 MW Power Plant & ACC Towers (Screenshot 4 Style)
+             =================================================================== -->
+        <div class="relative group">
+          <!-- Big Background Architectural Numeral 03 -->
+          <div class="text-[7rem] sm:text-[10rem] font-mono font-bold text-[#141021] select-none absolute -top-16 -left-4 pointer-events-none z-0">
+            03
+          </div>
+
+          <div class="relative z-10 space-y-3 mb-6">
+            <span class="text-xs font-mono font-bold tracking-widest text-[#A78BFA] uppercase">
+              POWER GENERATION & COOLING // TECKSK PROJECTS & ISGEC · 2025
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+            
+            <!-- Left: High-Res Project Photo with Stats Banner -->
+            <div class="lg:col-span-6">
+              <div class="span-card overflow-hidden">
+                <div class="img-zoom-container aspect-[16/11] bg-[#120F1D] relative">
+                  <img src="assets/project-power-plant.jpg" alt="20 MW Power Plant & ACC Towers" class="w-full h-full object-cover">
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#09080F] via-transparent to-transparent opacity-80"></div>
+                  <!-- Bottom Stats Ribbon -->
+                  <div class="absolute bottom-4 inset-x-4 flex items-center justify-between text-[11px] font-mono text-white/90 bg-[#120F1D]/80 backdrop-blur-md px-4 py-2 border border-[#2B2342] rounded">
+                    <div>
+                      <span class="text-[#A78BFA] font-bold block">20 MW CAPTIVE</span>
+                      <span class="text-[9px] text-[#847E99]">POWER GENERATION</span>
+                    </div>
+                    <div>
+                      <span class="text-white font-bold block">ACC TOWERS</span>
+                      <span class="text-[9px] text-[#847E99]">COOLING FAN DECKS</span>
+                    </div>
+                    <div>
+                      <span class="text-emerald-400 font-bold block">NON-IBR PIPING</span>
+                      <span class="text-[9px] text-[#847E99]">HIGH ELEVATION</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Technical Specification & Narrative Grid -->
+            <div class="lg:col-span-6 space-y-6">
+              <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-snug">
+                20 MW Power Plant & ACC Towers Erection
+              </h3>
+
+              <!-- 2x2 Technical Metric Grid -->
+              <div class="grid grid-cols-2 gap-4 py-4 border-y border-[#1E192D]">
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">PRINCIPAL CLIENTS</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">ISGEC & TECKSK Projects</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">SYSTEM SELECTED</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Heavy Structural Steel Framework</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">COOLING TECHNOLOGY</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Air Cooled Condenser (ACC)</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">NDT TEST CLEARANCE</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">100% Ultrasonic & Radiographic</p>
+                </div>
+              </div>
+
+              <p class="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
+                Turnkey erection of 20 MW captive power generation unit, high-temperature non-IBR pipeline support networks, and heavy Air Cooled Condenser modular cooling towers. Precision torque bolting and radiographic weld verification across all principal load-bearing portal frames.
+              </p>
+
+              <!-- Signature Purple Callout Box -->
+              <div class="purple-callout-box text-xs sm:text-sm text-[#C4B5FD] italic leading-relaxed">
+                “Total geometric alignment compliant with ISGEC technical engineering specs. Signed off with zero safety violations.”
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             PROJECT 04: Clinker Silo Structures (Screenshot 4 Alternating Style)
+             =================================================================== -->
+        <div class="relative group">
+          <!-- Big Background Architectural Numeral 04 -->
+          <div class="text-[7rem] sm:text-[10rem] font-mono font-bold text-[#141021] select-none absolute -top-16 -left-4 pointer-events-none z-0">
+            04
+          </div>
+
+          <div class="relative z-10 space-y-3 mb-6">
+            <span class="text-xs font-mono font-bold tracking-widest text-[#A78BFA] uppercase">
+              BULK HANDLING & STORAGE // THE RAMCO CEMENTS LTD. · 2025
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+            
+            <!-- Left: Technical Specification (Alternating Left) -->
+            <div class="lg:col-span-6 space-y-6 order-2 lg:order-1">
+              <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-snug">
+                Clinker Silo Structures Work
+              </h3>
+
+              <!-- 2x2 Technical Metric Grid -->
+              <div class="grid grid-cols-2 gap-4 py-4 border-y border-[#1E192D]">
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">STRUCTURE HEIGHT</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">45+ Meter High-Elevation</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">SYSTEM SELECTED</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Silo Shell & Transfer Towers</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">CONVEYOR SPAN</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Elevated Enclosed Galleries</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-mono uppercase tracking-wider text-[#7E7991]">CLIENT</p>
+                  <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">The Ramco Cements Ltd.</p>
+                </div>
+              </div>
+
+              <p class="text-xs sm:text-sm text-[#94A3B8] leading-relaxed">
+                High-elevation heavy structural fabrication and crane erection for massive clinker storage facility, material transfer towers, and high-altitude conveyor galleries connecting line-3 production circuits to bulk storage.
+              </p>
+
+              <!-- Signature Purple Callout Box -->
+              <div class="purple-callout-box text-xs sm:text-sm text-[#C4B5FD] italic leading-relaxed">
+                “Completed at high elevations with certified tandem crane lifting. Signed off with 100% torque and alignment inspection.”
+              </div>
+            </div>
+
+            <!-- Right: High-Res Project Photo with Stats Banner -->
+            <div class="lg:col-span-6 order-1 lg:order-2">
+              <div class="span-card overflow-hidden">
+                <div class="img-zoom-container aspect-[16/11] bg-[#120F1D] relative">
+                  <img src="assets/project-clinker-silo.jpg" alt="Clinker Silo Structures" class="w-full h-full object-cover">
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#09080F] via-transparent to-transparent opacity-80"></div>
+                  <!-- Bottom Stats Ribbon -->
+                  <div class="absolute bottom-4 inset-x-4 flex items-center justify-between text-[11px] font-mono text-white/90 bg-[#120F1D]/80 backdrop-blur-md px-4 py-2 border border-[#2B2342] rounded">
+                    <div>
+                      <span class="text-white font-bold block">45M+ HEIGHT</span>
+                      <span class="text-[9px] text-[#847E99]">HIGH ELEVATION</span>
+                    </div>
+                    <div>
+                      <span class="text-[#A78BFA] font-bold block">CLINKER SILOS</span>
+                      <span class="text-[9px] text-[#847E99]">BULK STORAGE</span>
+                    </div>
+                    <div>
+                      <span class="text-emerald-400 font-bold block">TRANSFER TOWERS</span>
+                      <span class="text-[9px] text-[#847E99]">GALLERY SYSTEMS</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </div>
+
     </div>
   </section>
 
   <!-- =========================================================================
-       6. OUR PROJECTS SECTION (Matching Reference "OUR PROJECTS" 6-Grid Filter)
+       4. SCOPE OF PRACTICE / SERVICES SECTION (Matching SPAN Screenshot 5)
        ========================================================================= -->
-  <section id="projects" class="py-20 sm:py-24 bg-construction-lightBg border-b border-construction-border">
+  <section id="services" class="py-24 sm:py-32 bg-[#09080F] border-t border-[#1E192D] relative tech-grid-pattern">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Section Header -->
-      <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
-        <h2 class="text-3xl sm:text-4xl font-display font-black tracking-tight text-construction-dark uppercase">
-          OUR <span class="text-construction-yellow">PROJECTS</span>
-        </h2>
-        <p class="text-xs sm:text-sm text-construction-muted leading-relaxed">
-          Delivering ongoing and completed heavy industrial installations for The Ramco Cements Ltd., ISGEC, TECKSK Projects, and mining facilities.
-        </p>
+      <!-- Section Header (Matching Screenshot 5: "What gets stamped.") -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 pb-10 border-b border-[#1E192D]">
+        <div class="lg:col-span-6 space-y-2">
+          <p class="text-xs font-mono tracking-widest uppercase text-[#A78BFA] font-bold">
+            SCOPE OF PRACTICE
+          </p>
+          <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            What gets erected.
+          </h2>
+        </div>
+        <div class="lg:col-span-6 text-xs sm:text-sm text-[#847E99] leading-relaxed max-w-lg lg:ml-auto">
+          Four core practice areas. Senior partners directly reviewing every fabrication drawing, weld procedure, and crane lift plan on site.
+        </div>
       </div>
 
-      <!-- Category Filter Tabs (Matching Reference) -->
-      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mb-12 text-xs font-bold uppercase tracking-wider">
-        <button type="button" data-filter="all" class="gallery-filter-btn px-4 py-1.5 rounded-full border-b-2 border-construction-yellow text-construction-dark hover:text-construction-yellow transition cursor-pointer">
-          ALL PROJECTS
-        </button>
-        <button type="button" data-filter="cement" class="gallery-filter-btn px-4 py-1.5 rounded-full border-b-2 border-transparent text-construction-muted hover:text-construction-yellow transition cursor-pointer">
-          CEMENT PLANTS
-        </button>
-        <button type="button" data-filter="power" class="gallery-filter-btn px-4 py-1.5 rounded-full border-b-2 border-transparent text-construction-muted hover:text-construction-yellow transition cursor-pointer">
-          POWER PLANTS
-        </button>
-        <button type="button" data-filter="crusher" class="gallery-filter-btn px-4 py-1.5 rounded-full border-b-2 border-transparent text-construction-muted hover:text-construction-yellow transition cursor-pointer">
-          MINING & CRUSHERS
-        </button>
-        <button type="button" data-filter="fab" class="gallery-filter-btn px-4 py-1.5 rounded-full border-b-2 border-transparent text-construction-muted hover:text-construction-yellow transition cursor-pointer">
-          STEEL FABRICATION
-        </button>
-      </div>
-
-      <!-- 6 Project Cards Grid -->
-      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-        <!-- Project 1: Dry Mix Unit & Packing Plant (2026 Ongoing) -->
-        <div class="gallery-item project-card-ref bg-white border border-construction-border shadow-xs overflow-hidden group cursor-pointer"
-             data-category="cement"
-             data-title="Dry Mix Unit & Packing Plant Work (2026 Ongoing)"
-             data-category-label="The Ramco Cements Ltd. — R.R. Nagar">
-          <div class="img-zoom-container aspect-[16/11] bg-gray-100 relative">
-            <img src="assets/project-drymix-packing.jpg" alt="Dry Mix Unit & Packing Plant Work" class="w-full h-full object-cover">
-            <div class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-bold uppercase px-2.5 py-1">
-              2026 ONGOING
-            </div>
-          </div>
-          <div class="p-4 bg-white flex items-center justify-between border-t border-construction-border">
-            <div>
-              <p class="text-[10px] font-mono text-construction-muted uppercase">RAMCO CEMENTS // R.R. NAGAR</p>
-              <h4 class="text-sm font-bold text-construction-dark group-hover:text-construction-yellow transition">Dry Mix & Packing Plant Work</h4>
-            </div>
-            <button type="button" data-project="drymix" class="view-project-btn text-xs font-bold text-construction-yellow hover:text-construction-yellowDark uppercase px-3 py-1 rounded-md bg-amber-50 hover:bg-amber-100 transition">
-              VIEW +
-            </button>
-          </div>
-        </div>
-
-        <!-- Project 2: Sizer Crusher Work (2026 Completed) -->
-        <div class="gallery-item project-card-ref bg-white border border-construction-border shadow-xs overflow-hidden group cursor-pointer"
-             data-category="crusher"
-             data-title="Primary Sizer Crusher Work (2026 Completed)"
-             data-category-label="Ramco Mines — Virudhunagar">
-          <div class="img-zoom-container aspect-[16/11] bg-gray-100 relative">
-            <img src="assets/project-sizer-crusher.jpg" alt="Sizer Crusher Work" class="w-full h-full object-cover">
-            <div class="absolute top-3 left-3 bg-construction-dark text-white text-[10px] font-bold uppercase px-2.5 py-1">
-              2026 COMPLETED
-            </div>
-          </div>
-          <div class="p-4 bg-white flex items-center justify-between border-t border-construction-border">
-            <div>
-              <p class="text-[10px] font-mono text-construction-muted uppercase">RAMCO MINES // VIRUDHUNAGAR</p>
-              <h4 class="text-sm font-bold text-construction-dark group-hover:text-construction-yellow transition">Sizer Crusher Erection</h4>
-            </div>
-            <button type="button" data-project="crusher" class="view-project-btn text-xs font-bold text-construction-yellow hover:text-construction-yellowDark uppercase px-3 py-1 rounded-md bg-amber-50 hover:bg-amber-100 transition">
-              VIEW +
-            </button>
-          </div>
-        </div>
-
-        <!-- Project 3: 20 MW Power Plant (2025) -->
-        <div class="gallery-item project-card-ref bg-white border border-construction-border shadow-xs overflow-hidden group cursor-pointer"
-             data-category="power"
-             data-title="20 MW Power Plant & ACC Towers Erection (2025)"
-             data-category-label="ISGEC & TECKSK Projects">
-          <div class="img-zoom-container aspect-[16/11] bg-gray-100 relative">
-            <img src="assets/project-power-plant.jpg" alt="20 MW Power Plant" class="w-full h-full object-cover">
-            <div class="absolute top-3 left-3 bg-construction-yellow text-white text-[10px] font-bold uppercase px-2.5 py-1">
-              2025 COMPLETED
-            </div>
-          </div>
-          <div class="p-4 bg-white flex items-center justify-between border-t border-construction-border">
-            <div>
-              <p class="text-[10px] font-mono text-construction-muted uppercase">ISGEC & TECKSK PROJECTS</p>
-              <h4 class="text-sm font-bold text-construction-dark group-hover:text-construction-yellow transition">20 MW Power Plant & ACC</h4>
-            </div>
-            <button type="button" data-project="power" class="view-project-btn text-xs font-bold text-construction-yellow hover:text-construction-yellowDark uppercase px-3 py-1 rounded-md bg-amber-50 hover:bg-amber-100 transition">
-              VIEW +
-            </button>
-          </div>
-        </div>
-
-        <!-- Project 4: Clinker Silo Structures (2025) -->
-        <div class="gallery-item project-card-ref bg-white border border-construction-border shadow-xs overflow-hidden group cursor-pointer"
-             data-category="cement"
-             data-title="Clinker Silo Structures Work (2025)"
-             data-category-label="The Ramco Cements Ltd.">
-          <div class="img-zoom-container aspect-[16/11] bg-gray-100 relative">
-            <img src="assets/project-clinker-silo.jpg" alt="Clinker Silo Structures" class="w-full h-full object-cover">
-            <div class="absolute top-3 left-3 bg-construction-yellow text-white text-[10px] font-bold uppercase px-2.5 py-1">
-              2025 COMPLETED
-            </div>
-          </div>
-          <div class="p-4 bg-white flex items-center justify-between border-t border-construction-border">
-            <div>
-              <p class="text-[10px] font-mono text-construction-muted uppercase">THE RAMCO CEMENTS LTD.</p>
-              <h4 class="text-sm font-bold text-construction-dark group-hover:text-construction-yellow transition">Clinker Silo Structures</h4>
-            </div>
-            <button type="button" data-project="silo" class="view-project-btn text-xs font-bold text-construction-yellow hover:text-construction-yellowDark uppercase px-3 py-1 rounded-md bg-amber-50 hover:bg-amber-100 transition">
-              VIEW +
-            </button>
-          </div>
-        </div>
-
-        <!-- Project 5: ACC Cooling Tower Works -->
-        <div class="gallery-item project-card-ref bg-white border border-construction-border shadow-xs overflow-hidden group cursor-pointer"
-             data-category="power"
-             data-title="ACC Cooling Tower High-Altitude Framework"
-             data-category-label="Air Cooled Condenser Fan Deck">
-          <div class="img-zoom-container aspect-[16/11] bg-gray-100 relative">
-            <img src="assets/gallery-acc-work.jpg" alt="ACC Cooling Tower" class="w-full h-full object-cover">
-          </div>
-          <div class="p-4 bg-white flex items-center justify-between border-t border-construction-border">
-            <div>
-              <p class="text-[10px] font-mono text-construction-muted uppercase">COOLING TOWER FRAMEWORK</p>
-              <h4 class="text-sm font-bold text-construction-dark group-hover:text-construction-yellow transition">ACC Fan Deck Trusses</h4>
-            </div>
-            <span class="text-xs font-bold text-construction-yellow uppercase">ENLARGE</span>
-          </div>
-        </div>
-
-        <!-- Project 6: Structural Steel Fabrication -->
-        <div class="gallery-item project-card-ref bg-white border border-construction-border shadow-xs overflow-hidden group cursor-pointer"
-             data-category="fab"
-             data-title="Heavy Structural Steel Shop Fabrication"
-             data-category-label="Workshop Built-up Beams">
-          <div class="img-zoom-container aspect-[16/11] bg-gray-100 relative">
-            <img src="assets/gallery-fabrication.jpg" alt="Heavy Steel Beam Fabrication" class="w-full h-full object-cover">
-          </div>
-          <div class="p-4 bg-white flex items-center justify-between border-t border-construction-border">
-            <div>
-              <p class="text-[10px] font-mono text-construction-muted uppercase">SHOP WORKSHOP</p>
-              <h4 class="text-sm font-bold text-construction-dark group-hover:text-construction-yellow transition">Heavy I-Beam Fabrication</h4>
-            </div>
-            <span class="text-xs font-bold text-construction-yellow uppercase">ENLARGE</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Centered Load More / Action Button (Matching Reference) -->
-      <div class="text-center mt-12">
-        <a href="#timeline" class="inline-block border-2 border-construction-dark hover:border-construction-yellow hover:bg-construction-yellow hover:text-white text-construction-dark text-xs font-bold uppercase tracking-wider px-8 py-3 rounded-lg transition">
-          EXPLORE 1992–2026 TIMELINE
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       7. TESTIMONIALS / CLIENT CREDIBILITY (Matching Reference 3-Card Layout)
-       ========================================================================= -->
-  <section id="testimonials" class="py-20 sm:py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Section Header -->
-      <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
-        <h2 class="text-3xl sm:text-4xl font-display font-black tracking-tight text-construction-dark uppercase">
-          CLIENT <span class="text-construction-yellow">TESTIMONIALS</span>
-        </h2>
-        <p class="text-xs sm:text-sm text-construction-muted leading-relaxed">
-          Trusted by principal EPC contractors and mega industrial plant corporations across three decades of execution.
-        </p>
-      </div>
-
-      <!-- 3 Testimonial Cards with Yellow Quote Badge Tab (Exact Reference Match) -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <!-- Card 1: The Ramco Cements Ltd. -->
-        <div class="relative bg-white border border-construction-border p-8 pt-10 shadow-xs flex flex-col justify-between">
-          <div class="quote-badge-tab">
-            “
-          </div>
-          <div class="space-y-4">
-            <p class="text-xs text-construction-muted leading-relaxed italic">
-              “Thirupathi Engineers has consistently proven structural excellence and strict schedule adherence across multiple projects, including our clinker silos, washing plant, and the current Dry Mix Unit & Packing Plant at R.R. Nagar.”
-            </p>
-          </div>
-          <div class="pt-6 mt-6 border-t border-construction-border flex items-center gap-3">
-            <div class="w-9 h-9 bg-construction-dark text-white font-bold flex items-center justify-center text-xs">
-              RC
-            </div>
-            <div>
-              <h4 class="text-xs font-black uppercase text-construction-dark">The Ramco Cements Ltd.</h4>
-              <p class="text-[10px] text-construction-muted font-mono">Plant Operations & Projects Division</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2: ISGEC Heavy Engineering -->
-        <div class="relative bg-white border border-construction-border p-8 pt-10 shadow-xs flex flex-col justify-between">
-          <div class="quote-badge-tab">
-            “
-          </div>
-          <div class="space-y-4">
-            <p class="text-xs text-construction-muted leading-relaxed italic">
-              “Their erection crew executed high-altitude structural frameworks, ducting supports, and ACC cooling tower assembly on our 20 MW captive power plant project with zero incidents and millimeter-accurate alignment.”
-            </p>
-          </div>
-          <div class="pt-6 mt-6 border-t border-construction-border flex items-center gap-3">
-            <div class="w-9 h-9 bg-construction-yellow text-white font-bold flex items-center justify-center text-xs">
-              IS
-            </div>
-            <div>
-              <h4 class="text-xs font-black uppercase text-construction-dark">ISGEC Heavy Engineering</h4>
-              <p class="text-[10px] text-construction-muted font-mono">Power Plant EPC Lead</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: TECKSK Projects -->
-        <div class="relative bg-white border border-construction-border p-8 pt-10 shadow-xs flex flex-col justify-between">
-          <div class="quote-badge-tab">
-            “
-          </div>
-          <div class="space-y-4">
-            <p class="text-xs text-construction-muted leading-relaxed italic">
-              “Led by experienced partners M. Mohan and K. Gopalakrishnan, Thirupathi Engineers brings deep on-site rigging knowledge that solves complex site challenges efficiently.”
-            </p>
-          </div>
-          <div class="pt-6 mt-6 border-t border-construction-border flex items-center gap-3">
-            <div class="w-9 h-9 bg-construction-dark text-white font-bold flex items-center justify-center text-xs">
-              TP
-            </div>
-            <div>
-              <h4 class="text-xs font-black uppercase text-construction-dark">TECKSK Projects</h4>
-              <p class="text-[10px] text-construction-muted font-mono">Structural Erection Management</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Pagination Dot Indicator (Matching Reference) -->
-      <div class="flex items-center justify-center gap-2 mt-10">
-        <span class="w-2.5 h-2.5 bg-construction-yellow rounded-full"></span>
-        <span class="w-2.5 h-2.5 bg-gray-300 rounded-full"></span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       8. LATEST UPDATES / ONGOING WORK (Matching Reference "LATEST BLOG" Layout)
-       ========================================================================= -->
-  <section class="py-20 sm:py-24 bg-construction-lightBg border-t border-construction-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Section Header -->
-      <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
-        <h2 class="text-3xl sm:text-4xl font-display font-black tracking-tight text-construction-dark uppercase">
-          LATEST <span class="text-construction-yellow">UPDATES</span>
-        </h2>
-        <p class="text-xs sm:text-sm text-construction-muted leading-relaxed">
-          Active field progress and newly commissioned industrial installations in 2026.
-        </p>
-      </div>
-
-      <!-- 2 Wide Cards with Overlapping Badges (Matching Reference) -->
+      <!-- 4-Card Architectural Grid (Matching Screenshot 5 Layout) -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         
-        <!-- Update 1: 2026 Ongoing Dry Mix Unit -->
-        <div class="relative bg-white border border-construction-border shadow-xs group">
-          <div class="img-zoom-container aspect-[16/10] bg-gray-100">
-            <img src="assets/project-drymix-packing.jpg" alt="Dry Mix Unit Progress" class="w-full h-full object-cover">
-          </div>
-          <!-- Overlapping Yellow/White Card Badge (Exact Reference Style) -->
-          <div class="p-6 bg-construction-yellow text-white space-y-2">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-white/90">2026 // ONGOING CONTRACT</span>
-            <h3 class="font-display font-black text-lg uppercase text-white">
-              DRY MIX UNIT, PACKING PLANT & HOPPERS
+        <!-- Card 1: Structural Engineering (Matching Screenshot 5 Card 1) -->
+        <div class="span-card p-8 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="w-10 h-10 rounded-lg bg-[#1D1730] border border-[#352B52] flex items-center justify-center text-[#A78BFA]">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+              </div>
+              <span class="text-[10px] font-mono tracking-widest uppercase text-[#A78BFA] font-bold">
+                CORE PRACTICE
+              </span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              Structural Steel Engineering & Erection
             </h3>
-            <p class="text-xs text-white/90 leading-relaxed font-normal">
-              Active structural steel erection and automated packing plant facility assembly at The Ramco Cements Ltd., R.R. Nagar, Virudhunagar.
+
+            <p class="text-xs sm:text-sm text-[#94A3B8] leading-relaxed font-normal">
+              Heavy built-up plate girders, portal frames, high-altitude trusses, and precision shop fabrication. EOR services for heavy industrial manufacturing, high-tolerance mechanical bases, and multi-tier framing.
             </p>
+          </div>
+
+          <!-- Pill Tags (Matching Screenshot 5) -->
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-[#1E192D]">
+            <span class="tech-pill">HEAVY GIRDERS</span>
+            <span class="tech-pill">PORTAL FRAMES</span>
+            <span class="tech-pill">HIGH TRUSSES</span>
+            <span class="tech-pill">TORQUE BOLTING</span>
           </div>
         </div>
 
-        <!-- Update 2: 2026 Completed Sizer Crusher -->
-        <div class="relative bg-white border border-construction-border shadow-xs group">
-          <div class="img-zoom-container aspect-[16/10] bg-gray-100">
-            <img src="assets/project-sizer-crusher.jpg" alt="Sizer Crusher Work" class="w-full h-full object-cover">
-          </div>
-          <!-- Overlapping White Card Badge (Exact Reference Style) -->
-          <div class="p-6 bg-white text-construction-dark border-t border-construction-border space-y-2">
-            <span class="text-[10px] font-mono uppercase tracking-widest text-construction-yellow font-bold">2026 // COMPLETED & COMMISSIONED</span>
-            <h3 class="font-display font-black text-lg uppercase text-construction-dark">
-              SIZER CRUSHER ERECTION AT RAMCO MINES
+        <!-- Card 2: Cement Plant Infrastructure (Matching Screenshot 5 Card 2 with Bar Graphic) -->
+        <div class="span-card p-8 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="w-10 h-10 rounded-lg bg-[#1D1730] border border-[#352B52] flex items-center justify-center text-[#A78BFA]">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/>
+                </svg>
+              </div>
+              <span class="text-[10px] font-mono tracking-widest uppercase text-[#A78BFA] font-bold">
+                INFRASTRUCTURE
+              </span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              Cement Plant Mega-Infrastructure
             </h3>
-            <p class="text-xs text-construction-muted leading-relaxed font-normal">
-              Successfully erected heavy primary limestone sizer crusher, high-impact steel chutes, and conveyor discharge frames at Virudhunagar.
+
+            <p class="text-xs sm:text-sm text-[#94A3B8] leading-relaxed font-normal">
+              Complete structural erection for Line-3 rotary kilns, multi-tier coal mills, 45m+ clinker silos, elevated conveyor galleries, and automated bagging units for major producers.
             </p>
+
+            <!-- Visual Gradient Bar Trend Indicator (Matching Screenshot 5 Bridge Trend Graphic) -->
+            <div class="pt-2">
+              <p class="text-[9px] font-mono uppercase tracking-wider text-[#64748B] mb-2">OPERATIONAL METRICS // PLANT ERECTION EFFICIENCY</p>
+              <div class="h-6 flex items-end gap-1.5 bg-[#0C0A14] p-1 border border-[#231E34] rounded">
+                <div class="h-2 w-full bg-[#352B52] rounded-xs"></div>
+                <div class="h-3 w-full bg-[#4C3B78] rounded-xs"></div>
+                <div class="h-3.5 w-full bg-[#5D4694] rounded-xs"></div>
+                <div class="h-4.5 w-full bg-[#7C3AED] rounded-xs"></div>
+                <div class="h-5.5 w-full bg-[#8B5CF6] rounded-xs"></div>
+                <div class="h-full w-full bg-[#A78BFA] rounded-xs"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pill Tags -->
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-[#1E192D]">
+            <span class="tech-pill">ROTARY KILNS</span>
+            <span class="tech-pill">COAL MILLS</span>
+            <span class="tech-pill">CLINKER SILOS</span>
+            <span class="tech-pill">CONVEYORS</span>
           </div>
         </div>
 
-      </div>
-
-      <!-- Arrows Navigation Controls (Matching Reference < >) -->
-      <div class="flex items-center justify-end gap-2 mt-8">
-        <a href="#projects" class="w-8 h-8 rounded-full bg-construction-dark text-white flex items-center justify-center text-xs font-bold hover:bg-construction-yellow transition">
-          &lt;
-        </a>
-        <a href="#projects" class="w-8 h-8 rounded-full bg-construction-yellow text-white flex items-center justify-center text-xs font-bold hover:bg-construction-yellowDark transition">
-          &gt;
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- =========================================================================
-       9. COMPREHENSIVE PROJECT TIMELINE (Hanging Frame Center-Spine Layout)
-       ========================================================================= -->
-  <section id="timeline" class="py-20 sm:py-28 vintage-parchment-bg border-t border-b border-construction-border relative overflow-hidden">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-      
-      <!-- Historical Link Banner (Matching Reference Image Header Notice) -->
-      <div class="text-center max-w-xl mx-auto mb-16 space-y-1">
-        <p class="text-xs sm:text-sm font-serif italic text-construction-charcoal/80 tracking-wide">
-          Official Project Commissioning Archives & Operational History
-        </p>
-        <p class="text-[11px] sm:text-xs font-mono font-bold tracking-wider text-construction-dark underline">
-          https://www.thirupathiengineers.com/strange-historical-coincidences
-        </p>
-      </div>
-
-      <!-- Section Title Header -->
-      <div class="text-center max-w-2xl mx-auto mb-20 space-y-2">
-        <h2 class="text-3xl sm:text-4xl font-display font-black tracking-tight text-construction-dark uppercase">
-          PROJECT <span class="text-construction-yellow">TIMELINE</span> (1992–2026)
-        </h2>
-        <p class="text-xs sm:text-sm text-construction-muted leading-relaxed">
-          Historical project milestones and industrial plant erection legacy across 34 years.
-        </p>
-      </div>
-
-      <!-- Center Vertical Timeline Container -->
-      <div class="relative">
-        
-        <!-- Center Vertical Spine Line (Matching Reference Solid Dark Line) -->
-        <div class="hidden md:block absolute left-1/2 top-4 bottom-8 w-[2.5px] bg-[#2D3748] -translate-x-1/2"></div>
-        <div class="md:hidden absolute left-5 top-4 bottom-8 w-[2.5px] bg-[#2D3748]"></div>
-
-        <div class="space-y-16 sm:space-y-24">
-
-          <!-- MILESTONE 1: 2026 Ongoing (Left: Rect Frame, Right: Year Text) -->
-          <div class="relative flex flex-col md:flex-row items-start justify-between gap-6 md:gap-0">
-            <!-- Center Node (Horizontally aligned with Year number) -->
-            <div class="hidden md:block timeline-center-node left-1/2"></div>
-            <div class="md:hidden timeline-center-node left-5"></div>
-
-            <!-- Left Side: Hanging Picture Frame -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-14 text-center md:text-right order-2 md:order-1 mt-4 md:mt-0">
-              <div class="inline-block max-w-[260px] sm:max-w-[280px]">
-                <div class="hanging-pin"></div>
-                <div class="hanging-strings"></div>
-                <div class="gold-frame-rect p-1.5 overflow-hidden">
-                  <img src="assets/project-drymix-packing.jpg" alt="Dry Mix Unit & Packing Plant Work" class="w-full h-40 sm:h-44 object-cover">
-                </div>
+        <!-- Card 3: Captive Power Plants & ACC Systems (Matching Screenshot 5 Card 3) -->
+        <div class="span-card p-8 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="w-10 h-10 rounded-lg bg-[#1D1730] border border-[#352B52] flex items-center justify-center text-[#A78BFA]">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
               </div>
+              <span class="text-[10px] font-mono tracking-widest uppercase text-[#A78BFA] font-bold">
+                POWER SECTOR
+              </span>
             </div>
 
-            <!-- Right Side: Year & Event Details (Aligned with Center Node) -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-14 text-left pt-1 order-1 md:order-2">
-              <div class="space-y-1">
-                <span class="timeline-year block">
-                  2026
-                </span>
-                <span class="timeline-event-badge text-emerald-700">
-                  EVENT 1
-                </span>
-                <h4 class="font-display font-extrabold text-base sm:text-lg text-construction-dark leading-snug">
-                  Dry Mix Unit, Packing Plant & Hopper Work
-                </h4>
-                <p class="text-xs sm:text-sm text-construction-muted leading-relaxed max-w-sm">
-                  <strong>The Ramco Cements Ltd.</strong>, R.R. Nagar, Virudhunagar. Comprehensive structural steel erection for dry mix processing, automated packaging facilities, and bulk feed hoppers.
-                </p>
-              </div>
-            </div>
+            <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              Captive Power Plants & ACC Systems
+            </h3>
+
+            <p class="text-xs sm:text-sm text-[#94A3B8] leading-relaxed font-normal">
+              Turnkey structural erection of 20 MW captive power generation blocks, high-altitude non-IBR pipeline racks, boiler auxiliary framing, and modular Air Cooled Condenser cooling towers.
+            </p>
           </div>
 
-          <!-- MILESTONE 2: 2026 Completed (Left: Year Text, Right: Oval Frame) -->
-          <div class="relative flex flex-col md:flex-row items-start justify-between gap-6 md:gap-0">
-            <!-- Center Node (Horizontally aligned with Year number) -->
-            <div class="hidden md:block timeline-center-node left-1/2"></div>
-            <div class="md:hidden timeline-center-node left-5"></div>
+          <!-- Pill Tags -->
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-[#1E192D]">
+            <span class="tech-pill">20 MW UNITS</span>
+            <span class="tech-pill">ACC TOWERS</span>
+            <span class="tech-pill">NON-IBR PIPING</span>
+            <span class="tech-pill">BOILER FRAMES</span>
+          </div>
+        </div>
 
-            <!-- Left Side: Year & Event Details (Right-aligned on desktop) -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-14 text-left md:text-right order-1 md:order-1 pt-1">
-              <div class="space-y-1">
-                <span class="timeline-year block">
-                  2026
-                </span>
-                <span class="timeline-event-badge text-construction-yellowDark">
-                  EVENT 2
-                </span>
-                <h4 class="font-display font-extrabold text-base sm:text-lg text-construction-dark leading-snug">
-                  Sizer Crusher Work Erection
-                </h4>
-                <p class="text-xs sm:text-sm text-construction-muted leading-relaxed max-w-sm ml-0 md:ml-auto">
-                  <strong>Ramco Mines</strong>, Virudhunagar. Heavy structural erection of primary limestone sizer crusher, high-impact steel chutes, and discharge conveyor supports.
-                </p>
+        <!-- Card 4: Heavy Machinery & Mining Installations (Matching Screenshot 5 Card 4) -->
+        <div class="span-card p-8 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="w-10 h-10 rounded-lg bg-[#1D1730] border border-[#352B52] flex items-center justify-center text-[#A78BFA]">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
               </div>
+              <span class="text-[10px] font-mono tracking-widest uppercase text-[#A78BFA] font-bold">
+                MINING & RIGGING
+              </span>
             </div>
 
-            <!-- Right Side: Hanging Oval Frame (Matching Reference Circular Frame) -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-14 text-center md:text-left order-2 md:order-2 mt-4 md:mt-0">
-              <div class="inline-block max-w-[210px] sm:max-w-[230px]">
-                <div class="hanging-pin"></div>
-                <div class="hanging-strings"></div>
-                <div class="gold-frame-oval p-1.5 overflow-hidden aspect-square">
-                  <img src="assets/project-sizer-crusher.jpg" alt="Sizer Crusher Work" class="w-full h-full object-cover rounded-full">
-                </div>
-              </div>
-            </div>
+            <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              Machinery & Mining Installations
+            </h3>
+
+            <p class="text-xs sm:text-sm text-[#94A3B8] leading-relaxed font-normal">
+              Precision crane rigging and vibration-damped anchoring for primary sizer crushers, rail-mounted automated coal stackers, bucket reclaimers, and high-impact storage hoppers.
+            </p>
           </div>
 
-          <!-- MILESTONE 3: 2025 Power Plant (Left: Rect Frame, Right: Year Text) -->
-          <div class="relative flex flex-col md:flex-row items-start justify-between gap-6 md:gap-0">
-            <!-- Center Node (Horizontally aligned with Year number) -->
-            <div class="hidden md:block timeline-center-node left-1/2"></div>
-            <div class="md:hidden timeline-center-node left-5"></div>
-
-            <!-- Left Side: Hanging Picture Frame -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-14 text-center md:text-right order-2 md:order-1 mt-4 md:mt-0">
-              <div class="inline-block max-w-[260px] sm:max-w-[280px]">
-                <div class="hanging-pin"></div>
-                <div class="hanging-strings"></div>
-                <div class="gold-frame-rect p-1.5 overflow-hidden">
-                  <img src="assets/project-power-plant.jpg" alt="20 MW Power Plant" class="w-full h-40 sm:h-44 object-cover">
-                </div>
-              </div>
-            </div>
-
-            <!-- Right Side: Year & Event Details -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-14 text-left pt-1 order-1 md:order-2">
-              <div class="space-y-1">
-                <span class="timeline-year block">
-                  2025
-                </span>
-                <span class="timeline-event-badge text-construction-yellowDark">
-                  EVENT 3
-                </span>
-                <h4 class="font-display font-extrabold text-base sm:text-lg text-construction-dark leading-snug">
-                  20 MW Power Plant & ACC Towers Erection
-                </h4>
-                <p class="text-xs sm:text-sm text-construction-muted leading-relaxed max-w-sm">
-                  <strong>TECKSK Projects & ISGEC</strong>. Structural steel erection for 20 MW captive power plant, non-IBR pipeline supports, and Air Cooled Condenser cooling tower modules.
-                </p>
-              </div>
-            </div>
+          <!-- Pill Tags -->
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-[#1E192D]">
+            <span class="tech-pill">SIZER CRUSHERS</span>
+            <span class="tech-pill">STACKER-RECLAIMER</span>
+            <span class="tech-pill">HOPPERS</span>
+            <span class="tech-pill">HEAVY RIGGING</span>
           </div>
-
-          <!-- MILESTONE 4: 2025 Clinker Silo (Left: Year Text, Right: Oval Frame) -->
-          <div class="relative flex flex-col md:flex-row items-start justify-between gap-6 md:gap-0">
-            <!-- Center Node (Horizontally aligned with Year number) -->
-            <div class="hidden md:block timeline-center-node left-1/2"></div>
-            <div class="md:hidden timeline-center-node left-5"></div>
-
-            <!-- Left Side: Year & Event Details -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-14 text-left md:text-right order-1 md:order-1 pt-1">
-              <div class="space-y-1">
-                <span class="timeline-year block">
-                  2025
-                </span>
-                <span class="timeline-event-badge text-construction-yellowDark">
-                  EVENT 4
-                </span>
-                <h4 class="font-display font-extrabold text-base sm:text-lg text-construction-dark leading-snug">
-                  Clinker Silo Structures Work
-                </h4>
-                <p class="text-xs sm:text-sm text-construction-muted leading-relaxed max-w-sm ml-0 md:ml-auto">
-                  <strong>The Ramco Cements Ltd.</strong> High-elevation heavy structural fabrication and erection for clinker silo storage facility, conveyor galleries, and transfer towers.
-                </p>
-              </div>
-            </div>
-
-            <!-- Right Side: Hanging Oval Frame -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-14 text-center md:text-left order-2 md:order-2 mt-4 md:mt-0">
-              <div class="inline-block max-w-[210px] sm:max-w-[230px]">
-                <div class="hanging-pin"></div>
-                <div class="hanging-strings"></div>
-                <div class="gold-frame-oval p-1.5 overflow-hidden aspect-square">
-                  <img src="assets/project-clinker-silo.jpg" alt="Clinker Silo Structures" class="w-full h-full object-cover rounded-full">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- MILESTONE 5: 2023 Line-3 Kiln (Left: Rect Frame, Right: Year Text) -->
-          <div class="relative flex flex-col md:flex-row items-start justify-between gap-6 md:gap-0">
-            <!-- Center Node (Horizontally aligned with Year number) -->
-            <div class="hidden md:block timeline-center-node left-1/2"></div>
-            <div class="md:hidden timeline-center-node left-5"></div>
-
-            <!-- Left Side: Hanging Picture Frame -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-14 text-center md:text-right order-2 md:order-1 mt-4 md:mt-0">
-              <div class="inline-block max-w-[260px] sm:max-w-[280px]">
-                <div class="hanging-pin"></div>
-                <div class="hanging-strings"></div>
-                <div class="gold-frame-rect p-1.5 overflow-hidden">
-                  <img src="assets/about-engineering.jpg" alt="Line-3 Kiln & Coal Mill Erection" class="w-full h-40 sm:h-44 object-cover">
-                </div>
-              </div>
-            </div>
-
-            <!-- Right Side: Year & Event Details -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-14 text-left pt-1 order-1 md:order-2">
-              <div class="space-y-1">
-                <span class="timeline-year block">
-                  2023
-                </span>
-                <span class="timeline-event-badge text-construction-yellowDark">
-                  EVENT 5
-                </span>
-                <h4 class="font-display font-extrabold text-base sm:text-lg text-construction-dark leading-snug">
-                  Line-3 Kiln, Coal Mill & Conveyor Gallery Erection
-                </h4>
-                <p class="text-xs sm:text-sm text-construction-muted leading-relaxed max-w-sm">
-                  Complete on-site erection of rotary kiln support frames, multi-story Coal Mill processing building, and high-altitude material conveyor galleries.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- MILESTONE 6: 2022 Washing Plant (Left: Year Text, Right: Oval Frame) -->
-          <div class="relative flex flex-col md:flex-row items-start justify-between gap-6 md:gap-0">
-            <!-- Center Node (Horizontally aligned with Year number) -->
-            <div class="hidden md:block timeline-center-node left-1/2"></div>
-            <div class="md:hidden timeline-center-node left-5"></div>
-
-            <!-- Left Side: Year & Event Details -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-14 text-left md:text-right order-1 md:order-1 pt-1">
-              <div class="space-y-1">
-                <span class="timeline-year block">
-                  2022
-                </span>
-                <span class="timeline-event-badge text-construction-yellowDark">
-                  EVENT 6
-                </span>
-                <h4 class="font-display font-extrabold text-base sm:text-lg text-construction-dark leading-snug">
-                  Washing Plant Erection
-                </h4>
-                <p class="text-xs sm:text-sm text-construction-muted leading-relaxed max-w-sm ml-0 md:ml-auto">
-                  <strong>The Ramco Cements Ltd.</strong> Raw material washing plant structural framework, slurry treatment platforms, and heavy mechanical pump supports.
-                </p>
-              </div>
-            </div>
-
-            <!-- Right Side: Hanging Oval Frame -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-14 text-center md:text-left order-2 md:order-2 mt-4 md:mt-0">
-              <div class="inline-block max-w-[210px] sm:max-w-[230px]">
-                <div class="hanging-pin"></div>
-                <div class="hanging-strings"></div>
-                <div class="gold-frame-oval p-1.5 overflow-hidden aspect-square">
-                  <img src="assets/gallery-erection.jpg" alt="Washing Plant Erection" class="w-full h-full object-cover rounded-full">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- MILESTONE 7: 2016–2021 Stacker & Reclaimer (Left: Rect Frame, Right: Year Text) -->
-          <div class="relative flex flex-col md:flex-row items-start justify-between gap-6 md:gap-0">
-            <!-- Center Node (Horizontally aligned with Year number) -->
-            <div class="hidden md:block timeline-center-node left-1/2"></div>
-            <div class="md:hidden timeline-center-node left-5"></div>
-
-            <!-- Left Side: Hanging Picture Frame -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-14 text-center md:text-right order-2 md:order-1 mt-4 md:mt-0">
-              <div class="inline-block max-w-[260px] sm:max-w-[280px]">
-                <div class="hanging-pin"></div>
-                <div class="hanging-strings"></div>
-                <div class="gold-frame-rect p-1.5 overflow-hidden">
-                  <img src="assets/gallery-fabrication.jpg" alt="Coal Stacker & Reclaimer" class="w-full h-40 sm:h-44 object-cover">
-                </div>
-              </div>
-            </div>
-
-            <!-- Right Side: Year & Event Details -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-14 text-left pt-1 order-1 md:order-2">
-              <div class="space-y-1">
-                <span class="timeline-year block">
-                  2016–2021
-                </span>
-                <span class="timeline-event-badge text-construction-yellowDark">
-                  EVENT 7
-                </span>
-                <h4 class="font-display font-extrabold text-base sm:text-lg text-construction-dark leading-snug">
-                  Coal Stacker, Reclaimer & Packing Plant Work
-                </h4>
-                <p class="text-xs sm:text-sm text-construction-muted leading-relaxed max-w-sm">
-                  Continuous multi-year structural contracts including heavy automated Coal Stacker and Reclaimer rail systems, transfer stations, and continuous packing plant expansion.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- MILESTONE 8: 2005 Parryware Tiles (Left: Year Text, Right: Oval Frame) -->
-          <div class="relative flex flex-col md:flex-row items-start justify-between gap-6 md:gap-0">
-            <!-- Center Node (Horizontally aligned with Year number) -->
-            <div class="hidden md:block timeline-center-node left-1/2"></div>
-            <div class="md:hidden timeline-center-node left-5"></div>
-
-            <!-- Left Side: Year & Event Details -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-14 text-left md:text-right order-1 md:order-1 pt-1">
-              <div class="space-y-1">
-                <span class="timeline-year block">
-                  2005
-                </span>
-                <span class="timeline-event-badge text-construction-yellowDark">
-                  EVENT 8
-                </span>
-                <h4 class="font-display font-extrabold text-base sm:text-lg text-construction-dark leading-snug">
-                  Parryware Tiles Company Erection
-                </h4>
-                <p class="text-xs sm:text-sm text-construction-muted leading-relaxed max-w-sm ml-0 md:ml-auto">
-                  Complete manufacturing plant structural steel erection, furnace bay portal frames, and automated ceramic tile handling lines.
-                </p>
-              </div>
-            </div>
-
-            <!-- Right Side: Hanging Oval Frame -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-14 text-center md:text-left order-2 md:order-2 mt-4 md:mt-0">
-              <div class="inline-block max-w-[210px] sm:max-w-[230px]">
-                <div class="hanging-pin"></div>
-                <div class="hanging-strings"></div>
-                <div class="gold-frame-oval p-1.5 overflow-hidden aspect-square">
-                  <img src="assets/gallery-acc-work.jpg" alt="Parryware Tiles Erection" class="w-full h-full object-cover rounded-full">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- MILESTONE 9: 1998 Camplastic Pipe (Left: Rect Frame, Right: Year Text) -->
-          <div class="relative flex flex-col md:flex-row items-start justify-between gap-6 md:gap-0">
-            <!-- Center Node (Horizontally aligned with Year number) -->
-            <div class="hidden md:block timeline-center-node left-1/2"></div>
-            <div class="md:hidden timeline-center-node left-5"></div>
-
-            <!-- Left Side: Hanging Picture Frame -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-14 text-center md:text-right order-2 md:order-1 mt-4 md:mt-0">
-              <div class="inline-block max-w-[260px] sm:max-w-[280px]">
-                <div class="hanging-pin"></div>
-                <div class="hanging-strings"></div>
-                <div class="gold-frame-rect p-1.5 overflow-hidden">
-                  <img src="assets/gallery-fabrication.jpg" alt="Camplastic Pipe Erection" class="w-full h-40 sm:h-44 object-cover">
-                </div>
-              </div>
-            </div>
-
-            <!-- Right Side: Year & Event Details -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-14 text-left pt-1 order-1 md:order-2">
-              <div class="space-y-1">
-                <span class="timeline-year block">
-                  1998
-                </span>
-                <span class="timeline-event-badge text-construction-yellowDark">
-                  EVENT 9
-                </span>
-                <h4 class="font-display font-extrabold text-base sm:text-lg text-construction-dark leading-snug">
-                  Camplastic Pipe — Complete Plant Erection
-                </h4>
-                <p class="text-xs sm:text-sm text-construction-muted leading-relaxed max-w-sm">
-                  Turnkey complete industrial plant structural erection, heavy extruder foundation frames, cooling bays, and finished product storage sheds.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- MILESTONE 10: 1992 Gold Star (Left: Year Text, Right: Ornate Gold Frame) -->
-          <div class="relative flex flex-col md:flex-row items-start justify-between gap-6 md:gap-0">
-            <!-- Center Node (Horizontally aligned with Year number) -->
-            <div class="hidden md:block timeline-center-node left-1/2"></div>
-            <div class="md:hidden timeline-center-node left-5"></div>
-
-            <!-- Left Side: Year & Event Details -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-0 md:pr-14 text-left md:text-right order-1 md:order-1 pt-1">
-              <div class="space-y-1">
-                <span class="timeline-year block">
-                  1992
-                </span>
-                <span class="timeline-event-badge text-amber-700">
-                  EVENT 10 // FOUNDATIONAL HERITAGE
-                </span>
-                <h4 class="font-display font-extrabold text-base sm:text-lg text-construction-dark leading-snug">
-                  Gold Star — Complete Plant Commissioning
-                </h4>
-                <p class="text-xs sm:text-sm text-construction-muted leading-relaxed max-w-sm ml-0 md:ml-auto">
-                  Total industrial plant commissioning marking the foundational milestone and over 34 continuous years of industrial engineering excellence for Thirupathi Engineers.
-                </p>
-              </div>
-            </div>
-
-            <!-- Right Side: Hanging Gold Frame -->
-            <div class="w-full md:w-1/2 pl-12 md:pl-14 text-center md:text-left order-2 md:order-2 mt-4 md:mt-0">
-              <div class="inline-block max-w-[210px] sm:max-w-[230px]">
-                <div class="hanging-pin"></div>
-                <div class="hanging-strings"></div>
-                <div class="gold-frame-rect p-1.5 overflow-hidden">
-                  <img src="assets/about-engineering.jpg" alt="Gold Star Complete Commissioning" class="w-full h-36 sm:h-40 object-cover">
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
       </div>
@@ -1139,67 +705,80 @@
   </section>
 
   <!-- =========================================================================
-       10. LEADERSHIP & PARTNERS' EXPERIENCE SECTION
+       5. PARTNERS & LEADERSHIP (Matching SPAN Architectural Dark Design)
        ========================================================================= -->
-  <section id="leadership" class="py-20 sm:py-24 bg-construction-lightBg border-t border-construction-border">
+  <section id="leadership" class="py-24 sm:py-32 bg-[#09080F] border-t border-[#1E192D]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
-        <h2 class="text-3xl sm:text-4xl font-display font-black tracking-tight text-construction-dark uppercase">
-          LEADERSHIP & <span class="text-construction-yellow">PARTNERS</span>
-        </h2>
-        <p class="text-xs sm:text-sm text-construction-muted leading-relaxed">
-          Guided by veteran leadership with direct site involvement across steel plants, cement manufacturing, and heavy installations.
-        </p>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 pb-10 border-b border-[#1E192D]">
+        <div class="lg:col-span-6 space-y-2">
+          <p class="text-xs font-mono tracking-widest uppercase text-[#A78BFA] font-bold">
+            PARTNERSHIP LEADERSHIP
+          </p>
+          <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Engineers of record.
+          </h2>
+        </div>
+        <div class="lg:col-span-6 text-xs sm:text-sm text-[#847E99] leading-relaxed max-w-lg lg:ml-auto">
+          Over 65 combined years of industrial plant erection and structural engineering excellence. Direct on-site partner leadership from foundation bolts to apex trusses.
+        </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         
         <!-- Senior Partner: M. Mohan -->
-        <div class="bg-white border-t-4 border-construction-yellow border-r border-b border-l border-construction-border p-6 sm:p-8 shadow-xs space-y-5">
-          <div class="flex items-start justify-between gap-4 pb-5 border-b border-construction-border">
-            <div class="space-y-1">
-              <span class="text-xs font-mono font-bold uppercase text-construction-yellow">SENIOR PARTNER</span>
-              <h3 class="font-display font-black text-2xl sm:text-3xl text-construction-dark">M. Mohan</h3>
-              <p class="text-xs font-mono text-construction-muted">Over 50 Years Construction Experience</p>
+        <div class="span-card p-8 flex flex-col justify-between space-y-6">
+          <div class="space-y-6">
+            <div class="flex items-start justify-between gap-4 pb-6 border-b border-[#231E34]">
+              <div class="space-y-1">
+                <span class="text-xs font-mono font-bold uppercase text-[#A78BFA]">SENIOR PARTNER</span>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">M. Mohan</h3>
+                <p class="text-xs font-mono text-[#847E99]">Over 50 Years Construction Experience</p>
+              </div>
+              <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-lg border-2 border-[#7C3AED] shadow-xl overflow-hidden shrink-0 bg-[#161224]">
+                <img src="assets/partner-mohan.png" alt="M. Mohan — Senior Partner" class="w-full h-full object-cover">
+              </div>
             </div>
-            <div class="w-20 h-24 sm:w-24 sm:h-28 border-2 border-construction-yellow shadow-md overflow-hidden shrink-0 bg-construction-dark">
-              <img src="assets/partner-mohan.png" alt="M. Mohan — Senior Partner" class="w-full h-full object-cover">
+
+            <div class="text-xs sm:text-sm text-[#94A3B8] leading-relaxed space-y-3">
+              <p>• Over 50 years of extensive hands-on experience in steel plant and cement plant construction.</p>
+              <p>• Began his construction career at Gold Star Steel Plant in 1985.</p>
+              <p>• Started dedicated cement plant construction work in 1990.</p>
+              <p>• Spearheaded large-scale plant erection, rotary kilns, heavy steel structures, and clinker silos.</p>
             </div>
           </div>
-          <div class="text-xs sm:text-sm text-construction-charcoal leading-relaxed space-y-2.5">
-            <p>• Over 50 years of extensive experience in steel plant and cement plant construction.</p>
-            <p>• Began his construction career at Gold Star Steel Plant in 1985.</p>
-            <p>• Started dedicated cement plant construction work in 1990.</p>
-            <p>• Spearheaded large-scale plant erection, rotary kilns, heavy steel structures, and clinker silos.</p>
-          </div>
-          <div class="pt-3 border-t border-construction-border flex items-center justify-between text-[11px] font-mono text-construction-muted">
+
+          <div class="pt-4 border-t border-[#1E192D] flex items-center justify-between text-[11px] font-mono text-[#7E7991]">
             <span>CAREER START: 1985</span>
-            <span class="text-construction-yellow font-bold">50+ YEARS EXPERIENCE</span>
+            <span class="text-[#A78BFA] font-bold">50+ YEARS EXPERIENCE</span>
           </div>
         </div>
 
         <!-- Partner: K. Gopalakrishnan -->
-        <div class="bg-white border-t-4 border-construction-dark border-r border-b border-l border-construction-border p-6 sm:p-8 shadow-xs space-y-5">
-          <div class="flex items-start justify-between gap-4 pb-5 border-b border-construction-border">
-            <div class="space-y-1">
-              <span class="text-xs font-mono font-bold uppercase text-construction-dark">PARTNER</span>
-              <h3 class="font-display font-black text-2xl sm:text-3xl text-construction-dark">K. Gopalakrishnan</h3>
-              <p class="text-xs font-mono text-construction-muted">15+ Years Industrial Construction & Engg</p>
+        <div class="span-card p-8 flex flex-col justify-between space-y-6">
+          <div class="space-y-6">
+            <div class="flex items-start justify-between gap-4 pb-6 border-b border-[#231E34]">
+              <div class="space-y-1">
+                <span class="text-xs font-mono font-bold uppercase text-[#A78BFA]">PARTNER</span>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">K. Gopalakrishnan</h3>
+                <p class="text-xs font-mono text-[#847E99]">15+ Years Industrial Construction & Engg</p>
+              </div>
+              <div class="w-20 h-24 sm:w-24 sm:h-28 rounded-lg border-2 border-[#7C3AED] shadow-xl overflow-hidden shrink-0 bg-[#161224]">
+                <img src="assets/partner-gopalakrishnan.jpg" alt="K. Gopalakrishnan — Partner" class="w-full h-full object-cover">
+              </div>
             </div>
-            <div class="w-20 h-24 sm:w-24 sm:h-28 border-2 border-construction-dark shadow-md overflow-hidden shrink-0 bg-construction-dark">
-              <img src="assets/partner-gopalakrishnan.jpg" alt="K. Gopalakrishnan — Partner" class="w-full h-full object-cover">
+
+            <div class="text-xs sm:text-sm text-[#94A3B8] leading-relaxed space-y-3">
+              <p>• Approximately 15 years of experience in industrial construction and engineering.</p>
+              <p>• Started his engineering career in steel plants in 2012.</p>
+              <p>• Entered cement plant construction in 2016.</p>
+              <p>• Extensive experience in engineering coordination, technical drawings, and site management.</p>
             </div>
           </div>
-          <div class="text-xs sm:text-sm text-construction-charcoal leading-relaxed space-y-2.5">
-            <p>• Approximately 15 years of experience in industrial construction and engineering.</p>
-            <p>• Started his engineering career in steel plants in 2012.</p>
-            <p>• Entered cement plant construction in 2016.</p>
-            <p>• Extensive experience in engineering, project coordination, and site management across leading companies.</p>
-          </div>
-          <div class="pt-3 border-t border-construction-border flex items-center justify-between text-[11px] font-mono text-construction-muted">
+
+          <div class="pt-4 border-t border-[#1E192D] flex items-center justify-between text-[11px] font-mono text-[#7E7991]">
             <span>ENGINEERING LEAD: 2012</span>
-            <span class="text-construction-dark font-bold">15+ YEARS EXPERIENCE</span>
+            <span class="text-[#A78BFA] font-bold">15+ YEARS EXPERIENCE</span>
           </div>
         </div>
 
@@ -1209,103 +788,215 @@
   </section>
 
   <!-- =========================================================================
-       11. CONTACT & INQUIRY SECTION (Official Phone, Email & Addresses)
+       6. HISTORICAL CREDENTIALS TIMELINE (1992–2026 Architectural Timeline)
        ========================================================================= -->
-  <section id="contacts" class="py-20 sm:py-24 bg-white border-t border-construction-border">
+  <section id="credentials" class="py-24 sm:py-32 bg-[#09080F] border-t border-[#1E192D]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 pb-10 border-b border-[#1E192D]">
+        <div class="lg:col-span-6 space-y-2">
+          <p class="text-xs font-mono tracking-widest uppercase text-[#A78BFA] font-bold">
+            HISTORICAL CREDENTIALS
+          </p>
+          <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            34-Year Track Record.
+          </h2>
+        </div>
+        <div class="lg:col-span-6 text-xs sm:text-sm text-[#847E99] leading-relaxed max-w-lg lg:ml-auto">
+          Complete project milestone credentials from foundational commissioning in 1992 to major 2026 ongoing industrial installations.
+        </div>
+      </div>
+
+      <!-- Compact Technical Credentials Grid (SPAN-Style) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div class="span-card p-6 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-[#A78BFA]">2026 // ACTIVE</span>
+            <span class="text-[10px] font-mono text-emerald-400 font-bold">ONGOING</span>
+          </div>
+          <h4 class="text-base font-bold text-white">Dry Mix Unit & Packing Plant</h4>
+          <p class="text-xs text-[#847E99]">The Ramco Cements Ltd., R.R. Nagar, Virudhunagar</p>
+        </div>
+
+        <div class="span-card p-6 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-[#A78BFA]">2026 // MINING</span>
+            <span class="text-[10px] font-mono text-white/70">COMPLETED</span>
+          </div>
+          <h4 class="text-base font-bold text-white">Sizer Crusher Work Erection</h4>
+          <p class="text-xs text-[#847E99]">Ramco Mines, Virudhunagar</p>
+        </div>
+
+        <div class="span-card p-6 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-[#A78BFA]">2025 // POWER</span>
+            <span class="text-[10px] font-mono text-white/70">COMPLETED</span>
+          </div>
+          <h4 class="text-base font-bold text-white">20 MW Power Plant & ACC Towers</h4>
+          <p class="text-xs text-[#847E99]">TECKSK Projects & ISGEC</p>
+        </div>
+
+        <div class="span-card p-6 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-[#A78BFA]">2025 // CEMENT</span>
+            <span class="text-[10px] font-mono text-white/70">COMPLETED</span>
+          </div>
+          <h4 class="text-base font-bold text-white">Clinker Silo Structures Work</h4>
+          <p class="text-xs text-[#847E99]">The Ramco Cements Ltd.</p>
+        </div>
+
+        <div class="span-card p-6 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-[#A78BFA]">2023 // EXPANSION</span>
+            <span class="text-[10px] font-mono text-white/70">COMPLETED</span>
+          </div>
+          <h4 class="text-base font-bold text-white">Line-3 Kiln, Coal Mill & Galleries</h4>
+          <p class="text-xs text-[#847E99]">Major Cement Manufacturing Plant</p>
+        </div>
+
+        <div class="span-card p-6 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-[#A78BFA]">2022 // INDUSTRIAL</span>
+            <span class="text-[10px] font-mono text-white/70">COMPLETED</span>
+          </div>
+          <h4 class="text-base font-bold text-white">Washing Plant Erection</h4>
+          <p class="text-xs text-[#847E99]">The Ramco Cements Ltd.</p>
+        </div>
+
+        <div class="span-card p-6 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-[#A78BFA]">2016–2021 // CONTRACT</span>
+            <span class="text-[10px] font-mono text-white/70">MULTI-YEAR</span>
+          </div>
+          <h4 class="text-base font-bold text-white">Coal Stacker & Reclaimer Systems</h4>
+          <p class="text-xs text-[#847E99]">The Ramco Cements Ltd.</p>
+        </div>
+
+        <div class="span-card p-6 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-[#A78BFA]">2005 // TILES PLANT</span>
+            <span class="text-[10px] font-mono text-white/70">COMPLETED</span>
+          </div>
+          <h4 class="text-base font-bold text-white">Parryware Tiles Complete Plant</h4>
+          <p class="text-xs text-[#847E99]">Parryware Ceramic Manufacturing</p>
+        </div>
+
+        <div class="span-card p-6 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-[#A78BFA]">1992 // FOUNDATIONAL</span>
+            <span class="text-[10px] font-mono text-amber-400 font-bold">HERITAGE</span>
+          </div>
+          <h4 class="text-base font-bold text-white">Gold Star Complete Commissioning</h4>
+          <p class="text-xs text-[#847E99]">Gold Star Industrial Plant · 34+ Years</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       7. CONTACT & INQUIRY (SPAN Architectural Dark RFQ Form)
+       ========================================================================= -->
+  <section id="contacts" class="py-24 sm:py-32 bg-[#09080F] border-t border-[#1E192D] tech-grid-pattern">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
         
-        <!-- Left: Official Company Contact Cards -->
-        <div class="lg:col-span-5 space-y-6">
-          <div class="space-y-2">
-            <h2 class="text-3xl font-display font-black text-construction-dark uppercase tracking-tight">
-              GET IN <span class="text-construction-yellow">TOUCH</span>
+        <!-- Left: Official Contact Credentials -->
+        <div class="lg:col-span-5 space-y-8">
+          <div class="space-y-3">
+            <p class="text-xs font-mono tracking-widest uppercase text-[#A78BFA] font-bold">
+              SUBMIT SPECIFICATIONS
+            </p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+              Discuss Your Structure.
             </h2>
-            <p class="text-xs sm:text-sm text-construction-muted leading-relaxed">
-              Connect directly with our leadership team for tenders, structural fabrication, or plant erection RFQ submittals.
+            <p class="text-xs sm:text-sm text-[#847E99] leading-relaxed">
+              Connect directly with our leadership team for tenders, structural steel fabrication RFQs, or plant erection packages.
             </p>
           </div>
 
-          <div class="space-y-4 pt-2">
+          <div class="space-y-4">
             
-            <div class="p-4 bg-construction-lightBg border-l-4 border-construction-yellow border-t border-r border-b border-construction-border">
-              <span class="text-[10px] font-mono uppercase tracking-wider text-construction-muted block">CORPORATE OFFICE</span>
-              <h4 class="font-display font-bold text-sm text-construction-dark mt-0.5">Chennai, Tamil Nadu</h4>
-              <p class="text-xs text-construction-muted">[Official address recorded in GST registration documents]</p>
+            <div class="p-5 rounded-lg bg-[#120F1D] border border-[#231E34] space-y-1">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-[#A78BFA] font-bold block">CORPORATE OFFICE</span>
+              <h4 class="font-bold text-sm text-white">Chennai, Tamil Nadu</h4>
+              <p class="text-xs text-[#7E7991]">[Official address recorded in GST registration documents]</p>
             </div>
 
-            <div class="p-4 bg-construction-lightBg border-l-4 border-construction-dark border-t border-r border-b border-construction-border">
-              <span class="text-[10px] font-mono uppercase tracking-wider text-construction-muted block">REGISTERED OFFICE</span>
-              <h4 class="font-display font-bold text-sm text-construction-dark mt-0.5">Kovilpatti, Tamil Nadu</h4>
-              <p class="text-xs text-construction-muted">[Address recorded in the GST registration certificate]</p>
+            <div class="p-5 rounded-lg bg-[#120F1D] border border-[#231E34] space-y-1">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-[#A78BFA] font-bold block">REGISTERED OFFICE</span>
+              <h4 class="font-bold text-sm text-white">Kovilpatti, Tamil Nadu</h4>
+              <p class="text-xs text-[#7E7991]">[Official address recorded in GST registration certificate]</p>
             </div>
 
-            <div class="p-4 bg-construction-lightBg border-l-4 border-construction-yellow border-t border-r border-b border-construction-border">
-              <span class="text-[10px] font-mono uppercase tracking-wider text-construction-muted block">DIRECT PHONE NUMBERS</span>
-              <div class="flex flex-wrap gap-4 mt-1 font-display font-bold text-sm text-construction-dark">
-                <a href="tel:9043288002" class="hover:text-construction-yellow transition">+91 9043288002</a>
-                <span>•</span>
-                <a href="tel:9790520126" class="hover:text-construction-yellow transition">+91 9790520126</a>
+            <div class="p-5 rounded-lg bg-[#120F1D] border border-[#231E34] space-y-2">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-[#A78BFA] font-bold block">DIRECT LEADERSHIP PHONES</span>
+              <div class="flex flex-wrap gap-4 text-sm font-mono font-bold text-white">
+                <a href="tel:9043288002" class="hover:text-[#A78BFA] transition">+91 9043288002</a>
+                <span class="text-[#4C3B78]">•</span>
+                <a href="tel:9790520126" class="hover:text-[#A78BFA] transition">+91 9790520126</a>
               </div>
             </div>
 
-            <div class="p-4 bg-construction-lightBg border-l-4 border-construction-dark border-t border-r border-b border-construction-border">
-              <span class="text-[10px] font-mono uppercase tracking-wider text-construction-muted block">OFFICIAL EMAILS</span>
-              <div class="space-y-0.5 mt-1 text-xs font-semibold text-construction-dark">
-                <a href="mailto:thirupathiengineerss@gmail.com" class="block hover:text-construction-yellow transition">thirupathiengineerss@gmail.com</a>
-                <a href="mailto:gopalkannan5@gmail.com" class="block hover:text-construction-yellow transition">gopalkannan5@gmail.com</a>
+            <div class="p-5 rounded-lg bg-[#120F1D] border border-[#231E34] space-y-1.5">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-[#A78BFA] font-bold block">OFFICIAL TENDER EMAILS</span>
+              <div class="space-y-1 text-xs font-mono text-[#C4B5FD]">
+                <a href="mailto:thirupathiengineerss@gmail.com" class="block hover:underline">thirupathiengineerss@gmail.com</a>
+                <a href="mailto:gopalkannan5@gmail.com" class="block hover:underline">gopalkannan5@gmail.com</a>
               </div>
             </div>
 
           </div>
         </div>
 
-        <!-- Right: Inquiry Form -->
+        <!-- Right: Architectural RFQ Form -->
         <div class="lg:col-span-7">
-          <div class="bg-white border border-construction-border p-5 sm:p-10 shadow-sm">
-            <h3 class="font-display font-bold text-xl uppercase text-construction-dark mb-1">
-              Submit Tender / RFQ Inquiry
+          <div class="span-card p-8 sm:p-10 shadow-2xl">
+            <h3 class="font-bold text-xl uppercase text-white mb-2 tracking-wide">
+              Request Structural Tender Review
             </h3>
-            <p class="text-xs text-construction-muted mb-6">
-              Fill out your project specifications for review by the partners of Thirupathi Engineers.
+            <p class="text-xs text-[#847E99] mb-8 font-normal">
+              Enter your project parameters for direct technical evaluation by Senior Partner M. Mohan and Partner K. Gopalakrishnan.
             </p>
 
-            <form id="inquiry-form" class="space-y-4" novalidate>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <form id="inquiry-form" class="space-y-5" novalidate>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label for="name" class="block text-xs font-bold uppercase text-construction-dark mb-1">Name / Firm *</label>
-                  <input type="text" id="name" name="name" required placeholder="Your Name" class="w-full px-3.5 py-2.5 text-xs border border-construction-border focus:border-construction-yellow outline-none">
+                  <label for="name" class="block text-xs font-mono uppercase tracking-wider text-[#A78BFA] mb-1.5 font-bold">Name / Firm *</label>
+                  <input type="text" id="name" name="name" required placeholder="EPC Contractor / Firm Name" class="w-full px-4 py-3 text-xs bg-[#09080F] border border-[#2B2342] focus:border-[#7C3AED] text-white rounded-lg outline-none transition">
                 </div>
                 <div>
-                  <label for="email" class="block text-xs font-bold uppercase text-construction-dark mb-1">Corporate Email *</label>
-                  <input type="email" id="email" name="email" required placeholder="name@company.com" class="w-full px-3.5 py-2.5 text-xs border border-construction-border focus:border-construction-yellow outline-none">
+                  <label for="email" class="block text-xs font-mono uppercase tracking-wider text-[#A78BFA] mb-1.5 font-bold">Corporate Email *</label>
+                  <input type="email" id="email" name="email" required placeholder="corporate@company.com" class="w-full px-4 py-3 text-xs bg-[#09080F] border border-[#2B2342] focus:border-[#7C3AED] text-white rounded-lg outline-none transition">
                 </div>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label for="phone" class="block text-xs font-bold uppercase text-construction-dark mb-1">Phone Number</label>
-                  <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" class="w-full px-3.5 py-2.5 text-xs border border-construction-border focus:border-construction-yellow outline-none">
+                  <label for="phone" class="block text-xs font-mono uppercase tracking-wider text-[#A78BFA] mb-1.5 font-bold">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" class="w-full px-4 py-3 text-xs bg-[#09080F] border border-[#2B2342] focus:border-[#7C3AED] text-white rounded-lg outline-none transition">
                 </div>
                 <div>
-                  <label for="project-type" class="block text-xs font-bold uppercase text-construction-dark mb-1">Scope Category</label>
-                  <select id="project-type" name="projectType" class="w-full px-3.5 py-2.5 text-xs border border-construction-border focus:border-construction-yellow outline-none bg-white">
-                    <option value="cement">Cement Plant Projects (Kiln, Mill, Silo, Packing)</option>
-                    <option value="power">Power Plant Structures & ACC Erection</option>
-                    <option value="crusher">Mining & Sizer Crusher Erection</option>
-                    <option value="steel">Heavy Steel Fabrication & Rigging</option>
+                  <label for="project-type" class="block text-xs font-mono uppercase tracking-wider text-[#A78BFA] mb-1.5 font-bold">Scope Discipline</label>
+                  <select id="project-type" name="projectType" class="w-full px-4 py-3 text-xs bg-[#09080F] border border-[#2B2342] focus:border-[#7C3AED] text-white rounded-lg outline-none transition">
+                    <option value="cement">Cement Plant Mega-Infrastructure (Kiln, Mill, Silo, Packing)</option>
+                    <option value="power">20 MW Power Plant Structures & ACC Towers</option>
+                    <option value="crusher">Mining Limestone & Sizer Crusher Erection</option>
+                    <option value="steel">Heavy Structural Steel Fabrication & Rigging</option>
                   </select>
                 </div>
               </div>
 
               <div>
-                <label for="requirements" class="block text-xs font-bold uppercase text-construction-dark mb-1">Project Scope & Location *</label>
-                <textarea id="requirements" name="requirements" rows="4" required placeholder="Describe estimated tonnage, timeline, drawing status, and site location..." class="w-full px-3.5 py-2.5 text-xs border border-construction-border focus:border-construction-yellow outline-none"></textarea>
+                <label for="requirements" class="block text-xs font-mono uppercase tracking-wider text-[#A78BFA] mb-1.5 font-bold">Project Scope, Tonnage & Site Location *</label>
+                <textarea id="requirements" name="requirements" rows="4" required placeholder="Estimated structural tonnage, site coordinates, drawing approval status, target completion timeline..." class="w-full px-4 py-3 text-xs bg-[#09080F] border border-[#2B2342] focus:border-[#7C3AED] text-white rounded-lg outline-none transition"></textarea>
               </div>
 
-              <button type="submit" id="inquiry-submit-btn" class="w-full sm:w-auto bg-construction-yellow hover:bg-construction-yellowDark text-white text-xs font-bold uppercase tracking-wider py-3.5 px-8 rounded-lg transition cursor-pointer text-center">
-                <span>SUBMIT INQUIRY</span>
+              <button type="submit" id="inquiry-submit-btn" class="w-full sm:w-auto bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-xs font-bold uppercase tracking-wider py-4 px-8 rounded-lg transition cursor-pointer shadow-lg">
+                <span>SUBMIT FOR ENGINEERING REVIEW →</span>
               </button>
             </form>
           </div>
@@ -1317,174 +1008,61 @@
   </section>
 
   <!-- =========================================================================
-       12. DARK CHARCOAL FOOTER (Matching Reference Image 3-Column Footer)
+       8. FOOTER (SPAN Architectural Dark Minimalist Footer)
        ========================================================================= -->
-  <footer class="bg-construction-dark text-white py-16 border-t border-gray-800">
+  <footer class="bg-[#050409] text-[#716A87] py-16 border-t border-[#1E192D]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12 border-b border-gray-800">
-        
-        <!-- Column 1: ABOUT US -->
-        <div class="space-y-4">
-          <div class="border-l-4 border-construction-yellow pl-3">
-            <h4 class="font-display font-black text-sm uppercase tracking-wider text-white">
-              ABOUT US
-            </h4>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-12 border-b border-[#1A162B]">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-[#181329] border border-[#3A3157] text-[#A78BFA] flex items-center justify-center font-bold text-xs">
+            TE
           </div>
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-construction-yellow text-white flex items-center justify-center font-bold text-sm">
-              TE
-            </div>
-            <span class="font-display font-extrabold text-base tracking-tight text-white">
-              THIRUPATHI ENGINEERS
-            </span>
-          </div>
-          <p class="text-xs text-gray-400 leading-relaxed font-normal">
-            Partnership firm specializing in industrial construction, structural steel erection, cement plant projects, power plant structures, and heavy industrial installations. Over 34 years of proven excellence since 1992.
-          </p>
-          <div class="text-[11px] font-mono text-construction-yellow">
-            Partners: M. Mohan & K. Gopalakrishnan
-          </div>
+          <span class="font-extrabold text-white tracking-wider text-base uppercase">
+            THIRUPATHI ENGINEERS
+          </span>
         </div>
 
-        <!-- Column 2: LATEST NEWS / PROJECTS (Matching Reference Style) -->
-        <div class="space-y-4">
-          <div class="border-l-4 border-construction-yellow pl-3">
-            <h4 class="font-display font-black text-sm uppercase tracking-wider text-white">
-              LATEST NEWS & PROJECTS
-            </h4>
-          </div>
-          <div class="space-y-3">
-            
-            <div class="flex items-start gap-3">
-              <div class="w-10 h-10 bg-construction-yellow text-white font-black text-xs flex flex-col items-center justify-center shrink-0">
-                <span>26</span>
-                <span class="text-[9px] font-mono">ACT</span>
-              </div>
-              <div>
-                <h5 class="text-xs font-bold text-white hover:text-construction-yellow transition">
-                  Dry Mix Unit & Packing Plant
-                </h5>
-                <p class="text-[11px] text-gray-400">The Ramco Cements Ltd., R.R. Nagar</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3">
-              <div class="w-10 h-10 bg-gray-800 text-construction-yellow font-black text-xs flex flex-col items-center justify-center shrink-0">
-                <span>26</span>
-                <span class="text-[9px] font-mono">FIN</span>
-              </div>
-              <div>
-                <h5 class="text-xs font-bold text-white hover:text-construction-yellow transition">
-                  Sizer Crusher Erection
-                </h5>
-                <p class="text-[11px] text-gray-400">Ramco Mines, Virudhunagar</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Column 3: GET IN TOUCH (Matching Reference Style) -->
-        <div class="space-y-4">
-          <div class="border-l-4 border-construction-yellow pl-3">
-            <h4 class="font-display font-black text-sm uppercase tracking-wider text-white">
-              GET IN TOUCH
-            </h4>
-          </div>
-          <div class="space-y-2 text-xs text-gray-300">
-            <div class="flex items-start gap-2.5">
-              <span class="text-construction-yellow font-bold">📍</span>
-              <p>Corporate Office: Chennai, Tamil Nadu</p>
-            </div>
-            <div class="flex items-start gap-2.5">
-              <span class="text-construction-yellow font-bold">📍</span>
-              <p>Registered Office: Kovilpatti, Tamil Nadu</p>
-            </div>
-            <div class="flex items-start gap-2.5 pt-1">
-              <span class="text-construction-yellow font-bold">📞</span>
-              <p>+91 9043288002 / +91 9790520126</p>
-            </div>
-            <div class="flex items-start gap-2.5">
-              <span class="text-construction-yellow font-bold">✉️</span>
-              <p>thirupathiengineerss@gmail.com</p>
-            </div>
-          </div>
-        </div>
-
+        <nav class="flex flex-wrap items-center gap-6 text-xs font-mono tracking-wider text-[#94A3B8]">
+          <a href="#projects" class="hover:text-white transition">PROJECTS</a>
+          <a href="#services" class="hover:text-white transition">SERVICES</a>
+          <a href="#credentials" class="hover:text-white transition">CREDENTIALS</a>
+          <a href="#leadership" class="hover:text-white transition">LEADERSHIP</a>
+          <a href="#contacts" class="hover:text-white transition">CONTACT</a>
+        </nav>
       </div>
 
-      <!-- Copyright Bottom Bar -->
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-500">
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#58516F]">
         <div>
-          &copy; 1992–2026 THIRUPATHI ENGINEERS. All rights reserved.
+          &copy; 1992–2026 THIRUPATHI ENGINEERS. Structural Erection of Record. All rights reserved.
         </div>
-        <div class="flex items-center gap-4 text-[11px]">
-          <span>CHENNAI</span>
+        <div class="flex items-center gap-3 text-[11px]">
+          <span>CHENNAI HQ</span>
           <span>•</span>
           <span>KOVILPATTI</span>
           <span>•</span>
-          <span>TAMIL NADU</span>
+          <span>TAMIL NADU, INDIA</span>
         </div>
       </div>
 
     </div>
   </footer>
 
-  <!-- =========================================================================
-       MODAL: PROJECT DETAILS SPECIFICATION MODAL
-       ========================================================================= -->
-  <div id="project-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-    <div class="relative bg-white max-w-3xl w-full border border-construction-border shadow-2xl my-8 overflow-hidden animate-fadeIn">
-      
-      <button id="project-modal-close" type="button" class="absolute top-4 right-4 z-30 p-2 bg-white/90 hover:bg-white text-construction-dark rounded-full transition cursor-pointer" aria-label="Close Project Modal">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
-
-      <div id="project-modal-content">
-        <!-- Injected by JS -->
-      </div>
-
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       MODAL: LIGHTBOX PREVIEW
-       ========================================================================= -->
-  <div id="lightbox-modal" class="lightbox-modal fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex flex-col items-center justify-center p-4">
-    <button id="lightbox-close" type="button" class="absolute top-6 right-6 p-2 text-white/80 hover:text-white transition cursor-pointer">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-      </svg>
-    </button>
-    <div class="max-w-4xl max-h-[80vh] overflow-hidden border border-white/20">
-      <img id="lightbox-img" src="" alt="Enlarged Project View" class="w-full h-full object-contain max-h-[75vh]">
-    </div>
-    <div class="mt-4 text-center text-white">
-      <p id="lightbox-tag" class="text-xs font-mono text-construction-yellow tracking-widest uppercase"></p>
-      <h4 id="lightbox-title" class="text-base font-display font-semibold mt-1"></h4>
-    </div>
-  </div>
-
-  <!-- =========================================================================
-       TOAST NOTIFICATION
-       ========================================================================= -->
-  <div id="form-toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 max-w-md bg-construction-dark border border-construction-yellow p-4 text-white shadow-xl flex items-center gap-3">
-    <div class="w-6 h-6 bg-construction-yellow text-white flex items-center justify-center shrink-0">
-      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <!-- Toast Notification -->
+  <div id="form-toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 max-w-md bg-[#130E22] border border-[#7C3AED] p-4 text-white shadow-2xl flex items-center gap-3 rounded-lg">
+    <div class="w-6 h-6 rounded-full bg-[#7C3AED] text-white flex items-center justify-center shrink-0">
+      <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
       </svg>
     </div>
     <div class="text-xs font-mono leading-relaxed" id="form-toast-msg">
-      Inquiry received. We will get back to you shortly.
+      Inquiry received. The partners will review your specifications.
     </div>
   </div>
 
-  <!-- Back To Top Button -->
-  <button id="back-to-top" type="button" class="fixed bottom-6 left-6 z-40 opacity-0 pointer-events-none translate-y-4 transition-all duration-300 w-10 h-10 rounded-full bg-construction-yellow hover:bg-construction-yellowDark text-white flex items-center justify-center shadow-md cursor-pointer" aria-label="Back to Top">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <!-- Back To Top Floating Button -->
+  <button id="back-to-top" type="button" class="fixed bottom-6 left-6 z-40 opacity-0 pointer-events-none translate-y-4 transition-all duration-300 w-10 h-10 rounded-full bg-[#1A152E] hover:bg-[#7C3AED] border border-[#3A3157] text-white flex items-center justify-center shadow-lg cursor-pointer" aria-label="Back to Top">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
     </svg>
   </button>
