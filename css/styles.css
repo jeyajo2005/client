@@ -100,30 +100,21 @@ body {
   text-transform: uppercase;
 }
 
-/* Interactive Video Playback Wrap */
-.span-video-wrap {
+/* Hero Section Wrap */
+.span-hero-wrap {
   position: relative;
   width: 100%;
-  height: 85vh;
-  min-height: 580px;
-  max-height: 900px;
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
   overflow: hidden;
   background-color: #09080F;
 }
 
 @media (max-width: 640px) {
-  .span-video-wrap {
-    height: 70vh;
-    min-height: 480px;
+  .span-hero-wrap {
+    min-height: 70vh;
   }
-}
-
-.span-video-wrap video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: contrast(1.15) brightness(0.85) saturate(0.85);
 }
 
 /* Custom Scrollbar */

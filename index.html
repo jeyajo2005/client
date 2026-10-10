@@ -111,13 +111,15 @@
   <!-- =========================================================================
        2. HERO SECTION (Matching SPAN Screenshot 1)
        ========================================================================= -->
-  <section id="home" class="relative span-video-wrap hero-duotone-bg flex items-center tech-grid-pattern">
+  <section id="home" class="relative span-hero-wrap hero-duotone-bg flex items-center tech-grid-pattern">
     
-    <!-- Full-Bleed Video Element with Atmospheric Desaturation -->
-    <video id="hero-video" autoplay loop muted playsinline preload="auto" poster="assets/project-power-plant.jpg" class="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-45">
-      <source src="video1.mp4" type="video/mp4">
-      <source src="assets/video1.mp4" type="video/mp4">
-    </video>
+    <!-- Atmospheric Architectural Industrial Background (Matching SPAN Screenshot 1) -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <img src="assets/gallery-erection.jpg" alt="Industrial Construction Site of Record" class="w-full h-full object-cover filter grayscale contrast-125 brightness-[0.28] scale-105">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#09080F] via-[#09080F]/75 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#09080F] via-transparent to-[#09080F]/85"></div>
+      <div class="absolute inset-0 bg-[#3B1768]/15 mix-blend-color"></div>
+    </div>
 
     <!-- Top Right Floating Badge (Matching Screenshot 1: LICENSED PE CA NY TX FL) -->
     <div class="absolute top-8 right-4 sm:right-12 z-20">
@@ -128,7 +130,7 @@
     </div>
 
     <!-- Hero Content (Matching SPAN Screenshot 1 Layout) -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20 py-24 sm:py-32">
       <div class="max-w-2xl space-y-5">
         
         <!-- Big Bold Architectural Name Headline -->
@@ -162,22 +164,6 @@
 
       </div>
     </div>
-
-    <!-- Video Playback Minimal Controls (Bottom Left) -->
-    <div class="absolute bottom-6 left-6 z-30 flex items-center gap-2">
-      <button id="video-play-btn" type="button" class="w-8 h-8 rounded-full bg-[#181329]/80 hover:bg-[#7C3AED] border border-[#3A3157] flex items-center justify-center text-white transition cursor-pointer" title="Play / Pause">
-        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-        </svg>
-      </button>
-      <button id="video-mute-btn" type="button" class="w-8 h-8 rounded-full bg-[#181329]/80 hover:bg-[#7C3AED] border border-[#3A3157] flex items-center justify-center text-white transition cursor-pointer" title="Mute / Unmute">
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/>
-        </svg>
-      </button>
-    </div>
-
   </section>
 
   <!-- =========================================================================
