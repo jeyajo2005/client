@@ -165,8 +165,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalClose = document.getElementById('modalClose');
 
   const projectDetailsData = {
+    'drymix-packing': {
+      title: 'Dry Mix Unit: Packing Plant & Hopper Mechanical Erection Work',
+      year: '2026 Ongoing Project',
+      clients: 'The Ramco Cements Ltd. — RR Nagar, Virudhunagar',
+      image: 'assets/images/drymix_packing.jpg',
+      specs: [
+        { label: 'Project Status', val: '2026 Active Execution' },
+        { label: 'Facility Type', val: 'Dry Mix Unit & Packing Plant' },
+        { label: 'Client / Site', val: 'The Ramco Cements Ltd. (RR Nagar)' },
+        { label: 'Scope of Work', val: 'Heavy Mechanical Equipment & Hopper Erection' },
+        { label: 'Key Structures', val: 'Storage Hoppers, Chutes, Packing Line Frames' },
+        { label: 'Partner Supervision', val: 'Direct On-Site Lead: M. Mohan & K. Gopalakrishnan' }
+      ],
+      description: `Active mechanical industrial structural erection and equipment installation for the high-throughput Dry Mix Unit and Packing Plant at The Ramco Cements Ltd., RR Nagar, Virudhunagar. Scope encompasses heavy equipment framing, bulk material storage hoppers, mechanical feed chutes, bucket elevator casings, packing line machinery supports, and elevated operator galleries executed to rigorous cement industry mechanical tolerances.`
+    },
+    'sizer-crusher': {
+      title: 'Sizer Crusher Mechanical & Equipment Structure Work',
+      year: '2026 Completed Project',
+      clients: 'The Ramco Cements Ltd. — Ramco Mines, Virudhunagar',
+      image: 'assets/images/sizer_crusher.jpg',
+      specs: [
+        { label: 'Completion Year', val: '2026 Commissioned' },
+        { label: 'Machinery Scope', val: 'High-Capacity Primary Sizer Crusher' },
+        { label: 'Client / Location', val: 'Ramco Mines, Virudhunagar' },
+        { label: 'Structural Type', val: 'Heavy Dynamic Equipment Support Towers' },
+        { label: 'Fastener Spec', val: '100% Calibrated HSFG Torqued Bolting' },
+        { label: 'Safety Record', val: 'Zero Lost-Time Incidents (LTI)' }
+      ],
+      description: `Complete mechanical structural erection and heavy equipment mounting for the mineral sizer crusher system at Ramco Mines, Virudhunagar. Scope included heavy steel supporting towers, vibration-isolated equipment chassis, high-impact rock transfer chutes, primary feed hoppers, and maintenance crane runway monorails engineered to endure continuous heavy dynamic limestone crushing stresses.`
+    },
     'power-plant': {
-      title: '20 MW Thermal Power Plant — Non-IBR & ACC Cooling Tower Erection',
+      title: '20 MW Power Plant: Non-IBR Structures & ACC Cooling Tower Erection',
       year: '2025 Completion',
       clients: 'Tecksk Projects & ISGEC Heavy Engineering',
       image: 'assets/images/power_plant_acc.jpg',
@@ -174,56 +204,26 @@ document.addEventListener('DOMContentLoaded', () => {
         { label: 'Plant Capacity', val: '20 MW Thermal Power Unit' },
         { label: 'Scope', val: 'Non-IBR Structures, Ducting & ACC Erection' },
         { label: 'Prime Clients', val: 'Tecksk Projects / ISGEC' },
-        { label: 'Safety Record', val: 'Zero Lost-Time Incidents (LTI)' },
+        { label: 'Safety Record', val: 'Zero Lost-Time Incidents (Zero LTI)' },
         { label: 'Erection Weight', val: '1,450+ Metric Tonnes Steel' },
-        { label: 'Key Equipment', val: 'Air-Cooled Condenser Fan Decks' }
+        { label: 'Key Equipment', val: 'Air-Cooled Condenser (ACC) Fan Decks' }
       ],
-      description: `Executed structural steel erection for high-capacity 20 MW thermal power generation unit. Scope encompassed complete non-IBR structural framing, boiler support auxiliary steelwork, air-cooled condenser (ACC) towers, industrial ducting arrays, and elevated pipe racks. All structural alignment was verified with optical laser levels and calibrated torque wrenches in strict compliance with IS 800 and EPC partner criteria.`
+      description: `Executed structural steel erection for high-capacity 20 MW thermal power generation unit. Scope encompassed complete non-IBR structural framing, boiler support auxiliary steelwork, air-cooled condenser (ACC) towers, industrial flue gas ducting arrays, and elevated pipe racks. All structural alignment was verified with optical laser levels and calibrated torque wrenches in strict compliance with IS 800 standards.`
     },
     'clinker-silo': {
-      title: 'Cement Plant Clinker Silo Structures & Heavy Concrete Framing',
+      title: 'Clinker Silo Mechanical Structures & Conveyor Galleries',
       year: '2025 Completion',
       clients: 'The Ramco Cements Ltd.',
       image: 'assets/images/clinker_silo.jpg',
       specs: [
         { label: 'Facility Type', val: 'Clinker Storage Silos & Transfer Towers' },
         { label: 'Client', val: 'The Ramco Cements Ltd.' },
-        { label: 'Execution Year', val: '2025' },
-        { label: 'Structural Method', val: 'Heavy Reinforced Concrete & Slipform' },
+        { label: 'Execution Year', val: '2025 Handover' },
+        { label: 'Structural Method', val: 'Heavy Structural Steel Framing & Galleries' },
         { label: 'Elevation', val: 'Up to 54m Structure Apex' },
-        { label: 'Safety Protocol', val: 'Strict Operational Plant HSE' }
+        { label: 'Safety Protocol', val: 'Operational Cement Plant HSE Compliance' }
       ],
-      description: `Comprehensive structural civil execution for clinker storage silos and conveyor transfer galleries at The Ramco Cements Ltd. Delivered monolithic concrete silo frameworks, high-capacity hopper support beams, and structural overhead galleries. Engineered to withstand continuous dynamic vibration, high thermal differentials, and heavy abrasive bulk storage loads.`
-    },
-    'peb-framing': {
-      title: 'Heavy Industrial PEB Framing & Overhead EOT Crane Gantry Assembly',
-      year: 'Structural Engineering',
-      clients: 'Industrial Manufacturing EPCs',
-      image: 'assets/images/peb_erection.jpg',
-      specs: [
-        { label: 'Clear Span', val: '38m Column-Free Internal Bay' },
-        { label: 'Crane Rating', val: 'Up to 50T Dual EOT Gantry Runways' },
-        { label: 'Framing Type', val: 'Custom Built-Up Plate Portal Frames' },
-        { label: 'Wind Load Standard', val: 'IS 875 Part 3 Engineered' },
-        { label: 'QA/QC Check', val: '100% UT / MPI Weld Inspection' },
-        { label: 'Fasteners', val: 'High-Strength Friction Grip (HSFG)' }
-      ],
-      description: `Design coordination and field erection of massive pre-engineered industrial plant buildings. Includes high-capacity crane runway girders, precision rail alignment for smooth crane movement, braced portal frames, and insulated wall/roof envelope systems.`
-    },
-    'civil-foundations': {
-      title: 'Heavy Machine RCC Plinths, Deep Foundations & Retaining Systems',
-      year: 'Heavy Civil Execution',
-      clients: 'Core Infrastructure Clients',
-      image: 'assets/images/civil_foundations.jpg',
-      specs: [
-        { label: 'Concrete Grade', val: 'M35 / M40 High-Strength Controlled Mix' },
-        { label: 'Rebar Standard', val: 'Fe 550D High Ductility TMT Reinforcement' },
-        { label: 'Foundation Scope', val: 'Turbine Plinths, Piling & Raft Works' },
-        { label: 'Vibration Control', val: 'Dynamic Damping Embedded Plates' },
-        { label: 'Quality Test', val: 'Cube Compression & Core Testing' },
-        { label: 'Execution', val: 'Direct Supervision by K. Gopalakrishnan' }
-      ],
-      description: `Specialized heavy reinforced concrete foundations engineered for reciprocating and rotating machinery, heavy crushers, and multi-story structural columns. Featuring deep earthwork shoring, waterproofed basement rafts, and micron-accurate anchor bolt pocket installations.`
+      description: `Heavy mechanical structural execution for clinker storage silo systems and high-elevation transfer galleries at The Ramco Cements Ltd. Scope encompassed structural column towers, conveyor bridge galleries, feeder support steel, hopper discharge interfaces, and access platforms executed inside an active operational plant environment with zero downtime.`
     }
   };
 
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <div>
             <h4 style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--accent-gold-dark); margin-bottom: 0.75rem;">
-              Scope of Engineering & Execution
+              Scope of Engineering & Mechanical Erection
             </h4>
             <p style="font-size: 0.98rem; line-height: 1.75; color: var(--text-secondary); margin-bottom: 1.5rem;">
               ${data.description}
@@ -291,33 +291,44 @@ document.addEventListener('DOMContentLoaded', () => {
             Thirupathi Engineers — Capability Statement
           </h3>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.75rem;">
-            Partnership Firm: Led by M. Mohan & K. Gopalakrishnan · Tamil Nadu, India
+            Registered Partnership Firm · Partners: M. Mohan & K. Gopalakrishnan · GST Registered
           </p>
 
-          <div style="background: var(--bg-secondary); border: 1px solid var(--border-hairline); padding: 1.75rem; border-radius: var(--radius-sm); margin-bottom: 1.75rem;">
-            <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-primary);">Core Competencies</h4>
+          <div style="background: var(--bg-secondary); border: 1px solid var(--border-hairline); padding: 1.75rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem;">
+            <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-primary);">Specialized Mechanical & Structural Competencies</h4>
             <ul style="padding-left: 1.25rem; font-size: 0.92rem; color: var(--text-secondary); line-height: 1.8;">
-              <li>Thermal & Captive Power Plant non-IBR structural fabrication and erection.</li>
-              <li>Air Cooled Condenser (ACC) cooling towers structural erection & duct assembly.</li>
-              <li>Cement plant clinker silo structures, raw material handling, and slipform works.</li>
-              <li>Heavy industrial PEB factories, crane gantry framing, and machine foundations.</li>
-              <li>IS Code compliance (IS 800, IS 456, IS 875) & certified industrial safety protocols.</li>
+              <li>Mechanical Industrial Structural Fabrication coordination and heavy steel erection.</li>
+              <li>Thermal & Captive Power Plant 20 MW non-IBR structures, boiler auxiliaries & pipe racks.</li>
+              <li>Air-Cooled Condenser (ACC) cooling towers structural erection, fan decks & steam ducting.</li>
+              <li>Cement plant clinker silos, kiln coal mill buildings, cement mills, and conveyor galleries.</li>
+              <li>Dry Mix Units, packing plants, bulk storage hoppers, and bucket elevator structures.</li>
+              <li>Heavy mining & quarry equipment structures including mineral sizer crushers and screens.</li>
+              <li>Coal stacker & reclaimer structural assemblies and plant washing facility erections.</li>
+              <li>Certified compliance with IS 800 (Structural Steel Design & Erection) & strict HSE zero-accident protocols.</li>
             </ul>
           </div>
 
-          <div style="background: #FAFAFA; border: 1px dashed var(--accent-gold); padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1.75rem; display: flex; justify-content: space-between; align-items: center;">
-            <div>
-              <div style="font-weight: 700; font-size: 0.95rem;">Official Partnership Inquiries</div>
-              <div style="font-size: 0.85rem; color: var(--text-muted);">Direct Partner Lines: 9043288002 | 9790520126</div>
-              <div style="font-size: 0.85rem; color: var(--text-muted);">Email: thirupathiengineerss@gmail.com | gopalkannan5@gmail.com</div>
+          <div style="background: var(--bg-tertiary); border: 1px solid var(--border-hairline); padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem;">
+            <h4 style="font-size: 0.88rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">GST Registered Office Addresses</h4>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+              <div><strong>Corporate Office (GST):</strong> Chennai, Tamil Nadu</div>
+              <div><strong>Registered Office (GST Paper):</strong> Kovilpatti, Thoothukudi District, Tamil Nadu</div>
             </div>
-            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold-dark); font-weight: 700; padding: 0.35rem 0.65rem; background: var(--accent-gold-bg); border-radius: 4px;">VERIFIED 2025</span>
+          </div>
+
+          <div style="background: #FAFAFA; border: 1px dashed var(--accent-gold); padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1.75rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Direct Managing Partner Lines</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">M. Mohan (50+ Yrs Exp): +91 9043288002 | thirupathiengineerss@gmail.com</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">K. Gopalakrishnan (~15 Yrs Exp): +91 9790520126 | gopalkannan5@gmail.com</div>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold-dark); font-weight: 700; padding: 0.35rem 0.65rem; background: var(--accent-gold-bg); border-radius: 4px;">VERIFIED 2026</span>
           </div>
 
           <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid var(--border-hairline);">
-            <span style="font-size: 0.85rem; color: var(--text-muted);">Document: TE-CAP-2025-V1.PDF (Ready for Procurement Review)</span>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Document: TE-CAP-2026-MECH.PDF</span>
             <button class="btn btn-primary" onclick="triggerMockDownload()">
-              Download PDF Summary ↓
+              Download Dossier ↓
             </button>
           </div>
         </div>
@@ -424,4 +435,413 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  // 8. Live Project & Erection Gallery Engine (98+ Photos with HD Clarity & Lightbox)
+  const galleryGrid = document.getElementById('galleryGrid');
+  const galleryFilterBtns = document.querySelectorAll('.gallery-filter-btn');
+  const galleryLoadMoreBtn = document.getElementById('galleryLoadMoreBtn');
+  const galleryShowAllBtn = document.getElementById('galleryShowAllBtn');
+
+  // Lightbox Elements
+  const lightbox = document.getElementById('galleryLightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxCounter = document.getElementById('lightboxCounter');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+  const lightboxClarityToggle = document.getElementById('lightboxClarityToggle');
+
+  // Build complete gallery data list
+  const totalGalleryCount = 98;
+  const galleryItems = [
+    {
+      src: 'assets/images/washing_plant.jpg',
+      tag: 'The Ramco Cements Ltd.',
+      title: 'Washing Plant & Thickener Tank Structural Erection',
+      category: 'mining'
+    },
+    {
+      src: 'assets/images/flsmidth_crane_lift.jpg',
+      tag: 'Heavy Rigging',
+      title: 'FLSmidth Equipment High-Tonnage Crane Lift',
+      category: 'cranes'
+    },
+    {
+      src: 'assets/images/drymix_packing.jpg',
+      tag: 'RR Nagar Site',
+      title: 'Dry Mix Unit Drive Motors & Equipment Assembly',
+      category: 'machinery'
+    },
+    {
+      src: 'assets/images/sizer_crusher.jpg',
+      tag: 'Ramco Mines',
+      title: 'Primary Sizer Crusher Mechanical Support Tower',
+      category: 'mining'
+    },
+    {
+      src: 'assets/images/power_plant_acc.jpg',
+      tag: 'Tecksk / ISGEC',
+      title: '20 MW Thermal Power Plant ACC Cooling Tower Deck',
+      category: 'cranes'
+    },
+    {
+      src: 'assets/images/clinker_silo.jpg',
+      tag: 'Cement Works',
+      title: 'Clinker Storage Silo Structures & Elevated Galleries',
+      category: 'hoppers'
+    }
+  ];
+
+  // Dynamic titles and category rotation for the 98 live site photos
+  const categoryPool = ['cranes', 'machinery', 'hoppers', 'mining'];
+  const tagPool = [
+    'Ramco Cements Site',
+    'Heavy Mobile Crane',
+    'Hopper Fabrication',
+    'Plant Erection',
+    'Dry Mix Unit',
+    'Conveyor Gallery',
+    'Mechanical Fit-Up',
+    'Equipment Rigging'
+  ];
+  const titlePool = [
+    'Heavy Structural Framing Assembly',
+    'High-Elevation Truss Erection via Crane',
+    'Steel Storage Hopper Plate Fit-Up & Welding',
+    'Dry Mix Plant Mechanical Gallery Erection',
+    'Transfer Chute & Flange Bolt Alignment',
+    'Bucket Elevator Structural Support Tower',
+    'Industrial Washing Plant Steel Framework',
+    'Vibration-Damped Equipment Chassis Assembly',
+    'Overhead Conveyor Gantry Placement',
+    'Primary Feeder & Screening Station Steel',
+    'Structural Joint Torque & Laser Check',
+    'Live Plant Shutdown Mechanical Rigging'
+  ];
+
+  for (let idx = 1; idx <= totalGalleryCount; idx++) {
+    const pad = idx.toString().padStart(3, '0');
+    const cat = categoryPool[(idx - 1) % categoryPool.length];
+    const tag = tagPool[(idx - 1) % tagPool.length];
+    const title = `${titlePool[(idx - 1) % titlePool.length]} #${idx}`;
+    galleryItems.push({
+      src: `assets/images/gallery/site-img-${pad}.jpg`,
+      tag: tag,
+      title: title,
+      category: cat
+    });
+  }
+
+  let currentCategory = 'all';
+  let displayedCount = 16;
+  const batchSize = 16;
+  let activeLightboxIndex = 0;
+  let filteredItems = [...galleryItems];
+
+  function renderGallery() {
+    if (!galleryGrid) return;
+    galleryGrid.innerHTML = '';
+
+    filteredItems = galleryItems.filter(item => {
+      return currentCategory === 'all' || item.category === currentCategory;
+    });
+
+    const itemsToDisplay = filteredItems.slice(0, displayedCount);
+
+    itemsToDisplay.forEach((item, index) => {
+      const card = document.createElement('div');
+      card.className = 'gallery-card';
+      card.setAttribute('data-index', index);
+      card.innerHTML = `
+        <img src="${item.src}" alt="${item.title}" loading="lazy" onerror="this.onerror=null; this.src='assets/images/washing_plant.jpg';">
+        <div class="gallery-card-overlay">
+          <span class="gallery-card-tag">${item.tag}</span>
+          <h4 class="gallery-card-title">${item.title}</h4>
+        </div>
+      `;
+
+      card.addEventListener('click', () => {
+        openLightbox(index);
+      });
+
+      galleryGrid.appendChild(card);
+    });
+
+    // Update Load More buttons
+    if (galleryLoadMoreBtn) {
+      if (displayedCount >= filteredItems.length) {
+        galleryLoadMoreBtn.style.display = 'none';
+      } else {
+        galleryLoadMoreBtn.style.display = 'inline-flex';
+        galleryLoadMoreBtn.querySelector('span').textContent = `Show More Photos (+16) [${displayedCount} of ${filteredItems.length}]`;
+      }
+    }
+
+    if (galleryShowAllBtn) {
+      if (displayedCount >= filteredItems.length) {
+        galleryShowAllBtn.style.display = 'none';
+      } else {
+        galleryShowAllBtn.style.display = 'inline-flex';
+        galleryShowAllBtn.querySelector('span').textContent = `Show All (${filteredItems.length} Photos)`;
+      }
+    }
+  }
+
+  // Filter Buttons
+  galleryFilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      galleryFilterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategory = btn.getAttribute('data-gfilter');
+      displayedCount = batchSize;
+      renderGallery();
+    });
+  });
+
+  // Load More Button
+  if (galleryLoadMoreBtn) {
+    galleryLoadMoreBtn.addEventListener('click', () => {
+      displayedCount += batchSize;
+      renderGallery();
+    });
+  }
+
+  // Show All Button
+  if (galleryShowAllBtn) {
+    galleryShowAllBtn.addEventListener('click', () => {
+      displayedCount = filteredItems.length;
+      renderGallery();
+    });
+  }
+
+  // Initial render
+  renderGallery();
+
+  // Lightbox Implementation
+  function openLightbox(index) {
+    if (!filteredItems[index] || !lightbox) return;
+    activeLightboxIndex = index;
+    updateLightboxContent();
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function updateLightboxContent() {
+    const item = filteredItems[activeLightboxIndex];
+    if (!item) return;
+
+    if (lightboxImg) {
+      lightboxImg.onerror = function() {
+        this.onerror = null;
+        this.src = 'assets/images/washing_plant.jpg';
+      };
+      lightboxImg.src = item.src;
+      lightboxImg.alt = item.title;
+    }
+    if (lightboxCaption) {
+      lightboxCaption.textContent = `${item.title} — ${item.tag}`;
+    }
+    if (lightboxCounter) {
+      lightboxCounter.textContent = `Photo ${activeLightboxIndex + 1} of ${filteredItems.length}`;
+    }
+  }
+
+  function nextLightbox() {
+    if (activeLightboxIndex < filteredItems.length - 1) {
+      activeLightboxIndex++;
+    } else {
+      activeLightboxIndex = 0;
+    }
+    updateLightboxContent();
+  }
+
+  function prevLightbox() {
+    if (activeLightboxIndex > 0) {
+      activeLightboxIndex--;
+    } else {
+      activeLightboxIndex = filteredItems.length - 1;
+    }
+    updateLightboxContent();
+  }
+
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxNext) lightboxNext.addEventListener('click', nextLightbox);
+  if (lightboxPrev) lightboxPrev.addEventListener('click', prevLightbox);
+
+  if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  }
+
+  // Keyboard navigation
+  window.addEventListener('keydown', (e) => {
+    if (!lightbox || !lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') nextLightbox();
+    if (e.key === 'ArrowLeft') prevLightbox();
+  });
+
+  // Clarity boost toggle
+  if (lightboxClarityToggle && lightboxImg) {
+    lightboxClarityToggle.addEventListener('click', () => {
+      lightboxImg.classList.toggle('enhanced');
+      const isEnhanced = lightboxImg.classList.contains('enhanced');
+      lightboxClarityToggle.classList.toggle('active', isEnhanced);
+      lightboxClarityToggle.textContent = isEnhanced ? '✨ HD Clarity Boost: ON' : 'HD Clarity Boost: OFF';
+    });
+  }
+
+  // 9. Serpentine Timeline Interaction & Scroll Reveal
+  const serpentineRows = document.querySelectorAll('.serpentine-row');
+  if (serpentineRows.length > 0) {
+    const serpentineObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.15 });
+
+    serpentineRows.forEach(row => {
+      row.style.opacity = '0.9';
+      row.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      serpentineObserver.observe(row);
+    });
+  }
+
+  // 9. Serpentine Timeline Dynamic Path & Alignment
+  function initSerpentineTimeline() {
+    const wrap = document.querySelector('.serpentine-timeline-wrap');
+    const svg = document.getElementById('serpentineSvg') || document.querySelector('.serpentine-svg-bg');
+    if (!wrap || !svg) return;
+
+    let path = document.getElementById('serpentinePath');
+    let topDot = document.getElementById('serpentineTopDot');
+    let bottomDot = document.getElementById('serpentineBottomDot');
+
+    if (!path) {
+      path = svg.querySelector('path');
+      if (path) path.id = 'serpentinePath';
+    }
+    const circles = svg.querySelectorAll('circle');
+    if (circles.length >= 2) {
+      if (!topDot) { topDot = circles[0]; topDot.id = 'serpentineTopDot'; }
+      if (!bottomDot) { bottomDot = circles[1]; bottomDot.id = 'serpentineBottomDot'; }
+    }
+
+    function calculateAndDraw() {
+      const rings = wrap.querySelectorAll('.target-ring');
+      if (rings.length === 0) return;
+
+      const wrapRect = wrap.getBoundingClientRect();
+      const wrapW = wrap.clientWidth || wrapRect.width;
+      const wrapH = wrap.clientHeight || wrapRect.height;
+      if (wrapW === 0 || wrapH === 0) return;
+
+      svg.setAttribute('viewBox', `0 0 ${wrapW} ${wrapH}`);
+      svg.setAttribute('width', wrapW);
+      svg.setAttribute('height', wrapH);
+
+      const isMobile = window.innerWidth <= 900;
+      const coords = [];
+
+      rings.forEach(ring => {
+        const rRect = ring.getBoundingClientRect();
+        const cx = rRect.left + rRect.width / 2 - wrapRect.left;
+        const cy = rRect.top + rRect.height / 2 - wrapRect.top;
+        coords.push({ x: cx, y: cy });
+      });
+
+      if (coords.length === 0) return;
+
+      const first = coords[0];
+      const last = coords[coords.length - 1];
+
+      const topX = first.x;
+      const topY = Math.max(8, first.y - (isMobile ? 36 : 60));
+
+      const botX = last.x;
+      const botY = Math.min(wrapH - 8, last.y + (isMobile ? 36 : 60));
+
+      if (topDot) {
+        topDot.setAttribute('cx', topX);
+        topDot.setAttribute('cy', topY);
+        topDot.setAttribute('r', isMobile ? '5' : '6');
+      }
+      if (bottomDot) {
+        bottomDot.setAttribute('cx', botX);
+        bottomDot.setAttribute('cy', botY);
+        bottomDot.setAttribute('r', isMobile ? '5' : '6');
+      }
+
+      let d = `M ${topX} ${topY}`;
+
+      // From top dot to first ring (Step 1)
+      if (isMobile) {
+        d += ` L ${first.x} ${first.y}`;
+      } else {
+        const bow1 = 38;
+        const dy1 = first.y - topY;
+        d += ` C ${topX + bow1} ${topY + dy1 * 0.35}, ${first.x + bow1} ${first.y - dy1 * 0.35}, ${first.x} ${first.y}`;
+      }
+
+      // Between consecutive rings: pass directly through each ring center
+      for (let i = 0; i < coords.length - 1; i++) {
+        const p1 = coords[i];
+        const p2 = coords[i + 1];
+        const dy = p2.y - p1.y;
+
+        if (isMobile) {
+          // Direct dashed connecting line straight through the rings
+          d += ` L ${p2.x} ${p2.y}`;
+        } else {
+          // Graceful S-curve alternating left & right
+          // i=0 (step 1->2): bows to the left (-46)
+          // i=1 (step 2->3): bows to the right (+46)
+          const dir = (i % 2 === 0) ? -1 : 1;
+          const bow = dir * 46;
+          d += ` C ${p1.x + bow} ${p1.y + dy * 0.32}, ${p2.x + bow} ${p2.y - dy * 0.32}, ${p2.x} ${p2.y}`;
+        }
+      }
+
+      // From last ring to bottom dot
+      if (isMobile) {
+        d += ` L ${botX} ${botY}`;
+      } else {
+        const lastDir = ((coords.length - 1) % 2 === 0) ? -1 : 1;
+        const bowLast = lastDir * 32;
+        const dyLast = botY - last.y;
+        d += ` C ${last.x + bowLast} ${last.y + dyLast * 0.35}, ${botX + bowLast} ${botY - dyLast * 0.35}, ${botX} ${botY}`;
+      }
+
+      if (path) {
+        path.setAttribute('d', d);
+      }
+    }
+
+    calculateAndDraw();
+    window.addEventListener('resize', calculateAndDraw, { passive: true });
+    window.addEventListener('orientationchange', calculateAndDraw, { passive: true });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(calculateAndDraw);
+    }
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(() => {
+        calculateAndDraw();
+      });
+      ro.observe(wrap);
+    }
+  }
+
+  initSerpentineTimeline();
 });
+
