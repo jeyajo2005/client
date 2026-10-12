@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Thirupathi Engineers - Portfolio Website Interactive Engine
  * Inspired by architectural minimalism and modern engineering aesthetics
  */
@@ -534,8 +534,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   let currentCategory = 'all';
-  let displayedCount = 16;
-  const batchSize = 16;
+  let displayedCount = 12;
+  const batchSize = 12;
   let activeLightboxIndex = 0;
   let filteredItems = [...galleryItems];
 
@@ -574,7 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
         galleryLoadMoreBtn.style.display = 'none';
       } else {
         galleryLoadMoreBtn.style.display = 'inline-flex';
-        galleryLoadMoreBtn.querySelector('span').textContent = `Show More Photos (+16) [${displayedCount} of ${filteredItems.length}]`;
+        galleryLoadMoreBtn.querySelector('span').textContent = `Show More Photos (+12) [${displayedCount} of ${filteredItems.length}]`;
       }
     }
 
