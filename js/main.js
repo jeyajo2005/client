@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Thirupathi Engineers - Portfolio Website Interactive Engine
  * Inspired by architectural minimalism and modern engineering aesthetics
  */
@@ -436,11 +436,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 8. Live Project & Erection Gallery Engine (98+ Photos with HD Clarity & Lightbox)
+  // 8. Live Project & Erection Gallery Engine (98+ Photos with Left-to-Right Moving Reel & Lightbox)
   const galleryGrid = document.getElementById('galleryGrid');
+  const galleryMarqueeContainer = document.getElementById('galleryMarqueeContainer');
+  const galleryMarqueeTrack = document.getElementById('galleryMarqueeTrack');
   const galleryFilterBtns = document.querySelectorAll('.gallery-filter-btn');
   const galleryLoadMoreBtn = document.getElementById('galleryLoadMoreBtn');
   const galleryShowAllBtn = document.getElementById('galleryShowAllBtn');
+  const galleryLoadActions = document.getElementById('galleryLoadActions');
+  const galleryReelHint = document.getElementById('galleryReelHint');
+  const viewModeReel = document.getElementById('viewModeReel');
+  const viewModeGrid = document.getElementById('viewModeGrid');
+  const galleryPlayPauseBtn = document.getElementById('galleryPlayPauseBtn');
+  const gallerySwitchToGridLink = document.getElementById('gallerySwitchToGridLink');
 
   // Lightbox Elements
   const lightbox = document.getElementById('galleryLightbox');
@@ -538,34 +546,87 @@ document.addEventListener('DOMContentLoaded', () => {
   const batchSize = 12;
   let activeLightboxIndex = 0;
   let filteredItems = [...galleryItems];
+  let currentViewMode = 'reel'; // 'reel' (moving left to right) or 'grid'
+  let isMotionPaused = false;
 
-  function renderGallery() {
+  // Build a single gallery card element
+  function createGalleryCard(item, origIndex, isMarquee = false) {
+    const card = document.createElement('div');
+    card.className = isMarquee ? 'gallery-card gallery-marquee-card' : 'gallery-card';
+    card.setAttribute('data-index', origIndex);
+    card.innerHTML = `
+      <img src="${item.src}" alt="${item.title}" loading="lazy" onerror="this.onerror=null; this.src='assets/images/washing_plant.jpg';">
+      <div class="gallery-card-overlay">
+        <span class="gallery-card-tag">${item.tag}</span>
+        <h4 class="gallery-card-title">${item.title}</h4>
+      </div>
+    `;
+
+    card.addEventListener('click', () => {
+      openLightbox(origIndex);
+    });
+
+    return card;
+  }
+
+  // Render continuous left-to-right marquee track
+  function renderMarquee() {
+    if (!galleryMarqueeTrack) return;
+    galleryMarqueeTrack.innerHTML = '';
+
+    if (filteredItems.length === 0) return;
+
+    // Minimum cards in a single group to guarantee seamless looping on any screen width
+    const minGroupCards = 16;
+    let groupItems = [];
+    while (groupItems.length < minGroupCards) {
+      groupItems = groupItems.concat(filteredItems);
+    }
+    // Cap at a reasonable max for silky GPU performance
+    if (groupItems.length > 28) {
+      groupItems = groupItems.slice(0, 28);
+    }
+
+    // Set animation duration proportional to card count (~2.2s per card)
+    const durationSec = Math.max(35, Math.round(groupItems.length * 2.2));
+    galleryMarqueeTrack.style.animationDuration = `${durationSec}s`;
+
+    // Group A (primary set)
+    const groupA = document.createElement('div');
+    groupA.className = 'gallery-marquee-group';
+    groupItems.forEach((item) => {
+      const origIndex = filteredItems.indexOf(item);
+      groupA.appendChild(createGalleryCard(item, origIndex >= 0 ? origIndex : 0, true));
+    });
+
+    // Group B (identical clone set for seamless -50% to 0% left-to-right loop)
+    const groupB = document.createElement('div');
+    groupB.className = 'gallery-marquee-group';
+    groupB.setAttribute('aria-hidden', 'true');
+    groupItems.forEach((item) => {
+      const origIndex = filteredItems.indexOf(item);
+      groupB.appendChild(createGalleryCard(item, origIndex >= 0 ? origIndex : 0, true));
+    });
+
+    galleryMarqueeTrack.appendChild(groupA);
+    galleryMarqueeTrack.appendChild(groupB);
+
+    if (isMotionPaused) {
+      galleryMarqueeTrack.classList.add('is-paused');
+    } else {
+      galleryMarqueeTrack.classList.remove('is-paused');
+    }
+  }
+
+  // Render standard 4-column grid (used when user switches to Grid View)
+  function renderGrid() {
     if (!galleryGrid) return;
     galleryGrid.innerHTML = '';
-
-    filteredItems = galleryItems.filter(item => {
-      return currentCategory === 'all' || item.category === currentCategory;
-    });
 
     const itemsToDisplay = filteredItems.slice(0, displayedCount);
 
     itemsToDisplay.forEach((item, index) => {
-      const card = document.createElement('div');
-      card.className = 'gallery-card';
-      card.setAttribute('data-index', index);
-      card.innerHTML = `
-        <img src="${item.src}" alt="${item.title}" loading="lazy" onerror="this.onerror=null; this.src='assets/images/washing_plant.jpg';">
-        <div class="gallery-card-overlay">
-          <span class="gallery-card-tag">${item.tag}</span>
-          <h4 class="gallery-card-title">${item.title}</h4>
-        </div>
-      `;
-
-      card.addEventListener('click', () => {
-        openLightbox(index);
-      });
-
-      galleryGrid.appendChild(card);
+      galleryGrid.appendChild(createGalleryCard(item, index, false));
     });
 
     // Update Load More buttons
@@ -588,6 +649,80 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Update visible containers based on view mode
+  function updateViewModeDisplay() {
+    if (currentViewMode === 'reel') {
+      if (galleryMarqueeContainer) galleryMarqueeContainer.style.display = 'block';
+      if (galleryGrid) galleryGrid.style.display = 'none';
+      if (galleryLoadActions) galleryLoadActions.style.display = 'none';
+      if (viewModeReel) viewModeReel.classList.add('active');
+      if (viewModeGrid) viewModeGrid.classList.remove('active');
+    } else {
+      if (galleryMarqueeContainer) galleryMarqueeContainer.style.display = 'none';
+      if (galleryGrid) galleryGrid.style.display = 'grid';
+      if (galleryLoadActions) galleryLoadActions.style.display = 'flex';
+      if (viewModeGrid) viewModeGrid.classList.add('active');
+      if (viewModeReel) viewModeReel.classList.remove('active');
+    }
+  }
+
+  function setViewMode(mode) {
+    currentViewMode = mode;
+    updateViewModeDisplay();
+  }
+
+  if (viewModeReel) {
+    viewModeReel.addEventListener('click', () => setViewMode('reel'));
+  }
+  if (viewModeGrid) {
+    viewModeGrid.addEventListener('click', () => setViewMode('grid'));
+  }
+  if (gallerySwitchToGridLink) {
+    gallerySwitchToGridLink.addEventListener('click', () => setViewMode('grid'));
+  }
+
+  // Toggle Motion Play/Pause
+  function toggleMotion() {
+    isMotionPaused = !isMotionPaused;
+    if (galleryMarqueeTrack) {
+      if (isMotionPaused) {
+        galleryMarqueeTrack.classList.add('is-paused');
+      } else {
+        galleryMarqueeTrack.classList.remove('is-paused');
+      }
+    }
+    if (galleryPlayPauseBtn) {
+      const pauseIcon = galleryPlayPauseBtn.querySelector('.pause-icon');
+      const playIcon = galleryPlayPauseBtn.querySelector('.play-icon');
+      const text = galleryPlayPauseBtn.querySelector('.motion-btn-text');
+      if (isMotionPaused) {
+        if (pauseIcon) pauseIcon.style.display = 'none';
+        if (playIcon) playIcon.style.display = 'inline';
+        if (text) text.textContent = 'Resume';
+        galleryPlayPauseBtn.title = 'Resume continuous left-to-right motion';
+      } else {
+        if (pauseIcon) pauseIcon.style.display = 'inline';
+        if (playIcon) playIcon.style.display = 'none';
+        if (text) text.textContent = 'Pause';
+        galleryPlayPauseBtn.title = 'Pause continuous motion';
+      }
+    }
+  }
+
+  if (galleryPlayPauseBtn) {
+    galleryPlayPauseBtn.addEventListener('click', toggleMotion);
+  }
+
+  function renderGallery() {
+    filteredItems = galleryItems.filter(item => {
+      return currentCategory === 'all' || item.category === currentCategory;
+    });
+
+    renderMarquee();
+    renderGrid();
+    updateViewModeDisplay();
+  }
+
   // Filter Buttons
   galleryFilterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -599,23 +734,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Load More Button
+  // Load More Button (in Grid View)
   if (galleryLoadMoreBtn) {
     galleryLoadMoreBtn.addEventListener('click', () => {
       displayedCount += batchSize;
-      renderGallery();
+      renderGrid();
     });
   }
 
-  // Show All Button
+  // Show All Button (in Grid View)
   if (galleryShowAllBtn) {
     galleryShowAllBtn.addEventListener('click', () => {
       displayedCount = filteredItems.length;
-      renderGallery();
+      renderGrid();
     });
   }
 
-  // Initial render
+  // Initial render (starts immediately in continuous Left-to-Right reel mode)
   renderGallery();
 
   // Lightbox Implementation
@@ -625,12 +760,20 @@ document.addEventListener('DOMContentLoaded', () => {
     updateLightboxContent();
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
+    // Pause background reel when inspecting photo
+    if (galleryMarqueeTrack) {
+      galleryMarqueeTrack.classList.add('is-paused');
+    }
   }
 
   function closeLightbox() {
     if (!lightbox) return;
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
+    // Resume motion if not manually paused
+    if (galleryMarqueeTrack && !isMotionPaused) {
+      galleryMarqueeTrack.classList.remove('is-paused');
+    }
   }
 
   function updateLightboxContent() {

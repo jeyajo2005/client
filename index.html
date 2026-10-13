@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body>
 
@@ -1075,22 +1075,71 @@
         </div>
       </div>
 
-      <!-- Gallery Filter Tabs -->
-      <div class="gallery-filters" role="tablist">
-        <button class="gallery-filter-btn active" data-gfilter="all">All Site Photos (98+)</button>
-        <button class="gallery-filter-btn" data-gfilter="cranes">Cranes & Heavy Rigging</button>
-        <button class="gallery-filter-btn" data-gfilter="machinery">Dry Mix & Machinery</button>
-        <button class="gallery-filter-btn" data-gfilter="hoppers">Hoppers & Fabrication</button>
-        <button class="gallery-filter-btn" data-gfilter="mining">Washing Plants & Mining</button>
+      <!-- Gallery Toolbar: Categories + View/Motion Controls -->
+      <div class="gallery-toolbar">
+        <div class="gallery-filters" role="tablist">
+          <button class="gallery-filter-btn active" data-gfilter="all">All Site Photos (98+)</button>
+          <button class="gallery-filter-btn" data-gfilter="cranes">Cranes & Heavy Rigging</button>
+          <button class="gallery-filter-btn" data-gfilter="machinery">Dry Mix & Machinery</button>
+          <button class="gallery-filter-btn" data-gfilter="hoppers">Hoppers & Fabrication</button>
+          <button class="gallery-filter-btn" data-gfilter="mining">Washing Plants & Mining</button>
+        </div>
+
+        <div class="gallery-motion-controls">
+          <div class="gallery-direction-indicator" title="Continuous left-to-right motion active">
+            <span class="gallery-direction-arrow">➜</span>
+            <span>Moving Left ➔ Right</span>
+          </div>
+
+          <button class="motion-toggle-btn" id="galleryPlayPauseBtn" aria-label="Pause or Resume Motion">
+            <span class="motion-icon pause-icon">⏸</span>
+            <span class="motion-icon play-icon" style="display:none;">▶</span>
+            <span class="motion-btn-text">Pause</span>
+          </button>
+
+          <div class="gallery-view-toggle" role="group" aria-label="Gallery View Mode">
+            <button class="view-toggle-btn active" id="viewModeReel" title="Continuous Moving Reel">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                <line x1="7" y1="2" x2="7" y2="22"></line>
+                <line x1="17" y1="2" x2="17" y2="22"></line>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+              </svg>
+              <span>Reel View</span>
+            </button>
+            <button class="view-toggle-btn" id="viewModeGrid" title="Classic Grid Layout">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span>Grid View</span>
+            </button>
+          </div>
+        </div>
       </div>
 
-      <!-- Gallery Grid (Populated dynamically by js/main.js with responsive layout & lazy loading) -->
-      <div class="gallery-grid" id="galleryGrid">
+      <!-- Moving Reel Container (Smooth Left-to-Right Marquee) -->
+      <div class="gallery-marquee-container" id="galleryMarqueeContainer">
+        <div class="gallery-marquee-viewport" id="galleryMarqueeViewport">
+          <div class="gallery-marquee-track" id="galleryMarqueeTrack" aria-label="Continuous Site Photos Ribbon Moving Left to Right">
+            <!-- Populated dynamically by js/main.js -->
+          </div>
+        </div>
+        <div class="gallery-reel-hint" id="galleryReelHint">
+          <span>⚡ <strong class="hint-badge">LIVE SITE REEL:</strong> Moving smoothly from left to right. Hover any photo to freeze, or click to open HD full-screen inspection.</span>
+          <button class="btn-link-action" id="gallerySwitchToGridLink">Switch to 4-Column Grid View &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Gallery Grid (Shown when switched to Grid View) -->
+      <div class="gallery-grid" id="galleryGrid" style="display: none;">
         <!-- Rendered by js/main.js -->
       </div>
 
-      <!-- Load More / Action Row -->
-      <div class="gallery-load-actions">
+      <!-- Load More / Action Row (Shown in Grid View) -->
+      <div class="gallery-load-actions" id="galleryLoadActions" style="display: none;">
         <button class="btn btn-secondary" id="galleryLoadMoreBtn">
           <span>Show More Photos (+12)</span>
           <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1701,6 +1750,6 @@
   </div>
 
   <!-- JavaScript Engine -->
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=6"></script>
 </body>
 </html>
