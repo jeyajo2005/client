@@ -1,0 +1,256 @@
+/* ========================================================
+   THIRUPATHI ENGINEERS — SPAN ARCHITECTURAL WHITE THEME
+   Duplicated from SPAN (https://span-5rvgj87.app.builtwithrocket.new/home)
+   Clean White Background Theme with Construction Orange Accents
+   ======================================================== */
+
+:root {
+  /* Core Theme Colors */
+  --bg-canvas: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F8FAFC;
+  --bg-muted: #F1F5F9;
+  
+  /* Text Colors */
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --text-subtle: #94A3B8;
+
+  /* Industrial Accent Colors */
+  --color-primary-orange: #FF5500;
+  --color-orange-hover: #E04B00;
+  --color-orange-light: #FFF3EB;
+  --color-orange-subtle: rgba(255, 85, 0, 0.08);
+
+  /* Primary Accent mapping */
+  --color-primary-blue: #FF5500;
+  --color-blue-hover: #E04B00;
+  --color-blue-light: #FFF3EB;
+  --color-blue-subtle: rgba(255, 85, 0, 0.08);
+  --color-dark-navy: #0F172A;
+
+  /* Hairline Architectural Borders */
+  --border-hairline: #E2E8F0;
+  --border-subtle: #EDF2F7;
+  --border-strong: #CBD5E1;
+  --border-orange: rgba(255, 85, 0, 0.35);
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+
+  /* Shadows */
+  --shadow-subtle: 0 1px 3px rgba(15, 23, 42, 0.05);
+  --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.02);
+  --shadow-card-hover: 0 16px 32px -4px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.04);
+  --shadow-dropdown: 0 12px 36px rgba(15, 23, 42, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--bg-canvas);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+::selection {
+  background-color: var(--color-primary-orange);
+  color: #FFFFFF;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-subtle);
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-orange);
+}
+
+/* Layout Container */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+/* Technical Blueprint Grid Background Utility */
+.bg-blueprint-grid {
+  background-image: 
+    linear-gradient(to right, rgba(226, 232, 240, 0.6) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 232, 240, 0.6) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Section Spacing */
+.section {
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+/* Eyebrow / Technical Badge */
+.span-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary-orange);
+  background-color: var(--color-orange-light);
+  border: 1px solid var(--border-orange);
+  padding: 0.35rem 0.85rem;
+  border-radius: 4px;
+}
+
+/* Technical Heading */
+.span-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+}
+
+.span-subheading {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Buttons */
+.btn-span-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background-color: var(--color-primary-orange);
+  color: #FFFFFF;
+  padding: 0.9rem 1.85rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  border: 1px solid var(--color-primary-orange);
+  box-shadow: 0 4px 14px rgba(255, 85, 0, 0.25);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-span-primary:hover {
+  background-color: var(--color-orange-hover);
+  border-color: var(--color-orange-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 85, 0, 0.35);
+}
+
+.btn-span-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background-color: #FFFFFF;
+  color: var(--text-primary);
+  padding: 0.9rem 1.85rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  border: 1px solid var(--border-strong);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-span-secondary:hover {
+  background-color: var(--bg-subtle);
+  border-color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+/* SPAN Card Architecture */
+.span-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border-hairline);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-card);
+}
+
+.span-card:hover {
+  border-color: var(--color-primary-orange);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+}
+
+/* Modals */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal-content {
+  background-color: var(--bg-canvas);
+  border: 1px solid var(--border-hairline);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-dropdown);
+  position: relative;
+}
