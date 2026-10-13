@@ -1251,6 +1251,371 @@ button {
   color: #0F172A;
 }
 
+/* ==========================================================================
+   3D Cylindrical Carousel for Scope of Practice / Services
+   Reference: Cards arranged on a circumference (円周上に配置されたカード)
+   ========================================================================== */
+.services-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.services-toolbar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.services-view-toggle {
+  display: inline-flex;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-hairline);
+  border-radius: 6px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.services-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.services-toggle-btn:hover {
+  color: var(--text-primary);
+}
+
+.services-toggle-btn.active {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.services-cylinder-container {
+  position: relative;
+  width: 100%;
+  padding: 2rem 0 1rem;
+  overflow: visible;
+}
+
+.services-cylinder-scene {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.services-cylinder-scene:active {
+  cursor: grabbing;
+}
+
+.services-cylinder-track {
+  position: relative;
+  width: 320px;
+  height: 450px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.services-cylinder-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 450px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+.cylinder-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  border-radius: 20px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12), 0 3px 10px rgba(15, 23, 42, 0.04);
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.services-cylinder-card:hover .cylinder-card-inner {
+  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.18), 0 0 22px rgba(197, 160, 89, 0.25);
+}
+
+/* Front & Back Faces */
+.cylinder-card-front,
+.cylinder-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.2rem 1.75rem 2rem;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.cylinder-card-front {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.cylinder-card-front::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #C5A059 0%, #0284C7 50%, #0D9488 100%);
+  opacity: 0.9;
+}
+
+.cylinder-card-front::after {
+  content: attr(data-num);
+  position: absolute;
+  top: 1.1rem;
+  right: 1.4rem;
+  font-family: var(--font-mono);
+  font-size: 3rem;
+  font-weight: 800;
+  color: rgba(15, 23, 42, 0.045);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+
+/* Back Face (Cylinder reverse side - matches Pinterest "Back" reference) */
+.cylinder-card-back {
+  background: linear-gradient(145deg, #0F172A 0%, #1E293B 100%);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  color: #FFFFFF;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.cylinder-card-back::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed rgba(197, 160, 89, 0.3);
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+.cylinder-back-monogram {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  color: var(--accent-gold-light);
+  margin-bottom: 0.5rem;
+  opacity: 0.85;
+}
+
+.cylinder-back-num {
+  font-family: var(--font-mono);
+  font-size: 4.2rem;
+  font-weight: 800;
+  color: var(--accent-gold);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 4px 18px rgba(197, 160, 89, 0.4);
+}
+
+.cylinder-back-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #F8FAFC;
+  max-width: 220px;
+  line-height: 1.4;
+  margin-bottom: 0.6rem;
+}
+
+.cylinder-back-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--accent-gold-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Front Active Card Highlight */
+.services-cylinder-card.is-active .cylinder-card-front {
+  border-color: rgba(197, 160, 89, 0.55);
+}
+
+.services-cylinder-card.is-active .cylinder-card-inner {
+  box-shadow: 0 24px 50px -12px rgba(15, 23, 42, 0.18), 0 0 24px rgba(197, 160, 89, 0.25);
+}
+
+/* Navigation Buttons */
+.cylinder-nav-btn {
+  position: absolute;
+  top: calc(50% - 25px);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1px solid var(--border-hairline);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.09);
+  transition: all var(--transition-fast);
+}
+
+.cylinder-nav-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.cylinder-nav-btn:hover {
+  background: var(--text-primary);
+  color: #FFFFFF;
+  border-color: var(--text-primary);
+  transform: scale(1.08);
+}
+
+.cylinder-prev { left: 0.5rem; }
+.cylinder-next { right: 0.5rem; }
+
+/* Control bar */
+.cylinder-control-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding: 0.85rem 1.25rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.cylinder-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.cylinder-drag-icon {
+  font-size: 1.05rem;
+  color: var(--accent-gold-dark);
+}
+
+.cylinder-pagination {
+  display: inline-flex;
+  gap: 0.4rem;
+}
+
+.cylinder-dot {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cylinder-dot:hover,
+.cylinder-dot.active {
+  background: var(--text-primary);
+  color: #FFFFFF;
+  border-color: var(--text-primary);
+}
+
+.cylinder-autoplay-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.cylinder-autoplay-toggle:hover {
+  color: var(--text-primary);
+}
+
+@media (max-width: 900px) {
+  .services-cylinder-scene {
+    height: 500px;
+    perspective: 1100px;
+  }
+  .services-cylinder-track,
+  .services-cylinder-card {
+    width: 290px;
+    height: 420px;
+  }
+  .cylinder-prev { left: -0.25rem; }
+  .cylinder-next { right: -0.25rem; }
+}
+
+@media (max-width: 600px) {
+  .services-cylinder-scene {
+    height: 460px;
+    perspective: 900px;
+  }
+  .services-cylinder-track,
+  .services-cylinder-card {
+    width: 260px;
+    height: 400px;
+  }
+  .cylinder-control-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cylinder-pagination {
+    justify-content: center;
+  }
+}
+
 /* --------------------------------------------------------------------------
    By The Numbers / Stats Section (Reference Aesthetic)
    -------------------------------------------------------------------------- */

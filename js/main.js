@@ -986,5 +986,262 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initSerpentineTimeline();
+
+  // 10. Services 3D Cylindrical Carousel Engine (円周上に配置されたカード)
+  function initServicesCylinderCarousel() {
+    const scene = document.getElementById('servicesCylinderScene');
+    const track = document.getElementById('servicesCylinderTrack');
+    const prevBtn = document.getElementById('cylinderPrevBtn');
+    const nextBtn = document.getElementById('cylinderNextBtn');
+    const paginationDots = document.querySelectorAll('.cylinder-dot');
+    const autoplayBtn = document.getElementById('cylinderAutoplayBtn');
+    const viewCylinderBtn = document.getElementById('servicesViewCylinder');
+    const viewGridBtn = document.getElementById('servicesViewGrid');
+    const cylinderContainer = document.getElementById('servicesCylinderContainer');
+    const servicesGrid = document.getElementById('servicesGrid');
+
+    if (!scene || !track) return;
+
+    const cards = track.querySelectorAll('.services-cylinder-card');
+    const totalCards = cards.length;
+    if (totalCards === 0) return;
+
+    const angleStep = 360 / totalCards; // 60 degrees for 6 cards
+    let currentIndex = 0;
+    let rotationAngle = 0;
+    let isAutoplay = true;
+    let autoplayTimer = null;
+    let isDragging = false;
+    let startX = 0;
+    let dragStartAngle = 0;
+    let hasMoved = false;
+
+    function getRadius() {
+      const w = window.innerWidth;
+      if (w < 600) return 260;
+      if (w < 900) return 320;
+      return 380;
+    }
+
+    // Position each card along the 3D circumference
+    function layoutCards() {
+      const radius = getRadius();
+      cards.forEach((card, i) => {
+        const cardAngle = i * angleStep;
+        card.style.transform = `rotateY(${cardAngle}deg) translateZ(${radius}px)`;
+      });
+      updateTrackTransform(false);
+    }
+
+    function updateTrackTransform(animated = true) {
+      track.style.transition = animated ? 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)' : 'none';
+      track.style.transform = `rotateY(${-rotationAngle}deg)`;
+
+      // Determine active card index (normalized to 0..totalCards-1)
+      const normalizedIndex = Math.round(rotationAngle / angleStep);
+      currentIndex = ((normalizedIndex % totalCards) + totalCards) % totalCards;
+
+      cards.forEach((card, i) => {
+        if (i === currentIndex) {
+          card.classList.add('is-active');
+        } else {
+          card.classList.remove('is-active');
+        }
+      });
+
+      paginationDots.forEach((dot, i) => {
+        if (i === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    function rotateToCard(index) {
+      const diff = (index - currentIndex + totalCards) % totalCards;
+      const step = diff > totalCards / 2 ? diff - totalCards : diff;
+      rotationAngle += step * angleStep;
+      updateTrackTransform(true);
+    }
+
+    function stepNext() {
+      rotationAngle += angleStep;
+      updateTrackTransform(true);
+    }
+
+    function stepPrev() {
+      rotationAngle -= angleStep;
+      updateTrackTransform(true);
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      if (!isAutoplay) return;
+      autoplayTimer = setInterval(() => {
+        stepNext();
+      }, 4200);
+    }
+
+    function stopAutoplay() {
+      if (autoplayTimer) {
+        clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        stepPrev();
+        restartAutoplayDelay();
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        stepNext();
+        restartAutoplayDelay();
+      });
+    }
+
+    paginationDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.getAttribute('data-index'), 10);
+        rotateToCard(idx);
+        restartAutoplayDelay();
+      });
+    });
+
+    cards.forEach((card, i) => {
+      card.addEventListener('click', () => {
+        if (hasMoved) return;
+        rotateToCard(i);
+        restartAutoplayDelay();
+      });
+    });
+
+    if (autoplayBtn) {
+      autoplayBtn.addEventListener('click', () => {
+        isAutoplay = !isAutoplay;
+        const icon = autoplayBtn.querySelector('.cylinder-play-icon');
+        const text = autoplayBtn.querySelector('.cylinder-play-text');
+        if (isAutoplay) {
+          if (icon) icon.textContent = '⏸';
+          if (text) text.textContent = 'Auto-Rotate Active';
+          startAutoplay();
+        } else {
+          if (icon) icon.textContent = '▶';
+          if (text) text.textContent = 'Auto-Rotate Paused';
+          stopAutoplay();
+        }
+      });
+    }
+
+    function setServicesView(mode) {
+      if (mode === 'cylinder') {
+        if (cylinderContainer) cylinderContainer.style.display = 'block';
+        if (servicesGrid) servicesGrid.style.display = 'none';
+        if (viewCylinderBtn) viewCylinderBtn.classList.add('active');
+        if (viewGridBtn) viewGridBtn.classList.remove('active');
+        layoutCards();
+        startAutoplay();
+      } else {
+        if (cylinderContainer) cylinderContainer.style.display = 'none';
+        if (servicesGrid) servicesGrid.style.display = 'grid';
+        if (viewGridBtn) viewGridBtn.classList.add('active');
+        if (viewCylinderBtn) viewCylinderBtn.classList.remove('active');
+        stopAutoplay();
+      }
+    }
+
+    if (viewCylinderBtn) {
+      viewCylinderBtn.addEventListener('click', () => setServicesView('cylinder'));
+    }
+    if (viewGridBtn) {
+      viewGridBtn.addEventListener('click', () => setServicesView('grid'));
+    }
+
+    scene.addEventListener('mouseenter', () => stopAutoplay());
+    scene.addEventListener('mouseleave', () => {
+      if (isAutoplay && !isDragging) startAutoplay();
+    });
+
+    function restartAutoplayDelay() {
+      stopAutoplay();
+      if (isAutoplay) {
+        setTimeout(() => {
+          if (!isDragging) startAutoplay();
+        }, 1500);
+      }
+    }
+
+    function onPointerDown(clientX) {
+      isDragging = true;
+      hasMoved = false;
+      startX = clientX;
+      dragStartAngle = rotationAngle;
+      stopAutoplay();
+    }
+
+    function onPointerMove(clientX) {
+      if (!isDragging) return;
+      const deltaX = clientX - startX;
+      if (Math.abs(deltaX) > 6) {
+        hasMoved = true;
+      }
+      const angleDelta = deltaX * 0.35;
+      track.style.transition = 'none';
+      track.style.transform = `rotateY(${-(dragStartAngle - angleDelta)}deg)`;
+    }
+
+    function onPointerUp(clientX) {
+      if (!isDragging) return;
+      isDragging = false;
+      const deltaX = clientX - startX;
+      if (hasMoved) {
+        const angleDelta = deltaX * 0.35;
+        rotationAngle = Math.round((dragStartAngle - angleDelta) / angleStep) * angleStep;
+        updateTrackTransform(true);
+      }
+      restartAutoplayDelay();
+    }
+
+    scene.addEventListener('mousedown', (e) => {
+      onPointerDown(e.clientX);
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (isDragging) onPointerMove(e.clientX);
+    });
+    window.addEventListener('mouseup', (e) => {
+      if (isDragging) onPointerUp(e.clientX);
+    });
+
+    scene.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        onPointerDown(e.touches[0].clientX);
+      }
+    }, { passive: true });
+
+    scene.addEventListener('touchmove', (e) => {
+      if (isDragging && e.touches.length === 1) {
+        onPointerMove(e.touches[0].clientX);
+      }
+    }, { passive: true });
+
+    scene.addEventListener('touchend', (e) => {
+      if (isDragging) {
+        const clientX = e.changedTouches.length > 0 ? e.changedTouches[0].clientX : startX;
+        onPointerUp(clientX);
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      layoutCards();
+    }, { passive: true });
+
+    layoutCards();
+    startAutoplay();
+  }
+
+  initServicesCylinderCarousel();
 });
 
