@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Serpentine Timeline Manager · Thirupathi Engineers</title>
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="admin.css?v=3">
 </head>
 <body>
 
@@ -74,7 +74,7 @@
         </div>
 
         <div class="topbar-right">
-          <button class="btn btn-primary" onclick="openNewTimelineModal()">
+          <button id="addTimelineBtn" class="btn btn-primary" onclick="openNewTimelineModal()">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             <span>Add Milestone Step</span>
           </button>
@@ -231,7 +231,7 @@
     </div>
   </div>
 
-  <script src="admin.js"></script>
+  <script src="admin.js?v=3"></script>
   <script>
     checkAuth();
     loadTimeline();

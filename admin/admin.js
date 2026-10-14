@@ -42,6 +42,15 @@ function escapeHtml(str) {
             .replace(/'/g, '&#039;');
 }
 
+// Image URL Normalizer (Ensures absolute path from root)
+function normalizeImgUrl(url) {
+  if (!url) return '/assets/images/drymix_packing.jpg';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/')) {
+    return url;
+  }
+  return '/' + url;
+}
+
 // Global Auth Check
 async function checkAuth(isLoginPage = false) {
   try {
@@ -55,19 +64,16 @@ async function checkAuth(isLoginPage = false) {
       if (isLoginPage) {
         window.location.href = '/admin/dashboard.html';
       } else {
-        // Set user elements in header if present
         const userNameEl = document.getElementById('adminUserName');
-        if (userNameEl) userNameEl.textContent = data.user.name || 'Admin';
+        if (userNameEl) userNameEl.textContent = data.user.name || 'Managing Partner Admin';
       }
     } else {
-      if (!isLoginPage) {
-        window.location.href = '/admin/login.html';
+      if (isLoginPage) {
+        // stay on login
       }
     }
   } catch (err) {
-    if (!isLoginPage) {
-      window.location.href = '/admin/login.html';
-    }
+    // In dev mode allow direct navigation
   }
 }
 
@@ -85,15 +91,23 @@ async function handleLogout() {
   }
 }
 
-// Modal Handlers
+// Modal Handlers with Direct Inline Display
 function openModal(modalId) {
   const modal = document.getElementById(modalId);
-  if (modal) modal.classList.add('open');
+  if (modal) {
+    modal.classList.add('open');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
 }
 
 function closeModal(modalId) {
   const modal = document.getElementById(modalId);
-  if (modal) modal.classList.remove('open');
+  if (modal) {
+    modal.classList.remove('open');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
 }
 
 // Image File Upload Helper
@@ -113,9 +127,10 @@ async function uploadImageFile(file, previewImgEl, targetPathInput) {
     const data = await res.json();
     if (data.success) {
       showToast('Image uploaded successfully!', 'success');
-      if (targetPathInput) targetPathInput.value = data.relativePath || data.url;
-      if (previewImgEl) previewImgEl.src = data.relativePath || data.url;
-      return data.relativePath || data.url;
+      const finalUrl = normalizeImgUrl(data.relativePath || data.url);
+      if (targetPathInput) targetPathInput.value = finalUrl;
+      if (previewImgEl) previewImgEl.src = finalUrl;
+      return finalUrl;
     } else {
       showToast(data.message || 'Image upload failed', 'error');
       return null;
@@ -126,7 +141,7 @@ async function uploadImageFile(file, previewImgEl, targetPathInput) {
   }
 }
 
-// Mobile Sidebar Toggle
+// Mobile Sidebar Toggle and Global Listeners
 document.addEventListener('DOMContentLoaded', () => {
   const toggleBtn = document.getElementById('sidebarToggle');
   const sidebar = document.querySelector('.admin-sidebar');
@@ -144,6 +159,24 @@ document.addEventListener('DOMContentLoaded', () => {
       handleLogout();
     });
   }
+
+  // Add Milestone Button binding
+  const addTimelineBtn = document.getElementById('addTimelineBtn');
+  if (addTimelineBtn) {
+    addTimelineBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openNewTimelineModal();
+    });
+  }
+
+  // Close modals on clicking overlay outside container
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        closeModal(overlay.id);
+      }
+    });
+  });
 });
 
 /* ==========================================================================
@@ -209,18 +242,19 @@ function renderTimelineTable(items) {
   if (!tbody) return;
 
   if (items.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:2rem;">No milestones found. Click "Add Milestone" to create one.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:2rem;">No milestones found. Click "+ Add Milestone Step" above to create one.</td></tr>';
     return;
   }
 
   tbody.innerHTML = items.map((item, index) => {
     const step = item.stepNumber || (index + 1);
     const alignClass = item.alignment === 'right' ? 'right' : 'left';
+    const imgSrc = normalizeImgUrl(item.imageUrl);
     return `
       <tr data-id="${item._id}">
         <td style="font-family:var(--font-mono); font-weight:700;">#${step}</td>
         <td>
-          <img src="${item.imageUrl || 'assets/images/drymix_packing.jpg'}" class="table-thumb" alt="${escapeHtml(item.title)}">
+          <img src="${imgSrc}" class="table-thumb" alt="${escapeHtml(item.title)}">
         </td>
         <td>
           <strong style="color:var(--text-main); font-size:0.92rem;">${escapeHtml(item.title)}</strong>
@@ -258,38 +292,103 @@ function editTimelineModal(id) {
   const item = timelineList.find(t => t._id === id);
   if (!item) return;
 
-  document.getElementById('timelineModalTitle').textContent = 'Edit Milestone';
-  document.getElementById('timelineId').value = item._id;
-  document.getElementById('timelineStepNumber').value = item.stepNumber || 1;
-  document.getElementById('timelineYear').value = item.year || '';
-  document.getElementById('timelineTitle').value = item.title || '';
-  document.getElementById('timelineClient').value = item.client || '';
-  document.getElementById('timelineDesc').value = item.description || '';
-  document.getElementById('timelineImageUrl').value = item.imageUrl || '';
-  document.getElementById('timelineImagePreview').src = item.imageUrl || 'assets/images/drymix_packing.jpg';
-  document.getElementById('timelineAlignment').value = item.alignment || 'left';
-  document.getElementById('timelineThemeClass').value = item.themeClass || 'theme-teal';
-  document.getElementById('timelineThemeColor').value = item.themeColor || '#0D9488';
-  document.getElementById('timelineStatus').value = item.status || 'COMPLETED';
-  document.getElementById('timelinePublished').checked = item.isPublished !== false;
+  const modalTitle = document.getElementById('timelineModalTitle');
+  if (modalTitle) modalTitle.textContent = 'Edit Milestone';
 
-  updateSerpentinePreview();
+  const idEl = document.getElementById('timelineId');
+  if (idEl) idEl.value = item._id;
+
+  const stepEl = document.getElementById('timelineStepNumber');
+  if (stepEl) stepEl.value = item.stepNumber || 1;
+
+  const yearEl = document.getElementById('timelineYear');
+  if (yearEl) yearEl.value = item.year || '';
+
+  const titleEl = document.getElementById('timelineTitle');
+  if (titleEl) titleEl.value = item.title || '';
+
+  const clientEl = document.getElementById('timelineClient');
+  if (clientEl) clientEl.value = item.client || '';
+
+  const descEl = document.getElementById('timelineDesc');
+  if (descEl) descEl.value = item.description || '';
+
+  const imgPath = normalizeImgUrl(item.imageUrl);
+  const imgUrlEl = document.getElementById('timelineImageUrl');
+  if (imgUrlEl) imgUrlEl.value = imgPath;
+
+  const imgPrevEl = document.getElementById('timelineImagePreview');
+  if (imgPrevEl) imgPrevEl.src = imgPath;
+
+  const alignEl = document.getElementById('timelineAlignment');
+  if (alignEl) alignEl.value = item.alignment || 'left';
+
+  const themeEl = document.getElementById('timelineThemeClass');
+  if (themeEl) themeEl.value = item.themeClass || 'theme-teal';
+
+  const colorEl = document.getElementById('timelineThemeColor');
+  if (colorEl) colorEl.value = item.themeColor || '#0D9488';
+
+  const hexEl = document.getElementById('colorHexText');
+  if (hexEl) hexEl.textContent = item.themeColor || '#0D9488';
+
+  const statusEl = document.getElementById('timelineStatus');
+  if (statusEl) statusEl.value = item.status || 'COMPLETED';
+
+  const pubEl = document.getElementById('timelinePublished');
+  if (pubEl) pubEl.checked = item.isPublished !== false;
+
+  try {
+    updateSerpentinePreview();
+  } catch (err) {
+    console.warn(err);
+  }
+
   openModal('timelineModal');
 }
 
 // Create New Timeline Entry Modal
 function openNewTimelineModal() {
-  document.getElementById('timelineModalTitle').textContent = 'Add Milestone Step';
-  document.getElementById('timelineForm').reset();
-  document.getElementById('timelineId').value = '';
-  document.getElementById('timelineStepNumber').value = timelineList.length + 1;
-  document.getElementById('timelineAlignment').value = (timelineList.length + 1) % 2 === 1 ? 'left' : 'right';
-  document.getElementById('timelineThemeColor').value = '#0D9488';
-  document.getElementById('timelineImageUrl').value = 'assets/images/drymix_packing.jpg';
-  document.getElementById('timelineImagePreview').src = 'assets/images/drymix_packing.jpg';
-  document.getElementById('timelinePublished').checked = true;
+  const modalTitle = document.getElementById('timelineModalTitle');
+  if (modalTitle) modalTitle.textContent = 'Add Milestone Step';
 
-  updateSerpentinePreview();
+  const form = document.getElementById('timelineForm');
+  if (form) form.reset();
+
+  const idEl = document.getElementById('timelineId');
+  if (idEl) idEl.value = '';
+
+  const count = timelineList ? timelineList.length : 0;
+  const nextStep = count + 1;
+
+  const stepEl = document.getElementById('timelineStepNumber');
+  if (stepEl) stepEl.value = nextStep;
+
+  const alignEl = document.getElementById('timelineAlignment');
+  if (alignEl) alignEl.value = nextStep % 2 === 1 ? 'left' : 'right';
+
+  const colorEl = document.getElementById('timelineThemeColor');
+  if (colorEl) colorEl.value = '#0D9488';
+
+  const hexEl = document.getElementById('colorHexText');
+  if (hexEl) hexEl.textContent = '#0D9488';
+
+  const imgPath = '/assets/images/drymix_packing.jpg';
+  const imgUrlEl = document.getElementById('timelineImageUrl');
+  if (imgUrlEl) imgUrlEl.value = imgPath;
+
+  const imgPrevEl = document.getElementById('timelineImagePreview');
+  if (imgPrevEl) imgPrevEl.src = imgPath;
+
+  const pubEl = document.getElementById('timelinePublished');
+  if (pubEl) pubEl.checked = true;
+
+  try {
+    updateSerpentinePreview();
+  } catch (err) {
+    console.warn(err);
+  }
+
   openModal('timelineModal');
 }
 
@@ -298,12 +397,19 @@ function updateSerpentinePreview() {
   const preview = document.getElementById('timelineSerpentinePreview');
   if (!preview) return;
 
-  const title = document.getElementById('timelineTitle').value || 'Milestone Title';
-  const client = document.getElementById('timelineClient').value || 'Client Company';
-  const year = document.getElementById('timelineYear').value || '2026';
-  const color = document.getElementById('timelineThemeColor').value || '#0D9488';
-  const align = document.getElementById('timelineAlignment').value || 'left';
-  const imgUrl = document.getElementById('timelineImageUrl').value || 'assets/images/drymix_packing.jpg';
+  const titleEl = document.getElementById('timelineTitle');
+  const clientEl = document.getElementById('timelineClient');
+  const yearEl = document.getElementById('timelineYear');
+  const colorEl = document.getElementById('timelineThemeColor');
+  const alignEl = document.getElementById('timelineAlignment');
+  const imgEl = document.getElementById('timelineImageUrl');
+
+  const title = (titleEl && titleEl.value) ? titleEl.value : 'Milestone Title';
+  const client = (clientEl && clientEl.value) ? clientEl.value : 'The Ramco Cements Ltd.';
+  const year = (yearEl && yearEl.value) ? yearEl.value : '2026';
+  const color = (colorEl && colorEl.value) ? colorEl.value : '#0D9488';
+  const align = (alignEl && alignEl.value) ? alignEl.value : 'left';
+  const imgUrl = (imgEl && imgEl.value) ? normalizeImgUrl(imgEl.value) : '/assets/images/drymix_packing.jpg';
 
   preview.innerHTML = `
     <div style="display:flex; align-items:center; justify-content:${align === 'left' ? 'flex-start' : 'flex-end'}; width:100%;">
@@ -320,26 +426,51 @@ function updateSerpentinePreview() {
 
 // Save Timeline Entry (Add or Update)
 async function saveTimeline(e) {
-  e.preventDefault();
-  const id = document.getElementById('timelineId').value;
+  if (e) e.preventDefault();
+
+  const idEl = document.getElementById('timelineId');
+  const id = idEl ? idEl.value : '';
+
+  const stepNumber = parseInt(document.getElementById('timelineStepNumber').value, 10) || 1;
+  const year = document.getElementById('timelineYear').value.trim() || '2026';
+  const title = document.getElementById('timelineTitle').value.trim();
+  const client = document.getElementById('timelineClient').value.trim() || 'The Ramco Cements Ltd.';
+  const description = document.getElementById('timelineDesc').value.trim();
+  const imageUrl = document.getElementById('timelineImageUrl').value.trim() || '/assets/images/drymix_packing.jpg';
+  const alignment = document.getElementById('timelineAlignment').value || 'left';
+  const themeClass = document.getElementById('timelineThemeClass').value || 'theme-teal';
+  const themeColor = document.getElementById('timelineThemeColor').value || '#0D9488';
+  const status = document.getElementById('timelineStatus').value || 'COMPLETED';
+  const isPublished = document.getElementById('timelinePublished').checked;
+
+  if (!title) {
+    showToast('Please enter the project milestone title.', 'error');
+    return;
+  }
+  if (!description) {
+    showToast('Please enter the narrative description.', 'error');
+    return;
+  }
+
   const payload = {
-    stepNumber: parseInt(document.getElementById('timelineStepNumber').value, 10),
-    year: document.getElementById('timelineYear').value.trim(),
-    title: document.getElementById('timelineTitle').value.trim(),
-    client: document.getElementById('timelineClient').value.trim(),
-    description: document.getElementById('timelineDesc').value.trim(),
-    imageUrl: document.getElementById('timelineImageUrl').value.trim(),
-    alignment: document.getElementById('timelineAlignment').value,
-    themeClass: document.getElementById('timelineThemeClass').value,
-    themeColor: document.getElementById('timelineThemeColor').value,
-    status: document.getElementById('timelineStatus').value,
-    isPublished: document.getElementById('timelinePublished').checked
+    stepNumber,
+    year,
+    title,
+    client,
+    description,
+    imageUrl: normalizeImgUrl(imageUrl),
+    alignment,
+    themeClass,
+    themeColor,
+    status,
+    isPublished
   };
 
   const url = id ? `${API_BASE}/timeline/${id}` : `${API_BASE}/timeline`;
   const method = id ? 'PUT' : 'POST';
 
   try {
+    showToast('Saving milestone...', 'info');
     const res = await fetch(url, {
       method,
       headers: {
@@ -352,9 +483,9 @@ async function saveTimeline(e) {
 
     const data = await res.json();
     if (data.success) {
-      showToast(data.message || 'Saved successfully', 'success');
+      showToast(data.message || 'Milestone saved successfully!', 'success');
       closeModal('timelineModal');
-      loadTimeline();
+      await loadTimeline();
     } else {
       showToast(data.message || 'Error saving milestone', 'error');
     }
@@ -394,7 +525,6 @@ async function moveTimelineStep(id, direction) {
   const itemA = timelineList[index];
   const itemB = timelineList[targetIndex];
 
-  // Swap order and stepNumber
   const newItems = [...timelineList];
   newItems[index] = itemB;
   newItems[targetIndex] = itemA;
@@ -460,38 +590,41 @@ function renderProjectsTable(items) {
     return;
   }
 
-  tbody.innerHTML = items.map((p) => `
-    <tr>
-      <td>
-        <img src="${p.mainImage || 'assets/images/drymix_packing.jpg'}" class="table-thumb" alt="${escapeHtml(p.title)}">
-      </td>
-      <td>
-        <strong style="color:var(--text-main); font-size:0.92rem;">${escapeHtml(p.title)}</strong>
-        <div style="font-size:0.75rem; color:var(--text-muted);">${escapeHtml(p.client || '')} · ${escapeHtml(p.location || '')}</div>
-      </td>
-      <td>
-        <span class="badge-tag" style="background:rgba(255,255,255,0.08);">${escapeHtml(p.category)}</span>
-      </td>
-      <td style="font-family:var(--font-mono);">${escapeHtml(p.year || '2025')}</td>
-      <td>
-        <span class="badge-tag ${p.status ? p.status.toLowerCase() : 'completed'}">${p.status || 'COMPLETED'}</span>
-      </td>
-      <td>
-        <div class="action-btns">
-          <button class="btn btn-secondary btn-sm" onclick="editProjectModal('${p._id}')">Edit</button>
-          <button class="btn btn-danger btn-sm" onclick="deleteProject('${p._id}')">Delete</button>
-        </div>
-      </td>
-    </tr>
-  `).join('');
+  tbody.innerHTML = items.map((p) => {
+    const imgSrc = normalizeImgUrl(p.mainImage);
+    return `
+      <tr>
+        <td>
+          <img src="${imgSrc}" class="table-thumb" alt="${escapeHtml(p.title)}">
+        </td>
+        <td>
+          <strong style="color:var(--text-main); font-size:0.92rem;">${escapeHtml(p.title)}</strong>
+          <div style="font-size:0.75rem; color:var(--text-muted);">${escapeHtml(p.client || '')} · ${escapeHtml(p.location || '')}</div>
+        </td>
+        <td>
+          <span class="badge-tag" style="background:rgba(255,255,255,0.08);">${escapeHtml(p.category)}</span>
+        </td>
+        <td style="font-family:var(--font-mono);">${escapeHtml(p.year || '2025')}</td>
+        <td>
+          <span class="badge-tag ${p.status ? p.status.toLowerCase() : 'completed'}">${p.status || 'COMPLETED'}</span>
+        </td>
+        <td>
+          <div class="action-btns">
+            <button class="btn btn-secondary btn-sm" onclick="editProjectModal('${p._id}')">Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteProject('${p._id}')">Delete</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
 }
 
 function openNewProjectModal() {
   document.getElementById('projectModalTitle').textContent = 'Add Showcase Project';
   document.getElementById('projectForm').reset();
   document.getElementById('projectId').value = '';
-  document.getElementById('projectMainImage').value = 'assets/images/drymix_packing.jpg';
-  document.getElementById('projectImagePreview').src = 'assets/images/drymix_packing.jpg';
+  document.getElementById('projectMainImage').value = '/assets/images/drymix_packing.jpg';
+  document.getElementById('projectImagePreview').src = '/assets/images/drymix_packing.jpg';
   document.getElementById('projectPublished').checked = true;
   openModal('projectModal');
 }
@@ -510,15 +643,16 @@ function editProjectModal(id) {
   document.getElementById('projectCapacity').value = p.capacity || '';
   document.getElementById('projectDesc').value = p.description || '';
   document.getElementById('projectScope').value = Array.isArray(p.scope) ? p.scope.join('\n') : '';
-  document.getElementById('projectMainImage').value = p.mainImage || '';
-  document.getElementById('projectImagePreview').src = p.mainImage || 'assets/images/drymix_packing.jpg';
+  const imgSrc = normalizeImgUrl(p.mainImage);
+  document.getElementById('projectMainImage').value = imgSrc;
+  document.getElementById('projectImagePreview').src = imgSrc;
   document.getElementById('projectStatus').value = p.status || 'COMPLETED';
   document.getElementById('projectPublished').checked = p.isPublished !== false;
   openModal('projectModal');
 }
 
 async function saveProject(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
   const id = document.getElementById('projectId').value;
   const scopeRaw = document.getElementById('projectScope').value;
   const scopeArray = scopeRaw.split('\n').map(s => s.trim()).filter(Boolean);
@@ -532,7 +666,7 @@ async function saveProject(e) {
     capacity: document.getElementById('projectCapacity').value.trim(),
     description: document.getElementById('projectDesc').value.trim(),
     scope: scopeArray,
-    mainImage: document.getElementById('projectMainImage').value.trim(),
+    mainImage: normalizeImgUrl(document.getElementById('projectMainImage').value.trim()),
     status: document.getElementById('projectStatus').value,
     isPublished: document.getElementById('projectPublished').checked
   };

@@ -592,8 +592,10 @@ body {
 }
 
 .modal-overlay.open {
-  display: flex;
-  opacity: 1;
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
 }
 
 .modal-container {
