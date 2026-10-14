@@ -255,7 +255,7 @@ export async function deleteProject(req, res, next) {
 export async function toggleProject(req, res, next) {
   try {
     const id = req.params.id;
-    const project = cachedProjects.find(p => p._id === id || String(p._id) === String(id));
+    let project = cachedProjects.find(p => p._id === id || String(p._id) === String(id));
     if (project) {
       project.isPublished = !project.isPublished;
       persistProjectsFile();
@@ -265,18 +265,28 @@ export async function toggleProject(req, res, next) {
       try {
         const dbP = await Project.findById(id);
         if (dbP) {
-          dbP.isPublished = !dbP.isPublished;
+          dbP.isPublished = project ? project.isPublished : !dbP.isPublished;
           await dbP.save();
+          if (!project) {
+            project = dbP.toObject();
+          }
         }
-      } catch (e) {}
+      } catch (e) {
+        console.warn('[Projects TOGGLE] DB sync warning:', e.message);
+      }
+    }
+
+    if (!project) {
+      return res.status(404).json({ success: false, message: 'Project not found' });
     }
 
     res.json({ 
       success: true, 
       data: project, 
-      message: `Project ${project && project.isPublished ? 'published' : 'unpublished'}` 
+      message: `Project ${project.isPublished ? 'published' : 'unpublished'}` 
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 }
+
