@@ -4,6 +4,9 @@ Thumbs.db
 
 node_modules/
 _vite_backup/
+.env
+uploads/*
+!uploads/.gitkeep
 
 backend/node_modules/
 backend/data/
@@ -14,3 +17,4 @@ backend/uploads/*
 frontend/node_modules/
 frontend/dist/
 frontend/.env
+

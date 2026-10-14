@@ -1,44 +1,139 @@
-# Thirupathi Engineers
+# Thirupathi Engineers — Portfolio & Admin Dashboard
 
-Official website for **Thirupathi Engineers** — Premier Mechanical Industrial Structure & Equipment Structure Erection Partnership Firm.
+Official website and Full-Stack Management Platform for **Thirupathi Engineers** — Premier Mechanical Industrial Structural & Equipment Erection Partnership Firm.
 
-## Managing Partners
-- **M. Mohan** (Managing Partner — Industrial Erection & Field Operations Lead)
-  - **50+ Years Experience** in steel plant and cement plant construction.
-  - Commenced construction career in **1985 in Gold Star Steel Plant**.
-  - Commenced cement plant construction in **1990**.
-  - **1992**: Gold Star total plant commissioning.
-  - **1998**: Camplastic Pipe total plant erection.
-  - **2005**: Parryware Tiles company erection.
-  - Cement mill erection across various sites for The Ramco Cements Ltd.
-  - Contact: **+91 9043288002** | Email: **thirupathiengineerss@gmail.com**
+---
 
-- **K. Gopalakrishnan** (Managing Partner — Mechanical Structural & Technical Lead)
-  - **~15 Years Experience** in mechanical industrial structure and equipment erection.
-  - Commenced career in **Steel Plants in 2012**.
-  - Commenced career in **Cement Plants in 2016**.
-  - Worked as **Engineer and Manager** in various reputed industrial companies.
-  - Contact: **+91 9790520126** | Email: **gopalkannan5@gmail.com**
+## 🏗️ Architecture & Technology Stack
 
-## GST Registered Offices
-- **Corporate Office (As noted in GST Registration):** Chennai, Tamil Nadu
-- **Registered Office (As noted in GST Paper):** Kovilpatti, Thoothukudi District, Tamil Nadu
+- **Public Frontend**: Semantic HTML5, Vanilla CSS3 (Architectural Dark Theme with Electric Cyan & Blue accents), Vanilla JavaScript interactive engine.
+- **Admin Dashboard**: Modern Dark UI located at `/admin` (`login.html`, `dashboard.html`, `timeline.html`, `projects.html`, `profile.html`) built with Vanilla HTML/CSS/JS.
+- **Backend**: Node.js & Express.js REST API with ES Modules.
+- **Database**: MongoDB with Mongoose ODM.
+- **Authentication & Security**: Express Session + JWT Token, Bcrypt password hashing, Helmet security headers, Express Rate Limiting, and Cookie Parser.
+- **Media Uploads**: Multer handling multipart/form-data with safe unique naming and MIME validation in `uploads/`.
 
-## Key Project Portfolios & Track Record
-- **2026 (Ongoing Project):** The Ramco Cements Ltd., RR Nagar, Virudhunagar — DRY MIX UNIT Packing Plant and Hopper Work
-- **2026 (Completed Project):** Ramco Mines, Virudhunagar (The Ramco Cements Ltd.) — Sizer Crusher Mechanical & Equipment Structure Work
-- **Year 2025:** 20 MW POWER PLANT Non-IBR Structures and ACC COOLING TOWER WORK ERECTION — Clients: TECKSK PROJECTS and ISGEC Heavy Engineering
-- **Year 2025:** Clinker Silo Structures Work — Client: The Ramco Cements Ltd.
-- **Year 2023:** LINE-3 KILN COAL MILL BUILDING AND CONVEYORS GALLERY ERECTION WORK — Client: The Ramco Cements Ltd.
-- **Year 2022:** Washing Plant Erection — Client: The Ramco Cements Ltd.
-- **2016 to 2021:** Coal Stacker and Reclaimer Related Structures Work & Packing Plant in Ramco Cements
-- **Cement Mill Erection:** The Ramco Cements Ltd. (Various Sites)
-- **Historic Landmarks:**
-  - **2005:** Parryware Tiles Company Erection
-  - **1998:** Camplastic Pipe Total Plant Erection
-  - **1992:** Gold Star Steel Plant Total Plant Commissioning (Originating 1985)
+---
 
-## Technologies
-- Semantic HTML5
-- Responsive CSS3 (Architectural Dark Minimalist Theme with Gold Highlights)
-- Vanilla JavaScript
+## 🚀 Quick Start
+
+### 1. Prerequisites
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- [MongoDB](https://www.mongodb.com/) (Local service or MongoDB Atlas connection string)
+
+### 2. Environment Configuration
+Create a `.env` file in the project root (copied from `.env.example`):
+
+```env
+PORT=5000
+NODE_ENV=development
+MONGO_URI=mongodb://127.0.0.1:27017/thirupathi_portfolio
+SESSION_SECRET=thirupathi_session_secret_change_in_production_key_2026_!@#
+JWT_SECRET=thirupathi_super_secure_jwt_token_key_2026_xyz
+ADMIN_DEFAULT_EMAIL=admin@thirupathiengineers.com
+ADMIN_DEFAULT_PASSWORD=Admin@Thirupathi2026
+```
+
+### 3. Install Dependencies
+```bash
+npm install
+```
+
+### 4. Seed the Database
+Populates MongoDB with all 10 historical serpentine timeline steps, 4 showcase projects, partner profiles, capabilities, skills, and admin account:
+
+```bash
+npm run seed
+```
+
+### 5. Run the Application
+```bash
+# Production start
+npm start
+
+# Or Development with auto-reload
+npm run dev
+```
+
+Visit:
+- **Public Website**: `http://localhost:5000/`
+- **Admin Portal**: `http://localhost:5000/admin`
+  - **Email**: `admin@thirupathiengineers.com`
+  - **Password**: `Admin@Thirupathi2026`
+
+---
+
+## 📂 Project Folder Structure
+
+```
+portfolio/
+├── index.html                   # Public portfolio frontend
+├── admin/                       # Modern Dark-Themed Admin Dashboard
+│   ├── login.html               # Admin authentication portal
+│   ├── dashboard.html           # Executive stats & activity overview
+│   ├── timeline.html            # Serpentine Timeline CRUD + live preview
+│   ├── projects.html            # Showcase Projects CRUD
+│   ├── profile.html             # Partners profile, skills, contacts
+│   ├── admin.css                # Dashboard design system & glassmorphism
+│   └── admin.js                 # Frontend admin logic & API client
+├── assets/                      # Public images & plant photography
+├── uploads/                     # User-uploaded images via Multer
+├── css/
+│   └── style.css                # Public website styling
+├── js/
+│   └── main.js                  # Public website interactive engine
+├── backend/
+│   ├── config/
+│   │   └── db.js                # MongoDB Mongoose connection
+│   ├── controllers/             # Express route controllers
+│   ├── middleware/              # Auth, Upload, Error handler
+│   ├── models/                  # Mongoose Schemas (TimelineEntry, Project, User, etc.)
+│   ├── routes/                  # REST API routes
+│   └── scripts/
+│       └── seed.js              # Initial database population script
+├── server.js                    # Unified Express application server
+├── .env.example                 # Environment configuration template
+├── package.json                 # Project dependencies and npm scripts
+└── README.md
+```
+
+---
+
+## 🔌 REST API Endpoints
+
+### Authentication
+- `POST /api/auth/login` — Authenticate admin, start session, set cookie & return JWT.
+- `POST /api/auth/logout` — Terminate session and clear credentials.
+- `GET /api/auth/me` — Verify current session/token and get user info.
+
+### Serpentine Timeline (`TimelineEntry`)
+- `GET /api/timeline` — Public list of published milestones (or all if `?admin=true`).
+- `POST /api/timeline` — Create new milestone (Protected).
+- `PUT /api/timeline/:id` — Update existing milestone (Protected).
+- `DELETE /api/timeline/:id` — Remove milestone (Protected).
+- `PUT /api/timeline/reorder` — Reorder milestone steps & positions (Protected).
+
+### Showcase Projects (`Project`)
+- `GET /api/projects` — Public list of featured projects.
+- `POST /api/projects` — Create project record (Protected).
+- `PUT /api/projects/:id` — Update project specifications (Protected).
+- `DELETE /api/projects/:id` — Remove project (Protected).
+
+### Profile, Skills & Settings
+- `GET /api/profile` & `PUT /api/profile` — Managing partner biographical information.
+- `GET /api/skills` & `POST/PUT/DELETE /api/skills` — Core competencies & proficiency.
+- `GET /api/contact-settings` & `PUT /api/contact-settings` — Official communication details.
+- `POST /api/contact` — Public inquiry submission.
+- `GET /api/inquiries` — View client inquiries (Protected).
+- `POST /api/upload` — Upload image file using Multer (Protected).
+- `GET /api/dashboard/stats` — Metrics count for dashboard cards.
+
+---
+
+## 🔒 Security Features
+1. **Password Hashing**: Bcrypt with 10 salt rounds.
+2. **Session & JWT Authentication**: Dual session cookie and Bearer token verification.
+3. **HTTP Security Headers**: Configured via `helmet`.
+4. **Rate Limiting**: Brute-force protection on authentication routes.
+5. **Sanitization**: XSS prevention in frontend rendering.
+6. **File Upload Hardening**: MIME type validation (JPEG, PNG, WEBP, SVG) with size cap (15MB) and unique suffixes.

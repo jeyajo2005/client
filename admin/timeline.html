@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serpentine Timeline Manager · Thirupathi Engineers</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="admin-wrapper">
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-badge">
+          <div class="brand-icon">TE</div>
+          <div class="brand-text">
+            <h2>Thirupathi</h2>
+            <span>Admin Suite</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Navigation</div>
+        <a href="dashboard.html" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="timeline.html" class="nav-link active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>Timeline (Serpentine)</span>
+        </a>
+        <a href="projects.html" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          <span>Showcase Projects</span>
+        </a>
+        <a href="profile.html" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Profile & Skills</span>
+        </a>
+
+        <div class="nav-section-title" style="margin-top:1rem;">Live Website</div>
+        <a href="/#track-record" target="_blank" class="nav-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          <span>View Serpentine Live ↗</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-avatar">MM</div>
+          <div class="user-info">
+            <div class="user-name" id="adminUserName">Managing Partner</div>
+            <div class="user-role">Administrator</div>
+          </div>
+          <button id="logoutBtn" title="Logout" style="background:none; border:none; color:var(--accent-rose); cursor:pointer; padding:0.4rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="menu-toggle" id="sidebarToggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="page-title-badge">
+            <h1>Serpentine Timeline Milestones</h1>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="btn btn-primary" onclick="openNewTimelineModal()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Add Milestone Step</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="admin-content">
+        <div class="card-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <h3>Serpentine Milestone Sequence</h3>
+              <p>Alternating left/right timeline cards on the public homepage</p>
+            </div>
+            <div class="panel-actions">
+              <input type="text" id="timelineSearch" class="search-input" placeholder="Search by title, year, or client..." oninput="filterTimelineTable()">
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width:70px;">Step</th>
+                  <th style="width:70px;">Image</th>
+                  <th>Title & Client</th>
+                  <th>Year</th>
+                  <th>Placement & Theme</th>
+                  <th>Status</th>
+                  <th style="width:200px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="timelineTableBody">
+                <tr><td colspan="7" style="text-align:center; padding:2rem;">Loading timeline entries...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- TIMELINE ADD / EDIT MODAL -->
+  <div class="modal-overlay" id="timelineModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="timelineModalTitle">Edit Milestone</h3>
+        <button class="modal-close-btn" onclick="closeModal('timelineModal')">✕</button>
+      </div>
+
+      <form id="timelineForm" onsubmit="saveTimeline(event)">
+        <input type="hidden" id="timelineId">
+        <div class="modal-body">
+
+          <!-- LIVE PREVIEW BANNER -->
+          <div style="margin-bottom:1.25rem;">
+            <label style="display:block; font-size:0.75rem; text-transform:uppercase; color:var(--text-dim); margin-bottom:0.4rem; font-weight:700;">Live Serpentine Card Preview</label>
+            <div id="timelineSerpentinePreview" style="background:rgba(0,0,0,0.3); padding:1rem; border-radius:8px; border:1px dashed var(--border-subtle);"></div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="timelineStepNumber">Step Number</label>
+              <input type="number" id="timelineStepNumber" class="form-control" min="1" required oninput="updateSerpentinePreview()">
+            </div>
+
+            <div class="form-group">
+              <label for="timelineYear">Milestone Year(s)</label>
+              <input type="text" id="timelineYear" class="form-control" placeholder="e.g. 1985 or 2016–21" required oninput="updateSerpentinePreview()">
+            </div>
+
+            <div class="form-group col-full">
+              <label for="timelineTitle">Project Milestone Title</label>
+              <input type="text" id="timelineTitle" class="form-control" placeholder="e.g. Industrial Erection Career Origin" required oninput="updateSerpentinePreview()">
+            </div>
+
+            <div class="form-group col-full">
+              <label for="timelineClient">Client / Plant Enterprise</label>
+              <input type="text" id="timelineClient" class="form-control" placeholder="e.g. The Ramco Cements Ltd. or Steel Plants" required oninput="updateSerpentinePreview()">
+            </div>
+
+            <div class="form-group col-full">
+              <label for="timelineDesc">Narrative & Technical Description</label>
+              <textarea id="timelineDesc" class="form-control" placeholder="Detailed industrial execution scope, tonnage, or machinery details..." required></textarea>
+            </div>
+
+            <!-- IMAGE UPLOAD / PATH -->
+            <div class="form-group col-full">
+              <label>Milestone Disc Image</label>
+              <div class="upload-dropzone" onclick="document.getElementById('timelineFileInput').click()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <p>Click to upload new image or enter path below</p>
+                <input type="file" id="timelineFileInput" accept="image/*" onchange="handleTimelineUpload(this)">
+              </div>
+              <div class="image-preview-box">
+                <img id="timelineImagePreview" src="assets/images/drymix_packing.jpg" alt="Preview">
+                <input type="text" id="timelineImageUrl" class="form-control" placeholder="assets/images/... or uploaded url" oninput="document.getElementById('timelineImagePreview').src=this.value; updateSerpentinePreview();">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="timelineAlignment">Serpentine Placement</label>
+              <select id="timelineAlignment" class="form-control" onchange="updateSerpentinePreview()">
+                <option value="left">Left (row-left)</option>
+                <option value="right">Right (row-right)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="timelineThemeClass">CSS Theme Class</label>
+              <select id="timelineThemeClass" class="form-control" onchange="onThemeClassChange(this.value)">
+                <option value="theme-teal">theme-teal (#0D9488)</option>
+                <option value="theme-ocean">theme-ocean (#0284C7)</option>
+                <option value="theme-marine">theme-marine (#0F766E)</option>
+                <option value="theme-gold">theme-gold (#D97706)</option>
+                <option value="theme-navy">theme-navy (#1E40AF)</option>
+                <option value="theme-slate">theme-slate (#475569)</option>
+                <option value="theme-royal">theme-royal (#2563EB)</option>
+                <option value="theme-darknavy">theme-darknavy (#1E293B)</option>
+                <option value="theme-steel">theme-steel (#3B82F6)</option>
+                <option value="theme-cobalt">theme-cobalt (#4F46E5)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="timelineThemeColor">Accent Color</label>
+              <div class="color-picker-wrap">
+                <input type="color" id="timelineThemeColor" class="color-input" value="#0D9488" oninput="updateSerpentinePreview()">
+                <span style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-mono);" id="colorHexText">#0D9488</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="timelineStatus">Project Status</label>
+              <select id="timelineStatus" class="form-control">
+                <option value="COMPLETED">COMPLETED</option>
+                <option value="COMMISSIONED">COMMISSIONED</option>
+                <option value="ONGOING">ONGOING</option>
+                <option value="PLANNED">PLANNED</option>
+              </select>
+            </div>
+
+            <div class="form-group col-full" style="display:flex; align-items:center; gap:0.5rem; margin-top:0.5rem;">
+              <input type="checkbox" id="timelinePublished" style="width:18px; height:18px; cursor:pointer;" checked>
+              <label for="timelinePublished" style="margin-bottom:0; cursor:pointer;">Published & visible on public website</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('timelineModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Milestone</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+  <script>
+    checkAuth();
+    loadTimeline();
+
+    // Theme color sync helper
+    const themeColors = {
+      'theme-teal': '#0D9488',
+      'theme-ocean': '#0284C7',
+      'theme-marine': '#0F766E',
+      'theme-gold': '#D97706',
+      'theme-navy': '#1E40AF',
+      'theme-slate': '#475569',
+      'theme-royal': '#2563EB',
+      'theme-darknavy': '#1E293B',
+      'theme-steel': '#3B82F6',
+      'theme-cobalt': '#4F46E5'
+    };
+
+    function onThemeClassChange(className) {
+      if (themeColors[className]) {
+        document.getElementById('timelineThemeColor').value = themeColors[className];
+        document.getElementById('colorHexText').textContent = themeColors[className];
+      }
+      updateSerpentinePreview();
+    }
+
+    // Image upload handler
+    async function handleTimelineUpload(input) {
+      if (input.files && input.files[0]) {
+        await uploadImageFile(
+          input.files[0],
+          document.getElementById('timelineImagePreview'),
+          document.getElementById('timelineImageUrl')
+        );
+        updateSerpentinePreview();
+      }
+    }
+
+    // Filter table
+    function filterTimelineTable() {
+      const q = document.getElementById('timelineSearch').value.toLowerCase().trim();
+      if (!q) {
+        renderTimelineTable(timelineList);
+        return;
+      }
+      const filtered = timelineList.filter(item =>
+        (item.title && item.title.toLowerCase().includes(q)) ||
+        (item.year && item.year.toLowerCase().includes(q)) ||
+        (item.client && item.client.toLowerCase().includes(q))
+      );
+      renderTimelineTable(filtered);
+    }
+  </script>
+</body>
+</html>

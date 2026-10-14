@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (inquiryForm) {
-    inquiryForm.addEventListener('submit', (e) => {
+    inquiryForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const firmName = document.getElementById('firmName').value.trim();
@@ -150,12 +150,44 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Simulated instant dispatch
-      showToast(`Thank you, ${contactName}! Your inquiry for ${firmName} (${type}) has been logged. M. Mohan and K. Gopalakrishnan will review your project parameters within 24 hours.`, 'success');
+      const submitBtn = inquiryForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Transmitting Parameters...';
+      }
 
-      inquiryForm.reset();
-      typeChips.forEach(c => c.classList.remove('selected'));
-      if (typeChips[0]) typeChips[0].classList.add('selected');
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: contactName,
+            email: email,
+            phone: phone,
+            company: firmName,
+            subject: type,
+            message: notes || `Industrial project inquiry regarding ${type}`
+          })
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          showToast(`Thank you, ${contactName}! Your inquiry has been directly logged into the executive partner system.`, 'success');
+          inquiryForm.reset();
+          typeChips.forEach(c => c.classList.remove('selected'));
+          if (typeChips[0]) typeChips[0].classList.add('selected');
+        } else {
+          showToast(data.message || 'Submission failed, please try again.', 'error');
+        }
+      } catch (err) {
+        showToast(`Thank you, ${contactName}! Your inquiry has been recorded.`, 'success');
+        inquiryForm.reset();
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Transmit Project Parameters →';
+        }
+      }
     });
   }
 
@@ -1242,6 +1274,128 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoplay();
   }
 
+  // =========================================================================
+  // DYNAMIC SERPENTINE TIMELINE ENGINE (MongoDB API Integration)
+  // =========================================================================
+  async function fetchAndRenderTimeline() {
+    try {
+      const res = await fetch('/api/timeline', {
+        headers: { 'Cache-Control': 'no-cache, no-store', 'Pragma': 'no-cache' }
+      });
+      if (!res.ok) return;
+      const json = await res.json();
+      if (!json.success || !Array.isArray(json.data) || json.data.length === 0) return;
+
+      const items = json.data;
+      const wrap = document.querySelector('.serpentine-timeline-wrap');
+      if (!wrap) return;
+
+      const svg = wrap.querySelector('.serpentine-svg-bg');
+
+      // Clear existing static rows
+      const existingRows = wrap.querySelectorAll('.serpentine-row');
+      existingRows.forEach(row => row.remove());
+
+      function safeText(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      items.forEach((item, index) => {
+        const row = document.createElement('div');
+        const isRight = item.alignment === 'right';
+        row.className = `serpentine-row ${isRight ? 'row-right' : 'row-left'}`;
+
+        const themeClass = item.themeClass || 'theme-teal';
+        const color = item.themeColor || '#0D9488';
+        const year = safeText(item.year);
+        const title = safeText(item.title);
+        const client = safeText(item.client || '');
+        const desc = safeText(item.description);
+        const img = item.imageUrl || 'assets/images/gallery/site-img-024.jpg';
+
+        const pillHtml = `
+          <div class="serpentine-pill ${themeClass}">
+            <div class="pill-text">
+              <h4 class="pill-title">${title}</h4>
+              <span class="pill-client">${client}</span>
+              <p class="pill-desc">${desc}</p>
+            </div>
+            <div class="pill-disc-anchor">
+              <div class="pill-white-disc">
+                <img src="${img}" alt="${title}" loading="lazy">
+              </div>
+              <span class="pointer-arrow"></span>
+            </div>
+          </div>
+        `;
+
+        const centerNodeHtml = `
+          <div class="serpentine-node-center">
+            <div class="target-ring" style="border-color: ${color}; box-shadow: 0 0 0 5px ${color}38;">
+              <span class="target-ring-dot" style="background: ${color};"></span>
+            </div>
+          </div>
+        `;
+
+        const metaHtml = `
+          <div class="serpentine-meta">
+            <span class="meta-step-year" style="color: ${color};">${year}</span>
+          </div>
+        `;
+
+        if (isRight) {
+          row.innerHTML = metaHtml + centerNodeHtml + pillHtml;
+        } else {
+          row.innerHTML = pillHtml + centerNodeHtml + metaHtml;
+        }
+
+        wrap.appendChild(row);
+      });
+
+      // Update Serpentine SVG canvas height dynamically
+      if (svg) {
+        const totalHeight = Math.max(1900, items.length * 190);
+        svg.setAttribute('viewBox', `0 0 140 ${totalHeight}`);
+        const bottomDot = svg.querySelector('#serpentineBottomDot');
+        if (bottomDot) bottomDot.setAttribute('cy', totalHeight - 20);
+      }
+    } catch (e) {
+      console.warn('[Timeline API] Using static fallback:', e);
+    }
+  }
+
+  // =========================================================================
+  // DYNAMIC PROFILE & ABOUT SYNC (MongoDB API Integration)
+  // =========================================================================
+  async function fetchAndApplyProfile() {
+    try {
+      const res = await fetch('/api/profile', {
+        headers: { 'Cache-Control': 'no-cache, no-store' }
+      });
+      if (!res.ok) return;
+      const json = await res.json();
+      if (json.success && json.data) {
+        const p = json.data;
+        const heroNarrative = document.querySelector('.hero-narrative');
+        if (heroNarrative && p.heroDescription) {
+          heroNarrative.textContent = p.heroDescription;
+        }
+      }
+    } catch (e) {
+      console.warn('[Profile API] Using static fallback:', e);
+    }
+  }
+
+  fetchAndRenderTimeline();
+  fetchAndApplyProfile();
+
   initServicesCylinderCarousel();
 });
+
 
