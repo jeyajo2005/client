@@ -15,7 +15,7 @@ const heroSchema = new mongoose.Schema({
   },
   subtitle: {
     type: String,
-    default: 'MANAGING PARTNERS · THIRUPATHI ENGINEERS'
+    default: 'MANAGING PARTNERS · THIRUPATHI ENGINEERING'
   },
   description: {
     type: String,
@@ -55,7 +55,7 @@ const heroSchema = new mongoose.Schema({
   },
   contactEmail: {
     type: String,
-    default: 'thirupathiengineerss@gmail.com'
+    default: 'thirupathiENGINEERINGs@gmail.com'
   },
   contactPhone: {
     type: String,

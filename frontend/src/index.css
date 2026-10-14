@@ -1,5 +1,5 @@
 /* ========================================================
-   THIRUPATHI ENGINEERS — SPAN ARCHITECTURAL WHITE THEME
+   THIRUPATHI ENGINEERING — SPAN ARCHITECTURAL WHITE THEME
    Duplicated from SPAN (https://span-5rvgj87.app.builtwithrocket.new/home)
    Clean White Background Theme with Construction Orange Accents
    ======================================================== */
@@ -10,7 +10,7 @@
   --bg-card: #FFFFFF;
   --bg-subtle: #F8FAFC;
   --bg-muted: #F1F5F9;
-  
+
   /* Text Colors */
   --text-primary: #0F172A;
   --text-secondary: #334155;
@@ -80,13 +80,16 @@ body {
 ::-webkit-scrollbar {
   width: 7px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-subtle);
 }
+
 ::-webkit-scrollbar-thumb {
   background: #CBD5E1;
   border-radius: 99px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary-orange);
 }
@@ -110,7 +113,7 @@ body {
 
 /* Technical Blueprint Grid Background Utility */
 .bg-blueprint-grid {
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(226, 232, 240, 0.6) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(226, 232, 240, 0.6) 1px, transparent 1px);
   background-size: 40px 40px;

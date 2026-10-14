@@ -44,7 +44,7 @@ export default function AdminLogin({ onLoginSuccess }) {
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
         padding: '2.5rem'
       }}>
-        
+
         {/* Brand Header */}
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <div style={{
@@ -66,7 +66,7 @@ export default function AdminLogin({ onLoginSuccess }) {
             Admin Control Center
           </h2>
           <div style={{ fontSize: '0.8rem', color: '#64748B', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            Thirupathi Engineers Management
+            Thirupathi ENGINEERING Management
           </div>
         </div>
 
@@ -93,7 +93,7 @@ export default function AdminLogin({ onLoginSuccess }) {
               Username or Email
             </label>
             <div style={{ position: 'relative' }}>
-              <input 
+              <input
                 type="text"
                 required
                 value={username}
@@ -116,7 +116,7 @@ export default function AdminLogin({ onLoginSuccess }) {
               Password
             </label>
             <div style={{ position: 'relative' }}>
-              <input 
+              <input
                 type="password"
                 required
                 value={password}

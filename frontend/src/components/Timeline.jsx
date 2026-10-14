@@ -4,7 +4,7 @@ import { usePortfolio } from '../context/PortfolioContext';
 
 export default function Timeline() {
   const { data } = usePortfolio();
-  const experiences = data.experience || [];
+  const experiences = (data.timeline && data.timeline.length > 0) ? data.timeline : (data.experience || []);
 
   return (
     <section id="track-record" style={{ padding: '5.5rem 0', backgroundColor: '#F8FAFC', borderBottom: '1px solid #E2E8F0' }}>
@@ -40,19 +40,21 @@ export default function Timeline() {
               {/* Year Badge */}
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', backgroundColor: '#0F172A', color: '#C5A059', padding: '0.35rem 0.75rem', fontSize: '0.75rem', fontWeight: 800, letterSpacing: '0.05em', width: 'fit-content', marginBottom: '1.25rem' }}>
                 <Calendar size={12} />
-                <span>{item.period}</span>
+                <span>{item.period || item.year || item.value || 'Milestone'}</span>
               </div>
 
               <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0F172A', lineHeight: 1.3, margin: '0 0 0.5rem 0' }}>
-                {item.title}
+                {item.title || item.label || 'Engineering Milestone'}
               </h3>
 
-              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#C5A059', marginBottom: '1rem' }}>
-                {item.company}
-              </div>
+              {(item.company || item.client) && (
+                <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#C5A059', marginBottom: '1rem' }}>
+     1             {item.company || item.client}
+                </div>
+              )}
 
               <p style={{ fontSize: '0.875rem', color: '#64748B', lineHeight: 1.55, margin: '0 0 1.25rem 0', flex: 1 }}>
-                {item.description}
+                {item.description || item.subtext || ''}
               </p>
 
               {item.achievements && item.achievements.length > 0 && (

@@ -1,5 +1,5 @@
 /**
- * Thirupathi Engineers Admin Dashboard JavaScript
+ * Thirupathi ENGINEERING Admin Dashboard JavaScript
  * Complete Vanilla JS for Authentication, Navigation, Live Preview, and CRUD Operations
  */
 
@@ -36,10 +36,10 @@ function showToast(message, type = 'info') {
 function escapeHtml(str) {
   if (typeof str !== 'string') return str;
   return str.replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 // Image URL Normalizer (Ensures absolute path from root)
@@ -191,7 +191,7 @@ async function loadDashboardStats() {
     const data = await res.json();
     if (data.success && data.stats) {
       const { totalProjects, totalTimeline, totalSkills, totalServices, totalInquiries, unreadInquiries } = data.stats;
-      
+
       const pEl = document.getElementById('statTotalProjects');
       if (pEl) pEl.textContent = totalProjects || '0';
 

@@ -1,7 +1,7 @@
 {
-  "name": "thirupathi-engineers-portfolio",
+  "name": "thirupathi-ENGINEERING-portfolio",
   "version": "2.0.0",
-  "description": "Thirupathi Engineers Portfolio & Admin Dashboard with MERN Stack",
+  "description": "Thirupathi ENGINEERING Portfolio & Admin Dashboard with MERN Stack",
   "main": "server.js",
   "type": "module",
   "scripts": {

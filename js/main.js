@@ -1,24 +1,38 @@
 /**
- * Thirupathi Engineers - Portfolio Website Interactive Engine
+ * Thirupathi ENGINEERING - Portfolio Website Interactive Engine
  * Inspired by architectural minimalism and modern engineering aesthetics
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 0. Hero Names Sequential Typing Animation (M. Mohan -> K. Gopala Krishnan)
-  const name1Text = "M. Mohan";
-  const name2Text = "K. Gopala Krishnan";
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  // 0. Hero Names & Partner Profiles Dynamic Engine (MongoDB API Integration)
+  let name1Text = "M. Mohan";
+  let name2Text = "K. Gopala Krishnan";
   const el1 = document.getElementById('heroName1');
   const el2 = document.getElementById('heroName2');
   const cursor1 = document.getElementById('cursor1');
   const cursor2 = document.getElementById('cursor2');
 
-  if (el1 && el2) {
+  function startTypingAnimation() {
+    if (!el1 || !el2) return;
     el1.textContent = '';
     el2.textContent = '';
+    if (cursor1) cursor1.style.display = 'inline-block';
+    if (cursor2) cursor2.style.display = 'none';
+
     let i = 0;
     let j = 0;
-    const typingSpeed = 80; // ms per char
-    const lineDelay = 350;  // pause before typing second line
+    const typingSpeed = 80;
+    const lineDelay = 350;
 
     function typeName1() {
       if (i < name1Text.length) {
@@ -26,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         i++;
         setTimeout(typeName1, typingSpeed);
       } else {
-        // Name 1 complete: switch cursor to name 2
         if (cursor1) cursor1.style.display = 'none';
         if (cursor2) cursor2.style.display = 'inline-block';
         setTimeout(typeName2, lineDelay);
@@ -39,14 +52,115 @@ document.addEventListener('DOMContentLoaded', () => {
         j++;
         setTimeout(typeName2, typingSpeed);
       } else {
-        // Complete: hide cursor and keep permanently visible
         if (cursor2) cursor2.style.display = 'none';
       }
     }
 
-    // Begin typing on page load
-    setTimeout(typeName1, 300);
+    setTimeout(typeName1, 250);
   }
+
+  // Fetch dynamic partner profiles from backend
+  async function loadDynamicProfile() {
+    try {
+      const res = await fetch('/api/profile', {
+        headers: { 'Cache-Control': 'no-cache, no-store', 'Pragma': 'no-cache' }
+      });
+      if (!res.ok) {
+        startTypingAnimation();
+        return;
+      }
+      const json = await res.json();
+      if (!json.success || !json.data) {
+        startTypingAnimation();
+        return;
+      }
+
+      const p = json.data;
+      if (p.partner1) name1Text = p.partner1;
+      if (p.partner2) name2Text = p.partner2;
+
+      // Update hero subtitle and description if updated
+      const heroRole = document.querySelector('.hero-role-subtitle');
+      if (heroRole && p.title) heroRole.textContent = p.title;
+
+      const heroDesc = document.querySelector('.hero-description');
+      if (heroDesc && p.heroDescription) heroDesc.textContent = p.heroDescription;
+
+      // Update Partner 1 Card (M. Mohan)
+      const p1Name = document.getElementById('partner1Name');
+      if (p1Name && p.partner1) p1Name.textContent = p.partner1;
+
+      const p1Role = document.getElementById('partner1Role');
+      if (p1Role && p.partner1Role) p1Role.textContent = p.partner1Role;
+
+      const p1Exp = document.getElementById('partner1Exp');
+      if (p1Exp && p.partner1Exp) p1Exp.textContent = p.partner1Exp;
+
+      const p1Bio = document.getElementById('partner1Bio');
+      if (p1Bio && p.partner1Bio) p1Bio.textContent = p.partner1Bio;
+
+      const p1PhoneText = document.getElementById('partner1PhoneText');
+      const p1PhoneLink = document.getElementById('partner1PhoneLink');
+      if (p1PhoneText && p.partner1Phone) {
+        p1PhoneText.textContent = p.partner1Phone;
+        if (p1PhoneLink) p1PhoneLink.href = `tel:${p.partner1Phone.replace(/\s+/g, '')}`;
+      }
+
+      const p1EmailText = document.getElementById('partner1EmailText');
+      const p1EmailLink = document.getElementById('partner1EmailLink');
+      if (p1EmailText && p.partner1Email) {
+        p1EmailText.textContent = p.partner1Email;
+        if (p1EmailLink) p1EmailLink.href = `mailto:${p.partner1Email}`;
+      }
+
+      const p1Photo = document.getElementById('partner1Photo');
+      if (p1Photo && p.partner1Image) {
+        const src1 = p.partner1Image.startsWith('http') || p.partner1Image.startsWith('/') ? p.partner1Image : `/${p.partner1Image}`;
+        p1Photo.src = src1;
+      }
+
+      // Update Partner 2 Card (K. Gopala Krishnan)
+      const p2Name = document.getElementById('partner2Name');
+      if (p2Name && p.partner2) p2Name.textContent = p.partner2;
+
+      const p2Role = document.getElementById('partner2Role');
+      if (p2Role && p.partner2Role) p2Role.textContent = p.partner2Role;
+
+      const p2Exp = document.getElementById('partner2Exp');
+      if (p2Exp && p.partner2Exp) p2Exp.textContent = p.partner2Exp;
+
+      const p2Bio = document.getElementById('partner2Bio');
+      if (p2Bio && p.partner2Bio) p2Bio.textContent = p.partner2Bio;
+
+      const p2PhoneText = document.getElementById('partner2PhoneText');
+      const p2PhoneLink = document.getElementById('partner2PhoneLink');
+      if (p2PhoneText && p.partner2Phone) {
+        p2PhoneText.textContent = p.partner2Phone;
+        if (p2PhoneLink) p2PhoneLink.href = `tel:${p.partner2Phone.replace(/\s+/g, '')}`;
+      }
+
+      const p2EmailText = document.getElementById('partner2EmailText');
+      const p2EmailLink = document.getElementById('partner2EmailLink');
+      if (p2EmailText && p.partner2Email) {
+        p2EmailText.textContent = p.partner2Email;
+        if (p2EmailLink) p2EmailLink.href = `mailto:${p.partner2Email}`;
+      }
+
+      const p2Photo = document.getElementById('partner2Photo');
+      if (p2Photo && p.partner2Image) {
+        const src2 = p.partner2Image.startsWith('http') || p.partner2Image.startsWith('/') ? p.partner2Image : `/${p.partner2Image}`;
+        p2Photo.src = src2;
+      }
+
+      // Start typing animation with real backend names
+      startTypingAnimation();
+    } catch (e) {
+      console.warn('Profile fetch fallback to default:', e);
+      startTypingAnimation();
+    }
+  }
+
+  loadDynamicProfile();
 
   // 1. Sticky Navbar & Active Navigation State
   const navbar = document.getElementById('navbar');
@@ -96,28 +210,152 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 2. Project Filter Tabs
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-case-card');
+  // 2. Project Filter Tabs & Dynamic Project Loading Engine
+  function attachProjectFilterListeners() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-case-card');
 
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    filterButtons.forEach(btn => {
+      btn.onclick = () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
 
-      const filterCategory = btn.getAttribute('data-filter');
+        const filterCategory = btn.getAttribute('data-filter');
 
-      projectCards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
-        if (filterCategory === 'all' || cardCategory === filterCategory) {
-          card.style.display = 'block';
-          card.style.animation = 'fadeInCard 0.4s ease forwards';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+        projectCards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          if (filterCategory === 'all' || cardCategory === filterCategory) {
+            card.style.display = 'block';
+            card.style.animation = 'fadeInCard 0.4s ease forwards';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      };
     });
-  });
+  }
+
+  attachProjectFilterListeners();
+
+  async function loadDynamicProjects() {
+    const stack = document.getElementById('projectsStack');
+    if (!stack) return;
+
+    try {
+      const res = await fetch('/api/projects', {
+        headers: { 'Cache-Control': 'no-cache, no-store', 'Pragma': 'no-cache' },
+        cache: 'no-store'
+      });
+      if (!res.ok) return;
+      const json = await res.json();
+      if (!json.success || !Array.isArray(json.data) || json.data.length === 0) return;
+
+      const projects = json.data;
+      stack.innerHTML = projects.map((p, idx) => {
+        const numStr = String(idx + 1).padStart(2, '0');
+        const isReverse = idx % 2 === 1 ? 'reverse-layout' : '';
+        const catLower = (p.category || '').toLowerCase();
+        let dataCat = 'all';
+        if (catLower.includes('2026')) dataCat = '2026';
+        else if (catLower.includes('power')) dataCat = 'power';
+        else if (catLower.includes('cement') || catLower.includes('silo')) dataCat = 'cement';
+        else if (catLower.includes('equipment') || catLower.includes('mining') || catLower.includes('crush')) dataCat = 'equipment';
+
+        let imgSrc = p.mainImage || 'assets/images/drymix_packing.jpg';
+        if (!imgSrc.startsWith('http') && !imgSrc.startsWith('/')) imgSrc = '/' + imgSrc;
+        const statusBadge = p.status || 'COMPLETED';
+
+        return `
+          <article class="project-case-card ${isReverse}" data-category="${dataCat}" data-project-id="${p._id}">
+            <div class="project-card-header">
+              <div class="project-index-group">
+                <span class="project-number">${numStr}</span>
+                <div>
+                  <span class="project-meta-category">${escapeHtml(p.category || 'INDUSTRIAL ERECTION')}</span>
+                  <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">${escapeHtml(p.client || '')} ${p.location ? '— ' + escapeHtml(p.location) : ''}</div>
+                </div>
+              </div>
+              <span class="project-year-badge">${escapeHtml(statusBadge)}</span>
+            </div>
+
+            <div class="project-card-body">
+              <div class="project-image-box">
+                <img src="${imgSrc}" alt="${escapeHtml(p.title)}" loading="lazy">
+                <div class="project-image-metrics-strip">
+                  <div class="img-metric-item">
+                    <h6>${escapeHtml(p.capacity || 'Industrial')}</h6>
+                    <p>Scope Spec</p>
+                  </div>
+                  <div class="img-metric-item">
+                    <h6>${escapeHtml(p.location || 'Site')}</h6>
+                    <p>Location</p>
+                  </div>
+                  <div class="img-metric-item">
+                    <h6>${escapeHtml(p.year || '2026')}</h6>
+                    <p>Milestone</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-specs-box">
+                <div>
+                  <h3 class="project-title">${escapeHtml(p.title)}</h3>
+                  <div class="specs-meta-grid">
+                    <div class="spec-param">
+                      <h5>CATEGORY</h5>
+                      <p>${escapeHtml(p.category || 'Erection')}</p>
+                    </div>
+                    <div class="spec-param">
+                      <h5>SPEC / CAPACITY</h5>
+                      <p>${escapeHtml(p.capacity || 'Standard Turnkey')}</p>
+                    </div>
+                    <div class="spec-param">
+                      <h5>CLIENT</h5>
+                      <p>${escapeHtml(p.client || 'Thirupathi ENGINEERING')}</p>
+                    </div>
+                    <div class="spec-param">
+                      <h5>STATUS</h5>
+                      <p>${escapeHtml(statusBadge)}</p>
+                    </div>
+                  </div>
+
+                  <p class="project-narrative">${escapeHtml(p.description || '')}</p>
+
+                  ${p.scope && p.scope.length > 0 ? `
+                    <div class="project-quote-callout" style="margin-top:1rem;">
+                      <ul style="margin:0; padding-left:1.2rem; color:var(--text-secondary); font-size:0.88rem; line-height:1.6;">
+                        ${p.scope.map(s => `<li>${escapeHtml(s)}</li>`).join('')}
+                      </ul>
+                    </div>
+                  ` : ''}
+                </div>
+
+                <div class="project-footer-actions">
+                  <a href="#contact" class="btn btn-primary">
+                    <span>Discuss Similar Project</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                  <div class="client-tag-group">
+                    <span class="client-tag-label">CLIENT:</span>
+                    <span class="client-name-badge">${escapeHtml(p.client || 'Partner')}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      attachProjectFilterListeners();
+    } catch (err) {
+      console.warn('Projects dynamic load fallback:', err);
+    }
+  }
+
+  loadDynamicProjects();
 
   // 3. Project Inquiry Form - Chip Selector & Submission
   const typeChips = document.querySelectorAll('.type-chip');
@@ -259,58 +497,65 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Attach modal trigger to buttons
-  document.querySelectorAll('[data-open-project]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const projKey = btn.getAttribute('data-open-project');
-      const data = projectDetailsData[projKey];
-      if (!data) return;
-
-      modalContainer.innerHTML = `
-        <div class="modal-project-view">
-          <div style="margin-bottom: 1.5rem;">
-            <div class="mono-label">${data.year} · ${data.clients}</div>
-            <h3 style="font-size: 1.7rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem; line-height: 1.25;">
-              ${data.title}
-            </h3>
-          </div>
-          <div style="border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 2rem; border: 1px solid var(--border-hairline);">
-            <img src="${data.image}" alt="${data.title}" style="width: 100%; height: 360px; object-fit: cover;">
-          </div>
-          
-          <div style="margin-bottom: 2rem;">
-            <h4 style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--accent-gold-dark); margin-bottom: 1rem;">
-              Key Engineering Parameters
-            </h4>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; background: var(--bg-secondary); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-hairline);">
-              ${data.specs.map(s => `
-                <div>
-                  <div style="font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; color: var(--text-muted);">${s.label}</div>
-                  <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary); margin-top: 0.2rem;">${s.val}</div>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-
-          <div>
-            <h4 style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--accent-gold-dark); margin-bottom: 0.75rem;">
-              Scope of Engineering & Mechanical Erection
-            </h4>
-            <p style="font-size: 0.98rem; line-height: 1.75; color: var(--text-secondary); margin-bottom: 1.5rem;">
-              ${data.description}
-            </p>
-          </div>
-
-          <div style="display: flex; justify-content: flex-end; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border-hairline);">
-            <a href="#contact" class="btn btn-primary" onclick="closeAppModal()">Discuss Similar Scope →</a>
+  // Render project details into modal
+  function renderProjectModal(data) {
+    if (!modalContainer || !data) return;
+    modalContainer.innerHTML = `
+      <div class="modal-project-view">
+        <div style="margin-bottom: 1.5rem;">
+          <div class="mono-label">${data.year} · ${data.clients}</div>
+          <h3 style="font-size: 1.7rem; font-weight: 800; color: var(--text-primary); margin-bottom: 1rem; line-height: 1.25;">
+            ${data.title}
+          </h3>
+        </div>
+        <div style="border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 2rem; border: 1px solid var(--border-hairline);">
+          <img src="${data.image}" alt="${data.title}" style="width: 100%; height: 360px; object-fit: cover;" onerror="this.src='/assets/images/drymix_packing.jpg'">
+        </div>
+        
+        <div style="margin-bottom: 2rem;">
+          <h4 style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--accent-gold-dark); margin-bottom: 1rem;">
+            Key Engineering Parameters
+          </h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; background: var(--bg-secondary); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-hairline);">
+            ${data.specs.map(s => `
+              <div>
+                <div style="font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; color: var(--text-muted);">${s.label}</div>
+                <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary); margin-top: 0.2rem;">${s.val}</div>
+              </div>
+            `).join('')}
           </div>
         </div>
-      `;
 
-      openAppModal();
+        <div>
+          <h4 style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--accent-gold-dark); margin-bottom: 0.75rem;">
+            Scope of Engineering & Mechanical Erection
+          </h4>
+          <p style="font-size: 0.98rem; line-height: 1.75; color: var(--text-secondary); margin-bottom: 1.5rem;">
+            ${data.description}
+          </p>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border-hairline);">
+          <a href="#contact" class="btn btn-primary" onclick="closeAppModal()">Discuss Similar Scope →</a>
+        </div>
+      </div>
+    `;
+    openAppModal();
+  }
+
+  // Attach modal trigger to buttons
+  function attachProjectModalTriggers(root = document) {
+    root.querySelectorAll('[data-open-project]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const projKey = btn.getAttribute('data-open-project');
+        const data = projectDetailsData[projKey];
+        if (!data) return;
+        renderProjectModal(data);
+      });
     });
-  });
+  }
+  attachProjectModalTriggers(document);
 
   // Capability Statement Preview Trigger
   document.querySelectorAll('[data-open-capability]').forEach(btn => {
@@ -320,7 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="modal-capability-view">
           <div class="mono-label">FIRM CREDENTIALS & CAPABILITY BRIEF</div>
           <h3 style="font-size: 1.75rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">
-            Thirupathi Engineers — Capability Statement
+            Thirupathi ENGINEERING — Capability Statement
           </h3>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.75rem;">
             Registered Partnership Firm · Partners: M. Mohan & K. Gopalakrishnan · GST Registered
@@ -351,7 +596,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div style="background: #FAFAFA; border: 1px dashed var(--accent-gold); padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1.75rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
             <div>
               <div style="font-weight: 700; font-size: 0.95rem;">Direct Managing Partner Lines</div>
-              <div style="font-size: 0.85rem; color: var(--text-muted);">M. Mohan (50+ Yrs Exp): +91 9043288002 | thirupathiengineerss@gmail.com</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">M. Mohan (50+ Yrs Exp): +91 9043288002 | thirupathiENGINEERINGs@gmail.com</div>
               <div style="font-size: 0.85rem; color: var(--text-muted);">K. Gopalakrishnan (~15 Yrs Exp): +91 9790520126 | gopalkannan5@gmail.com</div>
             </div>
             <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold-dark); font-weight: 700; padding: 0.35rem 0.65rem; background: var(--accent-gold-bg); border-radius: 4px;">VERIFIED 2026</span>
@@ -376,7 +621,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  window.closeAppModal = function() {
+  window.closeAppModal = function () {
     if (modalBackdrop) {
       modalBackdrop.classList.remove('active');
       document.body.style.overflow = '';
@@ -395,8 +640,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  window.triggerMockDownload = function() {
-    showToast('Downloading Thirupathi Engineers Capability Statement (TE-CAP-2025.pdf)...', 'success');
+  window.triggerMockDownload = function () {
+    showToast('Downloading Thirupathi ENGINEERING Capability Statement (TE-CAP-2025.pdf)...', 'success');
     closeAppModal();
   };
 
@@ -813,7 +1058,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!item) return;
 
     if (lightboxImg) {
-      lightboxImg.onerror = function() {
+      lightboxImg.onerror = function () {
         this.onerror = null;
         this.src = 'assets/images/washing_plant.jpg';
       };
@@ -1038,51 +1283,92 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalCards = cards.length;
     if (totalCards === 0) return;
 
-    const angleStep = 360 / totalCards; // 60 degrees for 6 cards
     let currentIndex = 0;
-    let rotationAngle = 0;
     let isAutoplay = true;
     let autoplayTimer = null;
     let isDragging = false;
     let startX = 0;
-    let dragStartAngle = 0;
     let hasMoved = false;
 
-    function getRadius() {
+    // Dynamic responsive spread for wide Pinterest-style horizontal coverflow arc
+    function getSpacing() {
       const w = window.innerWidth;
-      if (w < 600) return 260;
-      if (w < 900) return 320;
-      return 380;
+      if (w < 600) {
+        return { step1: 180, step2: 320, scaleMain: 1.0, scaleSide1: 0.84, scaleSide2: 0.72, rot1: 14, rot2: 22 };
+      }
+      if (w < 900) {
+        return { step1: 260, step2: 480, scaleMain: 1.02, scaleSide1: 0.88, scaleSide2: 0.78, rot1: 16, rot2: 26 };
+      }
+      if (w < 1200) {
+        return { step1: 330, step2: 630, scaleMain: 1.05, scaleSide1: 0.92, scaleSide2: 0.82, rot1: 18, rot2: 28 };
+      }
+      return { step1: 395, step2: 740, scaleMain: 1.08, scaleSide1: 0.95, scaleSide2: 0.86, rot1: 18, rot2: 28 };
     }
 
-    // Position each card along the 3D circumference
-    function layoutCards() {
-      const radius = getRadius();
-      cards.forEach((card, i) => {
-        const cardAngle = i * angleStep;
-        card.style.transform = `rotateY(${cardAngle}deg) translateZ(${radius}px)`;
-      });
-      updateTrackTransform(false);
-    }
-
-    function updateTrackTransform(animated = true) {
-      track.style.transition = animated ? 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)' : 'none';
-      track.style.transform = `rotateY(${-rotationAngle}deg)`;
-
-      // Determine active card index (normalized to 0..totalCards-1)
-      const normalizedIndex = Math.round(rotationAngle / angleStep);
-      currentIndex = ((normalizedIndex % totalCards) + totalCards) % totalCards;
+    function renderArcLayout(animated = true) {
+      const sp = getSpacing();
 
       cards.forEach((card, i) => {
-        if (i === currentIndex) {
+        let offset = i - currentIndex;
+        while (offset > totalCards / 2) offset -= totalCards;
+        while (offset < -totalCards / 2) offset += totalCards;
+
+        card.style.transition = animated ? 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease, filter 0.65s ease' : 'none';
+
+        if (offset === 0) {
+          // Center Active Card - Raised, high prominence, crystal clear
+          card.style.transform = `translateX(0px) translateZ(80px) rotateY(0deg) scale(${sp.scaleMain})`;
+          card.style.opacity = '1';
+          card.style.zIndex = '14';
+          card.style.filter = 'none';
+          card.style.pointerEvents = 'auto';
           card.classList.add('is-active');
+        } else if (offset === -1) {
+          // Immediate Left Card - Crystal clear and readable
+          card.style.transform = `translateX(-${sp.step1}px) translateZ(-40px) rotateY(-${sp.rot1}deg) scale(${sp.scaleSide1})`;
+          card.style.opacity = '0.96';
+          card.style.zIndex = '10';
+          card.style.filter = 'none';
+          card.style.pointerEvents = 'auto';
+          card.classList.remove('is-active');
+        } else if (offset === 1) {
+          // Immediate Right Card - Crystal clear and readable
+          card.style.transform = `translateX(${sp.step1}px) translateZ(-40px) rotateY(${sp.rot1}deg) scale(${sp.scaleSide1})`;
+          card.style.opacity = '0.96';
+          card.style.zIndex = '10';
+          card.style.filter = 'none';
+          card.style.pointerEvents = 'auto';
+          card.classList.remove('is-active');
+        } else if (offset === -2) {
+          // Far Left Card - Clear and visible
+          card.style.transform = `translateX(-${sp.step2}px) translateZ(-110px) rotateY(-${sp.rot2}deg) scale(${sp.scaleSide2})`;
+          card.style.opacity = '0.86';
+          card.style.zIndex = '6';
+          card.style.filter = 'none';
+          card.style.pointerEvents = 'auto';
+          card.classList.remove('is-active');
+        } else if (offset === 2) {
+          // Far Right Card - Clear and visible
+          card.style.transform = `translateX(${sp.step2}px) translateZ(-110px) rotateY(${sp.rot2}deg) scale(${sp.scaleSide2})`;
+          card.style.opacity = '0.86';
+          card.style.zIndex = '6';
+          card.style.filter = 'none';
+          card.style.pointerEvents = 'auto';
+          card.classList.remove('is-active');
         } else {
+          // Other cards hidden cleanly behind the arc
+          const sign = offset < 0 ? -1 : 1;
+          card.style.transform = `translateX(${sign * (sp.step2 + 180)}px) translateZ(-280px) rotateY(${sign * 42}deg) scale(0.68)`;
+          card.style.opacity = '0';
+          card.style.zIndex = '1';
+          card.style.filter = 'none';
+          card.style.pointerEvents = 'none';
           card.classList.remove('is-active');
         }
       });
 
-      paginationDots.forEach((dot, i) => {
-        if (i === currentIndex) {
+      paginationDots.forEach((dot, idx) => {
+        if (idx === currentIndex) {
           dot.classList.add('active');
         } else {
           dot.classList.remove('active');
@@ -1091,20 +1377,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function rotateToCard(index) {
-      const diff = (index - currentIndex + totalCards) % totalCards;
-      const step = diff > totalCards / 2 ? diff - totalCards : diff;
-      rotationAngle += step * angleStep;
-      updateTrackTransform(true);
+      currentIndex = ((index % totalCards) + totalCards) % totalCards;
+      renderArcLayout(true);
     }
 
     function stepNext() {
-      rotationAngle += angleStep;
-      updateTrackTransform(true);
+      currentIndex = (currentIndex + 1) % totalCards;
+      renderArcLayout(true);
     }
 
     function stepPrev() {
-      rotationAngle -= angleStep;
-      updateTrackTransform(true);
+      currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+      renderArcLayout(true);
     }
 
     function startAutoplay() {
@@ -1123,13 +1407,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         stepPrev();
         restartAutoplayDelay();
       });
     }
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         stepNext();
         restartAutoplayDelay();
       });
@@ -1174,7 +1460,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (servicesGrid) servicesGrid.style.display = 'none';
         if (viewCylinderBtn) viewCylinderBtn.classList.add('active');
         if (viewGridBtn) viewGridBtn.classList.remove('active');
-        layoutCards();
+        renderArcLayout(false);
         startAutoplay();
       } else {
         if (cylinderContainer) cylinderContainer.style.display = 'none';
@@ -1202,7 +1488,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isAutoplay) {
         setTimeout(() => {
           if (!isDragging) startAutoplay();
-        }, 1500);
+        }, 2000);
       }
     }
 
@@ -1210,55 +1496,41 @@ document.addEventListener('DOMContentLoaded', () => {
       isDragging = true;
       hasMoved = false;
       startX = clientX;
-      dragStartAngle = rotationAngle;
       stopAutoplay();
     }
 
     function onPointerMove(clientX) {
       if (!isDragging) return;
       const deltaX = clientX - startX;
-      if (Math.abs(deltaX) > 6) {
+      if (Math.abs(deltaX) > 10) {
         hasMoved = true;
       }
-      const angleDelta = deltaX * 0.35;
-      track.style.transition = 'none';
-      track.style.transform = `rotateY(${-(dragStartAngle - angleDelta)}deg)`;
     }
 
     function onPointerUp(clientX) {
       if (!isDragging) return;
       isDragging = false;
       const deltaX = clientX - startX;
-      if (hasMoved) {
-        const angleDelta = deltaX * 0.35;
-        rotationAngle = Math.round((dragStartAngle - angleDelta) / angleStep) * angleStep;
-        updateTrackTransform(true);
+      if (hasMoved && Math.abs(deltaX) > 35) {
+        if (deltaX < 0) {
+          stepNext();
+        } else {
+          stepPrev();
+        }
       }
       restartAutoplayDelay();
     }
 
-    scene.addEventListener('mousedown', (e) => {
-      onPointerDown(e.clientX);
-    });
-    window.addEventListener('mousemove', (e) => {
-      if (isDragging) onPointerMove(e.clientX);
-    });
-    window.addEventListener('mouseup', (e) => {
-      if (isDragging) onPointerUp(e.clientX);
-    });
+    scene.addEventListener('mousedown', (e) => onPointerDown(e.clientX));
+    window.addEventListener('mousemove', (e) => { if (isDragging) onPointerMove(e.clientX); });
+    window.addEventListener('mouseup', (e) => { if (isDragging) onPointerUp(e.clientX); });
 
     scene.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 1) {
-        onPointerDown(e.touches[0].clientX);
-      }
+      if (e.touches.length === 1) onPointerDown(e.touches[0].clientX);
     }, { passive: true });
-
     scene.addEventListener('touchmove', (e) => {
-      if (isDragging && e.touches.length === 1) {
-        onPointerMove(e.touches[0].clientX);
-      }
+      if (isDragging && e.touches.length === 1) onPointerMove(e.touches[0].clientX);
     }, { passive: true });
-
     scene.addEventListener('touchend', (e) => {
       if (isDragging) {
         const clientX = e.changedTouches.length > 0 ? e.changedTouches[0].clientX : startX;
@@ -1267,10 +1539,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('resize', () => {
-      layoutCards();
+      renderArcLayout(false);
     }, { passive: true });
 
-    layoutCards();
+    renderArcLayout(false);
     startAutoplay();
   }
 
@@ -1392,6 +1664,212 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // =========================================================================
+  // DYNAMIC SHOWCASE PROJECTS ENGINE (MongoDB API Integration)
+  // =========================================================================
+  async function fetchAndRenderProjects() {
+    const stack = document.querySelector('.projects-stack');
+    if (!stack) return;
+
+    try {
+      const res = await fetch('/api/projects', {
+        headers: { 'Cache-Control': 'no-cache, no-store', 'Pragma': 'no-cache' }
+      });
+      if (!res.ok) return;
+      const json = await res.json();
+      if (!json.success || !Array.isArray(json.data) || json.data.length === 0) return;
+
+      const projects = json.data;
+
+      function safeText(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function safeAttr(str) {
+        if (!str) return '';
+        return String(str).replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+      }
+
+      function normalizeImg(url) {
+        if (!url) return '/assets/images/drymix_packing.jpg';
+        if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/')) return url;
+        return '/' + url;
+      }
+
+      // Update Filter Tabs dynamically based on actual categories in database
+      const filterTabsContainer = document.querySelector('.filter-tabs');
+      if (filterTabsContainer) {
+        const rawCats = projects.map(p => (p.category || '').trim()).filter(Boolean);
+        const uniqueCats = [...new Set(rawCats)];
+
+        let tabsHtml = `<button class="filter-btn active" data-filter="all">All Projects (${projects.length})</button>`;
+        uniqueCats.forEach(cat => {
+          const count = projects.filter(p => (p.category || '').trim().toLowerCase() === cat.toLowerCase()).length;
+          tabsHtml += `<button class="filter-btn" data-filter="${safeAttr(cat.toLowerCase())}">${safeText(cat)} (${count})</button>`;
+        });
+        filterTabsContainer.innerHTML = tabsHtml;
+
+        // Rebind click events on dynamic buttons
+        filterTabsContainer.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            filterTabsContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const selectedCat = btn.getAttribute('data-filter');
+            stack.querySelectorAll('.project-case-card').forEach(card => {
+              const cardCat = card.getAttribute('data-category');
+              if (selectedCat === 'all' || cardCat === selectedCat) {
+                card.style.display = 'block';
+                card.style.animation = 'fadeInCard 0.4s ease forwards';
+              } else {
+                card.style.display = 'none';
+              }
+            });
+          });
+        });
+      }
+
+      // Clear static cards and render dynamic cards from database
+      stack.innerHTML = '';
+
+      projects.forEach((p, idx) => {
+        const num = String(idx + 1).padStart(2, '0');
+        const projKey = p._id || `proj-${idx}`;
+        const imgSrc = normalizeImg(p.mainImage);
+        const catClean = (p.category || 'STRUCTURAL & EQUIPMENT').trim();
+        const catAttr = catClean.toLowerCase();
+        const statusClean = (p.status || 'COMPLETED').toUpperCase();
+        const isOngoing = statusClean === 'ONGOING';
+        const yearText = p.year ? p.year : '2026';
+        const yearBadge = `${yearText} ${statusClean}`;
+
+        // Register in projectDetailsData for modal preview
+        projectDetailsData[projKey] = {
+          title: p.title || 'Industrial Mechanical Structural Erection',
+          year: `${yearText} ${statusClean}`,
+          clients: `${p.client || 'Enterprise Client'}${p.location ? ' — ' + p.location : ''}`,
+          image: imgSrc,
+          specs: [
+            { label: 'Project Status', val: statusClean },
+            { label: 'Category', val: catClean },
+            { label: 'Client / Site', val: p.client || 'Enterprise Client' },
+            { label: 'Location', val: p.location || 'Tamil Nadu, India' },
+            { label: 'Capacity / Scope', val: p.capacity || 'Heavy Industrial Equipment' },
+            { label: 'Supervision', val: 'Direct Lead: M. Mohan & K. Gopalakrishnan' }
+          ],
+          description: p.description || ''
+        };
+
+        const card = document.createElement('article');
+        card.className = 'project-case-card';
+        card.setAttribute('data-category', catAttr);
+
+        card.innerHTML = `
+          <div class="project-card-header">
+            <div class="project-index-group">
+              <span class="project-number">${num}</span>
+              <div>
+                <span class="project-meta-category">${safeText(catClean.toUpperCase())}</span>
+                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">${safeText(p.client || '')} ${p.location ? '— ' + safeText(p.location) : ''}</div>
+              </div>
+            </div>
+            <span class="project-year-badge" style="${isOngoing ? 'background: rgba(16, 185, 129, 0.15); color: #059669; border: 1px solid rgba(16, 185, 129, 0.3);' : ''}">
+              ${safeText(yearBadge)}
+            </span>
+          </div>
+
+          <div class="project-card-body">
+            <!-- Left Image with Metrics Ribbon -->
+            <div class="project-image-box">
+              <img src="${imgSrc}" alt="${safeAttr(p.title)}" loading="lazy" onerror="this.src='/assets/images/drymix_packing.jpg'">
+              <div class="project-image-metrics-strip">
+                <div class="img-metric-item">
+                  <h6>${safeText(catClean)}</h6>
+                  <p>Category</p>
+                </div>
+                <div class="img-metric-item">
+                  <h6>${safeText(yearText)}</h6>
+                  <p>Execution</p>
+                </div>
+                <div class="img-metric-item">
+                  <h6>${safeText(statusClean)}</h6>
+                  <p>Status</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Specs & Narrative -->
+            <div class="project-specs-box">
+              <div>
+                <h3 class="project-title">${safeText(p.title)}</h3>
+
+                <div class="specs-meta-grid">
+                  <div class="spec-param">
+                    <h5>CATEGORY</h5>
+                    <p>${safeText(catClean)}</p>
+                  </div>
+                  <div class="spec-param">
+                    <h5>CLIENT</h5>
+                    <p>${safeText(p.client || 'Enterprise Client')}</p>
+                  </div>
+                  <div class="spec-param">
+                    <h5>LOCATION</h5>
+                    <p>${safeText(p.location || 'Tamil Nadu, India')}</p>
+                  </div>
+                  <div class="spec-param">
+                    <h5>STATUS & YEAR</h5>
+                    <p>${safeText(yearBadge)}</p>
+                  </div>
+                </div>
+
+                <p class="project-narrative">
+                  ${safeText(p.description || '')}
+                </p>
+
+                ${Array.isArray(p.scope) && p.scope.length > 0 ? `
+                  <div style="margin: 1rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                    ${p.scope.map(s => `<span style="display:inline-block; font-size:0.75rem; background:var(--bg-secondary); border:1px solid var(--border-hairline); padding:0.25rem 0.6rem; border-radius:3px; color:var(--text-secondary); font-family:var(--font-mono);">${safeText(s)}</span>`).join('')}
+                  </div>
+                ` : ''}
+              </div>
+
+              <div class="project-footer-actions">
+                <button class="btn btn-primary" data-open-project="${projKey}">
+                  <span>View Project Specs</span>
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+                <div class="client-tag-group">
+                  <span class="client-tag-label">CLIENT:</span>
+                  <span class="client-name-badge client-ramco-badge">
+                    <span>${safeText(p.client || 'Enterprise')}</span>
+                  </span>
+                  ${p.location ? `<span class="client-name-badge">${safeText(p.location)}</span>` : ''}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        stack.appendChild(card);
+      });
+
+      // Attach modal listeners to dynamic project buttons
+      attachProjectModalTriggers(stack);
+    } catch (e) {
+      console.warn('[Projects API] Using static fallback:', e);
+    }
+  }
+
+  fetchAndRenderProjects();
   fetchAndRenderTimeline();
   fetchAndApplyProfile();
 

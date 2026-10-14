@@ -109,7 +109,7 @@ function MainApp() {
           marginBottom: '1rem'
         }} />
         <div style={{ fontSize: '1rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#0F172A' }}>
-          Thirupathi Engineers
+          Thirupathi ENGINEERING
         </div>
         <div style={{ fontSize: '0.78rem', color: '#64748B', marginTop: '0.25rem' }}>
           Connecting to MongoDB Database...
@@ -122,13 +122,13 @@ function MainApp() {
   // Public Architectural Website
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#FFFFFF' }}>
-      
+
       {/* 1. Header Navbar */}
       <Navbar onOpenConsultation={() => setShowConsultationModal(true)} />
 
       {/* Main Architectural Content */}
       <main style={{ flex: 1 }}>
-        
+
         {/* 2. Hero Section */}
         <Hero onOpenConsultation={() => setShowConsultationModal(true)} />
 
@@ -166,9 +166,9 @@ function MainApp() {
 
       {/* Interactive Project Modal */}
       {selectedProject && (
-        <ProjectModal 
-          project={selectedProject} 
-          onClose={() => setSelectedProject(null)} 
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
           onOpenConsultation={() => {
             setSelectedProject(null);
             setShowConsultationModal(true);

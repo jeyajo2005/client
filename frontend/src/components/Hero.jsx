@@ -62,11 +62,11 @@ export default function Hero({ onOpenConsultation }) {
   }, [name1Target, name2Target]);
 
   // Dynamic Background Image with fallback to original hero.jpg
-  const bgImage = hero.bgImageUrl 
+  const bgImage = hero.bgImageUrl
     ? (hero.bgImageUrl.startsWith('http') || hero.bgImageUrl.startsWith('/') ? hero.bgImageUrl : `/${hero.bgImageUrl}`)
     : '/assets/images/hero.jpg';
 
-  const subtitle = hero.subtitle || 'MANAGING PARTNERS · THIRUPATHI ENGINEERS';
+  const subtitle = hero.subtitle || 'MANAGING PARTNERS · THIRUPATHI ENGINEERING';
   const description = hero.description || 'Premier mechanical industrial structural & equipment erection partnership firm. Proven execution in 20 MW thermal power plant non-IBR structures, ACC cooling towers, cement plant clinker silos, packing plants, sizer crushers, and bulk handling systems.';
   const badgeText = hero.badgeText || 'MECHANICAL & INDUSTRIAL STRUCTURES';
   const badgeLoc = hero.badgeLoc || 'TAMIL NADU · INDIA';
@@ -76,8 +76,8 @@ export default function Hero({ onOpenConsultation }) {
   const secondaryCtaLink = hero.secondaryCtaLink || '#projects';
 
   return (
-    <section 
-      className="hero" 
+    <section
+      className="hero"
       id="home"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
@@ -122,8 +122,8 @@ export default function Hero({ onOpenConsultation }) {
 
           {/* CTA Buttons side by side */}
           <div className="hero-actions">
-            <a 
-              href={primaryCtaLink} 
+            <a
+              href={primaryCtaLink}
               className="btn btn-hero-primary"
               onClick={(e) => {
                 if (primaryCtaLink === '#contact' && onOpenConsultation) {

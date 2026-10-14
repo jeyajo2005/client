@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const contactSettingsSchema = new mongoose.Schema({
   email: {
     type: String,
-    default: 'thirupathiengineerss@gmail.com'
+    default: 'thirupathiENGINEERINGs@gmail.com'
   },
   phone: {
     type: String,

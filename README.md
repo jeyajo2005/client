@@ -1,6 +1,6 @@
-# Thirupathi Engineers — Portfolio & Admin Dashboard
+# Thirupathi ENGINEERING — Portfolio & Admin Dashboard
 
-Official website and Full-Stack Management Platform for **Thirupathi Engineers** — Premier Mechanical Industrial Structural & Equipment Erection Partnership Firm.
+Official website and Full-Stack Management Platform for **Thirupathi ENGINEERING** — Premier Mechanical Industrial Structural & Equipment Erection Partnership Firm.
 
 ---
 
@@ -30,7 +30,7 @@ NODE_ENV=development
 MONGO_URI=mongodb://127.0.0.1:27017/thirupathi_portfolio
 SESSION_SECRET=thirupathi_session_secret_change_in_production_key_2026_!@#
 JWT_SECRET=thirupathi_super_secure_jwt_token_key_2026_xyz
-ADMIN_DEFAULT_EMAIL=admin@thirupathiengineers.com
+ADMIN_DEFAULT_EMAIL=admin@thirupathiENGINEERING.com
 ADMIN_DEFAULT_PASSWORD=Admin@Thirupathi2026
 ```
 
@@ -58,7 +58,7 @@ npm run dev
 Visit:
 - **Public Website**: `http://localhost:5000/`
 - **Admin Portal**: `http://localhost:5000/admin`
-  - **Email**: `admin@thirupathiengineers.com`
+  - **Email**: `admin@thirupathiENGINEERING.com`
   - **Password**: `Admin@Thirupathi2026`
 
 ---

@@ -16,21 +16,21 @@ export default function Navbar({ onOpenConsultation }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = settings.navLinks && settings.navLinks.length > 0 
+  const navLinks = settings.navLinks && settings.navLinks.length > 0
     ? settings.navLinks.filter(l => l.isVisible !== false)
     : [
-        { label: 'Projects', href: '#projects' },
-        { label: 'Gallery', href: '#gallery' },
-        { label: 'Services', href: '#services' },
-        { label: 'Track Record', href: '#track-record' },
-        { label: 'Leadership', href: '#leadership' },
-        { label: 'Contact', href: '#contact' }
-      ];
+      { label: 'Projects', href: '#projects' },
+      { label: 'Gallery', href: '#gallery' },
+      { label: 'Services', href: '#services' },
+      { label: 'Track Record', href: '#track-record' },
+      { label: 'Leadership', href: '#leadership' },
+      { label: 'Contact', href: '#contact' }
+    ];
 
   const primaryPhone = settings.phones && settings.phones[0] ? settings.phones[0].display : '+91 90432 88002';
 
   return (
-    <header 
+    <header
       style={{
         position: 'sticky',
         top: 0,
@@ -43,7 +43,7 @@ export default function Navbar({ onOpenConsultation }) {
     >
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '80px' }}>
-          
+
           {/* Brand Logo */}
           <a href="#home" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
             <div style={{
@@ -63,7 +63,7 @@ export default function Navbar({ onOpenConsultation }) {
             </div>
             <div>
               <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0F172A', letterSpacing: '0.02em', textTransform: 'uppercase' }}>
-                {settings.companyName || 'Thirupathi Engineers'}
+                {settings.companyName || 'Thirupathi ENGINEERING'}
               </div>
               <div style={{ fontSize: '0.72rem', color: '#64748B', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                 {settings.tagline || 'Mechanical Industrial Structures'}
@@ -76,7 +76,7 @@ export default function Navbar({ onOpenConsultation }) {
             <ul style={{ display: 'flex', alignItems: 'center', gap: '2rem', listStyle: 'none', margin: 0, padding: 0 }}>
               {navLinks.map((link, idx) => (
                 <li key={idx}>
-                  <a 
+                  <a
                     href={link.href}
                     style={{
                       fontSize: '0.875rem',
@@ -98,7 +98,7 @@ export default function Navbar({ onOpenConsultation }) {
 
           {/* Actions: Phone CTA & Admin Button */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <a 
+            <a
               href="#contact"
               style={{
                 display: 'inline-flex',
@@ -126,7 +126,7 @@ export default function Navbar({ onOpenConsultation }) {
               Discuss Project
             </a>
 
-            <a 
+            <a
               href="#admin"
               title="Admin Dashboard"
               style={{
@@ -188,7 +188,7 @@ export default function Navbar({ onOpenConsultation }) {
             <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {navLinks.map((link, idx) => (
                 <li key={idx}>
-                  <a 
+                  <a
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
                     style={{
@@ -206,7 +206,7 @@ export default function Navbar({ onOpenConsultation }) {
                 </li>
               ))}
               <li style={{ paddingTop: '0.5rem' }}>
-                <a 
+                <a
                   href="#admin"
                   onClick={() => setMobileMenuOpen(false)}
                   style={{

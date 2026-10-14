@@ -34,8 +34,8 @@ export default function ConsultationModal({ onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div 
-        className="modal-content" 
+      <div
+        className="modal-content"
         onClick={(e) => e.stopPropagation()}
         style={{ padding: '2.5rem' }}
       >
@@ -77,7 +77,7 @@ export default function ConsultationModal({ onClose }) {
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-          
+
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }} className="modal-row">
             <div>
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-dark-navy)', marginBottom: '0.35rem', fontFamily: 'var(--font-mono)' }}>
@@ -250,7 +250,7 @@ export default function ConsultationModal({ onClose }) {
             }}>
               <AlertCircle size={16} style={{ color: 'var(--color-primary-blue)', flexShrink: 0, marginTop: '2px' }} />
               <div style={{ fontSize: '0.82rem', color: 'var(--color-dark-navy)', lineHeight: 1.5 }}>
-                <strong>Direct Contact Recommended:</strong> This form requires a mail backend service. Please email our partners directly at <a href="mailto:thirupathiengineerss@gmail.com" style={{ color: 'var(--color-primary-blue)', fontWeight: 700 }}>thirupathiengineerss@gmail.com</a> or call <strong>+91 9043288002</strong>.
+                <strong>Direct Contact Recommended:</strong> This form requires a mail backend service. Please email our partners directly at <a href="mailto:thirupathiENGINEERINGs@gmail.com" style={{ color: 'var(--color-primary-blue)', fontWeight: 700 }}>thirupathiENGINEERINGs@gmail.com</a> or call <strong>+91 9043288002</strong>.
               </div>
             </div>
           )}

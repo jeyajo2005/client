@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const settingsSchema = new mongoose.Schema({
   companyName: {
     type: String,
-    default: 'Thirupathi Engineers'
+    default: 'Thirupathi ENGINEERING'
   },
   businessType: {
     type: String,
@@ -23,7 +23,7 @@ const settingsSchema = new mongoose.Schema({
   }],
   emails: [{
     type: String,
-    default: 'thirupathiengineerss@gmail.com'
+    default: 'thirupathiENGINEERINGs@gmail.com'
   }],
   address: {
     type: String,
@@ -39,7 +39,7 @@ const settingsSchema = new mongoose.Schema({
   },
   copyrightText: {
     type: String,
-    default: '© 2026 Thirupathi Engineers. All rights reserved.'
+    default: '© 2026 Thirupathi ENGINEERING. All rights reserved.'
   },
   socialLinks: {
     linkedin: { type: String, default: '' },
@@ -51,7 +51,7 @@ const settingsSchema = new mongoose.Schema({
   // SEO Meta
   siteTitle: {
     type: String,
-    default: 'Thirupathi Engineers | Mechanical Industrial Structure & Equipment Erection'
+    default: 'Thirupathi ENGINEERING | Mechanical Industrial Structure & Equipment Erection'
   },
   metaDescription: {
     type: String,
@@ -59,7 +59,7 @@ const settingsSchema = new mongoose.Schema({
   },
   metaKeywords: {
     type: String,
-    default: 'Thirupathi Engineers, Mechanical Industrial Structures, Erection, Ramco Cements, Power Plant Structures'
+    default: 'Thirupathi ENGINEERING, Mechanical Industrial Structures, Erection, Ramco Cements, Power Plant Structures'
   },
   ogImageUrl: {
     type: String,

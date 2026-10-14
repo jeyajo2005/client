@@ -27,20 +27,20 @@ export default function CompanyOverview() {
   ];
 
   return (
-    <section 
-      id="about" 
-      className="section" 
-      style={{ 
-        backgroundColor: 'var(--bg-light-gray)', 
-        borderBottom: '1px solid var(--border-subtle)' 
+    <section
+      id="about"
+      className="section"
+      style={{
+        backgroundColor: 'var(--bg-light-gray)',
+        borderBottom: '1px solid var(--border-subtle)'
       }}
     >
       <div className="container">
-        
+
         {/* Section Header */}
         <div style={{ maxWidth: '820px', marginBottom: '3.5rem' }}>
           <div className="section-tag">
-            <span>ABOUT THIRUPATHI ENGINEERS</span>
+            <span>ABOUT THIRUPATHI ENGINEERING</span>
           </div>
 
           <h2 className="section-heading">
@@ -49,13 +49,13 @@ export default function CompanyOverview() {
           </h2>
 
           <p className="section-subtext">
-            THIRUPATHI ENGINEERS is a partnership firm specializing in heavy industrial construction and mechanical erection. 
+            THIRUPATHI ENGINEERING is a partnership firm specializing in heavy industrial construction and mechanical erection.
             Led by experienced industrial professionals, the firm brings together deep practical knowledge, meticulous site coordination, and disciplined engineering execution across major manufacturing and power facilities.
           </p>
         </div>
 
         {/* Overview Grid: Left Narrative + Right Focus Pillars */}
-        <div 
+        <div
           style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1.15fr',
@@ -64,7 +64,7 @@ export default function CompanyOverview() {
           }}
           className="overview-grid"
         >
-          
+
           {/* Left Column: Narrative Card */}
           <div className="industrial-card" style={{ padding: '2.5rem' }}>
             <h3 style={{
@@ -132,7 +132,7 @@ export default function CompanyOverview() {
             </div>
 
             {coreFocusAreas.map((area, idx) => (
-              <div 
+              <div
                 key={idx}
                 style={{
                   backgroundColor: '#FFFFFF',

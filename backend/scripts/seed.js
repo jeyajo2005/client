@@ -56,7 +56,7 @@ async function seedDatabase() {
     ]);
 
     // 1. Admin User
-    const adminEmail = process.env.ADMIN_DEFAULT_EMAIL || 'admin@thirupathiengineers.com';
+    const adminEmail = process.env.ADMIN_DEFAULT_EMAIL || 'admin@thirupathiENGINEERING.com';
     const adminPassword = process.env.ADMIN_DEFAULT_PASSWORD || 'Admin@Thirupathi2026';
     await User.create({
       name: 'Managing Partner Admin',
@@ -70,14 +70,24 @@ async function seedDatabase() {
     await Profile.create({
       name: 'M. Mohan & K. Gopala Krishnan',
       partner1: 'M. Mohan',
+      partner1Role: 'Industrial Erection & Field Operations Lead',
+      partner1Exp: '50+ YEARS EXPERIENCE',
+      partner1Bio: 'With over 50 years of distinguished experience in industrial construction across steel plants and cement manufacturing facilities, Mr. M. Mohan is a veteran erection specialist. His construction journey began in 1985 at Gold Star Steel Plant, progressing into cement plant construction in 1990. Landmark milestones include the total plant commissioning of Gold Star Steel Plant in 1992, total plant erection of Camplastic Pipe in 1998, Parryware Tiles company erection in 2005, and multiple cement mill and structural erections across various sites for The Ramco Cements Ltd. He personally leads heavy crane rigging sequencing, non-IBR structural framing, and workforce safety.',
+      partner1Phone: '+91 9043288002',
+      partner1Email: 'thirupathiENGINEERINGs@gmail.com',
       partner2: 'K. Gopala Krishnan',
-      title: 'Managing Partners · Thirupathi Engineers',
-      companyName: 'Thirupathi Engineers',
+      partner2Role: 'Mechanical Engineer',
+      partner2Exp: '~15 YEARS EXPERIENCE',
+      partner2Bio: 'Bringing nearly 15 years of rigorous engineering leadership in mechanical industrial structures and equipment erection. Commenced his engineering career in the steel plant sector in 2012 and transitioned to cement plant structural erection in 2016, serving in key capacities as Engineer and Project Manager across multiple reputed industrial engineering companies before co-leading Thirupathi ENGINEERING. He specializes in mechanical structural design interpretation, equipment alignment, clinker silo structural frameworks, high-elevation conveyor galleries, drawing audits, and statutory quality sign-offs.',
+      partner2Phone: '+91 9790520126',
+      partner2Email: 'gopalkannan5@gmail.com',
+      title: 'Managing Partners · Thirupathi ENGINEERING',
+      companyName: 'Thirupathi ENGINEERING',
       tagline: 'Industrial Mechanical Structural & Equipment Erection Partnership Firm',
       heroDescription: 'Premier mechanical industrial structural & equipment erection partnership firm. Proven execution in 20 MW thermal power plant non-IBR structures, ACC cooling towers, cement plant clinker silos, packing plants, sizer crushers, and bulk handling systems.',
       aboutHeading: 'Industrial Lineage & Mechanical Construction Leadership',
       aboutSubheading: 'A Partnership Built on Grounded Site Execution and Decades of Field Mastery',
-      aboutDescription: 'Thirupathi Engineers is an industrial mechanical structural and equipment erection partnership firm founded on direct job-site execution leadership. With lineage stretching back to 1985 in major steel plant construction and expanding into cement manufacturing facilities by 1990, managing partners M. Mohan and K. Gopalakrishnan deliver decades of combined industry lineage.',
+      aboutDescription: 'Thirupathi ENGINEERING is an industrial mechanical structural and equipment erection partnership firm founded on direct job-site execution leadership. With lineage stretching back to 1985 in major steel plant construction and expanding into cement manufacturing facilities by 1990, managing partners M. Mohan and K. Gopalakrishnan deliver decades of combined industry lineage.',
       experienceYears: 50,
       foundingYear: 1985,
       profileImage: 'assets/images/ramco_cement_plant.jpg',
@@ -95,7 +105,7 @@ async function seedDatabase() {
       heading: 'M. Mohan, K. Gopala Krishnan',
       name1: 'M. Mohan',
       name2: 'K. Gopala Krishnan',
-      subtitle: 'MANAGING PARTNERS · THIRUPATHI ENGINEERS',
+      subtitle: 'MANAGING PARTNERS · THIRUPATHI ENGINEERING',
       description: 'Premier mechanical industrial structural & equipment erection partnership firm. Proven execution in 20 MW thermal power plant non-IBR structures, ACC cooling towers, cement plant clinker silos, packing plants, sizer crushers, and bulk handling systems.',
       badgeText: 'MECHANICAL & INDUSTRIAL STRUCTURES',
       badgeLoc: 'TAMIL NADU · INDIA',
@@ -105,14 +115,14 @@ async function seedDatabase() {
       secondaryCtaLink: '#projects',
       bgImageUrl: 'assets/images/hero.jpg',
       logoUrl: '',
-      contactEmail: 'thirupathiengineerss@gmail.com',
+      contactEmail: 'thirupathiENGINEERINGs@gmail.com',
       contactPhone: '+91 9043288002'
     });
 
     await About.create({
       heading: 'Industrial Lineage & Mechanical Construction Leadership',
       subheading: 'A Partnership Built on Grounded Site Execution and Decades of Field Mastery',
-      companyIntro: 'Thirupathi Engineers is an industrial mechanical structural and equipment erection partnership firm founded on direct job-site execution leadership.',
+      companyIntro: 'Thirupathi ENGINEERING is an industrial mechanical structural and equipment erection partnership firm founded on direct job-site execution leadership.',
       history: 'With lineage stretching back to 1985 in major steel plant construction and expanding into cement manufacturing facilities by 1990, managing partners M. Mohan and K. Gopalakrishnan deliver decades of combined industry lineage.',
       mission: 'To execute high-tonnage structural erection and mechanical equipment alignment with uncompromised engineering precision, zero-accident site safety, and schedule certainty.',
       vision: 'To stand as the most trusted execution partner for India’s cement, power, and heavy process manufacturing leaders.',
@@ -417,7 +427,7 @@ async function seedDatabase() {
 
     // 8. Contact Settings
     await ContactSettings.create({
-      email: 'thirupathiengineerss@gmail.com',
+      email: 'thirupathiENGINEERINGs@gmail.com',
       phone: '+91 9043288002',
       secondaryPhone: '+91 9443728002',
       address: 'Industrial Estate, Virudhunagar / R.R. Nagar Works, Tamil Nadu, India - 626204',
@@ -566,9 +576,9 @@ async function seedDatabase() {
     await Team.insertMany(teamData);
 
     await Settings.create({
-      siteName: 'Thirupathi Engineers',
+      siteName: 'Thirupathi ENGINEERING',
       tagline: 'Industrial Mechanical Structural & Equipment Erection',
-      email: 'thirupathiengineerss@gmail.com',
+      email: 'thirupathiENGINEERINGs@gmail.com',
       phone: '+91 9043288002',
       address: 'Industrial Estate, Virudhunagar / R.R. Nagar Works, Tamil Nadu, India - 626204',
       primaryColor: '#0D9488',

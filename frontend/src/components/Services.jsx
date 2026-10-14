@@ -60,64 +60,113 @@ export default function Services({ onOpenConsultation }) {
     }
 
     autoplayRef.current = setInterval(() => {
-      setRotationAngle((prev) => prev + angleStep);
+      setCurrentIndex((prev) => (prev + 1) % totalCards);
     }, 4200);
 
     return () => clearInterval(autoplayRef.current);
-  }, [isAutoplay, viewMode, isDragging, totalCards, angleStep]);
+  }, [isAutoplay, viewMode, isDragging, totalCards]);
 
-  const stepNext = () => setRotationAngle((prev) => prev + angleStep);
-  const stepPrev = () => setRotationAngle((prev) => prev - angleStep);
-
-  const rotateToCard = (index) => {
-    const diff = (index - currentIndex + totalCards) % totalCards;
-    const step = diff > totalCards / 2 ? diff - totalCards : diff;
-    setRotationAngle((prev) => prev + step * angleStep);
-  };
+  const stepNext = () => setCurrentIndex((prev) => (prev + 1) % totalCards);
+  const stepPrev = () => setCurrentIndex((prev) => (prev - 1 + totalCards) % totalCards);
+  const rotateToCard = (index) => setCurrentIndex(index);
 
   // Pointer drag handling
   const handlePointerDown = (clientX) => {
     setIsDragging(true);
     setHasMoved(false);
     setDragStartX(clientX);
-    setDragStartAngle(rotationAngle);
   };
 
   const handlePointerMove = (clientX) => {
     if (!isDragging) return;
     const deltaX = clientX - dragStartX;
-    if (Math.abs(deltaX) > 6) setHasMoved(true);
-    const angleDelta = deltaX * 0.35;
-    if (trackRef.current) {
-      trackRef.current.style.transition = 'none';
-      trackRef.current.style.transform = `rotateY(${-(dragStartAngle - angleDelta)}deg)`;
-    }
+    if (Math.abs(deltaX) > 10) setHasMoved(true);
   };
 
   const handlePointerUp = (clientX) => {
     if (!isDragging) return;
     setIsDragging(false);
     const deltaX = clientX - dragStartX;
-    if (hasMoved) {
-      const angleDelta = deltaX * 0.35;
-      const snapped = Math.round((dragStartAngle - angleDelta) / angleStep) * angleStep;
-      setRotationAngle(snapped);
-      if (trackRef.current) {
-        trackRef.current.style.transition = 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)';
-        trackRef.current.style.transform = `rotateY(${-snapped}deg)`;
+    if (hasMoved && Math.abs(deltaX) > 35) {
+      if (deltaX < 0) {
+        stepNext();
+      } else {
+        stepPrev();
       }
+    }
+  };
+
+  const getCardStyle = (i) => {
+    let offset = i - currentIndex;
+    while (offset > totalCards / 2) offset -= totalCards;
+    while (offset < -totalCards / 2) offset += totalCards;
+
+    const w = typeof window !== 'undefined' ? window.innerWidth : 1200;
+    let step1 = 395, step2 = 740, scaleMain = 1.08, scale1 = 0.95, scale2 = 0.86, rot1 = 18, rot2 = 28;
+    if (w < 600) {
+      step1 = 180; step2 = 320; scaleMain = 1.0; scale1 = 0.84; scale2 = 0.72; rot1 = 14; rot2 = 22;
+    } else if (w < 900) {
+      step1 = 260; step2 = 480; scaleMain = 1.02; scale1 = 0.88; scale2 = 0.78; rot1 = 16; rot2 = 26;
+    } else if (w < 1200) {
+      step1 = 330; step2 = 630; scaleMain = 1.05; scale1 = 0.92; scale2 = 0.82; rot1 = 18; rot2 = 28;
+    }
+
+    if (offset === 0) {
+      return {
+        transform: `translateX(0px) translateZ(80px) rotateY(0deg) scale(${scaleMain})`,
+        opacity: 1,
+        zIndex: 14,
+        filter: 'none',
+        pointerEvents: 'auto'
+      };
+    } else if (offset === -1) {
+      return {
+        transform: `translateX(-${step1}px) translateZ(-40px) rotateY(-${rot1}deg) scale(${scale1})`,
+        opacity: 0.96,
+        zIndex: 10,
+        filter: 'none',
+        pointerEvents: 'auto'
+      };
+    } else if (offset === 1) {
+      return {
+        transform: `translateX(${step1}px) translateZ(-40px) rotateY(${rot1}deg) scale(${scale1})`,
+        opacity: 0.96,
+        zIndex: 10,
+        filter: 'none',
+        pointerEvents: 'auto'
+      };
+    } else if (offset === -2) {
+      return {
+        transform: `translateX(-${step2}px) translateZ(-110px) rotateY(-${rot2}deg) scale(${scale2})`,
+        opacity: 0.86,
+        zIndex: 6,
+        filter: 'none',
+        pointerEvents: 'auto'
+      };
+    } else if (offset === 2) {
+      return {
+        transform: `translateX(${step2}px) translateZ(-110px) rotateY(${rot2}deg) scale(${scale2})`,
+        opacity: 0.86,
+        zIndex: 6,
+        filter: 'none',
+        pointerEvents: 'auto'
+      };
     } else {
-      if (trackRef.current) {
-        trackRef.current.style.transition = 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)';
-        trackRef.current.style.transform = `rotateY(${-rotationAngle}deg)`;
-      }
+      const sign = offset < 0 ? -1 : 1;
+      return {
+        transform: `translateX(${sign * (step2 + 180)}px) translateZ(-280px) rotateY(${sign * 42}deg) scale(0.68)`,
+        opacity: 0,
+        zIndex: 1,
+        filter: 'none',
+        pointerEvents: 'none'
+      };
     }
   };
 
   return (
     <section id="services" style={{ padding: '6rem 0', backgroundColor: '#F8FAFC', borderBottom: '1px solid #E2E8F0', overflow: 'hidden' }}>
       <div style={{ maxWidth: '1360px', margin: '0 auto', padding: '0 1.5rem' }}>
-        
+
         {/* Header Row */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '2.5rem' }}>
           <div style={{ maxWidth: '750px' }}>
@@ -125,7 +174,7 @@ export default function Services({ onOpenConsultation }) {
               SCOPE OF PRACTICE // 3D CYLINDER CAROUSEL
             </div>
             <h2 style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontWeight: 800, color: '#0F172A', lineHeight: 1.15, margin: '0 0 0.75rem 0' }}>
-              What Thirupathi Engineers Executes.
+              What Thirupathi ENGINEERING Executes.
             </h2>
             <p style={{ color: '#64748B', fontSize: '0.95rem', lineHeight: 1.6, margin: 0 }}>
               Specialized mechanical structural erection and equipment installation capabilities overseen directly by managing partners M. Mohan and K. Gopalakrishnan on the job site.
@@ -180,33 +229,33 @@ export default function Services({ onOpenConsultation }) {
         {/* 3D Cylindrical Carousel View */}
         {viewMode === 'cylinder' && (
           <div style={{ position: 'relative', width: '100%', padding: '1rem 0' }}>
-            
+
             {/* Prev/Next Navigation Arrows */}
             <button
               onClick={stepPrev}
               style={{
                 position: 'absolute',
                 left: '0.5rem',
-                top: 'calc(50% - 25px)',
-                zIndex: 10,
-                width: '48px',
-                height: '48px',
+                top: 'calc(50% - 29px)',
+                zIndex: 25,
+                width: '58px',
+                height: '58px',
                 borderRadius: '50%',
                 backgroundColor: '#FFFFFF',
-                border: '1px solid #E2E8F0',
+                border: '1.5px solid rgba(15, 23, 42, 0.14)',
                 color: '#0F172A',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                boxShadow: '0 6px 18px rgba(0,0,0,0.08)',
-                transition: 'all 0.2s ease'
+                boxShadow: '0 10px 30px rgba(15, 23, 42, 0.16)',
+                transition: 'all 0.25s ease'
               }}
               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#0F172A'; e.currentTarget.style.color = '#FFFFFF'; }}
               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#FFFFFF'; e.currentTarget.style.color = '#0F172A'; }}
               aria-label="Previous Service"
             >
-              <ChevronLeft size={22} />
+              <ChevronLeft size={24} />
             </button>
 
             <button
@@ -214,26 +263,26 @@ export default function Services({ onOpenConsultation }) {
               style={{
                 position: 'absolute',
                 right: '0.5rem',
-                top: 'calc(50% - 25px)',
-                zIndex: 10,
-                width: '48px',
-                height: '48px',
+                top: 'calc(50% - 29px)',
+                zIndex: 25,
+                width: '58px',
+                height: '58px',
                 borderRadius: '50%',
                 backgroundColor: '#FFFFFF',
-                border: '1px solid #E2E8F0',
+                border: '1.5px solid rgba(15, 23, 42, 0.14)',
                 color: '#0F172A',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                boxShadow: '0 6px 18px rgba(0,0,0,0.08)',
-                transition: 'all 0.2s ease'
+                boxShadow: '0 10px 30px rgba(15, 23, 42, 0.16)',
+                transition: 'all 0.25s ease'
               }}
               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#0F172A'; e.currentTarget.style.color = '#FFFFFF'; }}
               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#FFFFFF'; e.currentTarget.style.color = '#0F172A'; }}
               aria-label="Next Service"
             >
-              <ChevronRight size={22} />
+              <ChevronRight size={24} />
             </button>
 
             {/* 3D Scene Viewport */}
@@ -241,8 +290,10 @@ export default function Services({ onOpenConsultation }) {
               style={{
                 position: 'relative',
                 width: '100%',
-                height: '540px',
-                perspective: '1400px',
+                maxWidth: '1560px',
+                margin: '0 auto',
+                height: '720px',
+                perspective: '2200px',
                 perspectiveOrigin: '50% 50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -263,17 +314,19 @@ export default function Services({ onOpenConsultation }) {
                 ref={trackRef}
                 style={{
                   position: 'relative',
-                  width: '320px',
-                  height: '450px',
+                  width: '450px',
+                  height: '600px',
                   transformStyle: 'preserve-3d',
-                  transform: `rotateY(${-rotationAngle}deg)`,
-                  transition: isDragging ? 'none' : 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)'
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}
               >
                 {services.map((service, i) => {
-                  const cardAngle = i * angleStep;
+                  const cardStyle = getCardStyle(i);
                   const IconComponent = iconMap[service.icon] || Factory;
                   const isActive = i === currentIndex;
+                  const serviceNum = (i + 1).toString().padStart(2, '0');
 
                   return (
                     <div
@@ -283,11 +336,12 @@ export default function Services({ onOpenConsultation }) {
                         position: 'absolute',
                         top: 0,
                         left: 0,
-                        width: '320px',
-                        height: '450px',
+                        width: '450px',
+                        height: '600px',
                         transformStyle: 'preserve-3d',
-                        transform: `rotateY(${cardAngle}deg) translateZ(${radius}px)`,
-                        cursor: 'pointer'
+                        cursor: 'pointer',
+                        transition: 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease, filter 0.65s ease',
+                        ...cardStyle
                       }}
                     >
                       <div
@@ -296,10 +350,11 @@ export default function Services({ onOpenConsultation }) {
                           width: '100%',
                           height: '100%',
                           transformStyle: 'preserve-3d',
-                          borderRadius: '20px',
+                          borderRadius: '26px',
                           boxShadow: isActive
-                            ? '0 24px 50px -12px rgba(15, 23, 42, 0.2), 0 0 24px rgba(197, 160, 89, 0.28)'
-                            : '0 14px 34px rgba(15, 23, 42, 0.12)'
+                            ? '0 28px 65px -12px rgba(15, 23, 42, 0.22), 0 0 0 1.5px rgba(197, 160, 89, 0.55), 0 12px 36px rgba(197, 160, 89, 0.25)'
+                            : '0 20px 48px -10px rgba(15, 23, 42, 0.14), 0 3px 12px rgba(15, 23, 42, 0.04)',
+                          transition: 'box-shadow 0.35s ease, transform 0.35s ease'
                         }}
                       >
                         {/* Front Face */}
@@ -307,89 +362,112 @@ export default function Services({ onOpenConsultation }) {
                           style={{
                             position: 'absolute',
                             inset: 0,
-                            borderRadius: '20px',
+                            borderRadius: '26px',
                             overflow: 'hidden',
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'space-between',
-                            padding: '2.2rem 1.75rem 2rem',
+                            padding: '3rem 2.5rem 2.6rem',
                             backgroundColor: '#FFFFFF',
-                            background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%)',
-                            border: `1px solid ${isActive ? 'rgba(197, 160, 89, 0.55)' : 'rgba(226, 232, 240, 0.95)'}`,
+                            border: `1.5px solid ${isActive ? 'rgba(197, 160, 89, 0.7)' : 'rgba(15, 23, 42, 0.12)'}`,
                             backfaceVisibility: 'hidden',
                             WebkitBackfaceVisibility: 'hidden',
                             zIndex: 2,
-                            transform: 'rotateY(0deg)'
+                            transform: 'rotateY(0deg)',
+                            boxShadow: '0 8px 24px rgba(15, 23, 42, 0.04)'
                           }}
                         >
-                          {/* Top Highlight Border */}
+                          {/* Top Gradient Accent */}
                           <div
                             style={{
                               position: 'absolute',
                               top: 0,
                               left: 0,
                               right: 0,
-                              height: '4px',
-                              background: 'linear-gradient(90deg, #C5A059 0%, #0284C7 50%, #0D9488 100%)'
+                              height: '5px',
+                              background: 'linear-gradient(90deg, #C5A059 0%, #0284C7 50%, #0D9488 100%)',
+                              opacity: 0.95
                             }}
                           />
 
+                          {/* Watermark Number */}
+                          <div
+                            style={{
+                              position: 'absolute',
+                              top: '1.35rem',
+                              right: '1.8rem',
+                              fontFamily: 'monospace',
+                              fontSize: '4.2rem',
+                              fontWeight: 800,
+                              color: 'rgba(15, 23, 42, 0.08)',
+                              lineHeight: 1,
+                              letterSpacing: '-0.04em',
+                              pointerEvents: 'none'
+                            }}
+                          >
+                            {serviceNum}
+                          </div>
+
                           <div>
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
                               <div
                                 style={{
-                                  width: '54px',
-                                  height: '54px',
-                                  borderRadius: '14px',
-                                  backgroundColor: '#0F172A',
-                                  border: '1px solid rgba(197, 160, 89, 0.35)',
+                                  width: '68px',
+                                  height: '68px',
+                                  borderRadius: '18px',
+                                  background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
+                                  border: '1.5px solid rgba(255, 255, 255, 0.14)',
                                   display: 'flex',
                                   alignItems: 'center',
                                   justifyContent: 'center',
-                                  color: '#C5A059'
+                                  color: '#FFFFFF',
+                                  boxShadow: '0 10px 24px rgba(15, 23, 42, 0.18)'
                                 }}
                               >
-                                <IconComponent size={24} />
+                                <IconComponent size={32} strokeWidth={2.2} />
                               </div>
                               <span
                                 style={{
                                   fontFamily: 'monospace',
-                                  fontSize: '0.68rem',
-                                  fontWeight: 700,
-                                  color: '#926C15',
-                                  backgroundColor: 'rgba(197, 160, 89, 0.08)',
-                                  border: '1px solid rgba(197, 160, 89, 0.22)',
-                                  padding: '0.25rem 0.65rem',
+                                  fontSize: '0.78rem',
+                                  fontWeight: 800,
+                                  color: '#855C08',
+                                  backgroundColor: 'rgba(197, 160, 89, 0.14)',
+                                  border: '1.5px solid rgba(197, 160, 89, 0.35)',
+                                  padding: '0.35rem 0.85rem',
                                   borderRadius: '20px',
-                                  textTransform: 'uppercase'
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '0.12em'
                                 }}
                               >
                                 {service.category || 'STRUCTURAL'}
                               </span>
                             </div>
 
-                            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0F172A', lineHeight: 1.3, margin: '0 0 0.75rem 0' }}>
+                            <h3 style={{ fontSize: '1.48rem', fontWeight: 800, color: '#0A0F1D', lineHeight: 1.32, margin: '0 0 1rem 0', letterSpacing: '-0.02em' }}>
                               {service.title}
                             </h3>
 
-                            <p style={{ fontSize: '0.88rem', color: '#475569', lineHeight: 1.6, margin: 0 }}>
+                            <p style={{ fontSize: '1.04rem', color: '#1E293B', fontWeight: 500, lineHeight: 1.72, margin: 0, WebkitFontSmoothing: 'antialiased' }}>
                               {service.shortDesc}
                             </p>
                           </div>
 
                           {/* Tags */}
-                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', marginTop: '1.5rem' }}>
+                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem', marginTop: '1.75rem', paddingTop: '1.35rem', borderTop: '1.5px solid rgba(226, 232, 240, 0.9)' }}>
                             {service.tags && service.tags.map((t, idx) => (
                               <span
                                 key={idx}
                                 style={{
-                                  fontSize: '0.72rem',
-                                  fontWeight: 600,
-                                  color: '#334155',
+                                  fontFamily: 'monospace',
+                                  fontSize: '0.82rem',
+                                  fontWeight: 700,
+                                  color: '#0F172A',
                                   backgroundColor: '#F1F5F9',
-                                  border: '1px solid #E2E8F0',
-                                  padding: '0.3rem 0.65rem',
-                                  borderRadius: '6px'
+                                  border: '1.5px solid #CBD5E1',
+                                  padding: '0.42rem 0.85rem',
+                                  borderRadius: '8px',
+                                  letterSpacing: '0.04em'
                                 }}
                               >
                                 {t}
@@ -403,14 +481,14 @@ export default function Services({ onOpenConsultation }) {
                           style={{
                             position: 'absolute',
                             inset: 0,
-                            borderRadius: '20px',
+                            borderRadius: '26px',
                             overflow: 'hidden',
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
                             justifyContent: 'center',
                             textAlign: 'center',
-                            padding: '2rem',
+                            padding: '2.5rem',
                             background: 'linear-gradient(145deg, #0F172A 0%, #1E293B 100%)',
                             border: '1px solid rgba(197, 160, 89, 0.4)',
                             color: '#FFFFFF',
@@ -419,16 +497,16 @@ export default function Services({ onOpenConsultation }) {
                             transform: 'rotateY(180deg)'
                           }}
                         >
-                          <div style={{ fontFamily: 'monospace', fontSize: '0.8rem', letterSpacing: '0.2em', color: '#DFBF77', marginBottom: '0.5rem', opacity: 0.85 }}>
+                          <div style={{ fontFamily: 'monospace', fontSize: '0.88rem', letterSpacing: '0.25em', color: '#DFBF77', marginBottom: '0.6rem', opacity: 0.9 }}>
                             TE // ERECTION
                           </div>
-                          <div style={{ fontFamily: 'monospace', fontSize: '4rem', fontWeight: 800, color: '#C5A059', lineHeight: 1, marginBottom: '0.75rem', textShadow: '0 4px 18px rgba(197, 160, 89, 0.4)' }}>
-                            {service.dataNum || (i + 1).toString().padStart(2, '0')}
+                          <div style={{ fontFamily: 'monospace', fontSize: '4.8rem', fontWeight: 800, color: '#C5A059', lineHeight: 1, marginBottom: '0.85rem', textShadow: '0 4px 18px rgba(197, 160, 89, 0.4)' }}>
+                            {serviceNum}
                           </div>
-                          <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#F8FAFC', maxWidth: '220px', lineHeight: 1.4, margin: '0 0 0.5rem 0' }}>
+                          <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#F8FAFC', maxWidth: '260px', lineHeight: 1.45, margin: '0 0 0.75rem 0' }}>
                             {service.title}
                           </h4>
-                          <span style={{ fontFamily: 'monospace', fontSize: '0.65rem', color: '#DFBF77', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                          <span style={{ fontFamily: 'monospace', fontSize: '0.72rem', color: '#DFBF77', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                             {service.category || 'INDUSTRIAL'}
                           </span>
                         </div>

@@ -41,20 +41,20 @@ export default function Contact() {
     }
   };
 
-  const phones = settings.phones && settings.phones.length > 0 
-    ? settings.phones 
+  const phones = settings.phones && settings.phones.length > 0
+    ? settings.phones
     : [{ display: '+91 90432 88002', value: '9043288002' }, { display: '+91 97905 20126', value: '9790520126' }];
 
-  const emails = settings.emails && settings.emails.length > 0 
-    ? settings.emails 
-    : ['thirupathiengineerss@gmail.com', 'gopalkannan5@gmail.com'];
+  const emails = settings.emails && settings.emails.length > 0
+    ? settings.emails
+    : ['thirupathiENGINEERINGs@gmail.com', 'gopalkannan5@gmail.com'];
 
   return (
     <section id="contact" style={{ padding: '5.5rem 0', backgroundColor: '#FFFFFF' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }}>
-        
+
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '3.5rem' }}>
-          
+
           {/* Left Column: Direct Inquiries Info */}
           <div>
             <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#C5A059', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
@@ -69,7 +69,7 @@ export default function Contact() {
 
             {/* Direct Contact Cards */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '2.5rem' }}>
-              
+
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                 <div style={{ width: '44px', height: '44px', backgroundColor: '#F8FAFC', border: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#C5A059', flexShrink: 0 }}>
                   <Phone size={20} />
@@ -138,7 +138,7 @@ export default function Contact() {
                 <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
                   Your Full Name *
                 </label>
-                <input 
+                <input
                   type="text"
                   required
                   placeholder="e.g. S. Ramanathan"
@@ -153,7 +153,7 @@ export default function Contact() {
                   <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
                     Email Address *
                   </label>
-                  <input 
+                  <input
                     type="email"
                     required
                     placeholder="email@company.com"
@@ -166,7 +166,7 @@ export default function Contact() {
                   <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
                     Phone Number
                   </label>
-                  <input 
+                  <input
                     type="tel"
                     placeholder="+91 98765 43210"
                     value={formData.phone}
@@ -198,7 +198,7 @@ export default function Contact() {
                 <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
                   Project Description & Specifications *
                 </label>
-                <textarea 
+                <textarea
                   rows={4}
                   required
                   placeholder="Outline your tonnage, elevation, timeline, and location specifications..."

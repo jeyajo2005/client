@@ -6,16 +6,16 @@ export default function WhyChooseUs() {
   const icons = [Clock, Factory, Flame, Wrench, Users, ShieldCheck];
 
   return (
-    <section 
-      style={{ 
-        backgroundColor: 'var(--bg-light-gray)', 
+    <section
+      style={{
+        backgroundColor: 'var(--bg-light-gray)',
         borderBottom: '1px solid var(--border-subtle)',
         paddingTop: '5rem',
         paddingBottom: '5rem'
       }}
     >
       <div className="container">
-        
+
         {/* Section Header */}
         <div style={{ maxWidth: '820px', marginBottom: '3.5rem' }}>
           <div className="section-tag">
@@ -24,7 +24,7 @@ export default function WhyChooseUs() {
 
           <h2 className="section-heading">
             Why Choose <br />
-            <span style={{ color: 'var(--color-primary-blue)' }}>THIRUPATHI ENGINEERS?</span>
+            <span style={{ color: 'var(--color-primary-blue)' }}>THIRUPATHI ENGINEERING?</span>
           </h2>
 
           <p className="section-subtext">
@@ -33,7 +33,7 @@ export default function WhyChooseUs() {
         </div>
 
         {/* 6 Cards Grid */}
-        <div 
+        <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
@@ -44,7 +44,7 @@ export default function WhyChooseUs() {
             const Icon = icons[idx % icons.length];
 
             return (
-              <div 
+              <div
                 key={idx}
                 className="industrial-card"
                 style={{

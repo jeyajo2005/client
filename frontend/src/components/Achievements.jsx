@@ -5,7 +5,7 @@ export default function Achievements() {
   return (
     <section id="outcomes" className="section" style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid var(--border-hairline)' }}>
       <div className="container">
-        
+
         {/* Header */}
         <div style={{
           display: 'flex',
@@ -34,7 +34,7 @@ export default function Achievements() {
             lineHeight: 1.6,
             marginBottom: '0.5rem'
           }}>
-            Every calculation is stamped by licensed Professional Engineers and optimized to prevent field delays.
+            Every calculation is stamped by licensed Professional ENGINEERING and optimized to prevent field delays.
           </p>
         </div>
 

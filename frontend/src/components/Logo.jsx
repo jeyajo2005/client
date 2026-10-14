@@ -1,15 +1,15 @@
 import React from 'react';
 
 /**
- * ThirupathiEngineersLogo / Wordmark
- * Clean typographic brand representation for THIRUPATHI ENGINEERS.
+ * ThirupathiENGINEERINGLogo / Wordmark
+ * Clean typographic brand representation for THIRUPATHI ENGINEERING.
  * Rendered without any icon/emblem as requested ("logo vea vendam").
  */
-export default function Logo({ 
-  size = 'md', 
+export default function Logo({
+  size = 'md',
   showIcon = false, // Icon disabled - pure typography wordmark
   variant = 'light', // 'light' (white text on dark bg) or 'dark' (dark text on white bg)
-  subtitle = 'Partnership Firm • Industrial Erection' 
+  subtitle = 'Partnership Firm • Industrial Erection'
 }) {
   const dimensions = {
     sm: { titleSize: '1.15rem', subSize: '0.62rem' },
@@ -30,7 +30,7 @@ export default function Logo({
         color: isDarkText ? '#0F172A' : '#FFFFFF',
         whiteSpace: 'nowrap'
       }}>
-        THIRUPATHI <span style={{ color: '#FF5500' }}>ENGINEERS</span>
+        THIRUPATHI <span style={{ color: '#FF5500' }}>ENGINEERING</span>
       </div>
 
       {subtitle && (

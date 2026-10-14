@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { 
-  LayoutDashboard, Zap, FileText, Wrench, FolderKanban, 
-  Clock, Award, Users, MessageSquareQuote, Images, Mail, 
-  Settings, LogOut, ExternalLink, Menu, X, Check, AlertCircle 
+import {
+  LayoutDashboard, Zap, FileText, Wrench, FolderKanban,
+  Clock, Award, Users, MessageSquareQuote, Images, Mail,
+  Settings, LogOut, ExternalLink, Menu, X, Check, AlertCircle
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { usePortfolio } from '../context/PortfolioContext';
@@ -29,7 +29,7 @@ export default function AdminLayout({ activeTab, onTabChange, children }) {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', backgroundColor: '#F8FAFC' }}>
-      
+
       {/* Sidebar Desktop */}
       <aside style={{
         width: '260px',
@@ -44,7 +44,7 @@ export default function AdminLayout({ activeTab, onTabChange, children }) {
         borderRight: '1px solid #1E293B',
         overflowY: 'auto'
       }} className="admin-sidebar">
-        
+
         {/* Brand */}
         <div style={{ padding: '1.5rem', borderBottom: '1px solid #1E293B', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div style={{
@@ -127,7 +127,7 @@ export default function AdminLayout({ activeTab, onTabChange, children }) {
             {user?.username || 'admin'}
           </div>
           <div style={{ fontSize: '0.7rem', color: '#64748B', marginBottom: '0.75rem' }}>
-            {user?.email || 'admin@thirupathiengineers.com'}
+            {user?.email || 'admin@thirupathiENGINEERING.com'}
           </div>
           <button
             onClick={logout}
@@ -155,7 +155,7 @@ export default function AdminLayout({ activeTab, onTabChange, children }) {
 
       {/* Main Panel Content Area */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-        
+
         {/* Top Navbar */}
         <header style={{
           height: '64px',
@@ -189,7 +189,7 @@ export default function AdminLayout({ activeTab, onTabChange, children }) {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <a 
+            <a
               href="#home"
               target="_blank"
               rel="noopener noreferrer"

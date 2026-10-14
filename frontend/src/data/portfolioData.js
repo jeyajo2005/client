@@ -1,5 +1,5 @@
 export const companyInfo = {
-  name: "THIRUPATHI ENGINEERS",
+  name: "THIRUPATHI ENGINEERING",
   businessType: "Partnership Firm",
   tagline: "Engineering Strength. Building Industrial Excellence.",
   subtitle: "Delivering reliable industrial steel structure fabrication and erection, cement plant construction, and power plant structural solutions through experience, precision, and commitment to quality.",
@@ -8,7 +8,7 @@ export const companyInfo = {
     { display: "+91 9790520126", value: "9790520126" }
   ],
   emails: [
-    "thirupathiengineerss@gmail.com",
+    "thirupathiENGINEERINGs@gmail.com",
     "gopalkannan5@gmail.com"
   ],
   address: "Tamil Nadu, India",

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile & Engineering Settings · Thirupathi Engineers</title>
-  <link rel="stylesheet" href="admin.css">
+  <title>Profile & Engineering Settings · Thirupathi ENGINEERING</title>
+  <link rel="stylesheet" href="admin.css?v=4">
 </head>
+
 <body>
 
   <div class="admin-wrapper">
@@ -24,25 +26,42 @@
       <nav class="sidebar-nav">
         <div class="nav-section-title">Navigation</div>
         <a href="dashboard.html" class="nav-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
           <span>Dashboard</span>
         </a>
         <a href="timeline.html" class="nav-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
           <span>Timeline (Serpentine)</span>
         </a>
         <a href="projects.html" class="nav-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+          </svg>
           <span>Showcase Projects</span>
         </a>
         <a href="profile.html" class="nav-link active">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
           <span>Profile & Skills</span>
         </a>
 
         <div class="nav-section-title" style="margin-top:1rem;">Live Website</div>
         <a href="/" target="_blank" class="nav-link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
           <span>View Live Site ↗</span>
         </a>
       </nav>
@@ -54,8 +73,13 @@
             <div class="user-name" id="adminUserName">Managing Partner</div>
             <div class="user-role">Administrator</div>
           </div>
-          <button id="logoutBtn" title="Logout" style="background:none; border:none; color:var(--accent-rose); cursor:pointer; padding:0.4rem;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          <button id="logoutBtn" title="Logout"
+            style="background:none; border:none; color:var(--accent-rose); cursor:pointer; padding:0.4rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
           </button>
         </div>
       </div>
@@ -66,7 +90,11 @@
       <header class="admin-topbar">
         <div class="topbar-left">
           <button class="menu-toggle" id="sidebarToggle">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
           </button>
           <div class="page-title-badge">
             <h1>Managing Partner Profile & Capabilities</h1>
@@ -77,51 +105,176 @@
       <div class="admin-content">
 
         <!-- PARTNER & COMPANY PROFILE FORM -->
+        <!-- MANAGING PARTNER 01: M. MOHAN -->
         <div class="card-panel">
           <div class="panel-header">
             <div class="panel-title">
-              <h3>Company & Managing Partners Profile</h3>
-              <p>Industrial firm identities, lineage years, and primary narratives</p>
+              <h3>Managing Partner 01: M. Mohan</h3>
+              <p>Senior field erection specialist credentials, contact & leadership story</p>
             </div>
             <div class="panel-actions">
-              <button class="btn btn-primary btn-sm" onclick="saveProfileForm()">Save Profile Changes</button>
+              <button class="btn btn-primary btn-sm" onclick="saveProfileForm()">Save All Partner Changes</button>
             </div>
           </div>
-
           <div style="padding:1.5rem;">
-            <form id="profileForm" onsubmit="event.preventDefault(); saveProfileForm();">
-              <div class="form-grid">
-                <div class="form-group">
-                  <label for="profPartner1">Managing Partner 1</label>
-                  <input type="text" id="profPartner1" class="form-control" value="M. Mohan">
-                </div>
-
-                <div class="form-group">
-                  <label for="profPartner2">Managing Partner 2</label>
-                  <input type="text" id="profPartner2" class="form-control" value="K. Gopala Krishnan">
-                </div>
-
-                <div class="form-group">
-                  <label for="profTitle">Corporate Title</label>
-                  <input type="text" id="profTitle" class="form-control" value="MANAGING PARTNERS · THIRUPATHI ENGINEERS">
-                </div>
-
-                <div class="form-group">
-                  <label for="profYears">Years Combined Lineage</label>
-                  <input type="number" id="profYears" class="form-control" value="50">
-                </div>
-
-                <div class="form-group col-full">
-                  <label for="profHeroDesc">Hero Introduction Narrative</label>
-                  <textarea id="profHeroDesc" class="form-control"></textarea>
-                </div>
-
-                <div class="form-group col-full">
-                  <label for="profAboutDesc">About Section & Lineage Story</label>
-                  <textarea id="profAboutDesc" class="form-control" style="min-height:110px;"></textarea>
-                </div>
+            <!-- Partner 1 Photo Upload Row -->
+            <div class="form-group col-full"
+              style="display:flex; align-items:center; gap:1.5rem; background:rgba(255,255,255,0.03); padding:1.25rem; border-radius:8px; border:1px solid rgba(255,255,255,0.08); margin-bottom:1.5rem;">
+              <div
+                style="position:relative; width:90px; height:90px; border-radius:8px; overflow:hidden; border:2px solid var(--accent-gold, #c5a059); flex-shrink:0; background:#0f172a; display:flex; align-items:center; justify-content:center;">
+                <img id="profPartner1ImgPreview" src="/assets/images/mohan.png" alt="Partner 1 Preview"
+                  style="width:100%; height:100%; object-fit:cover;">
               </div>
-            </form>
+              <div style="flex:1;">
+                <label style="display:block; margin-bottom:0.4rem; font-weight:600; color:#fff; font-size:0.95rem;">M.
+                  Mohan - Executive Photo</label>
+                <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+                  <input type="file" id="profPartner1FileInput" accept="image/*" style="display:none;"
+                    onchange="handlePartnerPhotoUpload(1, this)">
+                  <button type="button" class="btn btn-secondary btn-sm"
+                    onclick="document.getElementById('profPartner1FileInput').click()">
+                    📷 Upload Photo
+                  </button>
+                  <input type="text" id="profPartner1Image" class="form-control"
+                    style="flex:1; min-width:220px; font-size:0.85rem;"
+                    placeholder="assets/images/mohan.png or image URL" oninput="updatePartnerImgPreview(1, this.value)">
+                </div>
+                <small style="color:var(--text-muted); font-size:0.75rem; display:block; margin-top:0.4rem;">Select an
+                  image from your device or paste an image URL. Updates live on the website.</small>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="profPartner1">Partner 1 Full Name</label>
+                <input type="text" id="profPartner1" class="form-control" value="M. Mohan">
+              </div>
+              <div class="form-group">
+                <label for="profPartner1Role">Designation / Role</label>
+                <input type="text" id="profPartner1Role" class="form-control"
+                  value="Industrial Erection & Field Operations Lead">
+              </div>
+              <div class="form-group">
+                <label for="profPartner1Exp">Experience Tag</label>
+                <input type="text" id="profPartner1Exp" class="form-control" value="50+ YEARS EXPERIENCE">
+              </div>
+              <div class="form-group">
+                <label for="profPartner1Phone">Direct Phone Number</label>
+                <input type="text" id="profPartner1Phone" class="form-control" value="+91 9043288002">
+              </div>
+              <div class="form-group col-full">
+                <label for="profPartner1Email">Direct Email Address</label>
+                <input type="email" id="profPartner1Email" class="form-control"
+                  value="thirupathiENGINEERINGs@gmail.com">
+              </div>
+              <div class="form-group col-full">
+                <label for="profPartner1Bio">Career Profile & Landmark Milestones Bio</label>
+                <textarea id="profPartner1Bio" class="form-control" style="min-height:100px;"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MANAGING PARTNER 02: K. GOPALA KRISHNAN -->
+        <div class="card-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <h3>Managing Partner 02: K. Gopala Krishnan</h3>
+              <p>Mechanical engineer & project management leadership credentials</p>
+            </div>
+            <div class="panel-actions">
+              <button class="btn btn-primary btn-sm" onclick="saveProfileForm()">Save All Partner Changes</button>
+            </div>
+          </div>
+          <div style="padding:1.5rem;">
+            <!-- Partner 2 Photo Upload Row -->
+            <div class="form-group col-full"
+              style="display:flex; align-items:center; gap:1.5rem; background:rgba(255,255,255,0.03); padding:1.25rem; border-radius:8px; border:1px solid rgba(255,255,255,0.08); margin-bottom:1.5rem;">
+              <div
+                style="position:relative; width:90px; height:90px; border-radius:8px; overflow:hidden; border:2px solid var(--accent-gold, #c5a059); flex-shrink:0; background:#0f172a; display:flex; align-items:center; justify-content:center;">
+                <img id="profPartner2ImgPreview" src="/assets/images/gopalakrishnan.jpg" alt="Partner 2 Preview"
+                  style="width:100%; height:100%; object-fit:cover;">
+              </div>
+              <div style="flex:1;">
+                <label style="display:block; margin-bottom:0.4rem; font-weight:600; color:#fff; font-size:0.95rem;">K.
+                  Gopala Krishnan - Executive Photo</label>
+                <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+                  <input type="file" id="profPartner2FileInput" accept="image/*" style="display:none;"
+                    onchange="handlePartnerPhotoUpload(2, this)">
+                  <button type="button" class="btn btn-secondary btn-sm"
+                    onclick="document.getElementById('profPartner2FileInput').click()">
+                    📷 Upload Photo
+                  </button>
+                  <input type="text" id="profPartner2Image" class="form-control"
+                    style="flex:1; min-width:220px; font-size:0.85rem;"
+                    placeholder="assets/images/gopalakrishnan.jpg or image URL"
+                    oninput="updatePartnerImgPreview(2, this.value)">
+                </div>
+                <small style="color:var(--text-muted); font-size:0.75rem; display:block; margin-top:0.4rem;">Select an
+                  image from your device or paste an image URL. Updates live on the website.</small>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="profPartner2">Partner 2 Full Name</label>
+                <input type="text" id="profPartner2" class="form-control" value="K. Gopala Krishnan">
+              </div>
+              <div class="form-group">
+                <label for="profPartner2Role">Designation / Role</label>
+                <input type="text" id="profPartner2Role" class="form-control" value="Mechanical Engineer">
+              </div>
+              <div class="form-group">
+                <label for="profPartner2Exp">Experience Tag</label>
+                <input type="text" id="profPartner2Exp" class="form-control" value="~15 YEARS EXPERIENCE">
+              </div>
+              <div class="form-group">
+                <label for="profPartner2Phone">Direct Phone Number</label>
+                <input type="text" id="profPartner2Phone" class="form-control" value="+91 9790520126">
+              </div>
+              <div class="form-group col-full">
+                <label for="profPartner2Email">Direct Email Address</label>
+                <input type="email" id="profPartner2Email" class="form-control" value="gopalkannan5@gmail.com">
+              </div>
+              <div class="form-group col-full">
+                <label for="profPartner2Bio">Career Profile & Structural Engineering Bio</label>
+                <textarea id="profPartner2Bio" class="form-control" style="min-height:100px;"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CORPORATE FIRM NARRATIVE -->
+        <div class="card-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <h3>Corporate Firm Narrative & Hero Introductions</h3>
+              <p>Company-wide subtitle, lineage years, and homepage hero texts</p>
+            </div>
+            <div class="panel-actions">
+              <button class="btn btn-primary btn-sm" onclick="saveProfileForm()">Save All Partner Changes</button>
+            </div>
+          </div>
+          <div style="padding:1.5rem;">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="profTitle">Corporate Title</label>
+                <input type="text" id="profTitle" class="form-control"
+                  value="MANAGING PARTNERS · THIRUPATHI ENGINEERING">
+              </div>
+              <div class="form-group">
+                <label for="profYears">Years Combined Lineage</label>
+                <input type="number" id="profYears" class="form-control" value="50">
+              </div>
+              <div class="form-group col-full">
+                <label for="profHeroDesc">Hero Introduction Narrative</label>
+                <textarea id="profHeroDesc" class="form-control"></textarea>
+              </div>
+              <div class="form-group col-full">
+                <label for="profAboutDesc">About Section & Lineage Story</label>
+                <textarea id="profAboutDesc" class="form-control" style="min-height:110px;"></textarea>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -149,7 +302,9 @@
                 </tr>
               </thead>
               <tbody id="skillsTableBody">
-                <tr><td colspan="5" style="text-align:center; padding:1.5rem;">Loading skills...</td></tr>
+                <tr>
+                  <td colspan="5" style="text-align:center; padding:1.5rem;">Loading skills...</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -172,7 +327,7 @@
               <div class="form-grid">
                 <div class="form-group">
                   <label for="contactEmail">Official Email</label>
-                  <input type="email" id="contactEmail" class="form-control" value="thirupathiengineerss@gmail.com">
+                  <input type="email" id="contactEmail" class="form-control" value="thirupathiENGINEERINGs@gmail.com">
                 </div>
 
                 <div class="form-group">
@@ -187,12 +342,14 @@
 
                 <div class="form-group">
                   <label for="contactHours">Operating Hours</label>
-                  <input type="text" id="contactHours" class="form-control" value="Mon–Sat: 8 AM – 7 PM (24/7 Shutdown Response)">
+                  <input type="text" id="contactHours" class="form-control"
+                    value="Mon–Sat: 8 AM – 7 PM (24/7 Shutdown Response)">
                 </div>
 
                 <div class="form-group col-full">
                   <label for="contactAddress">Registered Workshop & Site Address</label>
-                  <input type="text" id="contactAddress" class="form-control" value="Industrial Estate, Virudhunagar / R.R. Nagar Works, Tamil Nadu, India - 626204">
+                  <input type="text" id="contactAddress" class="form-control"
+                    value="Industrial Estate, Virudhunagar / R.R. Nagar Works, Tamil Nadu, India - 626204">
                 </div>
               </div>
             </form>
@@ -216,7 +373,8 @@
         <div class="modal-body">
           <div class="form-group" style="margin-bottom:1rem;">
             <label for="skillName">Skill / Discipline Name</label>
-            <input type="text" id="skillName" class="form-control" placeholder="e.g. Heavy Tandem Crane Rigging" required>
+            <input type="text" id="skillName" class="form-control" placeholder="e.g. Heavy Tandem Crane Rigging"
+              required>
           </div>
 
           <div class="form-group" style="margin-bottom:1rem;">
@@ -248,6 +406,50 @@
   <script>
     checkAuth();
 
+    // Helper to format image paths
+    function formatImgSrc(src) {
+      if (!src) return '';
+      if (src.startsWith('http') || src.startsWith('data:') || src.startsWith('/')) return src;
+      return `/${src}`;
+    }
+
+    // Photo Preview Updater
+    function updatePartnerImgPreview(partnerNum, url) {
+      const preview = document.getElementById(`profPartner${partnerNum}ImgPreview`);
+      if (preview && url && url.trim()) {
+        preview.src = formatImgSrc(url.trim());
+      }
+    }
+
+    // Handle File Upload via REST /api/upload
+    async function handlePartnerPhotoUpload(partnerNum, input) {
+      if (!input.files || !input.files[0]) return;
+      const file = input.files[0];
+      const formData = new FormData();
+      formData.append('image', file);
+
+      showToast(`Uploading Partner 0${partnerNum} photo...`, 'info');
+
+      try {
+        const res = await fetch(`${API_BASE}/upload`, {
+          method: 'POST',
+          credentials: 'include',
+          body: formData
+        });
+        const data = await res.json();
+        if (data.success && (data.relativePath || data.url)) {
+          const finalPath = data.relativePath || data.url;
+          document.getElementById(`profPartner${partnerNum}Image`).value = finalPath;
+          updatePartnerImgPreview(partnerNum, finalPath);
+          showToast(`Partner 0${partnerNum} photo uploaded! Remember to click 'Save All Partner Changes'.`, 'success');
+        } else {
+          showToast(data.message || 'Image upload failed', 'error');
+        }
+      } catch (err) {
+        showToast('Upload error: ' + err.message, 'error');
+      }
+    }
+
     // 1. Load Profile
     async function loadProfile() {
       try {
@@ -256,7 +458,25 @@
         if (data.success && data.data) {
           const p = data.data;
           document.getElementById('profPartner1').value = p.partner1 || 'M. Mohan';
+          document.getElementById('profPartner1Role').value = p.partner1Role || 'Industrial Erection & Field Operations Lead';
+          document.getElementById('profPartner1Exp').value = p.partner1Exp || '50+ YEARS EXPERIENCE';
+          document.getElementById('profPartner1Phone').value = p.partner1Phone || '+91 9043288002';
+          document.getElementById('profPartner1Email').value = p.partner1Email || 'thirupathiENGINEERINGs@gmail.com';
+          document.getElementById('profPartner1Bio').value = p.partner1Bio || '';
+          const p1Img = p.partner1Image || 'assets/images/mohan.png';
+          document.getElementById('profPartner1Image').value = p1Img;
+          updatePartnerImgPreview(1, p1Img);
+
           document.getElementById('profPartner2').value = p.partner2 || 'K. Gopala Krishnan';
+          document.getElementById('profPartner2Role').value = p.partner2Role || 'Mechanical Engineer';
+          document.getElementById('profPartner2Exp').value = p.partner2Exp || '~15 YEARS EXPERIENCE';
+          document.getElementById('profPartner2Phone').value = p.partner2Phone || '+91 9790520126';
+          document.getElementById('profPartner2Email').value = p.partner2Email || 'gopalkannan5@gmail.com';
+          document.getElementById('profPartner2Bio').value = p.partner2Bio || '';
+          const p2Img = p.partner2Image || 'assets/images/gopalakrishnan.jpg';
+          document.getElementById('profPartner2Image').value = p2Img;
+          updatePartnerImgPreview(2, p2Img);
+
           document.getElementById('profTitle').value = p.title || '';
           document.getElementById('profYears').value = p.experienceYears || 50;
           document.getElementById('profHeroDesc').value = p.heroDescription || '';
@@ -270,7 +490,21 @@
     async function saveProfileForm() {
       const payload = {
         partner1: document.getElementById('profPartner1').value.trim(),
+        partner1Role: document.getElementById('profPartner1Role').value.trim(),
+        partner1Exp: document.getElementById('profPartner1Exp').value.trim(),
+        partner1Phone: document.getElementById('profPartner1Phone').value.trim(),
+        partner1Email: document.getElementById('profPartner1Email').value.trim(),
+        partner1Bio: document.getElementById('profPartner1Bio').value.trim(),
+        partner1Image: document.getElementById('profPartner1Image').value.trim() || 'assets/images/mohan.png',
+
         partner2: document.getElementById('profPartner2').value.trim(),
+        partner2Role: document.getElementById('profPartner2Role').value.trim(),
+        partner2Exp: document.getElementById('profPartner2Exp').value.trim(),
+        partner2Phone: document.getElementById('profPartner2Phone').value.trim(),
+        partner2Email: document.getElementById('profPartner2Email').value.trim(),
+        partner2Bio: document.getElementById('profPartner2Bio').value.trim(),
+        partner2Image: document.getElementById('profPartner2Image').value.trim() || 'assets/images/gopalakrishnan.jpg',
+
         name: `${document.getElementById('profPartner1').value.trim()}, ${document.getElementById('profPartner2').value.trim()}`,
         title: document.getElementById('profTitle').value.trim(),
         experienceYears: parseInt(document.getElementById('profYears').value, 10),
@@ -287,7 +521,7 @@
         });
         const data = await res.json();
         if (data.success) {
-          showToast('Partner profile updated successfully', 'success');
+          showToast('Partner profiles & photos updated successfully!', 'success');
         } else {
           showToast(data.message || 'Error updating profile', 'error');
         }
@@ -430,4 +664,5 @@
     loadContactSettings();
   </script>
 </body>
+
 </html>

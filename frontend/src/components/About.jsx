@@ -23,19 +23,19 @@ export default function About() {
   return (
     <section id="about" style={{ padding: '5rem 0', backgroundColor: '#F8FAFC', borderBottom: '1px solid #E2E8F0' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }}>
-        
+
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3.5rem', alignItems: 'center' }}>
-          
+
           {/* Left Column: Narrative */}
           <div>
             <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#C5A059', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
-              {about.tagline || 'About Thirupathi Engineers'}
+              {about.tagline || 'About Thirupathi ENGINEERING'}
             </div>
             <h2 style={{ fontSize: 'clamp(1.85rem, 3.5vw, 2.75rem)', fontWeight: 800, color: '#0F172A', lineHeight: 1.2, margin: '0 0 1.5rem 0' }}>
               {about.heading || 'Founded on Integrity, Engineered for Heavy Industry'}
             </h2>
             <p style={{ fontSize: '1.05rem', color: '#334155', lineHeight: 1.6, marginBottom: '1.25rem' }}>
-              {about.intro || 'Thirupathi Engineers is a premier mechanical industrial structural and equipment erection partnership firm based in Tamil Nadu, India.'}
+              {about.intro || 'Thirupathi ENGINEERING is a premier mechanical industrial structural and equipment erection partnership firm based in Tamil Nadu, India.'}
             </p>
             <p style={{ fontSize: '0.95rem', color: '#64748B', lineHeight: 1.6, marginBottom: '2rem' }}>
               {about.history || 'Senior partner M. Mohan began his career in steel plant construction in 1985 and expanded into cement plant erection in 1990, bringing over five decades of deep lineage.'}
@@ -72,9 +72,9 @@ export default function About() {
               padding: '0.5rem',
               boxShadow: '0 20px 40px rgba(15, 23, 42, 0.12)'
             }}>
-              <img 
-                src={about.image || '/assets/about-engineering.jpg'} 
-                alt="Thirupathi Engineers Heavy Industrial Erection"
+              <img
+                src={about.image || '/assets/about-engineering.jpg'}
+                alt="Thirupathi ENGINEERING Heavy Industrial Erection"
                 style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover', minHeight: '380px' }}
                 onError={(e) => { e.currentTarget.src = '/assets/project-power-plant.jpg'; }}
               />

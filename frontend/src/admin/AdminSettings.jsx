@@ -6,21 +6,21 @@ import { usePortfolio } from '../context/PortfolioContext';
 export default function AdminSettings() {
   const { data, refreshData } = usePortfolio();
   const [formData, setFormData] = useState({
-    companyName: 'Thirupathi Engineers',
+    companyName: 'Thirupathi ENGINEERING',
     tagline: 'Mechanical Industrial Structures',
     businessType: 'Partnership Firm',
     siteTitle: '',
     metaDescription: '',
     metaKeywords: '',
     phones: [{ display: '+91 90432 88002', value: '9043288002' }, { display: '+91 97905 20126', value: '9790520126' }],
-    emails: ['thirupathiengineerss@gmail.com', 'gopalkannan5@gmail.com'],
+    emails: ['thirupathiENGINEERINGs@gmail.com', 'gopalkannan5@gmail.com'],
     officeAddress: 'Tamil Nadu, India',
     footerText: '',
     copyrightText: ''
   });
   const [phone1, setPhone1] = useState('+91 90432 88002');
   const [phone2, setPhone2] = useState('+91 97905 20126');
-  const [email1, setEmail1] = useState('thirupathiengineerss@gmail.com');
+  const [email1, setEmail1] = useState('thirupathiENGINEERINGs@gmail.com');
   const [email2, setEmail2] = useState('gopalkannan5@gmail.com');
   const [saving, setSaving] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -28,7 +28,7 @@ export default function AdminSettings() {
   useEffect(() => {
     if (data.settings) {
       setFormData({
-        companyName: data.settings.companyName || 'Thirupathi Engineers',
+        companyName: data.settings.companyName || 'Thirupathi ENGINEERING',
         tagline: data.settings.tagline || 'Mechanical Industrial Structures',
         businessType: data.settings.businessType || 'Partnership Firm',
         siteTitle: data.settings.siteTitle || '',
@@ -89,7 +89,7 @@ export default function AdminSettings() {
       )}
 
       <form onSubmit={handleSubmit} style={{ backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-        
+
         {/* SEO Metadata */}
         <div>
           <h3 style={{ fontSize: '1rem', fontWeight: 800, color: '#0F172A', textTransform: 'uppercase', letterSpacing: '0.04em', margin: '0 0 1rem 0' }}>
@@ -101,7 +101,7 @@ export default function AdminSettings() {
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
                 Browser Title Tag (&lt;title&gt;)
               </label>
-              <input 
+              <input
                 type="text"
                 required
                 value={formData.siteTitle}
@@ -114,7 +114,7 @@ export default function AdminSettings() {
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
                 Meta Description (Google Search Result Snippet)
               </label>
-              <textarea 
+              <textarea
                 rows={2}
                 value={formData.metaDescription}
                 onChange={(e) => setFormData({ ...formData, metaDescription: e.target.value })}
@@ -126,7 +126,7 @@ export default function AdminSettings() {
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
                 Meta Keywords
               </label>
-              <input 
+              <input
                 type="text"
                 value={formData.metaKeywords}
                 onChange={(e) => setFormData({ ...formData, metaKeywords: e.target.value })}
@@ -147,7 +147,7 @@ export default function AdminSettings() {
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
                 Company Name
               </label>
-              <input 
+              <input
                 type="text"
                 value={formData.companyName}
                 onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
@@ -158,7 +158,7 @@ export default function AdminSettings() {
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
                 Tagline
               </label>
-              <input 
+              <input
                 type="text"
                 value={formData.tagline}
                 onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
@@ -172,7 +172,7 @@ export default function AdminSettings() {
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
                 Phone Number 1
               </label>
-              <input 
+              <input
                 type="text"
                 value={phone1}
                 onChange={(e) => setPhone1(e.target.value)}
@@ -183,7 +183,7 @@ export default function AdminSettings() {
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
                 Phone Number 2
               </label>
-              <input 
+              <input
                 type="text"
                 value={phone2}
                 onChange={(e) => setPhone2(e.target.value)}
@@ -197,7 +197,7 @@ export default function AdminSettings() {
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
                 Email 1
               </label>
-              <input 
+              <input
                 type="email"
                 value={email1}
                 onChange={(e) => setEmail1(e.target.value)}
@@ -208,7 +208,7 @@ export default function AdminSettings() {
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
                 Email 2
               </label>
-              <input 
+              <input
                 type="email"
                 value={email2}
                 onChange={(e) => setEmail2(e.target.value)}
@@ -221,7 +221,7 @@ export default function AdminSettings() {
             <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
               Office Address
             </label>
-            <input 
+            <input
               type="text"
               value={formData.officeAddress}
               onChange={(e) => setFormData({ ...formData, officeAddress: e.target.value })}
@@ -240,7 +240,7 @@ export default function AdminSettings() {
             <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
               Footer Bio Statement
             </label>
-            <textarea 
+            <textarea
               rows={2}
               value={formData.footerText}
               onChange={(e) => setFormData({ ...formData, footerText: e.target.value })}
@@ -252,7 +252,7 @@ export default function AdminSettings() {
             <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
               Copyright Notice
             </label>
-            <input 
+            <input
               type="text"
               value={formData.copyrightText}
               onChange={(e) => setFormData({ ...formData, copyrightText: e.target.value })}

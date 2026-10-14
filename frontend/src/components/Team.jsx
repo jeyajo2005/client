@@ -4,16 +4,16 @@ import { partners } from '../data/portfolioData';
 
 export default function Team() {
   return (
-    <section 
-      id="partners" 
-      className="section" 
-      style={{ 
-        backgroundColor: '#090D14', 
-        borderBottom: '1px solid var(--border-hairline)' 
+    <section
+      id="partners"
+      className="section"
+      style={{
+        backgroundColor: '#090D14',
+        borderBottom: '1px solid var(--border-hairline)'
       }}
     >
       <div className="container">
-        
+
         {/* Section Header */}
         <div style={{
           display: 'flex',
@@ -40,12 +40,12 @@ export default function Team() {
             lineHeight: 1.7,
             margin: 0
           }}>
-            Every industrial project undertaken by THIRUPATHI ENGINEERS is directly planned, supervised, and executed under the personal on-site stewardship of our founding partners.
+            Every industrial project undertaken by THIRUPATHI ENGINEERING is directly planned, supervised, and executed under the personal on-site stewardship of our founding partners.
           </p>
         </div>
 
         {/* 2 Partners Profile Grid */}
-        <div 
+        <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(480px, 1fr))',
@@ -54,7 +54,7 @@ export default function Team() {
           className="partners-grid"
         >
           {partners.map((partner) => (
-            <div 
+            <div
               key={partner.id}
               className="tech-card"
               style={{
@@ -113,7 +113,7 @@ export default function Team() {
                   marginBottom: '1.5rem',
                   textTransform: 'uppercase'
                 }}>
-                  {partner.role} • THIRUPATHI ENGINEERS
+                  {partner.role} • THIRUPATHI ENGINEERING
                 </div>
 
                 {/* Professional Bio */}
@@ -162,7 +162,7 @@ export default function Team() {
               }}>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                   {partner.expertise.map((exp, eIdx) => (
-                    <span 
+                    <span
                       key={eIdx}
                       style={{
                         fontFamily: 'var(--font-mono)',

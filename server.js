@@ -124,7 +124,7 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'online',
     timestamp: new Date().toISOString(),
-    service: 'Thirupathi Engineers MERN Portfolio API & Admin'
+    service: 'Thirupathi ENGINEERING MERN Portfolio API & Admin'
   });
 });
 
@@ -167,7 +167,7 @@ app.use(errorHandler);
 // Start Server
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`================================================================`);
-  console.log(`[Thirupathi Engineers Server] Running on http://localhost:${PORT}`);
+  console.log(`[Thirupathi ENGINEERING Server] Running on http://localhost:${PORT}`);
   console.log(`[Public Portfolio]            http://localhost:${PORT}/`);
   console.log(`[Admin Dashboard]            http://localhost:${PORT}/admin`);
   console.log(`[REST API Root]              http://localhost:${PORT}/api/all`);

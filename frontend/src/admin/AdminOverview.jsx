@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { 
-  FolderKanban, Wrench, Images, Mail, TrendingUp, CheckCircle2, 
-  ArrowRight, Clock, PlusCircle, ExternalLink 
+import {
+  FolderKanban, Wrench, Images, Mail, TrendingUp, CheckCircle2,
+  ArrowRight, Clock, PlusCircle, ExternalLink
 } from 'lucide-react';
 import { portfolioAPI } from '../services/api';
 import { usePortfolio } from '../context/PortfolioContext';
@@ -56,7 +56,7 @@ export default function AdminOverview({ onNavigate }) {
             CONTROL DASHBOARD
           </span>
           <h2 style={{ fontSize: '1.75rem', fontWeight: 800, margin: '0.25rem 0 0.5rem 0' }}>
-            Thirupathi Engineers MERN Portfolio
+            Thirupathi ENGINEERING MERN Portfolio
           </h2>
           <p style={{ color: '#94A3B8', fontSize: '0.9rem', margin: 0, maxWidth: '600px' }}>
             Connected directly to local MongoDB. All modifications made here immediately reflect on the public site without recompilation.
@@ -101,7 +101,7 @@ export default function AdminOverview({ onNavigate }) {
 
       {/* Metrics Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem', marginBottom: '2.5rem' }}>
-        
+
         <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0', padding: '1.5rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
             <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#64748B', textTransform: 'uppercase' }}>Total Projects</span>
@@ -188,7 +188,7 @@ export default function AdminOverview({ onNavigate }) {
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {inquiries.map((inq) => (
-              <div 
+              <div
                 key={inq._id}
                 style={{
                   display: 'flex',

@@ -107,7 +107,7 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'online',
     timestamp: new Date().toISOString(),
-    service: 'Thirupathi Engineers REST API'
+    service: 'Thirupathi ENGINEERING REST API'
   });
 });
 

@@ -15,43 +15,69 @@ import { Skill } from '../models/Skill.js';
 import { Education } from '../models/Education.js';
 import { ContactSettings } from '../models/ContactSettings.js';
 
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+function readDataFile(name, fallback) {
+  try {
+    const file = path.resolve(__dirname, `../data/${name}`);
+    if (fs.existsSync(file)) {
+      return JSON.parse(fs.readFileSync(file, 'utf8'));
+    }
+  } catch (e) {}
+  return fallback;
+}
+
 // GET /api/all
 // Optimized endpoint that fetches all published content in parallel for public frontend
 export async function getAllPortfolioData(req, res, next) {
   try {
-    const [
-      hero,
-      about,
-      profile,
-      services,
-      projects,
-      timeline,
-      skills,
-      experience,
-      education,
-      achievements,
-      team,
-      testimonials,
-      gallery,
-      settings,
-      contactSettings
-    ] = await Promise.all([
-      Hero.findOne(),
-      About.findOne(),
-      Profile.findOne(),
-      Service.find({ isPublished: true }).sort({ order: 1, createdAt: 1 }),
-      Project.find({ isPublished: true }).sort({ order: 1, createdAt: -1 }),
-      TimelineEntry.find({ isPublished: true }).sort({ order: 1, stepNumber: 1 }),
-      Skill.find({ isPublished: true }).sort({ order: 1 }),
-      Experience.find({ isPublished: true }).sort({ order: 1, createdAt: 1 }),
-      Education.find({ isPublished: true }).sort({ order: 1 }),
-      Achievement.find({ isPublished: true }).sort({ order: 1, year: -1 }),
-      Team.find({ isPublished: true }).sort({ order: 1, createdAt: 1 }),
-      Testimonial.find({ isPublished: true }).sort({ order: 1, createdAt: -1 }),
-      Gallery.find({ isPublished: true }).sort({ order: 1, createdAt: -1 }),
-      Settings.findOne(),
-      ContactSettings.findOne()
-    ]);
+    let hero = null, about = null, profile = null, services = [], projects = [], timeline = [],
+        skills = [], experience = [], education = [], achievements = [], team = [], testimonials = [],
+        gallery = [], settings = null, contactSettings = null;
+
+    if (mongoose.connection.readyState === 1) {
+      try {
+        [
+          hero, about, profile, services, projects, timeline,
+          skills, experience, education, achievements, team, testimonials,
+          gallery, settings, contactSettings
+        ] = await Promise.all([
+          Hero.findOne().maxTimeMS(2000),
+          About.findOne().maxTimeMS(2000),
+          Profile.findOne().maxTimeMS(2000),
+          Service.find({ isPublished: true }).sort({ order: 1, createdAt: 1 }).maxTimeMS(2000),
+          Project.find({ isPublished: true }).sort({ order: 1, createdAt: -1 }).maxTimeMS(2000),
+          TimelineEntry.find({ isPublished: true }).sort({ order: 1, stepNumber: 1 }).maxTimeMS(2000),
+          Skill.find({ isPublished: true }).sort({ order: 1 }).maxTimeMS(2000),
+          Experience.find({ isPublished: true }).sort({ order: 1, createdAt: 1 }).maxTimeMS(2000),
+          Education.find({ isPublished: true }).sort({ order: 1 }).maxTimeMS(2000),
+          Achievement.find({ isPublished: true }).sort({ order: 1, year: -1 }).maxTimeMS(2000),
+          Team.find({ isPublished: true }).sort({ order: 1, createdAt: 1 }).maxTimeMS(2000),
+          Testimonial.find({ isPublished: true }).sort({ order: 1, createdAt: -1 }).maxTimeMS(2000),
+          Gallery.find({ isPublished: true }).sort({ order: 1, createdAt: -1 }).maxTimeMS(2000),
+          Settings.findOne().maxTimeMS(2000),
+          ContactSettings.findOne().maxTimeMS(2000)
+        ]);
+      } catch (dbErr) {
+        console.warn('[Portfolio GET /all] DB query warning, using latest file store:', dbErr.message);
+      }
+    }
+
+    // Always ensure projects, timeline, and profile use latest persisted data if DB was empty/offline
+    if (!projects || projects.length === 0) {
+      projects = readDataFile('projects.json', []).filter(p => p.isPublished !== false);
+    }
+    if (!timeline || timeline.length === 0) {
+      timeline = readDataFile('timeline.json', []).filter(t => t.isPublished !== false);
+    }
+    if (!profile || Object.keys(profile).length === 0) {
+      profile = readDataFile('profile.json', {});
+    }
 
     res.json({
       success: true,
@@ -74,7 +100,30 @@ export async function getAllPortfolioData(req, res, next) {
       }
     });
   } catch (error) {
-    next(error);
+    const fallbackProjects = readDataFile('projects.json', []).filter(p => p.isPublished !== false);
+    const fallbackTimeline = readDataFile('timeline.json', []).filter(t => t.isPublished !== false);
+    const fallbackProfile = readDataFile('profile.json', {});
+
+    res.json({
+      success: true,
+      data: {
+        hero: {},
+        about: {},
+        profile: fallbackProfile,
+        services: [],
+        projects: fallbackProjects,
+        timeline: fallbackTimeline,
+        skills: [],
+        experience: [],
+        education: [],
+        achievements: [],
+        team: [],
+        testimonials: [],
+        gallery: [],
+        settings: {},
+        contactSettings: {}
+      }
+    });
   }
 }
 

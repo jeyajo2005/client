@@ -1,7 +1,7 @@
 {
-  "name": "thirupathi-engineers-backend",
+  "name": "thirupathi-ENGINEERING-backend",
   "version": "1.0.0",
-  "description": "REST API Backend for Thirupathi Engineers Portfolio",
+  "description": "REST API Backend for Thirupathi ENGINEERING Portfolio",
   "main": "server.js",
   "type": "module",
   "scripts": {

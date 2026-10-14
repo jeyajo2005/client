@@ -8,7 +8,7 @@ export default function AdminHero() {
   const [formData, setFormData] = useState({
     name1: 'M. Mohan',
     name2: 'K. Gopala Krishnan',
-    subtitle: 'MANAGING PARTNERS · THIRUPATHI ENGINEERS',
+    subtitle: 'MANAGING PARTNERS · THIRUPATHI ENGINEERING',
     description: 'Premier mechanical industrial structural & equipment erection partnership firm. Proven execution in 20 MW thermal power plant non-IBR structures, ACC cooling towers, cement plant clinker silos, packing plants, sizer crushers, and bulk handling systems.',
     badgeText: 'MECHANICAL & INDUSTRIAL STRUCTURES',
     badgeLoc: 'TAMIL NADU · INDIA',
@@ -27,7 +27,7 @@ export default function AdminHero() {
       setFormData({
         name1: data.hero.name1 || (data.hero.heading && data.hero.heading.includes(',') ? data.hero.heading.split(',')[0].trim() : 'M. Mohan'),
         name2: data.hero.name2 || (data.hero.heading && data.hero.heading.includes(',') ? data.hero.heading.split(',')[1].trim() : 'K. Gopala Krishnan'),
-        subtitle: data.hero.subtitle || 'MANAGING PARTNERS · THIRUPATHI ENGINEERS',
+        subtitle: data.hero.subtitle || 'MANAGING PARTNERS · THIRUPATHI ENGINEERING',
         description: data.hero.description || 'Premier mechanical industrial structural & equipment erection partnership firm. Proven execution in 20 MW thermal power plant non-IBR structures, ACC cooling towers, cement plant clinker silos, packing plants, sizer crushers, and bulk handling systems.',
         badgeText: data.hero.badgeText || 'MECHANICAL & INDUSTRIAL STRUCTURES',
         badgeLoc: data.hero.badgeLoc || 'TAMIL NADU · INDIA',
@@ -89,7 +89,7 @@ export default function AdminHero() {
       )}
 
       <form onSubmit={handleSubmit} style={{ backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-        
+
         {/* Animated Typing Names */}
         <div style={{ borderBottom: '1px solid #E2E8F0', paddingBottom: '1.5rem' }}>
           <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, color: '#0F172A', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
@@ -100,7 +100,7 @@ export default function AdminHero() {
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
                 Line 1 (First Name)
               </label>
-              <input 
+              <input
                 type="text"
                 required
                 value={formData.name1}
@@ -113,7 +113,7 @@ export default function AdminHero() {
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
                 Line 2 (Second Name)
               </label>
-              <input 
+              <input
                 type="text"
                 required
                 value={formData.name2}
@@ -135,7 +135,7 @@ export default function AdminHero() {
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
                 Badge Primary Label
               </label>
-              <input 
+              <input
                 type="text"
                 value={formData.badgeText}
                 onChange={(e) => setFormData({ ...formData, badgeText: e.target.value })}
@@ -147,7 +147,7 @@ export default function AdminHero() {
               <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
                 Badge Location / Secondary
               </label>
-              <input 
+              <input
                 type="text"
                 value={formData.badgeLoc}
                 onChange={(e) => setFormData({ ...formData, badgeLoc: e.target.value })}
@@ -163,12 +163,12 @@ export default function AdminHero() {
           <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
             Subtitle Bar (Gold Lettering)
           </label>
-          <input 
+          <input
             type="text"
             required
             value={formData.subtitle}
             onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-            placeholder="MANAGING PARTNERS · THIRUPATHI ENGINEERS"
+            placeholder="MANAGING PARTNERS · THIRUPATHI ENGINEERING"
             style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid #CBD5E1', fontSize: '0.9rem', fontWeight: 600, outline: 'none' }}
           />
         </div>
@@ -177,7 +177,7 @@ export default function AdminHero() {
           <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
             Hero Narrative / Description
           </label>
-          <textarea 
+          <textarea
             rows={4}
             required
             value={formData.description}
@@ -192,7 +192,7 @@ export default function AdminHero() {
             <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
               Primary CTA Text (Gold Button)
             </label>
-            <input 
+            <input
               type="text"
               value={formData.primaryCtaText}
               onChange={(e) => setFormData({ ...formData, primaryCtaText: e.target.value })}
@@ -203,7 +203,7 @@ export default function AdminHero() {
             <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
               Primary CTA Link
             </label>
-            <input 
+            <input
               type="text"
               value={formData.primaryCtaLink}
               onChange={(e) => setFormData({ ...formData, primaryCtaLink: e.target.value })}
@@ -217,7 +217,7 @@ export default function AdminHero() {
             <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
               Secondary CTA Text (Glass Button)
             </label>
-            <input 
+            <input
               type="text"
               value={formData.secondaryCtaText}
               onChange={(e) => setFormData({ ...formData, secondaryCtaText: e.target.value })}
@@ -228,7 +228,7 @@ export default function AdminHero() {
             <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
               Secondary CTA Link
             </label>
-            <input 
+            <input
               type="text"
               value={formData.secondaryCtaLink}
               onChange={(e) => setFormData({ ...formData, secondaryCtaLink: e.target.value })}
@@ -243,7 +243,7 @@ export default function AdminHero() {
             Background Image URL / Asset Path
           </label>
           <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <input 
+            <input
               type="text"
               value={formData.bgImageUrl}
               onChange={(e) => setFormData({ ...formData, bgImageUrl: e.target.value })}

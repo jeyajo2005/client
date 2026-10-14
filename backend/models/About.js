@@ -12,7 +12,7 @@ const aboutSchema = new mongoose.Schema({
   },
   companyIntro: {
     type: String,
-    default: 'Thirupathi Engineers is an industrial mechanical structural and equipment erection partnership firm founded on direct job-site execution leadership.'
+    default: 'Thirupathi ENGINEERING is an industrial mechanical structural and equipment erection partnership firm founded on direct job-site execution leadership.'
   },
   history: {
     type: String,

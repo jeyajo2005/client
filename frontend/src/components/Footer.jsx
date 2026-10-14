@@ -13,13 +13,13 @@ export default function Footer() {
   return (
     <footer style={{ backgroundColor: '#0B1120', color: '#94A3B8', borderTop: '1px solid #1E293B', padding: '4.5rem 0 2rem' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.5rem' }}>
-        
+
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '3rem', marginBottom: '3.5rem' }}>
-          
+
           {/* Col 1: Brand */}
           <div>
             <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.02em', marginBottom: '0.5rem' }}>
-              {settings.companyName || 'Thirupathi Engineers'}
+              {settings.companyName || 'Thirupathi ENGINEERING'}
             </div>
             <div style={{ fontSize: '0.78rem', color: '#C5A059', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '1rem' }}>
               {settings.businessType || 'Partnership Firm'}
@@ -66,7 +66,7 @@ export default function Footer() {
             <p style={{ fontSize: '0.8125rem', color: '#64748B', lineHeight: 1.5, marginBottom: '1rem' }}>
               Secure management dashboard for content updates, project additions, and live customer inquiries.
             </p>
-            <a 
+            <a
               href="#admin"
               style={{
                 display: 'inline-flex',
@@ -91,7 +91,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div style={{ borderTop: '1px solid #1E293B', paddingTop: '1.75rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
           <div style={{ fontSize: '0.8rem', color: '#64748B' }}>
-            {settings.copyrightText || '? 2026 Thirupathi Engineers. All rights reserved.'}
+            {settings.copyrightText || '? 2026 Thirupathi ENGINEERING. All rights reserved.'}
           </div>
           <button
             onClick={scrollToTop}
