@@ -23,7 +23,7 @@ const settingsSchema = new mongoose.Schema({
   }],
   emails: [{
     type: String,
-    default: 'thirupathiENGINEERINGs@gmail.com'
+    default: 'thirupathiengineerings@gmail.com'
   }],
   address: {
     type: String,

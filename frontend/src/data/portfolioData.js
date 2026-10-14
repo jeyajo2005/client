@@ -8,7 +8,7 @@ export const companyInfo = {
     { display: "+91 9790520126", value: "9790520126" }
   ],
   emails: [
-    "thirupathiENGINEERINGs@gmail.com",
+    "thirupathiengineerings@gmail.com",
     "gopalkannan5@gmail.com"
   ],
   address: "Tamil Nadu, India",

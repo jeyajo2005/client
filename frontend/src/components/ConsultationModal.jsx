@@ -250,7 +250,7 @@ export default function ConsultationModal({ onClose }) {
             }}>
               <AlertCircle size={16} style={{ color: 'var(--color-primary-blue)', flexShrink: 0, marginTop: '2px' }} />
               <div style={{ fontSize: '0.82rem', color: 'var(--color-dark-navy)', lineHeight: 1.5 }}>
-                <strong>Direct Contact Recommended:</strong> This form requires a mail backend service. Please email our partners directly at <a href="mailto:thirupathiENGINEERINGs@gmail.com" style={{ color: 'var(--color-primary-blue)', fontWeight: 700 }}>thirupathiENGINEERINGs@gmail.com</a> or call <strong>+91 9043288002</strong>.
+                <strong>Direct Contact Recommended:</strong> This form requires a mail backend service. Please email our partners directly at <a href="mailto:thirupathiengineerings@gmail.com" style={{ color: 'var(--color-primary-blue)', fontWeight: 700 }}>thirupathiengineerings@gmail.com</a> or call <strong>+91 9043288002</strong>.
               </div>
             </div>
           )}

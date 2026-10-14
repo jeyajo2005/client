@@ -27,7 +27,7 @@ const profileSchema = new mongoose.Schema({
   },
   partner1Email: {
     type: String,
-    default: 'thirupathiENGINEERINGs@gmail.com'
+    default: 'thirupathiengineerings@gmail.com'
   },
   partner2: {
     type: String,

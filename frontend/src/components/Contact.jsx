@@ -47,7 +47,7 @@ export default function Contact() {
 
   const emails = settings.emails && settings.emails.length > 0
     ? settings.emails
-    : ['thirupathiENGINEERINGs@gmail.com', 'gopalkannan5@gmail.com'];
+    : ['thirupathiengineerings@gmail.com', 'gopalkannan5@gmail.com'];
 
   return (
     <section id="contact" style={{ padding: '5.5rem 0', backgroundColor: '#FFFFFF' }}>

@@ -13,14 +13,14 @@ export default function AdminSettings() {
     metaDescription: '',
     metaKeywords: '',
     phones: [{ display: '+91 90432 88002', value: '9043288002' }, { display: '+91 97905 20126', value: '9790520126' }],
-    emails: ['thirupathiENGINEERINGs@gmail.com', 'gopalkannan5@gmail.com'],
+    emails: ['thirupathiengineerings@gmail.com', 'gopalkannan5@gmail.com'],
     officeAddress: 'Tamil Nadu, India',
     footerText: '',
     copyrightText: ''
   });
   const [phone1, setPhone1] = useState('+91 90432 88002');
   const [phone2, setPhone2] = useState('+91 97905 20126');
-  const [email1, setEmail1] = useState('thirupathiENGINEERINGs@gmail.com');
+  const [email1, setEmail1] = useState('thirupathiengineerings@gmail.com');
   const [email2, setEmail2] = useState('gopalkannan5@gmail.com');
   const [saving, setSaving] = useState(false);
   const [success, setSuccess] = useState(false);

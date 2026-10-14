@@ -596,7 +596,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div style="background: #FAFAFA; border: 1px dashed var(--accent-gold); padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1.75rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
             <div>
               <div style="font-weight: 700; font-size: 0.95rem;">Direct Managing Partner Lines</div>
-              <div style="font-size: 0.85rem; color: var(--text-muted);">M. Mohan (50+ Yrs Exp): +91 9043288002 | thirupathiENGINEERINGs@gmail.com</div>
+              <div style="font-size: 0.85rem; color: var(--text-muted);">M. Mohan (50+ Yrs Exp): +91 9043288002 | thirupathiengineerings@gmail.com</div>
               <div style="font-size: 0.85rem; color: var(--text-muted);">K. Gopalakrishnan (~15 Yrs Exp): +91 9790520126 | gopalkannan5@gmail.com</div>
             </div>
             <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-gold-dark); font-weight: 700; padding: 0.35rem 0.65rem; background: var(--accent-gold-bg); border-radius: 4px;">VERIFIED 2026</span>

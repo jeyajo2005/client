@@ -17,7 +17,7 @@ let cachedProfile = {
   partner1Exp: '50+ YEARS EXPERIENCE',
   partner1Bio: 'With over 50 years of distinguished experience in industrial construction across steel plants and cement manufacturing facilities, Mr. M. Mohan is a veteran erection specialist. His construction journey began in 1985 at Gold Star Steel Plant, progressing into cement plant construction in 1990. Landmark milestones include the total plant commissioning of Gold Star Steel Plant in 1992, total plant erection of Camplastic Pipe in 1998, Parryware Tiles company erection in 2005, and multiple cement mill and structural erections across various sites for The Ramco Cements Ltd. He personally leads heavy crane rigging sequencing, non-IBR structural framing, and workforce safety.',
   partner1Phone: '+91 9043288002',
-  partner1Email: 'thirupathiENGINEERINGs@gmail.com',
+  partner1Email: 'thirupathiengineerings@gmail.com',
   partner2: 'K. Gopala Krishnan',
   partner2Role: 'Mechanical Engineer',
   partner2Exp: '15 YEARS EXPERIENCE',

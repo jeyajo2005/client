@@ -6,7 +6,7 @@ export async function getContactSettings(req, res, next) {
     let settings = await ContactSettings.findOne();
     if (!settings) {
       settings = await ContactSettings.create({
-        email: 'thirupathiENGINEERINGs@gmail.com',
+        email: 'thirupathiengineerings@gmail.com',
         phone: '+91 9043288002',
         secondaryPhone: '+91 9443728002',
         address: 'Industrial Estate, Virudhunagar / R.R. Nagar Works, Tamil Nadu, India - 626204',
