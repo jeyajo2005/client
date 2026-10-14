@@ -247,32 +247,52 @@
 
     // Load timeline snapshot
     async function loadSnapshot() {
+      const tbody = document.getElementById('timelineSnapshotBody');
+      function renderRows(items) {
+        if (!tbody) return;
+        const badgeNav = document.getElementById('navTimelineBadge');
+        if (badgeNav) badgeNav.textContent = items.length;
+
+        tbody.innerHTML = items.slice(0, 5).map((item, idx) => `
+          <tr>
+            <td style="font-family:var(--font-mono); font-weight:700;">#${item.stepNumber || (idx + 1)}</td>
+            <td><img src="${normalizeImgUrl(item.imageUrl)}" class="table-thumb" alt="${escapeHtml(item.title)}"></td>
+            <td>
+              <strong>${escapeHtml(item.title)}</strong>
+              <div style="font-size:0.75rem; color:var(--text-muted);">${escapeHtml(item.client || '')}</div>
+            </td>
+            <td style="font-family:var(--font-mono); font-weight:700; color:${item.themeColor || '#0D9488'};">${escapeHtml(item.year)}</td>
+            <td><span class="badge-pill-align ${item.alignment === 'right' ? 'right' : 'left'}">${(item.alignment || 'left').toUpperCase()}</span></td>
+            <td><span class="badge-tag ${item.isPublished ? 'completed' : 'ongoing'}">${item.isPublished ? 'PUBLISHED' : 'DRAFT'}</span></td>
+          </tr>
+        `).join('');
+      }
+
       try {
         const res = await fetch(`${API_BASE}/timeline?admin=true`);
-        const data = await res.json();
-        const tbody = document.getElementById('timelineSnapshotBody');
-        if (data.success && data.data && data.data.length > 0) {
-          const badgeNav = document.getElementById('navTimelineBadge');
-          if (badgeNav) badgeNav.textContent = data.data.length;
-
-          tbody.innerHTML = data.data.slice(0, 5).map((item, idx) => `
-            <tr>
-              <td style="font-family:var(--font-mono); font-weight:700;">#${item.stepNumber || (idx + 1)}</td>
-              <td><img src="${item.imageUrl || 'assets/images/drymix_packing.jpg'}" class="table-thumb" alt="Thumb"></td>
-              <td>
-                <strong>${escapeHtml(item.title)}</strong>
-                <div style="font-size:0.75rem; color:var(--text-muted);">${escapeHtml(item.client || '')}</div>
-              </td>
-              <td style="font-family:var(--font-mono); font-weight:700; color:${item.themeColor || '#0D9488'};">${escapeHtml(item.year)}</td>
-              <td><span class="badge-pill-align ${item.alignment === 'right' ? 'right' : 'left'}">${(item.alignment || 'left').toUpperCase()}</span></td>
-              <td><span class="badge-tag ${item.isPublished ? 'completed' : 'ongoing'}">${item.isPublished ? 'PUBLISHED' : 'DRAFT'}</span></td>
-            </tr>
-          `).join('');
-        } else {
-          tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:1.5rem;">No timeline items recorded yet.</td></tr>';
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+            renderRows(data.data);
+            return;
+          }
         }
-      } catch (e) {
-        console.error(e);
+      } catch (e) {}
+
+      // Fallback to static json or local storage
+      try {
+        const staticRes = await fetch('/data/timeline.json');
+        if (staticRes.ok) {
+          const staticData = await staticRes.json();
+          if (Array.isArray(staticData) && staticData.length > 0) {
+            renderRows(staticData);
+            return;
+          }
+        }
+      } catch (e) {}
+
+      if (typeof getDefaultTimeline === 'function') {
+        renderRows(getDefaultTimeline());
       }
     }
     loadSnapshot();

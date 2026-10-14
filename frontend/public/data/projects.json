@@ -1,0 +1,134 @@
+[
+  {
+    "_id": "6acde8893cac6cdceea1e7e4",
+    "title": "Dry Mix Plant & Packing Unit Mechanical Erection",
+    "category": "CEMENT & PACKING",
+    "client": "The Ramco Cements Ltd.",
+    "location": "R.R. Nagar Works, Tamil Nadu",
+    "year": "2023",
+    "capacity": "Turnkey Unit",
+    "description": "Complete mechanical and structural erection of automated dry mix manufacturing tower, bulk storage hoppers, bucket elevators, and packing unit conveyors.",
+    "scope": [
+      "Dry mix tower structural framing",
+      "Storage hopper plate assembly",
+      "Bucket elevator alignment",
+      "High-elevation transfer chutes"
+    ],
+    "images": [
+      "assets/images/drymix_packing.jpg",
+      "assets/images/gallery/site-img-001.jpg"
+    ],
+    "mainImage": "assets/images/drymix_packing.jpg",
+    "tags": [
+      "Dry Mix Plant",
+      "Ramco Cements",
+      "Packing Plant"
+    ],
+    "status": "COMPLETED",
+    "isFeatured": true,
+    "order": 1,
+    "isPublished": true,
+    "__v": 0,
+    "createdAt": "2026-10-13T08:15:05.716Z",
+    "updatedAt": "2026-10-13T08:15:05.716Z"
+  },
+  {
+    "_id": "6acde8893cac6cdceea1e7e5",
+    "title": "20 MW Thermal Power Plant Non-IBR Structure & ACC Cooling Deck",
+    "category": "THERMAL POWER",
+    "client": "Tecksk Projects / ISGEC",
+    "location": "Tamil Nadu Site",
+    "year": "2022",
+    "capacity": "20 MW Captive Unit",
+    "description": "Erection of complete non-IBR structural steel frameworks, auxiliary boiler ducting arrays, ACC cooling tower fan deck, and high-elevation pipe racks.",
+    "scope": [
+      "20 MW non-IBR steel skeleton",
+      "ACC cooling tower structural deck",
+      "Fan support bridges",
+      "Steam distribution pipe racks"
+    ],
+    "images": [
+      "assets/images/power_plant_acc.jpg",
+      "assets/images/gallery/site-img-003.jpg"
+    ],
+    "mainImage": "assets/images/power_plant_acc.jpg",
+    "tags": [
+      "Power Plant",
+      "Non-IBR",
+      "ACC Tower"
+    ],
+    "status": "COMPLETED",
+    "isFeatured": true,
+    "order": 2,
+    "isPublished": true,
+    "__v": 0,
+    "createdAt": "2026-10-13T08:15:05.716Z",
+    "updatedAt": "2026-10-13T08:15:05.716Z"
+  },
+  {
+    "_id": "6acde8893cac6cdceea1e7e6",
+    "title": "Primary Sizer Crusher Support Framing & Mining Hoppers",
+    "category": "MINING & CRUSHING",
+    "client": "The Ramco Cements Ltd. (Mines Division)",
+    "location": "Limestone Mines, Tamil Nadu",
+    "year": "2021",
+    "capacity": "Heavy Sizer",
+    "description": "Heavy structural erection for primary sizer crusher station, rock receiving hoppers, vibration-damped foundation frames, and transfer conveyor galleries.",
+    "scope": [
+      "Heavy primary crusher station framing",
+      "Limestone receiving hopper fit-up",
+      "Tandem mobile crane rigging",
+      "Vibration isolation chassis"
+    ],
+    "images": [
+      "assets/images/sizer_crusher.jpg",
+      "assets/images/washing_plant.jpg"
+    ],
+    "mainImage": "assets/images/sizer_crusher.jpg",
+    "tags": [
+      "Sizer Crusher",
+      "Mining",
+      "Heavy Rigging"
+    ],
+    "status": "COMPLETED",
+    "isFeatured": true,
+    "order": 3,
+    "isPublished": true,
+    "__v": 0,
+    "createdAt": "2026-10-13T08:15:05.716Z",
+    "updatedAt": "2026-10-13T08:15:05.716Z"
+  },
+  {
+    "_id": "6acde8893cac6cdceea1e7e7",
+    "title": "Clinker Storage Silos Roof Framing & Conveyor Gallery",
+    "category": "STORAGE & CONVEYING",
+    "client": "Cement Manufacturing Plant",
+    "location": "South India Site",
+    "year": "2020",
+    "capacity": "50,000 MT Silo",
+    "description": "Elevated structural execution of circular clinker silo roof trusses, overhead feed conveyor gantry bridges, and transfer chutes.",
+    "scope": [
+      "High-elevation circular roof trusses",
+      "Overhead conveyor gallery spans",
+      "Transfer tower framing",
+      "Safety access stair towers"
+    ],
+    "images": [
+      "assets/images/clinker_silo.jpg",
+      "assets/images/flsmidth_crane_lift.jpg"
+    ],
+    "mainImage": "assets/images/clinker_silo.jpg",
+    "tags": [
+      "Clinker Silo",
+      "Conveyors",
+      "Roof Framing"
+    ],
+    "status": "COMPLETED",
+    "isFeatured": true,
+    "order": 4,
+    "isPublished": true,
+    "__v": 0,
+    "createdAt": "2026-10-13T08:15:05.716Z",
+    "updatedAt": "2026-10-13T08:15:05.716Z"
+  }
+]
