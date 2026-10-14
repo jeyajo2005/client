@@ -6,7 +6,6 @@ export async function connectDB() {
 
   const uris = [
     process.env.MONGO_URI,
-    process.env.MONGODB_URI,
     'mongodb://127.0.0.1:27017/thirupathi_portfolio'
   ].filter(Boolean);
 

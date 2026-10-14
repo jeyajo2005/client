@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login · Thirupathi ENGINEERING</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body class="login-body">
+
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo-box">TE</div>
+      <h2>Partner Admin Portal</h2>
+      <p>Thirupathi ENGINEERING · Industrial Mechanical Erection</p>
+    </div>
+
+    <div id="loginAlert"
+      style="display:none; padding:0.75rem 1rem; border-radius:6px; background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#F87171; font-size:0.85rem; margin-bottom:1.5rem;">
+    </div>
+
+    <form id="adminLoginForm">
+      <div class="form-group" style="margin-bottom:1.25rem;">
+        <label for="adminEmail">Email Address</label>
+        <input type="email" id="adminEmail" class="form-control" placeholder="admin@thirupathiENGINEERING.com" required
+          autocomplete="email">
+      </div>
+
+      <div class="form-group" style="margin-bottom:1.5rem;">
+        <label for="adminPassword">Password</label>
+        <input type="password" id="adminPassword" class="form-control" placeholder="••••••••••••" required
+          autocomplete="current-password">
+      </div>
+
+      <button type="submit" id="loginBtn" class="btn btn-primary"
+        style="width:100%; padding:0.8rem; font-size:0.95rem;">
+        <span>Sign In to Dashboard</span>
+      </button>
+    </form>
+
+    <div style="margin-top:1.5rem; text-align:center;">
+      <a href="/" style="color:var(--text-dim); text-decoration:none; font-size:0.8rem; transition:color 0.2s;"
+        onmouseover="this.style.color='#2DD4BF'" onmouseout="this.style.color='var(--text-dim)'">
+        ← Return to Public Portfolio Website
+      </a>
+    </div>
+
+    <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--border-subtle); text-align:center;">
+      <span style="font-size:0.72rem; color:var(--text-dim); font-family:var(--font-mono);">
+        Default: admin@thirupathiENGINEERING.com / Admin@Thirupathi2026
+      </span>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+  <script>
+    // Redirect if already logged in
+    checkAuth(true);
+
+    const loginForm = document.getElementById('adminLoginForm');
+    const loginAlert = document.getElementById('loginAlert');
+    const loginBtn = document.getElementById('loginBtn');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginAlert.style.display = 'none';
+
+      const email = document.getElementById('adminEmail').value.trim();
+      const password = document.getElementById('adminPassword').value;
+
+      loginBtn.disabled = true;
+      loginBtn.innerHTML = '<span>Verifying credentials...</span>';
+
+      try {
+        const res = await fetch(`${API_BASE}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          showToast('Welcome back, Admin!', 'success');
+          window.location.href = '/admin/dashboard.html';
+        } else {
+          loginAlert.textContent = data.message || 'Invalid email or password.';
+          loginAlert.style.display = 'block';
+          loginBtn.disabled = false;
+          loginBtn.innerHTML = '<span>Sign In to Dashboard</span>';
+        }
+      } catch (err) {
+        loginAlert.textContent = 'Network or server error. Please ensure Node server is running.';
+        loginAlert.style.display = 'block';
+        loginBtn.disabled = false;
+        loginBtn.innerHTML = '<span>Sign In to Dashboard</span>';
+      }
+    });
+  </script>
+</body>
+
+</html>
