@@ -77,7 +77,7 @@ async function seedDatabase() {
       partner1Email: 'thirupathiENGINEERINGs@gmail.com',
       partner2: 'K. Gopala Krishnan',
       partner2Role: 'Mechanical Engineer',
-      partner2Exp: '~15 YEARS EXPERIENCE',
+      partner2Exp: '15 YEARS EXPERIENCE',
       partner2Bio: 'Bringing nearly 15 years of rigorous engineering leadership in mechanical industrial structures and equipment erection. Commenced his engineering career in the steel plant sector in 2012 and transitioned to cement plant structural erection in 2016, serving in key capacities as Engineer and Project Manager across multiple reputed industrial engineering companies before co-leading Thirupathi ENGINEERING. He specializes in mechanical structural design interpretation, equipment alignment, clinker silo structural frameworks, high-elevation conveyor galleries, drawing audits, and statutory quality sign-offs.',
       partner2Phone: '+91 9790520126',
       partner2Email: 'gopalkannan5@gmail.com',

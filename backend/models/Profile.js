@@ -39,7 +39,7 @@ const profileSchema = new mongoose.Schema({
   },
   partner2Exp: {
     type: String,
-    default: '~15 YEARS EXPERIENCE'
+    default: '15 YEARS EXPERIENCE'
   },
   partner2Bio: {
     type: String,
