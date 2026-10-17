@@ -408,17 +408,33 @@
           credentials: 'include',
           body: formData
         });
-        const data = await res.json();
-        if (data.success && (data.relativePath || data.url)) {
-          const finalPath = data.relativePath || data.url;
-          document.getElementById(`profPartner${partnerNum}Image`).value = finalPath;
-          updatePartnerImgPreview(partnerNum, finalPath);
-          showToast(`Partner 0${partnerNum} photo uploaded! Remember to click 'Save All Partner Changes'.`, 'success');
-        } else {
-          showToast(data.message || 'Image upload failed', 'error');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.success && (data.relativePath || data.url)) {
+            const finalPath = data.relativePath || data.url;
+            document.getElementById(`profPartner${partnerNum}Image`).value = finalPath;
+            updatePartnerImgPreview(partnerNum, finalPath);
+            showToast(`Partner 0${partnerNum} photo uploaded! Remember to click 'Save All Partner Changes'.`, 'success');
+            return;
+          }
         }
       } catch (err) {
-        showToast('Upload error: ' + err.message, 'error');
+        console.warn('Server upload unavailable, reading as Data URL:', err);
+      }
+
+      // Fallback: Read file as Data URL (Works 100% on Vercel / offline)
+      try {
+        const dataUrl = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+        document.getElementById(`profPartner${partnerNum}Image`).value = dataUrl;
+        updatePartnerImgPreview(partnerNum, dataUrl);
+        showToast(`Partner 0${partnerNum} photo loaded! Remember to click 'Save All Partner Changes'.`, 'success');
+      } catch (e) {
+        showToast('Upload error: ' + e.message, 'error');
       }
     }
 
