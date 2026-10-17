@@ -6,6 +6,7 @@ export async function connectDB() {
 
   const uris = [
     process.env.MONGO_URI,
+    'mongodb+srv://jeyakairatechnologies_db_user:3BH0YLJjcpl7aNOb@thirupathiengineering.7xag75x.mongodb.net/thirupathi_portfolio?retryWrites=true&w=majority',
     'mongodb://127.0.0.1:27017/thirupathi_portfolio'
   ].filter(Boolean);
 

@@ -2,22 +2,25 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 
-const uploadDir = path.resolve('uploads');
+const isVercel = !!process.env.VERCEL;
+const uploadDir = isVercel ? '/tmp' : path.resolve('uploads');
 if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
+  try { fs.mkdirSync(uploadDir, { recursive: true }); } catch (e) {}
 }
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadDir);
-  },
-  filename: function (req, file, cb) {
-    const ext = path.extname(file.originalname).toLowerCase();
-    const cleanBase = path.basename(file.originalname, ext).replace(/[^a-zA-Z0-9_-]/g, '_');
-    const uniqueSuffix = `${Date.now()}_${Math.round(Math.random() * 1E6)}`;
-    cb(null, `${cleanBase}_${uniqueSuffix}${ext}`);
-  }
-});
+const storage = isVercel
+  ? multer.memoryStorage()
+  : multer.diskStorage({
+      destination: function (req, file, cb) {
+        cb(null, uploadDir);
+      },
+      filename: function (req, file, cb) {
+        const ext = path.extname(file.originalname).toLowerCase();
+        const cleanBase = path.basename(file.originalname, ext).replace(/[^a-zA-Z0-9_-]/g, '_');
+        const uniqueSuffix = `${Date.now()}_${Math.round(Math.random() * 1E6)}`;
+        cb(null, `${cleanBase}_${uniqueSuffix}${ext}`);
+      }
+    });
 
 function fileFilter(req, file, cb) {
   const allowedTypes = /jpeg|jpg|png|webp|svg|gif/;

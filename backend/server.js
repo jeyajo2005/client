@@ -164,12 +164,17 @@ app.get('/', (req, res) => {
 // Central Error Handling
 app.use(errorHandler);
 
-// Start Server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`====================================================`);
-  console.log(`[Express API] Server running on http://localhost:${PORT}`);
-  console.log(`[Admin Portal] http://localhost:${PORT}/admin`);
-  console.log(`[Admin Dashboard] http://localhost:${PORT}/admin/dashboard.html`);
-  console.log(`[REST Endpoints] http://localhost:${PORT}/api/all`);
-  console.log(`====================================================`);
-});
+// Export app for Vercel Serverless Function & testing
+export default app;
+
+// Start Server only when not in serverless environment
+if (!process.env.VERCEL) {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`====================================================`);
+    console.log(`[Express API] Server running on http://localhost:${PORT}`);
+    console.log(`[Admin Portal] http://localhost:${PORT}/admin`);
+    console.log(`[Admin Dashboard] http://localhost:${PORT}/admin/dashboard.html`);
+    console.log(`[REST Endpoints] http://localhost:${PORT}/api/all`);
+    console.log(`====================================================`);
+  });
+}
