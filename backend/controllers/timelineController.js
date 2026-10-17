@@ -6,7 +6,8 @@ import { TimelineEntry } from '../models/TimelineEntry.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const DATA_FILE = path.resolve(__dirname, '../data/timeline.json');
+const TMP_DATA_FILE = '/tmp/timeline.json';
+const LOCAL_DATA_FILE = path.resolve(__dirname, '../data/timeline.json');
 
 let defaultTimeline = [
   { _id: '670cce010000000000000001', stepNumber: 1, year: '1985', title: 'Industrial Erection Career Origin', client: 'Steel Plants & Heavy Framing', description: "Inception of Mr. M. Mohan's 50+ year legacy in heavy structural framing & machinery installation.", imageUrl: 'assets/images/gallery/site-img-024.jpg', alignment: 'left', themeClass: 'theme-teal', themeColor: '#0D9488', order: 1, status: 'COMPLETED', isPublished: true },
@@ -24,10 +25,15 @@ let defaultTimeline = [
 
 let cachedTimeline = defaultTimeline;
 
-// Load persisted timeline from JSON file if available
+// Load persisted timeline from /tmp or local JSON file if available
 try {
-  if (fs.existsSync(DATA_FILE)) {
-    const fileData = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+  if (fs.existsSync(TMP_DATA_FILE)) {
+    const fileData = JSON.parse(fs.readFileSync(TMP_DATA_FILE, 'utf8'));
+    if (Array.isArray(fileData) && fileData.length > 0) {
+      cachedTimeline = fileData;
+    }
+  } else if (fs.existsSync(LOCAL_DATA_FILE)) {
+    const fileData = JSON.parse(fs.readFileSync(LOCAL_DATA_FILE, 'utf8'));
     if (Array.isArray(fileData) && fileData.length > 0) {
       cachedTimeline = fileData;
     }
@@ -38,12 +44,13 @@ try {
 
 function persistTimelineFile() {
   try {
-    const dir = path.dirname(DATA_FILE);
+    fs.writeFileSync(TMP_DATA_FILE, JSON.stringify(cachedTimeline, null, 2), 'utf8');
+  } catch (e) {}
+  try {
+    const dir = path.dirname(LOCAL_DATA_FILE);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(DATA_FILE, JSON.stringify(cachedTimeline, null, 2), 'utf8');
-  } catch (e) {
-    console.warn('[Timeline] File save warning:', e.message);
-  }
+    fs.writeFileSync(LOCAL_DATA_FILE, JSON.stringify(cachedTimeline, null, 2), 'utf8');
+  } catch (e) {}
 }
 
 // GET /api/timeline

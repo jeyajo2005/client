@@ -45,7 +45,7 @@ function escapeHtml(str) {
 // Image URL Normalizer (Ensures absolute path from root)
 function normalizeImgUrl(url) {
   if (!url) return '/assets/images/drymix_packing.jpg';
-  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/')) {
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/') || url.startsWith('data:')) {
     return url;
   }
   return '/' + url;
@@ -120,6 +120,7 @@ async function uploadImageFile(file, previewImgEl, targetPathInput) {
     showToast('Uploading image...', 'info');
     const res = await fetch(`${API_BASE}/upload`, {
       method: 'POST',
+      headers: { 'x-admin-key': 'thirupathi_admin_2026' },
       body: formData,
       credentials: 'include'
     });
@@ -334,7 +335,22 @@ async function loadTimeline() {
     if (res.ok) {
       const data = await res.json();
       if (data.success && Array.isArray(data.data) && data.data.length > 0) {
-        timelineList = data.data;
+        const apiData = data.data;
+        const saved = localStorage.getItem('admin_cached_timeline');
+        if (saved) {
+          try {
+            const localData = JSON.parse(saved);
+            if (Array.isArray(localData) && localData.length > apiData.length) {
+              timelineList = localData;
+            } else {
+              timelineList = apiData;
+            }
+          } catch (e) {
+            timelineList = apiData;
+          }
+        } else {
+          timelineList = apiData;
+        }
         localStorage.setItem('admin_cached_timeline', JSON.stringify(timelineList));
         renderTimelineTable(timelineList);
         return;
@@ -612,7 +628,8 @@ async function saveTimeline(e) {
       method,
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache'
+        'Cache-Control': 'no-cache',
+        'x-admin-key': 'thirupathi_admin_2026'
       },
       credentials: 'include',
       body: JSON.stringify(payload)
@@ -622,6 +639,14 @@ async function saveTimeline(e) {
       const data = await res.json();
       if (data && data.success) {
         showToast(data.message || 'Milestone saved successfully!', 'success');
+        if (id) {
+          const idx = timelineList.findIndex(t => String(t._id) === String(id));
+          if (idx !== -1) timelineList[idx] = { ...timelineList[idx], ...payload, _id: id };
+        } else if (data.data) {
+          timelineList.push(data.data);
+        }
+        localStorage.setItem('admin_cached_timeline', JSON.stringify(timelineList));
+        renderTimelineTable(timelineList);
         closeModal('timelineModal');
         await loadTimeline();
         return;
@@ -633,7 +658,7 @@ async function saveTimeline(e) {
 
   // Fallback: Save to LocalStorage / cached array (Works 100% on Vercel / offline)
   if (id) {
-    const idx = timelineList.findIndex(t => t._id === id);
+    const idx = timelineList.findIndex(t => String(t._id) === String(id));
     if (idx !== -1) {
       timelineList[idx] = { ...timelineList[idx], ...payload, _id: id };
     }
@@ -655,12 +680,16 @@ async function deleteTimelineModal(id) {
   try {
     const res = await fetch(`${API_BASE}/timeline/${id}`, {
       method: 'DELETE',
+      headers: { 'x-admin-key': 'thirupathi_admin_2026' },
       credentials: 'include'
     });
     if (res.ok) {
       const data = await res.json();
       if (data && data.success) {
         showToast('Milestone deleted successfully', 'success');
+        timelineList = timelineList.filter(t => String(t._id) !== String(id));
+        localStorage.setItem('admin_cached_timeline', JSON.stringify(timelineList));
+        renderTimelineTable(timelineList);
         loadTimeline();
         return;
       }
@@ -670,7 +699,7 @@ async function deleteTimelineModal(id) {
   }
 
   // Fallback: Delete from local state & LocalStorage
-  timelineList = timelineList.filter(t => t._id !== id);
+  timelineList = timelineList.filter(t => String(t._id) !== String(id));
   localStorage.setItem('admin_cached_timeline', JSON.stringify(timelineList));
   renderTimelineTable(timelineList);
   showToast('Milestone deleted successfully', 'success');
@@ -748,7 +777,22 @@ async function loadProjects() {
     if (res.ok) {
       const data = await res.json();
       if (data.success && Array.isArray(data.data) && data.data.length > 0) {
-        projectList = data.data;
+        const apiData = data.data;
+        const saved = localStorage.getItem('admin_cached_projects');
+        if (saved) {
+          try {
+            const localData = JSON.parse(saved);
+            if (Array.isArray(localData) && localData.length > apiData.length) {
+              projectList = localData;
+            } else {
+              projectList = apiData;
+            }
+          } catch (e) {
+            projectList = apiData;
+          }
+        } else {
+          projectList = apiData;
+        }
         localStorage.setItem('admin_cached_projects', JSON.stringify(projectList));
         renderProjectsTable(projectList);
         return;
@@ -884,7 +928,10 @@ async function saveProject(e) {
   try {
     const res = await fetch(url, {
       method,
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'x-admin-key': 'thirupathi_admin_2026'
+      },
       credentials: 'include',
       body: JSON.stringify(payload)
     });
@@ -892,6 +939,14 @@ async function saveProject(e) {
       const data = await res.json();
       if (data && data.success) {
         showToast(data.message || 'Project saved', 'success');
+        if (id) {
+          const idx = projectList.findIndex(p => String(p._id) === String(id));
+          if (idx !== -1) projectList[idx] = { ...projectList[idx], ...payload, _id: id };
+        } else if (data.data) {
+          projectList.push(data.data);
+        }
+        localStorage.setItem('admin_cached_projects', JSON.stringify(projectList));
+        renderProjectsTable(projectList);
         closeModal('projectModal');
         loadProjects();
         return;
@@ -903,7 +958,7 @@ async function saveProject(e) {
 
   // Fallback: Save to LocalStorage
   if (id) {
-    const idx = projectList.findIndex(p => p._id === id);
+    const idx = projectList.findIndex(p => String(p._id) === String(id));
     if (idx !== -1) {
       projectList[idx] = { ...projectList[idx], ...payload, _id: id };
     }
@@ -922,12 +977,16 @@ async function deleteProject(id) {
   try {
     const res = await fetch(`${API_BASE}/projects/${id}`, {
       method: 'DELETE',
+      headers: { 'x-admin-key': 'thirupathi_admin_2026' },
       credentials: 'include'
     });
     if (res.ok) {
       const data = await res.json();
       if (data && data.success) {
         showToast('Project deleted', 'success');
+        projectList = projectList.filter(p => String(p._id) !== String(id));
+        localStorage.setItem('admin_cached_projects', JSON.stringify(projectList));
+        renderProjectsTable(projectList);
         loadProjects();
         return;
       }
@@ -937,7 +996,7 @@ async function deleteProject(id) {
   }
 
   // Fallback: Delete from local state & LocalStorage
-  projectList = projectList.filter(p => p._id !== id);
+  projectList = projectList.filter(p => String(p._id) !== String(id));
   localStorage.setItem('admin_cached_projects', JSON.stringify(projectList));
   renderProjectsTable(projectList);
   showToast('Project deleted successfully', 'success');

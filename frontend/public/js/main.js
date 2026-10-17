@@ -1457,10 +1457,98 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   // DYNAMIC ARCHITECTURAL CHRONICLE TIMELINE (MongoDB API Integration)
     // =========================================================================
+  // =========================================================================
   // DYNAMIC CREATIVE-STACK TIMELINE ENGINE (MongoDB API Integration)
   // Renders the editorial alternating 2-column stack layout with giant masked numbers
   // =========================================================================
+  function renderTimelineItems(items) {
+    if (!Array.isArray(items) || items.length === 0) return;
+    const container = document.getElementById('timelineStackContainer') || document.querySelector('.timeline-stack-container');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    items.forEach((item, idx) => {
+      const stepNum = item.stepNumber || (idx + 1);
+      const formattedNum = String(stepNum).padStart(2, '0');
+      const isRightText = (idx % 2 === 1);
+      const rowClass = isRightText ? 'row-right-text' : 'row-left-text';
+      const isOngoing = (item.status === 'ONGOING' || String(item.year).includes('ONGOING') || String(item.title).includes('ONGOING'));
+      const ongoingClass = isOngoing ? ' is-ongoing' : '';
+
+      const yearLabel = escapeHtml(item.year || '');
+      const title = escapeHtml(item.title || '');
+      const client = escapeHtml(item.client || '');
+      const desc = escapeHtml(item.description || '');
+      let imgUrl = item.imageUrl || 'assets/images/gallery/site-img-024.jpg';
+      if (!imgUrl.startsWith('http') && !imgUrl.startsWith('data:') && !imgUrl.startsWith('/')) {
+        imgUrl = '/' + imgUrl;
+      }
+
+      let tags = [];
+      if (Array.isArray(item.tags) && item.tags.length) {
+        tags = item.tags;
+      } else {
+        if (title.includes('Steel')) tags.push('Steel Erection');
+        if (title.includes('Plant') || title.includes('Erection')) tags.push('Industrial Plant');
+        if (title.includes('Silo')) tags.push('Clinker Silo');
+        if (title.includes('Power')) tags.push('Power Plant');
+        if (title.includes('Crusher')) tags.push('Crusher Framing');
+        if (title.includes('Dry Mix')) tags.push('Dry Mix Unit');
+        if (tags.length === 0) tags = ['Industrial Execution', 'Structural Steel'];
+      }
+
+      const tagsHtml = tags.map(t => `<span class="stack-tag">${escapeHtml(t)}</span>`).join('');
+
+      const row = document.createElement('div');
+      row.className = `timeline-stack-row ${rowClass}${ongoingClass}`;
+      row.setAttribute('data-step', formattedNum);
+
+      row.innerHTML = `
+        <div class="stack-col-text">
+          <div class="stack-year-badge">
+            <span class="badge-dot"></span>
+            <span>${yearLabel}</span>
+          </div>
+          <h3 class="stack-title">${title}</h3>
+          <div class="stack-accent-bar"></div>
+          <p class="stack-desc">${desc}</p>
+          <div class="stack-client-meta">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+            <span>${client}</span>
+          </div>
+          <div class="stack-tags">
+            ${tagsHtml}
+          </div>
+        </div>
+
+        <div class="stack-col-number">
+          <div class="stack-number-anchor" data-open-capability="true" data-title="${title}">
+            <span class="stack-mask-number" style="background-image: url('${imgUrl}');" aria-label="${formattedNum}">${formattedNum}</span>
+            <span class="stack-quick-pill">View Landmark Record ↗</span>
+          </div>
+        </div>
+      `;
+
+      container.appendChild(row);
+    });
+
+    initStackTimeline();
+  }
+
   async function fetchAndRenderTimeline() {
+    // 1. Immediately render cached data from localStorage if available (instant on load)
+    try {
+      const cached = localStorage.getItem('admin_cached_timeline');
+      if (cached) {
+        const items = JSON.parse(cached);
+        if (Array.isArray(items) && items.length > 0) {
+          renderTimelineItems(items);
+        }
+      }
+    } catch (e) {}
+
+    // 2. Fetch fresh data from backend API
     try {
       const res = await fetch('/api/timeline', {
         headers: { 'Cache-Control': 'no-cache, no-store', 'Pragma': 'no-cache' }
@@ -1469,76 +1557,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const json = await res.json();
       if (!json.success || !Array.isArray(json.data) || json.data.length === 0) return;
 
-      const items = json.data;
-      const container = document.getElementById('timelineStackContainer') || document.querySelector('.timeline-stack-container');
-      if (!container) return;
+      let items = json.data;
 
-      container.innerHTML = '';
-
-      items.forEach((item, idx) => {
-        const stepNum = item.stepNumber || (idx + 1);
-        const formattedNum = String(stepNum).padStart(2, '0');
-        const isRightText = (idx % 2 === 1);
-        const rowClass = isRightText ? 'row-right-text' : 'row-left-text';
-        const isOngoing = (item.status === 'ONGOING' || String(item.year).includes('ONGOING') || String(item.title).includes('ONGOING'));
-        const ongoingClass = isOngoing ? ' is-ongoing' : '';
-
-        const yearLabel = escapeHtml(item.year || '');
-        const title = escapeHtml(item.title || '');
-        const client = escapeHtml(item.client || '');
-        const desc = escapeHtml(item.description || '');
-        let imgUrl = item.imageUrl || 'assets/images/gallery/site-img-024.jpg';
-        if (!imgUrl.startsWith('http') && !imgUrl.startsWith('/')) imgUrl = '/' + imgUrl;
-
-        let tags = [];
-        if (Array.isArray(item.tags) && item.tags.length) {
-          tags = item.tags;
-        } else {
-          if (title.includes('Steel')) tags.push('Steel Erection');
-          if (title.includes('Plant') || title.includes('Erection')) tags.push('Industrial Plant');
-          if (title.includes('Silo')) tags.push('Clinker Silo');
-          if (title.includes('Power')) tags.push('Power Plant');
-          if (title.includes('Crusher')) tags.push('Crusher Framing');
-          if (title.includes('Dry Mix')) tags.push('Dry Mix Unit');
-          if (tags.length === 0) tags = ['Industrial Execution', 'Structural Steel'];
+      // Smart merge: if local admin has additional items, preserve them
+      try {
+        const localCached = localStorage.getItem('admin_cached_timeline');
+        if (localCached) {
+          const localItems = JSON.parse(localCached);
+          if (Array.isArray(localItems) && localItems.length > items.length) {
+            items = localItems;
+          }
         }
+      } catch (e) {}
 
-        const tagsHtml = tags.map(t => `<span class="stack-tag">${escapeHtml(t)}</span>`).join('');
-
-        const row = document.createElement('div');
-        row.className = `timeline-stack-row ${rowClass}${ongoingClass}`;
-        row.setAttribute('data-step', formattedNum);
-
-        row.innerHTML = `
-          <div class="stack-col-text">
-            <div class="stack-year-badge">
-              <span class="badge-dot"></span>
-              <span>${yearLabel}</span>
-            </div>
-            <h3 class="stack-title">${title}</h3>
-            <div class="stack-accent-bar"></div>
-            <p class="stack-desc">${desc}</p>
-            <div class="stack-client-meta">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
-              <span>${client}</span>
-            </div>
-            <div class="stack-tags">
-              ${tagsHtml}
-            </div>
-          </div>
-
-          <div class="stack-col-number">
-            <div class="stack-number-anchor" data-open-capability="true" data-title="${title}">
-              <span class="stack-mask-number" style="background-image: url('${imgUrl}');" aria-label="${formattedNum}">${formattedNum}</span>
-              <span class="stack-quick-pill">View Landmark Record ↗</span>
-            </div>
-          </div>
-        `;
-
-        container.appendChild(row);
-      });
-
-      initStackTimeline();
+      localStorage.setItem('admin_cached_timeline', JSON.stringify(items));
+      renderTimelineItems(items);
     } catch (e) {
       console.warn('[Timeline Stack API] Using static fallback:', e);
     }
@@ -1579,10 +1612,208 @@ async function fetchAndApplyProfile() {
   // =========================================================================
   // DYNAMIC SHOWCASE PROJECTS ENGINE (MongoDB API Integration)
   // =========================================================================
-  async function fetchAndRenderProjects() {
-    const stack = document.querySelector('.projects-stack');
-    if (!stack) return;
+  function renderProjectsItems(projects) {
+    const stack = document.querySelector('.projects-stack') || document.getElementById('projectsStack');
+    if (!stack || !Array.isArray(projects) || projects.length === 0) return;
 
+    function safeText(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function safeAttr(str) {
+      if (!str) return '';
+      return String(str).replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    }
+
+    function normalizeImg(url) {
+      if (!url) return '/assets/images/drymix_packing.jpg';
+      if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/') || url.startsWith('data:')) return url;
+      return '/' + url;
+    }
+
+    // Update Filter Tabs dynamically based on actual categories in database
+    const filterTabsContainer = document.querySelector('.filter-tabs');
+    if (filterTabsContainer) {
+      const rawCats = projects.map(p => (p.category || '').trim()).filter(Boolean);
+      const uniqueCats = [...new Set(rawCats)];
+
+      let tabsHtml = `<button class="filter-btn active" data-filter="all">All Projects (${projects.length})</button>`;
+      uniqueCats.forEach(cat => {
+        const count = projects.filter(p => (p.category || '').trim().toLowerCase() === cat.toLowerCase()).length;
+        tabsHtml += `<button class="filter-btn" data-filter="${safeAttr(cat.toLowerCase())}">${safeText(cat)} (${count})</button>`;
+      });
+      filterTabsContainer.innerHTML = tabsHtml;
+
+      // Rebind click events on dynamic buttons
+      filterTabsContainer.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterTabsContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const selectedCat = btn.getAttribute('data-filter');
+          stack.querySelectorAll('.project-case-card').forEach(card => {
+            const cardCat = card.getAttribute('data-category');
+            if (selectedCat === 'all' || cardCat === selectedCat) {
+              card.style.display = 'block';
+              card.style.animation = 'fadeInCard 0.4s ease forwards';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    }
+
+    // Clear static cards and render dynamic cards from database
+    stack.innerHTML = '';
+
+    projects.forEach((p, idx) => {
+      const num = String(idx + 1).padStart(2, '0');
+      const projKey = p._id || `proj-${idx}`;
+      const imgSrc = normalizeImg(p.mainImage);
+      const catClean = (p.category || 'STRUCTURAL & EQUIPMENT').trim();
+      const catAttr = catClean.toLowerCase();
+      const statusClean = (p.status || 'COMPLETED').toUpperCase();
+      const isOngoing = statusClean === 'ONGOING';
+      const yearText = p.year ? p.year : '2026';
+      const yearBadge = `${yearText} ${statusClean}`;
+
+      // Register in projectDetailsData for modal preview
+      projectDetailsData[projKey] = {
+        title: p.title || 'Industrial Mechanical Structural Erection',
+        year: `${yearText} ${statusClean}`,
+        clients: `${p.client || 'Enterprise Client'}${p.location ? ' — ' + p.location : ''}`,
+        image: imgSrc,
+        specs: [
+          { label: 'Project Status', val: statusClean },
+          { label: 'Category', val: catClean },
+          { label: 'Client / Site', val: p.client || 'Enterprise Client' },
+          { label: 'Location', val: p.location || 'Tamil Nadu, India' },
+          { label: 'Capacity / Scope', val: p.capacity || 'Heavy Industrial Equipment' },
+          { label: 'Supervision', val: 'Direct Lead: M. Mohan & K. Gopalakrishnan' }
+        ],
+        description: p.description || ''
+      };
+
+      const card = document.createElement('article');
+      card.className = 'project-case-card';
+      card.setAttribute('data-category', catAttr);
+
+      card.innerHTML = `
+        <div class="project-card-header">
+          <div class="project-index-group">
+            <span class="project-number">${num}</span>
+            <div>
+              <span class="project-meta-category">${safeText(catClean.toUpperCase())}</span>
+              <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">${safeText(p.client || '')} ${p.location ? '— ' + safeText(p.location) : ''}</div>
+            </div>
+          </div>
+          <span class="project-year-badge" style="${isOngoing ? 'background: rgba(16, 185, 129, 0.15); color: #059669; border: 1px solid rgba(16, 185, 129, 0.3);' : ''}">
+            ${safeText(yearBadge)}
+          </span>
+        </div>
+
+        <div class="project-card-body">
+          <!-- Left Image with Metrics Ribbon -->
+          <div class="project-image-box">
+            <img src="${imgSrc}" alt="${safeAttr(p.title)}" loading="lazy" onerror="this.src='/assets/images/drymix_packing.jpg'">
+            <div class="project-image-metrics-strip">
+              <div class="img-metric-item">
+                <h6>${safeText(catClean)}</h6>
+                <p>Category</p>
+              </div>
+              <div class="img-metric-item">
+                <h6>${safeText(yearText)}</h6>
+                <p>Execution</p>
+              </div>
+              <div class="img-metric-item">
+                <h6>${safeText(statusClean)}</h6>
+                <p>Status</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Specs & Narrative -->
+          <div class="project-specs-box">
+            <div>
+              <h3 class="project-title">${safeText(p.title)}</h3>
+
+              <div class="specs-meta-grid">
+                <div class="spec-param">
+                  <h5>CATEGORY</h5>
+                  <p>${safeText(catClean)}</p>
+                </div>
+                <div class="spec-param">
+                  <h5>CLIENT</h5>
+                  <p>${safeText(p.client || 'Enterprise Client')}</p>
+                </div>
+                <div class="spec-param">
+                  <h5>LOCATION</h5>
+                  <p>${safeText(p.location || 'Tamil Nadu, India')}</p>
+                </div>
+                <div class="spec-param">
+                  <h5>STATUS & YEAR</h5>
+                  <p>${safeText(yearBadge)}</p>
+                </div>
+              </div>
+
+              <p class="project-narrative">
+                ${safeText(p.description || '')}
+              </p>
+
+              ${Array.isArray(p.scope) && p.scope.length > 0 ? `
+                <div style="margin: 1rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                  ${p.scope.map(s => `<span style="display:inline-block; font-size:0.75rem; background:var(--bg-secondary); border:1px solid var(--border-hairline); padding:0.25rem 0.6rem; border-radius:3px; color:var(--text-secondary); font-family:var(--font-mono);">${safeText(s)}</span>`).join('')}
+                </div>
+              ` : ''}
+            </div>
+
+            <div class="project-footer-actions">
+              <button class="btn btn-primary" data-open-project="${projKey}">
+                <span>View Project Specs</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+              <div class="client-tag-group">
+                <span class="client-tag-label">CLIENT:</span>
+                <span class="client-name-badge client-ramco-badge">
+                  <span>${safeText(p.client || 'Enterprise')}</span>
+                </span>
+                ${p.location ? `<span class="client-name-badge">${safeText(p.location)}</span>` : ''}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      stack.appendChild(card);
+    });
+
+    // Attach modal listeners to dynamic project buttons
+    attachProjectModalTriggers(stack);
+  }
+
+  async function fetchAndRenderProjects() {
+    // 1. Immediately render cached data from localStorage if available
+    try {
+      const cached = localStorage.getItem('admin_cached_projects');
+      if (cached) {
+        const projs = JSON.parse(cached);
+        if (Array.isArray(projs) && projs.length > 0) {
+          renderProjectsItems(projs);
+        }
+      }
+    } catch (e) {}
+
+    // 2. Fetch fresh data from backend API
     try {
       const res = await fetch('/api/projects', {
         headers: { 'Cache-Control': 'no-cache, no-store', 'Pragma': 'no-cache' }
@@ -1591,195 +1822,43 @@ async function fetchAndApplyProfile() {
       const json = await res.json();
       if (!json.success || !Array.isArray(json.data) || json.data.length === 0) return;
 
-      const projects = json.data;
+      let projects = json.data;
 
-      function safeText(str) {
-        if (!str) return '';
-        return String(str)
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#039;');
-      }
+      try {
+        const localCached = localStorage.getItem('admin_cached_projects');
+        if (localCached) {
+          const localItems = JSON.parse(localCached);
+          if (Array.isArray(localItems) && localItems.length > projects.length) {
+            projects = localItems;
+          }
+        }
+      } catch (e) {}
 
-      function safeAttr(str) {
-        if (!str) return '';
-        return String(str).replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-      }
-
-      function normalizeImg(url) {
-        if (!url) return '/assets/images/drymix_packing.jpg';
-        if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/')) return url;
-        return '/' + url;
-      }
-
-      // Update Filter Tabs dynamically based on actual categories in database
-      const filterTabsContainer = document.querySelector('.filter-tabs');
-      if (filterTabsContainer) {
-        const rawCats = projects.map(p => (p.category || '').trim()).filter(Boolean);
-        const uniqueCats = [...new Set(rawCats)];
-
-        let tabsHtml = `<button class="filter-btn active" data-filter="all">All Projects (${projects.length})</button>`;
-        uniqueCats.forEach(cat => {
-          const count = projects.filter(p => (p.category || '').trim().toLowerCase() === cat.toLowerCase()).length;
-          tabsHtml += `<button class="filter-btn" data-filter="${safeAttr(cat.toLowerCase())}">${safeText(cat)} (${count})</button>`;
-        });
-        filterTabsContainer.innerHTML = tabsHtml;
-
-        // Rebind click events on dynamic buttons
-        filterTabsContainer.querySelectorAll('.filter-btn').forEach(btn => {
-          btn.addEventListener('click', () => {
-            filterTabsContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const selectedCat = btn.getAttribute('data-filter');
-            stack.querySelectorAll('.project-case-card').forEach(card => {
-              const cardCat = card.getAttribute('data-category');
-              if (selectedCat === 'all' || cardCat === selectedCat) {
-                card.style.display = 'block';
-                card.style.animation = 'fadeInCard 0.4s ease forwards';
-              } else {
-                card.style.display = 'none';
-              }
-            });
-          });
-        });
-      }
-
-      // Clear static cards and render dynamic cards from database
-      stack.innerHTML = '';
-
-      projects.forEach((p, idx) => {
-        const num = String(idx + 1).padStart(2, '0');
-        const projKey = p._id || `proj-${idx}`;
-        const imgSrc = normalizeImg(p.mainImage);
-        const catClean = (p.category || 'STRUCTURAL & EQUIPMENT').trim();
-        const catAttr = catClean.toLowerCase();
-        const statusClean = (p.status || 'COMPLETED').toUpperCase();
-        const isOngoing = statusClean === 'ONGOING';
-        const yearText = p.year ? p.year : '2026';
-        const yearBadge = `${yearText} ${statusClean}`;
-
-        // Register in projectDetailsData for modal preview
-        projectDetailsData[projKey] = {
-          title: p.title || 'Industrial Mechanical Structural Erection',
-          year: `${yearText} ${statusClean}`,
-          clients: `${p.client || 'Enterprise Client'}${p.location ? ' — ' + p.location : ''}`,
-          image: imgSrc,
-          specs: [
-            { label: 'Project Status', val: statusClean },
-            { label: 'Category', val: catClean },
-            { label: 'Client / Site', val: p.client || 'Enterprise Client' },
-            { label: 'Location', val: p.location || 'Tamil Nadu, India' },
-            { label: 'Capacity / Scope', val: p.capacity || 'Heavy Industrial Equipment' },
-            { label: 'Supervision', val: 'Direct Lead: M. Mohan & K. Gopalakrishnan' }
-          ],
-          description: p.description || ''
-        };
-
-        const card = document.createElement('article');
-        card.className = 'project-case-card';
-        card.setAttribute('data-category', catAttr);
-
-        card.innerHTML = `
-          <div class="project-card-header">
-            <div class="project-index-group">
-              <span class="project-number">${num}</span>
-              <div>
-                <span class="project-meta-category">${safeText(catClean.toUpperCase())}</span>
-                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">${safeText(p.client || '')} ${p.location ? '— ' + safeText(p.location) : ''}</div>
-              </div>
-            </div>
-            <span class="project-year-badge" style="${isOngoing ? 'background: rgba(16, 185, 129, 0.15); color: #059669; border: 1px solid rgba(16, 185, 129, 0.3);' : ''}">
-              ${safeText(yearBadge)}
-            </span>
-          </div>
-
-          <div class="project-card-body">
-            <!-- Left Image with Metrics Ribbon -->
-            <div class="project-image-box">
-              <img src="${imgSrc}" alt="${safeAttr(p.title)}" loading="lazy" onerror="this.src='/assets/images/drymix_packing.jpg'">
-              <div class="project-image-metrics-strip">
-                <div class="img-metric-item">
-                  <h6>${safeText(catClean)}</h6>
-                  <p>Category</p>
-                </div>
-                <div class="img-metric-item">
-                  <h6>${safeText(yearText)}</h6>
-                  <p>Execution</p>
-                </div>
-                <div class="img-metric-item">
-                  <h6>${safeText(statusClean)}</h6>
-                  <p>Status</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right Specs & Narrative -->
-            <div class="project-specs-box">
-              <div>
-                <h3 class="project-title">${safeText(p.title)}</h3>
-
-                <div class="specs-meta-grid">
-                  <div class="spec-param">
-                    <h5>CATEGORY</h5>
-                    <p>${safeText(catClean)}</p>
-                  </div>
-                  <div class="spec-param">
-                    <h5>CLIENT</h5>
-                    <p>${safeText(p.client || 'Enterprise Client')}</p>
-                  </div>
-                  <div class="spec-param">
-                    <h5>LOCATION</h5>
-                    <p>${safeText(p.location || 'Tamil Nadu, India')}</p>
-                  </div>
-                  <div class="spec-param">
-                    <h5>STATUS & YEAR</h5>
-                    <p>${safeText(yearBadge)}</p>
-                  </div>
-                </div>
-
-                <p class="project-narrative">
-                  ${safeText(p.description || '')}
-                </p>
-
-                ${Array.isArray(p.scope) && p.scope.length > 0 ? `
-                  <div style="margin: 1rem 0; display: flex; flex-wrap: wrap; gap: 0.4rem;">
-                    ${p.scope.map(s => `<span style="display:inline-block; font-size:0.75rem; background:var(--bg-secondary); border:1px solid var(--border-hairline); padding:0.25rem 0.6rem; border-radius:3px; color:var(--text-secondary); font-family:var(--font-mono);">${safeText(s)}</span>`).join('')}
-                  </div>
-                ` : ''}
-              </div>
-
-              <div class="project-footer-actions">
-                <button class="btn btn-primary" data-open-project="${projKey}">
-                  <span>View Project Specs</span>
-                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </button>
-                <div class="client-tag-group">
-                  <span class="client-tag-label">CLIENT:</span>
-                  <span class="client-name-badge client-ramco-badge">
-                    <span>${safeText(p.client || 'Enterprise')}</span>
-                  </span>
-                  ${p.location ? `<span class="client-name-badge">${safeText(p.location)}</span>` : ''}
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-
-        stack.appendChild(card);
-      });
-
-      // Attach modal listeners to dynamic project buttons
-      attachProjectModalTriggers(stack);
+      localStorage.setItem('admin_cached_projects', JSON.stringify(projects));
+      renderProjectsItems(projects);
     } catch (e) {
       console.warn('[Projects API] Using static fallback:', e);
     }
   }
+
+  // Cross-tab real-time sync with Admin Dashboard
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'admin_cached_timeline') {
+      try {
+        const items = JSON.parse(e.newValue);
+        if (Array.isArray(items) && items.length > 0) {
+          renderTimelineItems(items);
+        }
+      } catch (err) {}
+    } else if (e.key === 'admin_cached_projects') {
+      try {
+        const projs = JSON.parse(e.newValue);
+        if (Array.isArray(projs) && projs.length > 0) {
+          renderProjectsItems(projs);
+        }
+      } catch (err) {}
+    }
+  });
 
   fetchAndRenderProjects();
   fetchAndRenderTimeline();
@@ -1806,7 +1885,7 @@ async function fetchAndApplyProfile() {
       const imgEl = document.getElementById('heroMainImage');
       if (imgEl && h.bgImageUrl) {
         let imgSrc = h.bgImageUrl;
-        if (!imgSrc.startsWith('http') && !imgSrc.startsWith('/')) imgSrc = '/' + imgSrc;
+        if (!imgSrc.startsWith('http') && !imgSrc.startsWith('data:') && !imgSrc.startsWith('/')) imgSrc = '/' + imgSrc;
         imgEl.src = imgSrc;
       }
 

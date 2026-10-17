@@ -98,9 +98,17 @@ let defaultProjects = [
 
 let cachedProjects = defaultProjects;
 
+const TMP_DATA_FILE = '/tmp/projects.json';
+const LOCAL_DATA_FILE = path.resolve(__dirname, '../data/projects.json');
+
 try {
-  if (fs.existsSync(DATA_FILE)) {
-    const fileData = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+  if (fs.existsSync(TMP_DATA_FILE)) {
+    const fileData = JSON.parse(fs.readFileSync(TMP_DATA_FILE, 'utf8'));
+    if (Array.isArray(fileData) && fileData.length > 0) {
+      cachedProjects = fileData;
+    }
+  } else if (fs.existsSync(LOCAL_DATA_FILE)) {
+    const fileData = JSON.parse(fs.readFileSync(LOCAL_DATA_FILE, 'utf8'));
     if (Array.isArray(fileData) && fileData.length > 0) {
       cachedProjects = fileData;
     }
@@ -111,12 +119,13 @@ try {
 
 function persistProjectsFile() {
   try {
-    const dir = path.dirname(DATA_FILE);
+    fs.writeFileSync(TMP_DATA_FILE, JSON.stringify(cachedProjects, null, 2), 'utf8');
+  } catch (e) {}
+  try {
+    const dir = path.dirname(LOCAL_DATA_FILE);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(DATA_FILE, JSON.stringify(cachedProjects, null, 2), 'utf8');
-  } catch (e) {
-    console.warn('[Projects] File save warning:', e.message);
-  }
+    fs.writeFileSync(LOCAL_DATA_FILE, JSON.stringify(cachedProjects, null, 2), 'utf8');
+  } catch (e) {}
 }
 
 // GET /api/projects
