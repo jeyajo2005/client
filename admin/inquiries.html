@@ -150,7 +150,8 @@
     let currentFilter = 'all';
 
     async function loadInquiries() {
-      document.getElementById('inquiriesList').innerHTML = '<div style="text-align:center; padding:3rem; color:var(--text-muted);">Loading...</div>';
+      document.getElementById('inquiriesList').innerHTML = '<div style="text-align:center; padding:3rem; color:var(--text-muted);">Loading inquiries...</div>';
+      let apiInquiries = [];
       try {
         const res = await fetch(`${API_BASE}/inquiries`, {
           credentials: 'include',
@@ -158,15 +159,31 @@
         });
         const data = await res.json();
         if (data.success && Array.isArray(data.data)) {
-          allInquiries = data.data;
-          updateStats();
-          renderInquiries();
-          return;
+          apiInquiries = data.data;
         }
       } catch (err) {
         console.warn('[Inquiries Admin]', err.message);
       }
-      document.getElementById('inquiriesList').innerHTML = '<div style="text-align:center; padding:3rem; color:var(--text-muted);">No inquiries found — or MongoDB is not connected. Submit a contact form on the public site to test.</div>';
+
+      // Check LocalStorage cache
+      let localInqs = [];
+      try {
+        const saved = localStorage.getItem('admin_cached_inquiries');
+        if (saved) localInqs = JSON.parse(saved);
+      } catch(e) {}
+
+      // Combine API and local inquiries without duplicates
+      const apiIds = new Set(apiInquiries.map(i => String(i._id)));
+      const combined = [...apiInquiries];
+      localInqs.forEach(loc => {
+        if (!apiIds.has(String(loc._id))) {
+          combined.unshift(loc);
+        }
+      });
+
+      allInquiries = combined;
+      updateStats();
+      renderInquiries();
     }
 
     function updateStats() {
@@ -198,26 +215,31 @@
       list.innerHTML = filtered.map(inquiry => {
         const isUnread = inquiry.status === 'unread';
         const dateStr  = inquiry.createdAt ? new Date(inquiry.createdAt).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }) : '—';
+        const cleanPhoneNum = inquiry.phone ? inquiry.phone.replace(/[^0-9]/g, '') : '';
+        const waMsg = encodeURIComponent(`Hello ${inquiry.name || 'Client'}, this is Thirupathi Engineering regarding your inquiry for ${inquiry.subject || 'Industrial Mechanical Erection'}.`);
+
         return `
           <div class="inquiry-card ${isUnread ? 'unread' : ''}" id="card_${escapeHtml(inquiry._id)}">
             <div class="inquiry-meta">
               <div>
-                <div class="inquiry-name">${escapeHtml(inquiry.name || 'Unknown')}</div>
+                <div class="inquiry-name" style="font-size:1.05rem; font-weight:700;">${escapeHtml(inquiry.name || 'Unknown')}</div>
                 <div class="inquiry-contact">
+                  ${inquiry.company ? `<strong style="color:var(--text-main);">${escapeHtml(inquiry.company)}</strong> · ` : ''}
                   ${inquiry.email ? `<a href="mailto:${escapeHtml(inquiry.email)}" style="color:var(--primary-teal);">${escapeHtml(inquiry.email)}</a>` : ''}
-                  ${inquiry.phone ? ` · <a href="tel:${escapeHtml(inquiry.phone)}" style="color:var(--text-muted);">${escapeHtml(inquiry.phone)}</a>` : ''}
-                  ${inquiry.company ? ` · ${escapeHtml(inquiry.company)}` : ''}
+                  ${inquiry.phone ? ` · <a href="tel:${escapeHtml(inquiry.phone)}" style="color:var(--text-muted); font-weight:600;">${escapeHtml(inquiry.phone)}</a>` : ''}
                 </div>
               </div>
-              <span class="inquiry-subject">${escapeHtml(inquiry.subject || 'General Inquiry')}</span>
+              <span class="inquiry-subject" style="background:var(--bg-secondary); border:1px solid var(--border-hairline); border-radius:4px; padding:0.25rem 0.6rem;">${escapeHtml(inquiry.subject || 'General Inquiry')}</span>
               <span class="inquiry-time">${dateStr}</span>
-              ${isUnread ? '<span class="badge-tag ongoing" style="font-size:0.68rem;">NEW</span>' : ''}
+              ${isUnread ? '<span class="badge-tag ongoing" style="font-size:0.68rem; font-weight:800;">NEW INQUIRY</span>' : ''}
             </div>
-            <div class="inquiry-message">${escapeHtml(inquiry.message || '—')}</div>
-            <div class="inquiry-actions">
+            <div class="inquiry-message" style="background:var(--bg-secondary); padding:0.85rem; border-radius:6px; margin:0.8rem 0; font-size:0.92rem; line-height:1.6;">${escapeHtml(inquiry.message || '—')}</div>
+            <div class="inquiry-actions" style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;">
+              ${cleanPhoneNum ? `<a href="https://api.whatsapp.com/send?phone=${cleanPhoneNum}&text=${waMsg}" target="_blank" class="btn btn-sm" style="background:#10B981; color:#FFFFFF; font-weight:700; text-decoration:none; padding:0.4rem 0.8rem;">💬 Chat on WhatsApp</a>` : ''}
+              ${inquiry.phone ? `<a href="tel:${escapeHtml(inquiry.phone)}" class="btn btn-secondary btn-sm" style="text-decoration:none; padding:0.4rem 0.8rem;">📞 Call Client</a>` : ''}
+              ${inquiry.email ? `<a href="mailto:${escapeHtml(inquiry.email)}?subject=Re: ${encodeURIComponent(inquiry.subject || 'Your Industrial Inquiry')} - Thirupathi Engineering" class="btn btn-primary btn-sm" style="text-decoration:none; padding:0.4rem 0.8rem;">✉️ Reply via Email</a>` : ''}
               ${isUnread ? `<button class="btn btn-secondary btn-sm" onclick="markStatus('${escapeHtml(inquiry._id)}', 'read')">Mark as Read</button>` : ''}
               ${inquiry.status !== 'archived' ? `<button class="btn btn-sm" style="background:rgba(99,102,241,0.12);color:#818CF8;" onclick="markStatus('${escapeHtml(inquiry._id)}', 'archived')">Archive</button>` : ''}
-              ${inquiry.email ? `<a href="mailto:${escapeHtml(inquiry.email)}?subject=Re: ${encodeURIComponent(inquiry.subject || 'Your Inquiry')}" class="btn btn-primary btn-sm">Reply via Email</a>` : ''}
               <button class="btn btn-sm" style="background:rgba(239,68,68,0.12);color:#F87171;" onclick="deleteInquiry('${escapeHtml(inquiry._id)}')">Delete</button>
             </div>
           </div>

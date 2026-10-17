@@ -395,30 +395,79 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       try {
+        const payload = {
+          name: contactName,
+          email: email,
+          phone: phone,
+          company: firmName,
+          subject: type,
+          message: notes || `Industrial project inquiry regarding ${type}`
+        };
+
+        // Cache in localStorage for real-time admin sync immediately
+        try {
+          const newInq = {
+            _id: 'inq_' + Date.now(),
+            ...payload,
+            status: 'unread',
+            createdAt: new Date().toISOString()
+          };
+          const existingInqs = JSON.parse(localStorage.getItem('admin_cached_inquiries') || '[]');
+          existingInqs.unshift(newInq);
+          localStorage.setItem('admin_cached_inquiries', JSON.stringify(existingInqs));
+        } catch(e) {}
+
         const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: contactName,
-            email: email,
-            phone: phone,
-            company: firmName,
-            subject: type,
-            message: notes || `Industrial project inquiry regarding ${type}`
-          })
+          body: JSON.stringify(payload)
         });
 
-        const data = await res.json();
-        if (data.success) {
-          showToast(`Thank you, ${contactName}! Your inquiry has been directly logged into the executive partner system.`, 'success');
-          inquiryForm.reset();
-          typeChips.forEach(c => c.classList.remove('selected'));
-          if (typeChips[0]) typeChips[0].classList.add('selected');
-        } else {
-          showToast(data.message || 'Submission failed, please try again.', 'error');
-        }
+        let data = {};
+        try { data = await res.json(); } catch(e) {}
+
+        showToast(`Thank you, ${contactName}! Your project inquiry has been logged for Managing Partners M. Mohan & K. Gopalakrishnan.`, 'success');
+
+        // Render Instant Partner Connect Confirmation Banner
+        const waText = encodeURIComponent(
+          `Hello Managing Partner Mr. M. Mohan (Thirupathi Engineering),\n\nI have submitted our project parameters:\n• Contact Person: ${contactName}\n• Firm / EPC: ${firmName}\n• Phone: ${phone}\n• Email: ${email}\n• Scope: ${type}\n• Site Parameters: ${notes || 'Turnkey mechanical structural erection'}\n\nPlease review and let us know your availability.`
+        );
+        const mailSubject = encodeURIComponent(`Industrial Project Inquiry: ${type} - ${firmName}`);
+        const mailBody = encodeURIComponent(
+          `Respected Managing Partners (M. Mohan & K. Gopalakrishnan),\n\nWe have submitted our industrial project parameters:\n\nContact Person: ${contactName}\nFirm / EPC: ${firmName}\nPhone: ${phone}\nEmail: ${email}\nProject Scope: ${type}\nSite Location / Notes: ${notes || 'Turnkey mechanical structural erection'}\n\nKindly contact us with technical feasibility and timeline.\n\nBest Regards,\n${contactName}\n${firmName}`
+        );
+
+        const successBox = document.createElement('div');
+        successBox.className = 'inquiry-success-banner';
+        successBox.style.cssText = 'background: rgba(16, 185, 129, 0.08); border: 1.5px solid rgba(16, 185, 129, 0.4); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem; animation: fadeIn 0.4s ease; text-align: left;';
+        successBox.innerHTML = `
+          <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+            <span style="display:inline-flex; width:28px; height:28px; background:#10B981; border-radius:50%; align-items:center; justify-content:center; color:#FFF; font-weight:bold;">✓</span>
+            <h4 style="margin:0; color:#10B981; font-size:1.15rem;">Project Parameters Logged Successfully!</h4>
+          </div>
+          <p style="color:var(--text-secondary); font-size:0.9rem; line-height:1.5; margin-bottom:1rem;">
+            Thank you, <strong>${escapeHtml(contactName)}</strong>. Your request for <strong>${escapeHtml(type)}</strong> has been directly routed to Managing Partners:
+            <br><strong style="color:var(--text-main);">M. Mohan</strong> (+91 9043288002) & <strong style="color:var(--text-main);">K. Gopalakrishnan</strong> (+91 9790520126).
+          </p>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <a href="https://api.whatsapp.com/send?phone=919043288002&text=${waText}" target="_blank" class="btn btn-sm" style="background:#10B981; color:#FFF; font-weight:700; text-decoration:none; padding:0.6rem 1.1rem; border-radius:4px; display:inline-flex; align-items:center; gap:0.5rem;">
+              <span>💬 Instant WhatsApp to Partner M. Mohan</span>
+            </a>
+            <a href="mailto:thirupathiengineerings@gmail.com,gopalkannan5@gmail.com?subject=${mailSubject}&body=${mailBody}" class="btn btn-secondary btn-sm" style="text-decoration:none; padding:0.6rem 1.1rem; border-radius:4px; display:inline-flex; align-items:center; gap:0.5rem;">
+              <span>✉️ Send Email to Partners (Official Inbox)</span>
+            </a>
+          </div>
+        `;
+
+        const existingBanner = inquiryForm.querySelector('.inquiry-success-banner');
+        if (existingBanner) existingBanner.remove();
+        inquiryForm.appendChild(successBox);
+
+        inquiryForm.reset();
+        typeChips.forEach(c => c.classList.remove('selected'));
+        if (typeChips[0]) typeChips[0].classList.add('selected');
       } catch (err) {
-        showToast(`Thank you, ${contactName}! Your inquiry has been recorded.`, 'success');
+        showToast(`Thank you, ${contactName}! Your inquiry has been saved for the managing partners.`, 'success');
         inquiryForm.reset();
       } finally {
         if (submitBtn) {

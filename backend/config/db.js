@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 
 export async function connectDB() {
-  // Disable buffering so disconnected queries fail fast or use fallback instead of freezing 10s
-  mongoose.set('bufferCommands', false);
 
   const uris = [
     process.env.MONGO_URI,
