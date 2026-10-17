@@ -57,7 +57,19 @@ export async function sendContactMessage(req, res, next) {
 
     const cleanName = String(name).trim();
     const cleanEmail = String(email).trim().toLowerCase();
-    const cleanPhone = String(phone || '').trim();
+    
+    // Strict 10-digit validation
+    const rawDigits = String(phone || '').replace(/[^0-9]/g, '');
+    const clean10 = (rawDigits.length === 12 && rawDigits.startsWith('91')) ? rawDigits.slice(2) : rawDigits;
+
+    if (clean10.length !== 10) {
+      return res.status(400).json({
+        success: false,
+        message: 'A valid 10-digit mobile number is mandatory (+91 excluded).'
+      });
+    }
+
+    const cleanPhone = `+91 ${clean10.slice(0, 5)} ${clean10.slice(5)}`;
     const cleanCompany = String(company || '').trim();
     const cleanSubject = String(subject || 'General Project Inquiry').trim();
     const cleanMessage = String(message || `Project inquiry regarding ${cleanSubject}`).trim();

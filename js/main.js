@@ -372,6 +372,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Phone Number 10-digit mandatory validation & auto-formatting
+  const phoneInput = document.getElementById('contactPhone');
+  const phoneErrorNotice = document.getElementById('phoneErrorNotice');
+
+  if (phoneInput) {
+    phoneInput.addEventListener('input', () => {
+      let digits = phoneInput.value.replace(/[^0-9]/g, '');
+
+      // Strip 91 prefix if pasted with country code
+      if (digits.startsWith('91') && digits.length > 10) {
+        digits = digits.slice(2);
+      }
+
+      // Cap at 10 digits
+      if (digits.length > 10) {
+        digits = digits.slice(0, 10);
+      }
+
+      // Format with gap: XXXXX XXXXX
+      if (digits.length > 5) {
+        phoneInput.value = digits.slice(0, 5) + ' ' + digits.slice(5);
+      } else {
+        phoneInput.value = digits;
+      }
+
+      // Live verification indicator
+      if (digits.length === 10) {
+        phoneInput.style.borderColor = '#10B981';
+        if (phoneErrorNotice) {
+          phoneErrorNotice.style.display = 'block';
+          phoneErrorNotice.style.color = '#10B981';
+          phoneErrorNotice.textContent = '✓ 10-digit mobile number verified';
+        }
+      } else if (digits.length > 0) {
+        phoneInput.style.borderColor = '#F59E0B';
+        if (phoneErrorNotice) {
+          phoneErrorNotice.style.display = 'block';
+          phoneErrorNotice.style.color = '#F59E0B';
+          phoneErrorNotice.textContent = `Entered ${digits.length}/10 digits. (+91 தவிர 10 எண்கள் கட்டாயம்)`;
+        }
+      } else {
+        phoneInput.style.borderColor = '';
+        if (phoneErrorNotice) phoneErrorNotice.style.display = 'none';
+      }
+    });
+
+    phoneInput.addEventListener('blur', () => {
+      const digits = phoneInput.value.replace(/[^0-9]/g, '');
+      if (digits.length > 0 && digits.length !== 10) {
+        phoneInput.style.borderColor = '#EF4444';
+        if (phoneErrorNotice) {
+          phoneErrorNotice.style.display = 'block';
+          phoneErrorNotice.style.color = '#EF4444';
+          phoneErrorNotice.textContent = '⚠️ +91 தவிர 10 இலக்க மொபைல் எண் கட்டாயம் (10 digits required).';
+        }
+      }
+    });
+  }
+
   if (inquiryForm) {
     inquiryForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -379,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const firmName = document.getElementById('firmName').value.trim();
       const contactName = document.getElementById('contactName').value.trim();
       const email = document.getElementById('contactEmail').value.trim();
-      const phone = document.getElementById('contactPhone').value.trim();
+      const phoneRaw = document.getElementById('contactPhone').value.trim();
       const notes = document.getElementById('projectNotes').value.trim();
       const type = selectedTypeInput ? selectedTypeInput.value : 'General Inquiry';
 
@@ -387,6 +446,26 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast('Please fill out the required firm name, contact person, and email.', 'error');
         return;
       }
+
+      // Strict 10-digit validation (+91 excluded)
+      const digitsOnly = phoneRaw.replace(/[^0-9]/g, '');
+      const cleanPhone10 = (digitsOnly.length === 12 && digitsOnly.startsWith('91')) ? digitsOnly.slice(2) : digitsOnly;
+
+      if (cleanPhone10.length !== 10) {
+        showToast('+91 தவிர 10 இலக்க மொபைல் எண் கட்டாயம் தர வேண்டும் (10 digits required).', 'error');
+        if (phoneErrorNotice) {
+          phoneErrorNotice.style.display = 'block';
+          phoneErrorNotice.style.color = '#EF4444';
+          phoneErrorNotice.textContent = '⚠️ +91 தவிர 10 இலக்க மொபைல் எண் கட்டாயம் (Exactly 10 digits required).';
+        }
+        if (phoneInput) {
+          phoneInput.focus();
+          phoneInput.style.borderColor = '#EF4444';
+        }
+        return;
+      }
+
+      const formattedPhone = `+91 ${cleanPhone10.slice(0, 5)} ${cleanPhone10.slice(5)}`;
 
       const submitBtn = inquiryForm.querySelector('button[type="submit"]');
       if (submitBtn) {
@@ -398,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const payload = {
           name: contactName,
           email: email,
-          phone: phone,
+          phone: formattedPhone,
           company: firmName,
           subject: type,
           message: notes || `Industrial project inquiry regarding ${type}`

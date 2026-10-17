@@ -1827,8 +1827,14 @@
                 <input type="email" id="contactEmail" class="form-control" placeholder="engineer@yourfirm.com" required>
               </div>
               <div class="form-group">
-                <label for="contactPhone">PHONE NUMBER *</label>
-                <input type="tel" id="contactPhone" class="form-control" placeholder="+91 98765 43210" required>
+                <label for="contactPhone">PHONE NUMBER * <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">(10 Digits)</span></label>
+                <div class="phone-input-wrap" style="display: flex; align-items: stretch; width: 100%;">
+                  <span class="phone-code-badge" style="display: inline-flex; align-items: center; justify-content: center; padding: 0 0.85rem; background: var(--bg-secondary, #1e293b); border: 1px solid var(--border-hairline, rgba(255,255,255,0.15)); border-right: none; border-radius: 4px 0 0 4px; font-weight: 700; font-family: var(--font-mono, monospace); font-size: 0.95rem; color: var(--text-main, #ffffff); white-space: nowrap; user-select: none;">
+                    +91
+                  </span>
+                  <input type="tel" id="contactPhone" class="form-control" placeholder="98765 43210" maxlength="11" style="border-top-left-radius: 0; border-bottom-left-radius: 0; font-family: var(--font-mono, monospace); letter-spacing: 0.5px;" required>
+                </div>
+                <div id="phoneErrorNotice" style="display: none; font-size: 0.78rem; font-weight: 600; margin-top: 0.35rem;"></div>
               </div>
             </div>
 
@@ -2002,7 +2008,7 @@
   </div>
 
   <!-- JavaScript Engine -->
-  <script src="js/main.js?v=22"></script>
+  <script src="js/main.js?v=23"></script>
 </body>
 
 </html>
