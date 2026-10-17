@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { Hero } from '../models/Hero.js';
 import { About } from '../models/About.js';
 import { Service } from '../models/Service.js';

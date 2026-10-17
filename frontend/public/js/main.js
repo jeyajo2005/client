@@ -586,10 +586,16 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <div style="background: var(--bg-tertiary); border: 1px solid var(--border-hairline); padding: 1.25rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem;">
-            <h4 style="font-size: 0.88rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;">GST Registered Office Addresses</h4>
-            <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
-              <div><strong>Corporate Office (GST):</strong> Chennai, Tamil Nadu</div>
-              <div><strong>Registered Office (GST Paper):</strong> Kovilpatti, Thoothukudi District, Tamil Nadu</div>
+            <h4 style="font-size: 0.88rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.65rem;">GST Registered Office Addresses</h4>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+              <div style="background: rgba(255,255,255,0.7); padding: 0.75rem; border-radius: 6px; border: 1px solid rgba(0,0,0,0.05);">
+                <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">Corporate Office (GST):</strong>
+                2/610, Nakkeran Salai, Mugappair East, Chennai, Thiruvallur District, Tamil Nadu – 600037
+              </div>
+              <div style="background: rgba(255,255,255,0.7); padding: 0.75rem; border-radius: 6px; border: 1px solid rgba(0,0,0,0.05);">
+                <strong style="color: var(--text-primary); display: block; margin-bottom: 0.25rem;">Registered Office (Principal Place in GST):</strong>
+                No. 131G/4, Lakshmi Mill Colony, Unnamed Road (Nr. Sri Chandra Sekaran Industry), KOV Verravanji Nagar, Kovilpatti, Thoothukudi Dist, TN – 628501
+              </div>
             </div>
           </div>
 
@@ -737,86 +743,130 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxNext = document.getElementById('lightboxNext');
   const lightboxClarityToggle = document.getElementById('lightboxClarityToggle');
 
-  // Build complete gallery data list
-  const totalGalleryCount = 98;
+    // Build curated 20 HD Big-Product gallery list (Crystal-Clear 4K Clarity)
+  const totalGalleryCount = 20;
   const galleryItems = [
     {
-      src: 'assets/images/washing_plant.jpg',
-      tag: 'The Ramco Cements Ltd.',
-      title: 'Washing Plant & Thickener Tank Structural Erection',
-      category: 'mining'
+        "src": "assets/images/gallery_rotary_kiln.jpg",
+        "tag": "Rotary Kiln Line",
+        "title": "High-Capacity Industrial Cement Rotary Kiln Line",
+        "category": "machinery"
     },
     {
-      src: 'assets/images/flsmidth_crane_lift.jpg',
-      tag: 'Heavy Rigging',
-      title: 'FLSmidth Equipment High-Tonnage Crane Lift',
-      category: 'cranes'
+        "src": "assets/images/gallery_conveyor_gallery.jpg",
+        "tag": "Conveyor Bridges",
+        "title": "Overhead Long-Span Conveyor Gantry & Transfer Tower",
+        "category": "cranes"
     },
     {
-      src: 'assets/images/drymix_packing.jpg',
-      tag: 'RR Nagar Site',
-      title: 'Dry Mix Unit Drive Motors & Equipment Assembly',
-      category: 'machinery'
+        "src": "assets/images/power_plant_acc.jpg",
+        "tag": "Power Plant & ACC",
+        "title": "20 MW Thermal Power Plant ACC Cooling Tower Columns",
+        "category": "cranes"
     },
     {
-      src: 'assets/images/sizer_crusher.jpg',
-      tag: 'Ramco Mines',
-      title: 'Primary Sizer Crusher Mechanical Support Tower',
-      category: 'mining'
+        "src": "assets/images/clinker_silo.jpg",
+        "tag": "Clinker Silo",
+        "title": "Heavy Bulk Cement Clinker Silo Structures & Galleries",
+        "category": "hoppers"
     },
     {
-      src: 'assets/images/power_plant_acc.jpg',
-      tag: 'Tecksk / ISGEC',
-      title: '20 MW Thermal Power Plant ACC Cooling Tower Deck',
-      category: 'cranes'
+        "src": "assets/images/hero_industrial_cinematic.jpg",
+        "tag": "Structural Hall",
+        "title": "High-Bay Structural Fabrication Hall & Bulk Silos",
+        "category": "hoppers"
     },
     {
-      src: 'assets/images/clinker_silo.jpg',
-      tag: 'Cement Works',
-      title: 'Clinker Storage Silo Structures & Elevated Galleries',
-      category: 'hoppers'
+        "src": "assets/images/hero_colorful_plant.jpg",
+        "tag": "Processing Complex",
+        "title": "Major Integrated Chemical & Mineral Processing Complex",
+        "category": "machinery"
+    },
+    {
+        "src": "assets/images/sizer_crusher.jpg",
+        "tag": "Sizer Crusher",
+        "title": "Heavy Mineral Sizer Crusher Mechanical Support Tower",
+        "category": "mining"
+    },
+    {
+        "src": "assets/images/peb_erection.jpg",
+        "tag": "PEB Framing",
+        "title": "Pre-Engineered Building (PEB) Heavy Industrial Steel Framing",
+        "category": "hoppers"
+    },
+    {
+        "src": "assets/images/gallery_acc.jpg",
+        "tag": "ACC Structures",
+        "title": "Air Cooled Condenser (ACC) Heavy Steel Columns Erection",
+        "category": "cranes"
+    },
+    {
+        "src": "assets/images/gallery_erection.jpg",
+        "tag": "Heavy Rigging",
+        "title": "High-Tonnage Mobile Crane Rigging & Structural Assembly",
+        "category": "cranes"
+    },
+    {
+        "src": "assets/images/gallery_fabrication.jpg",
+        "tag": "Steel Fabrication",
+        "title": "Multi-Bay Industrial Workshop Structural Steel Fabrication",
+        "category": "hoppers"
+    },
+    {
+        "src": "assets/images/hero_powerplant_cinematic.jpg",
+        "tag": "Thermal Power Plant",
+        "title": "Thermal Power Generation Facility Non-IBR Boiler Framing",
+        "category": "cranes"
+    },
+    {
+        "src": "assets/images/hero_buildconic_main.jpg",
+        "tag": "Plant Framework",
+        "title": "High-Elevation Industrial Plant Structural Framework",
+        "category": "machinery"
+    },
+    {
+        "src": "assets/images/civil_foundations.jpg",
+        "tag": "Heavy Equipment Bases",
+        "title": "Heavy Dynamic Equipment Machine Bases & Foundation Mounts",
+        "category": "machinery"
+    },
+    {
+        "src": "assets/images/hero_card_frame.jpg",
+        "tag": "Structural Columns",
+        "title": "Heavy Duty Truss Framing & Reinforced Structural Columns",
+        "category": "hoppers"
+    },
+    {
+        "src": "assets/images/hero_card_int.jpg",
+        "tag": "Machinery Hall",
+        "title": "High-Bay Process Machinery Hall Structural Erection",
+        "category": "machinery"
+    },
+    {
+        "src": "assets/images/hero_card_ext.jpg",
+        "tag": "Pipe Racks",
+        "title": "Industrial Processing Plant Pipe Racks & Mechanical Ducting",
+        "category": "hoppers"
+    },
+    {
+        "src": "assets/images/ramco_factory_hero.jpg",
+        "tag": "The Ramco Cements",
+        "title": "The Ramco Cements Landmark Manufacturing Plant Facility",
+        "category": "machinery"
+    },
+    {
+        "src": "assets/images/drymix_packing.jpg",
+        "tag": "Packing Plant",
+        "title": "Dry Mix Unit High-Speed Packing Plant & Bulk Storage Hoppers",
+        "category": "machinery"
+    },
+    {
+        "src": "assets/images/washing_plant.jpg",
+        "tag": "Beneficiation Plant",
+        "title": "Mineral Beneficiation Plant & Screening Structural Decks",
+        "category": "mining"
     }
-  ];
-
-  // Dynamic titles and category rotation for the 98 live site photos
-  const categoryPool = ['cranes', 'machinery', 'hoppers', 'mining'];
-  const tagPool = [
-    'Ramco Cements Site',
-    'Heavy Mobile Crane',
-    'Hopper Fabrication',
-    'Plant Erection',
-    'Dry Mix Unit',
-    'Conveyor Gallery',
-    'Mechanical Fit-Up',
-    'Equipment Rigging'
-  ];
-  const titlePool = [
-    'Heavy Structural Framing Assembly',
-    'High-Elevation Truss Erection via Crane',
-    'Steel Storage Hopper Plate Fit-Up & Welding',
-    'Dry Mix Plant Mechanical Gallery Erection',
-    'Transfer Chute & Flange Bolt Alignment',
-    'Bucket Elevator Structural Support Tower',
-    'Industrial Washing Plant Steel Framework',
-    'Vibration-Damped Equipment Chassis Assembly',
-    'Overhead Conveyor Gantry Placement',
-    'Primary Feeder & Screening Station Steel',
-    'Structural Joint Torque & Laser Check',
-    'Live Plant Shutdown Mechanical Rigging'
-  ];
-
-  for (let idx = 1; idx <= totalGalleryCount; idx++) {
-    const pad = idx.toString().padStart(3, '0');
-    const cat = categoryPool[(idx - 1) % categoryPool.length];
-    const tag = tagPool[(idx - 1) % tagPool.length];
-    const title = `${titlePool[(idx - 1) % titlePool.length]} #${idx}`;
-    galleryItems.push({
-      src: `assets/images/gallery/site-img-${pad}.jpg`,
-      tag: tag,
-      title: title,
-      category: cat
-    });
-  }
+];
 
   let currentCategory = 'all';
   let displayedCount = 12;
@@ -1119,150 +1169,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 9. Serpentine Timeline Interaction & Scroll Reveal
-  const serpentineRows = document.querySelectorAll('.serpentine-row');
-  if (serpentineRows.length > 0) {
-    const serpentineObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.15 });
-
-    serpentineRows.forEach(row => {
-      row.style.opacity = '0.9';
-      row.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      serpentineObserver.observe(row);
-    });
-  }
-
-  // 9. Serpentine Timeline Dynamic Path & Alignment
-  function initSerpentineTimeline() {
-    const wrap = document.querySelector('.serpentine-timeline-wrap');
-    const svg = document.getElementById('serpentineSvg') || document.querySelector('.serpentine-svg-bg');
-    if (!wrap || !svg) return;
-
-    let path = document.getElementById('serpentinePath');
-    let topDot = document.getElementById('serpentineTopDot');
-    let bottomDot = document.getElementById('serpentineBottomDot');
-
-    if (!path) {
-      path = svg.querySelector('path');
-      if (path) path.id = 'serpentinePath';
-    }
-    const circles = svg.querySelectorAll('circle');
-    if (circles.length >= 2) {
-      if (!topDot) { topDot = circles[0]; topDot.id = 'serpentineTopDot'; }
-      if (!bottomDot) { bottomDot = circles[1]; bottomDot.id = 'serpentineBottomDot'; }
-    }
-
-    function calculateAndDraw() {
-      const rings = wrap.querySelectorAll('.target-ring');
-      if (rings.length === 0) return;
-
-      const wrapRect = wrap.getBoundingClientRect();
-      const wrapW = wrap.clientWidth || wrapRect.width;
-      const wrapH = wrap.clientHeight || wrapRect.height;
-      if (wrapW === 0 || wrapH === 0) return;
-
-      svg.setAttribute('viewBox', `0 0 ${wrapW} ${wrapH}`);
-      svg.setAttribute('width', wrapW);
-      svg.setAttribute('height', wrapH);
-
-      const isMobile = window.innerWidth <= 900;
-      const coords = [];
-
-      rings.forEach(ring => {
-        const rRect = ring.getBoundingClientRect();
-        const cx = rRect.left + rRect.width / 2 - wrapRect.left;
-        const cy = rRect.top + rRect.height / 2 - wrapRect.top;
-        coords.push({ x: cx, y: cy });
-      });
-
-      if (coords.length === 0) return;
-
-      const first = coords[0];
-      const last = coords[coords.length - 1];
-
-      const topX = first.x;
-      const topY = Math.max(8, first.y - (isMobile ? 36 : 60));
-
-      const botX = last.x;
-      const botY = Math.min(wrapH - 8, last.y + (isMobile ? 36 : 60));
-
-      if (topDot) {
-        topDot.setAttribute('cx', topX);
-        topDot.setAttribute('cy', topY);
-        topDot.setAttribute('r', isMobile ? '5' : '6');
-      }
-      if (bottomDot) {
-        bottomDot.setAttribute('cx', botX);
-        bottomDot.setAttribute('cy', botY);
-        bottomDot.setAttribute('r', isMobile ? '5' : '6');
-      }
-
-      let d = `M ${topX} ${topY}`;
-
-      // From top dot to first ring (Step 1)
-      if (isMobile) {
-        d += ` L ${first.x} ${first.y}`;
-      } else {
-        const bow1 = 38;
-        const dy1 = first.y - topY;
-        d += ` C ${topX + bow1} ${topY + dy1 * 0.35}, ${first.x + bow1} ${first.y - dy1 * 0.35}, ${first.x} ${first.y}`;
-      }
-
-      // Between consecutive rings: pass directly through each ring center
-      for (let i = 0; i < coords.length - 1; i++) {
-        const p1 = coords[i];
-        const p2 = coords[i + 1];
-        const dy = p2.y - p1.y;
-
-        if (isMobile) {
-          // Direct dashed connecting line straight through the rings
-          d += ` L ${p2.x} ${p2.y}`;
-        } else {
-          // Graceful S-curve alternating left & right
-          // i=0 (step 1->2): bows to the left (-46)
-          // i=1 (step 2->3): bows to the right (+46)
-          const dir = (i % 2 === 0) ? -1 : 1;
-          const bow = dir * 46;
-          d += ` C ${p1.x + bow} ${p1.y + dy * 0.32}, ${p2.x + bow} ${p2.y - dy * 0.32}, ${p2.x} ${p2.y}`;
-        }
-      }
-
-      // From last ring to bottom dot
-      if (isMobile) {
-        d += ` L ${botX} ${botY}`;
-      } else {
-        const lastDir = ((coords.length - 1) % 2 === 0) ? -1 : 1;
-        const bowLast = lastDir * 32;
-        const dyLast = botY - last.y;
-        d += ` C ${last.x + bowLast} ${last.y + dyLast * 0.35}, ${botX + bowLast} ${botY - dyLast * 0.35}, ${botX} ${botY}`;
-      }
-
-      if (path) {
-        path.setAttribute('d', d);
-      }
-    }
-
-    calculateAndDraw();
-    window.addEventListener('resize', calculateAndDraw, { passive: true });
-    window.addEventListener('orientationchange', calculateAndDraw, { passive: true });
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(calculateAndDraw);
-    }
-    if (window.ResizeObserver) {
-      const ro = new ResizeObserver(() => {
-        calculateAndDraw();
-      });
-      ro.observe(wrap);
-    }
-  }
-
-  initSerpentineTimeline();
+  // 9. Editorial Creative-Stack Timeline Interaction
+  initStackTimeline();
 
   // 10. Services 3D Cylindrical Carousel Engine (円周上に配置されたカード)
   function initServicesCylinderCarousel() {
@@ -1547,7 +1455,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // DYNAMIC SERPENTINE TIMELINE ENGINE (MongoDB API Integration)
+  // DYNAMIC ARCHITECTURAL CHRONICLE TIMELINE (MongoDB API Integration)
+    // =========================================================================
+  // DYNAMIC CREATIVE-STACK TIMELINE ENGINE (MongoDB API Integration)
+  // Renders the editorial alternating 2-column stack layout with giant masked numbers
   // =========================================================================
   async function fetchAndRenderTimeline() {
     try {
@@ -1559,93 +1470,94 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!json.success || !Array.isArray(json.data) || json.data.length === 0) return;
 
       const items = json.data;
-      const wrap = document.querySelector('.serpentine-timeline-wrap');
-      if (!wrap) return;
+      const container = document.getElementById('timelineStackContainer') || document.querySelector('.timeline-stack-container');
+      if (!container) return;
 
-      const svg = wrap.querySelector('.serpentine-svg-bg');
+      container.innerHTML = '';
 
-      // Clear existing static rows
-      const existingRows = wrap.querySelectorAll('.serpentine-row');
-      existingRows.forEach(row => row.remove());
+      items.forEach((item, idx) => {
+        const stepNum = item.stepNumber || (idx + 1);
+        const formattedNum = String(stepNum).padStart(2, '0');
+        const isRightText = (idx % 2 === 1);
+        const rowClass = isRightText ? 'row-right-text' : 'row-left-text';
+        const isOngoing = (item.status === 'ONGOING' || String(item.year).includes('ONGOING') || String(item.title).includes('ONGOING'));
+        const ongoingClass = isOngoing ? ' is-ongoing' : '';
 
-      function safeText(str) {
-        if (!str) return '';
-        return String(str)
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#039;');
-      }
+        const yearLabel = escapeHtml(item.year || '');
+        const title = escapeHtml(item.title || '');
+        const client = escapeHtml(item.client || '');
+        const desc = escapeHtml(item.description || '');
+        let imgUrl = item.imageUrl || 'assets/images/gallery/site-img-024.jpg';
+        if (!imgUrl.startsWith('http') && !imgUrl.startsWith('/')) imgUrl = '/' + imgUrl;
 
-      items.forEach((item, index) => {
-        const row = document.createElement('div');
-        const isRight = item.alignment === 'right';
-        row.className = `serpentine-row ${isRight ? 'row-right' : 'row-left'}`;
-
-        const themeClass = item.themeClass || 'theme-teal';
-        const color = item.themeColor || '#0D9488';
-        const year = safeText(item.year);
-        const title = safeText(item.title);
-        const client = safeText(item.client || '');
-        const desc = safeText(item.description);
-        const img = item.imageUrl || 'assets/images/gallery/site-img-024.jpg';
-
-        const pillHtml = `
-          <div class="serpentine-pill ${themeClass}">
-            <div class="pill-text">
-              <h4 class="pill-title">${title}</h4>
-              <span class="pill-client">${client}</span>
-              <p class="pill-desc">${desc}</p>
-            </div>
-            <div class="pill-disc-anchor">
-              <div class="pill-white-disc">
-                <img src="${img}" alt="${title}" loading="lazy">
-              </div>
-              <span class="pointer-arrow"></span>
-            </div>
-          </div>
-        `;
-
-        const centerNodeHtml = `
-          <div class="serpentine-node-center">
-            <div class="target-ring" style="border-color: ${color}; box-shadow: 0 0 0 5px ${color}38;">
-              <span class="target-ring-dot" style="background: ${color};"></span>
-            </div>
-          </div>
-        `;
-
-        const metaHtml = `
-          <div class="serpentine-meta">
-            <span class="meta-step-year" style="color: ${color};">${year}</span>
-          </div>
-        `;
-
-        if (isRight) {
-          row.innerHTML = metaHtml + centerNodeHtml + pillHtml;
+        let tags = [];
+        if (Array.isArray(item.tags) && item.tags.length) {
+          tags = item.tags;
         } else {
-          row.innerHTML = pillHtml + centerNodeHtml + metaHtml;
+          if (title.includes('Steel')) tags.push('Steel Erection');
+          if (title.includes('Plant') || title.includes('Erection')) tags.push('Industrial Plant');
+          if (title.includes('Silo')) tags.push('Clinker Silo');
+          if (title.includes('Power')) tags.push('Power Plant');
+          if (title.includes('Crusher')) tags.push('Crusher Framing');
+          if (title.includes('Dry Mix')) tags.push('Dry Mix Unit');
+          if (tags.length === 0) tags = ['Industrial Execution', 'Structural Steel'];
         }
 
-        wrap.appendChild(row);
+        const tagsHtml = tags.map(t => `<span class="stack-tag">${escapeHtml(t)}</span>`).join('');
+
+        const row = document.createElement('div');
+        row.className = `timeline-stack-row ${rowClass}${ongoingClass}`;
+        row.setAttribute('data-step', formattedNum);
+
+        row.innerHTML = `
+          <div class="stack-col-text">
+            <div class="stack-year-badge">
+              <span class="badge-dot"></span>
+              <span>${yearLabel}</span>
+            </div>
+            <h3 class="stack-title">${title}</h3>
+            <div class="stack-accent-bar"></div>
+            <p class="stack-desc">${desc}</p>
+            <div class="stack-client-meta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+              <span>${client}</span>
+            </div>
+            <div class="stack-tags">
+              ${tagsHtml}
+            </div>
+          </div>
+
+          <div class="stack-col-number">
+            <div class="stack-number-anchor" data-open-capability="true" data-title="${title}">
+              <span class="stack-mask-number" style="background-image: url('${imgUrl}');" aria-label="${formattedNum}">${formattedNum}</span>
+              <span class="stack-quick-pill">View Landmark Record ↗</span>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(row);
       });
 
-      // Update Serpentine SVG canvas height dynamically
-      if (svg) {
-        const totalHeight = Math.max(1900, items.length * 190);
-        svg.setAttribute('viewBox', `0 0 140 ${totalHeight}`);
-        const bottomDot = svg.querySelector('#serpentineBottomDot');
-        if (bottomDot) bottomDot.setAttribute('cy', totalHeight - 20);
-      }
+      initStackTimeline();
     } catch (e) {
-      console.warn('[Timeline API] Using static fallback:', e);
+      console.warn('[Timeline Stack API] Using static fallback:', e);
     }
   }
 
-  // =========================================================================
-  // DYNAMIC PROFILE & ABOUT SYNC (MongoDB API Integration)
-  // =========================================================================
-  async function fetchAndApplyProfile() {
+  function initStackTimeline() {
+    document.querySelectorAll('.stack-number-anchor').forEach(anchor => {
+      anchor.addEventListener('click', () => {
+        const title = anchor.getAttribute('data-title');
+        const modal = document.getElementById('capabilityModal');
+        if (modal && window.openCapabilityModal) {
+          window.openCapabilityModal(title);
+        }
+      });
+    });
+  }
+
+
+async function fetchAndApplyProfile() {
     try {
       const res = await fetch('/api/profile', {
         headers: { 'Cache-Control': 'no-cache, no-store' }
@@ -1872,8 +1784,155 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchAndRenderProjects();
   fetchAndRenderTimeline();
   fetchAndApplyProfile();
+  fetchAndApplyHero();
 
   initServicesCylinderCarousel();
+
+  // =========================================================================
+  // DYNAMIC HERO SECTION ENGINE (MongoDB API Integration)
+  // Loads hero banner image, badge text, CTAs, subtitle, description from DB
+  // =========================================================================
+  async function fetchAndApplyHero() {
+    try {
+      const res = await fetch('/api/hero', {
+        headers: { 'Cache-Control': 'no-cache, no-store', 'Pragma': 'no-cache' }
+      });
+      if (!res.ok) return;
+      const json = await res.json();
+      if (!json.success || !json.data) return;
+
+      const h = json.data;
+
+      const imgEl = document.getElementById('heroMainImage');
+      if (imgEl && h.bgImageUrl) {
+        let imgSrc = h.bgImageUrl;
+        if (!imgSrc.startsWith('http') && !imgSrc.startsWith('/')) imgSrc = '/' + imgSrc;
+        imgEl.src = imgSrc;
+      }
+
+      const liveText = document.querySelector('.status-live-text');
+      if (liveText && h.liveStatusText) {
+        liveText.textContent = h.liveStatusText;
+      }
+
+      const heroDesc = document.querySelector('.hero-split-desc');
+      if (heroDesc && h.description) heroDesc.textContent = h.description;
+
+      const goldBtn = document.querySelector('.btn-hero-gold');
+      if (goldBtn) {
+        if (h.primaryCtaText) {
+          const btnSpan = goldBtn.querySelector('span');
+          if (btnSpan) btnSpan.textContent = h.primaryCtaText;
+        }
+        if (h.primaryCtaLink) goldBtn.href = h.primaryCtaLink;
+      }
+
+      const outlineBtn = document.querySelector('.btn-hero-outline');
+      if (outlineBtn) {
+        if (h.secondaryCtaLink) outlineBtn.href = h.secondaryCtaLink;
+        if (h.secondaryCtaText) {
+          const btnSpan = outlineBtn.querySelector('span');
+          if (btnSpan) btnSpan.textContent = h.secondaryCtaText;
+        }
+      }
+    } catch (e) {
+      console.warn('[Hero API] Using static fallback:', e);
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // Interactive Hero HUD Project Showcase Switcher
+  // --------------------------------------------------------------------------
+  const hudSlides = [
+    {
+      img: 'assets/project-clinker-silo.jpg',
+      badge: 'ACTIVE SITE · 2026',
+      client: 'THE RAMCO CEMENTS LTD.',
+      category: 'CEMENT & PACKING',
+      status: 'Active 2026',
+      title: 'Dry Mix Unit & Clinker Silo Structures',
+      location: 'RR Nagar, Virudhunagar · Tamil Nadu',
+      specs: 'Mechanical Erection · Structural Framing · Zero LTI'
+    },
+    {
+      img: 'assets/images/power_plant_acc.jpg',
+      badge: 'LANDMARK EXECUTION',
+      client: 'THERMAL POWER PLANT',
+      category: 'ENERGY & POWER',
+      status: 'Verified Record',
+      title: '20 MW Thermal Power Plant & ACC Towers',
+      location: 'Industrial Corridor · Tamil Nadu',
+      specs: 'Non-IBR Structures · ACC Cooling Columns · Turnkey Erection'
+    },
+    {
+      img: 'assets/project-sizer-crusher.jpg',
+      badge: 'HEAVY MINING',
+      client: 'ISGEC / TECKSK PROJECTS',
+      category: 'MINING & AGGREGATES',
+      status: 'Commissioned',
+      title: 'Heavy Sizer Crusher & Bulk Handling',
+      location: 'Quarry & Cement Processing Site',
+      specs: 'Heavy Crusher Framing · High-Torque Drives · Alignment'
+    },
+    {
+      img: 'assets/images/hero_strategic_partner.jpg',
+      badge: 'STRATEGIC PARTNER',
+      client: 'THIRUPATHI ENGINEERING',
+      category: '50+ YRS LINEAGE',
+      status: 'Executive Leadership',
+      title: 'M. Mohan & K. Gopala Krishnan',
+      location: 'Managing Partners Direct Supervision',
+      specs: 'Zero Lost-Time Incidents · 10+ Major Plant Records'
+    }
+  ];
+
+  window.switchHudSlide = function(index) {
+    const slide = hudSlides[index];
+    if (!slide) return;
+
+    const imgEl = document.getElementById('hudMainImg');
+    const badgeEl = document.getElementById('hudBadgeText');
+    const clientEl = document.getElementById('hudClientPill');
+    const catEl = document.getElementById('hudCategory');
+    const statusEl = document.getElementById('hudStatus');
+    const titleEl = document.getElementById('hudTitle');
+    const locEl = document.getElementById('hudLocationText');
+
+    if (imgEl) {
+      imgEl.style.opacity = '0.35';
+      imgEl.style.transform = 'scale(0.97)';
+      setTimeout(() => {
+        imgEl.src = slide.img;
+        imgEl.style.opacity = '1';
+        imgEl.style.transform = 'scale(1)';
+      }, 160);
+    }
+    if (badgeEl) badgeEl.textContent = slide.badge;
+    if (clientEl) clientEl.textContent = slide.client;
+    if (catEl) catEl.textContent = slide.category;
+    if (statusEl) statusEl.textContent = slide.status;
+    if (titleEl) titleEl.textContent = slide.title;
+    if (locEl) locEl.textContent = slide.location;
+
+    document.querySelectorAll('.hud-thumb-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', i === index);
+    });
+  };
+
+  // Smooth auto-cycle every 6 seconds
+  let hudAutoTimer = setInterval(() => {
+    const btns = Array.from(document.querySelectorAll('.hud-thumb-btn'));
+    if (!btns.length) return;
+    const activeBtn = document.querySelector('.hud-thumb-btn.active');
+    const nextIdx = activeBtn ? (btns.indexOf(activeBtn) + 1) % btns.length : 0;
+    window.switchHudSlide(nextIdx);
+  }, 6000);
+
+  const hudCard = document.querySelector('.hero-hud-card');
+  if (hudCard) {
+    hudCard.addEventListener('mouseenter', () => clearInterval(hudAutoTimer));
+  }
 });
+
 
 

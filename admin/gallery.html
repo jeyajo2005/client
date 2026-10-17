@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery Admin · Thirupathi ENGINEERING</title>
+  <link rel="stylesheet" href="admin.css">
+  <style>
+    .gallery-admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .gallery-admin-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-hairline);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-admin-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-admin-card-info {
+      padding: 0.6rem 0.75rem;
+    }
+    .gallery-admin-card-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .gallery-admin-card-cat {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .gallery-admin-card-actions {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem 0.6rem;
+      border-top: 1px solid var(--border-hairline);
+    }
+    .gallery-admin-card-actions button {
+      flex: 1;
+      font-size: 0.72rem;
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-edit-img { background: rgba(99,102,241,0.15); color: #818CF8; }
+    .btn-delete-img { background: rgba(239,68,68,0.12); color: #F87171; }
+    .gallery-upload-zone {
+      border: 2px dashed var(--border-hairline);
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      transition: border-color 0.2s;
+      cursor: pointer;
+    }
+    .gallery-upload-zone:hover { border-color: var(--primary-teal); }
+    .gallery-upload-zone.drag-over { border-color: var(--primary-teal); background: rgba(13,148,136,0.06); }
+  </style>
+</head>
+
+<body>
+
+  <div class="admin-wrapper">
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-badge">
+          <div class="brand-icon">TE</div>
+          <div class="brand-text"><h2>Thirupathi</h2><span>Admin Suite</span></div>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Navigation</div>
+        <a href="dashboard.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg><span>Dashboard</span></a>
+        <a href="hero.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><span>Hero Banner</span></a>
+        <a href="timeline.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>Timeline</span></a>
+        <a href="projects.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span>Projects</span></a>
+        <a href="gallery.html" class="nav-link active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><span>Gallery</span></a>
+        <a href="services.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg><span>Services</span></a>
+        <a href="profile.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Profile & Skills</span></a>
+        <a href="inquiries.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span>Inquiries</span></a>
+        <a href="contact-settings.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>Contact Settings</span></a>
+        <div class="nav-section-title" style="margin-top:1rem;">Live Website</div>
+        <a href="/" target="_blank" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span>Open Public Site ↗</span></a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-avatar">MM</div>
+          <div class="user-info"><div class="user-name" id="adminUserName">Managing Partner</div><div class="user-role">Administrator</div></div>
+          <button id="logoutBtn" title="Logout" style="background:none;border:none;color:var(--accent-rose);cursor:pointer;padding:0.4rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="menu-toggle" id="sidebarToggle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+          <div class="page-title-badge"><h1>Gallery Manager</h1></div>
+        </div>
+        <div class="topbar-right">
+          <button class="btn btn-primary btn-sm" id="addGalleryBtn">+ Add Photo</button>
+        </div>
+      </header>
+
+      <div class="admin-content">
+
+        <!-- Upload Zone -->
+        <div class="card-panel" style="margin-bottom:1.5rem;">
+          <div class="panel-header">
+            <div class="panel-title"><h3>Upload New Photos</h3><p>Drag & drop images or click to browse. Multiple files supported.</p></div>
+          </div>
+          <div class="gallery-upload-zone" id="galleryDropZone">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:0.75rem; color:#64748B;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            <div style="font-weight:700; margin-bottom:0.35rem;">Drop images here or click to browse</div>
+            <div style="font-size:0.8rem;">JPG, PNG, WEBP · Max 15 MB per file</div>
+            <input type="file" id="galleryBulkUpload" multiple accept="image/*" style="display:none;">
+          </div>
+          <div id="uploadProgressArea" style="margin-top:1rem; display:none;">
+            <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.5rem;">Uploading...</div>
+            <div id="uploadProgressList"></div>
+          </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div style="display:flex; gap:1rem; margin-bottom:1.25rem; flex-wrap:wrap;">
+          <div class="stat-card" style="flex:1; min-width:120px;">
+            <div class="stat-info"><div class="stat-label">Total Photos</div><div class="stat-value" id="statGalleryCount">—</div></div>
+            <div class="stat-icon teal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div>
+          </div>
+          <div class="stat-card" style="flex:1; min-width:120px;">
+            <div class="stat-info"><div class="stat-label">Published</div><div class="stat-value" id="statGalleryPublished">—</div></div>
+            <div class="stat-icon blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+          </div>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="card-panel">
+          <div class="panel-header">
+            <div class="panel-title"><h3>Site Photo Archive</h3><p>Manage all gallery photos shown on the public website.</p></div>
+            <div class="panel-actions">
+              <input type="text" id="gallerySearch" class="form-input" style="width:200px; height:36px; font-size:0.82rem;" placeholder="Search photos...">
+            </div>
+          </div>
+          <div id="galleryAdminGrid" class="gallery-admin-grid">
+            <div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--text-muted);">Loading gallery photos...</div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Add/Edit Gallery Photo Modal -->
+  <div class="modal-overlay" id="galleryModal" style="display:none;">
+    <div class="modal-container" style="max-width:560px;">
+      <div class="modal-header">
+        <h3 id="galleryModalTitle">Add New Photo</h3>
+        <button onclick="closeModal('galleryModal')" class="modal-close-btn">✕</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="galleryEditId">
+
+        <div class="form-group" style="margin-bottom:1rem;">
+          <label class="form-label">Photo</label>
+          <div style="display:flex; gap:1rem; align-items:flex-start;">
+            <img id="galleryModalPreview" src="" alt="" style="width:120px; height:90px; object-fit:cover; border-radius:6px; border:1px solid var(--border-hairline); display:none;">
+            <div style="flex:1;">
+              <input type="file" id="galleryModalFile" accept="image/*" class="form-input" style="padding:0.4rem; margin-bottom:0.5rem;">
+              <input type="text" id="galleryModalImageUrl" class="form-input" placeholder="Or enter image URL">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Title</label>
+            <input type="text" id="galleryModalTitle2" class="form-input" placeholder="Heavy Crane Lift at Site">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select id="galleryModalCategory" class="form-select">
+              <option value="all">All</option>
+              <option value="cranes">Cranes & Heavy Rigging</option>
+              <option value="machinery">Dry Mix & Machinery</option>
+              <option value="hoppers">Hoppers & Fabrication</option>
+              <option value="mining">Washing Plants & Mining</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Tag / Client</label>
+          <input type="text" id="galleryModalTag" class="form-input" placeholder="Ramco Cements Site">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Description (optional)</label>
+          <textarea id="galleryModalDesc" class="form-textarea" rows="2" placeholder="Brief description of the photo..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+            <input type="checkbox" id="galleryModalPublished" checked style="width:auto;">
+            <span class="form-label" style="margin:0;">Published (visible on public site)</span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('galleryModal')">Cancel</button>
+        <button class="btn btn-primary" id="galleryModalSaveBtn" onclick="saveGalleryPhoto()">Save Photo</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+  <script>
+    checkAuth();
+
+    let galleryItems = [];
+
+    // ── Load gallery from API ──────────────────────────────────────────────
+    async function loadGallery() {
+      const grid = document.getElementById('galleryAdminGrid');
+      grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--text-muted);">Loading...</div>';
+
+      try {
+        const res = await fetch(`${API_BASE}/gallery?all=true`, {
+          credentials: 'include',
+          headers: { 'Cache-Control': 'no-cache' }
+        });
+        const data = await res.json();
+        if (data.success && Array.isArray(data.data)) {
+          galleryItems = data.data;
+          renderGalleryGrid(galleryItems);
+          document.getElementById('statGalleryCount').textContent = galleryItems.length;
+          document.getElementById('statGalleryPublished').textContent = galleryItems.filter(g => g.isPublished !== false).length;
+          return;
+        }
+      } catch (err) {
+        console.warn('[Gallery Admin] API error:', err.message);
+      }
+
+      // Fallback: show file-based photos
+      galleryItems = buildLocalGallery();
+      renderGalleryGrid(galleryItems);
+      document.getElementById('statGalleryCount').textContent = galleryItems.length;
+      document.getElementById('statGalleryPublished').textContent = galleryItems.length;
+    }
+
+    function buildLocalGallery() {
+      const items = [];
+      for (let i = 1; i <= 98; i++) {
+        const pad = String(i).padStart(3, '0');
+        items.push({
+          _id: `local_${pad}`,
+          title: `Site Photo ${pad}`,
+          imageUrl: `/assets/images/gallery/site-img-${pad}.jpg`,
+          category: ['cranes','machinery','hoppers','mining'][i % 4],
+          tag: 'Ramco Cements Site',
+          isPublished: true
+        });
+      }
+      return items;
+    }
+
+    function renderGalleryGrid(items) {
+      const grid = document.getElementById('galleryAdminGrid');
+      if (!items.length) {
+        grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--text-muted);">No photos yet. Upload your first image above.</div>';
+        return;
+      }
+
+      grid.innerHTML = items.map(item => {
+        const imgSrc = normalizeImgUrl(item.imageUrl || item.thumbnailUrl);
+        return `
+          <div class="gallery-admin-card" data-id="${escapeHtml(item._id)}">
+            <img src="${imgSrc}" alt="${escapeHtml(item.title || '')}" loading="lazy"
+              onerror="this.src='/assets/images/drymix_packing.jpg'">
+            <div class="gallery-admin-card-info">
+              <div class="gallery-admin-card-title">${escapeHtml(item.title || 'Untitled')}</div>
+              <div class="gallery-admin-card-cat">${escapeHtml(item.category || '')} ${item.isPublished === false ? '· DRAFT' : ''}</div>
+            </div>
+            <div class="gallery-admin-card-actions">
+              <button class="btn-edit-img" onclick="openEditGallery('${escapeHtml(item._id)}')">Edit</button>
+              <button class="btn-delete-img" onclick="deleteGalleryPhoto('${escapeHtml(item._id)}')">Delete</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ── Bulk upload drag/drop ──────────────────────────────────────────────
+    const dropZone = document.getElementById('galleryDropZone');
+    const bulkInput = document.getElementById('galleryBulkUpload');
+
+    dropZone.addEventListener('click', () => bulkInput.click());
+
+    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('drag-over');
+      handleBulkUpload(e.dataTransfer.files);
+    });
+
+    bulkInput.addEventListener('change', (e) => handleBulkUpload(e.target.files));
+
+    async function handleBulkUpload(files) {
+      if (!files || !files.length) return;
+      const progressArea = document.getElementById('uploadProgressArea');
+      const progressList  = document.getElementById('uploadProgressList');
+      progressArea.style.display = 'block';
+      progressList.innerHTML = '';
+
+      for (const file of files) {
+        const item = document.createElement('div');
+        item.style.cssText = 'font-size:0.82rem; padding:0.3rem 0; color:var(--text-muted);';
+        item.textContent = `Uploading ${file.name}...`;
+        progressList.appendChild(item);
+
+        try {
+          const formData = new FormData();
+          formData.append('image', file);
+          const res = await fetch(`${API_BASE}/upload`, {
+            method: 'POST',
+            body: formData,
+            credentials: 'include'
+          });
+          const data = await res.json();
+          if (data.success) {
+            const imgUrl = data.relativePath || data.url;
+            // Create gallery record
+            await fetch(`${API_BASE}/gallery`, {
+              method: 'POST',
+              credentials: 'include',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                title: file.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' '),
+                imageUrl: imgUrl,
+                category: 'all',
+                tag: 'Site Photo',
+                isPublished: true
+              })
+            });
+            item.textContent = `✓ ${file.name} uploaded`;
+            item.style.color = '#10B981';
+          } else {
+            item.textContent = `✗ ${file.name}: ${data.message || 'failed'}`;
+            item.style.color = '#EF4444';
+          }
+        } catch (err) {
+          item.textContent = `✗ ${file.name}: ${err.message}`;
+          item.style.color = '#EF4444';
+        }
+      }
+
+      showToast('Upload complete! Refreshing gallery...', 'success');
+      setTimeout(() => {
+        progressArea.style.display = 'none';
+        loadGallery();
+      }, 2000);
+    }
+
+    // ── Add/Edit modal ────────────────────────────────────────────────────
+    document.getElementById('addGalleryBtn').addEventListener('click', () => {
+      document.getElementById('galleryEditId').value = '';
+      document.getElementById('galleryModalTitle').textContent = 'Add New Photo';
+      document.getElementById('galleryModalTitle2').value = '';
+      document.getElementById('galleryModalImageUrl').value = '';
+      document.getElementById('galleryModalTag').value = '';
+      document.getElementById('galleryModalDesc').value = '';
+      document.getElementById('galleryModalCategory').value = 'all';
+      document.getElementById('galleryModalPublished').checked = true;
+      const preview = document.getElementById('galleryModalPreview');
+      preview.src = '';
+      preview.style.display = 'none';
+      openModal('galleryModal');
+    });
+
+    function openEditGallery(id) {
+      const item = galleryItems.find(g => String(g._id) === String(id));
+      if (!item) return;
+
+      document.getElementById('galleryEditId').value = id;
+      document.getElementById('galleryModalTitle').textContent = 'Edit Photo';
+      document.getElementById('galleryModalTitle2').value = item.title || '';
+      const imgSrc = normalizeImgUrl(item.imageUrl || '');
+      document.getElementById('galleryModalImageUrl').value = imgSrc;
+      document.getElementById('galleryModalTag').value = item.tag || '';
+      document.getElementById('galleryModalDesc').value = item.description || '';
+      document.getElementById('galleryModalCategory').value = item.category || 'all';
+      document.getElementById('galleryModalPublished').checked = item.isPublished !== false;
+
+      const preview = document.getElementById('galleryModalPreview');
+      if (imgSrc) {
+        preview.src = imgSrc;
+        preview.style.display = 'block';
+      } else {
+        preview.style.display = 'none';
+      }
+      openModal('galleryModal');
+    }
+
+    // File upload inside modal
+    document.getElementById('galleryModalFile').addEventListener('change', async function () {
+      if (!this.files || !this.files[0]) return;
+      const preview = document.getElementById('galleryModalPreview');
+      const urlInput = document.getElementById('galleryModalImageUrl');
+      const uploaded = await uploadImageFile(this.files[0], preview, urlInput);
+      if (uploaded) {
+        preview.style.display = 'block';
+      }
+    });
+
+    document.getElementById('galleryModalImageUrl').addEventListener('input', function () {
+      const preview = document.getElementById('galleryModalPreview');
+      if (this.value.trim()) {
+        preview.src = this.value.trim();
+        preview.style.display = 'block';
+      }
+    });
+
+    async function saveGalleryPhoto() {
+      const saveBtn = document.getElementById('galleryModalSaveBtn');
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Saving...';
+
+      const id = document.getElementById('galleryEditId').value.trim();
+      const payload = {
+        title:       document.getElementById('galleryModalTitle2').value.trim(),
+        imageUrl:    document.getElementById('galleryModalImageUrl').value.trim(),
+        category:    document.getElementById('galleryModalCategory').value,
+        tag:         document.getElementById('galleryModalTag').value.trim(),
+        description: document.getElementById('galleryModalDesc').value.trim(),
+        isPublished: document.getElementById('galleryModalPublished').checked
+      };
+
+      if (!payload.imageUrl) { showToast('Please add an image URL or upload a file.', 'error'); saveBtn.disabled = false; saveBtn.textContent = 'Save Photo'; return; }
+
+      try {
+        const url    = id ? `${API_BASE}/gallery/${id}` : `${API_BASE}/gallery`;
+        const method = id ? 'PUT' : 'POST';
+        const res    = await fetch(url, {
+          method,
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast(`Photo ${id ? 'updated' : 'added'} successfully!`, 'success');
+          closeModal('galleryModal');
+          loadGallery();
+        } else {
+          showToast(data.message || 'Save failed.', 'error');
+        }
+      } catch (err) {
+        showToast('Network error: ' + err.message, 'error');
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = 'Save Photo';
+      }
+    }
+
+    async function deleteGalleryPhoto(id) {
+      if (!confirm('Delete this photo? This cannot be undone.')) return;
+      // Local-only items (from file system) cannot be deleted via API
+      if (id.startsWith('local_')) {
+        showToast('Static site photos cannot be deleted via API — remove the file directly.', 'info');
+        return;
+      }
+      try {
+        const res = await fetch(`${API_BASE}/gallery/${id}`, {
+          method: 'DELETE',
+          credentials: 'include'
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast('Photo deleted.', 'success');
+          galleryItems = galleryItems.filter(g => String(g._id) !== String(id));
+          renderGalleryGrid(galleryItems);
+          document.getElementById('statGalleryCount').textContent = galleryItems.length;
+        } else {
+          showToast(data.message || 'Delete failed.', 'error');
+        }
+      } catch (err) {
+        showToast('Network error: ' + err.message, 'error');
+      }
+    }
+
+    // ── Search filter ─────────────────────────────────────────────────────
+    document.getElementById('gallerySearch').addEventListener('input', function () {
+      const q = this.value.toLowerCase();
+      const filtered = galleryItems.filter(g =>
+        (g.title || '').toLowerCase().includes(q) ||
+        (g.tag   || '').toLowerCase().includes(q) ||
+        (g.category || '').toLowerCase().includes(q)
+      );
+      renderGalleryGrid(filtered);
+    });
+
+    loadGallery();
+  </script>
+</body>
+</html>

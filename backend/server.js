@@ -105,6 +105,17 @@ app.use('/css', express.static(path.resolve(rootDir, 'css')));
 app.use('/js', express.static(path.resolve(rootDir, 'js')));
 app.use('/admin', express.static(path.resolve(rootDir, 'admin')));
 
+// Favicon endpoints
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile(path.resolve(rootDir, 'favicon.ico'));
+});
+app.get('/favicon.svg', (req, res) => {
+  res.sendFile(path.resolve(rootDir, 'favicon.svg'));
+});
+app.get('/favicon.png', (req, res) => {
+  res.sendFile(path.resolve(rootDir, 'favicon.png'));
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({

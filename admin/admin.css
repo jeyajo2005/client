@@ -1029,3 +1029,129 @@ textarea.form-control {
     padding: 1rem 1.25rem;
   }
 }
+
+
+/* ============================================================
+   ADDITIONAL STYLES FOR NEW ADMIN PAGES (Hero, Gallery, Services,
+   Inquiries, Contact Settings)
+   ============================================================ */
+
+/* Filter buttons (used in Inquiries page) */
+.filter-btn {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  font-family: var(--font-sans);
+}
+.filter-btn:hover {
+  background: rgba(13, 148, 136, 0.1);
+  border-color: var(--primary-teal);
+  color: #2DD4BF;
+}
+.filter-btn.active {
+  background: rgba(13, 148, 136, 0.15);
+  border-color: var(--primary-teal);
+  color: #2DD4BF;
+}
+
+/* Form action row */
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-hairline);
+  flex-wrap: wrap;
+}
+
+/* Sidebar nav image/badge icon for Hero page */
+.nav-link svg {
+  flex-shrink: 0;
+}
+
+/* Form select element (reuse form-input styles) */
+.form-select {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  transition: border-color 0.15s;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+.form-select:focus {
+  outline: none;
+  border-color: var(--primary-teal);
+  box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.15);
+}
+
+/* Form row: two columns side by side */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Textarea */
+.form-textarea {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  resize: vertical;
+  transition: border-color 0.15s;
+}
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--primary-teal);
+  box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.15);
+}
+
+/* Form group spacing */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+/* Form label */
+.form-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+/* Stat card colours */
+.stat-icon.amber { background: rgba(245, 158, 11, 0.12); color: #FCD34D; }
+
+/* btn-sm for smaller action buttons */
+.btn-sm {
+  font-size: 0.78rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 5px;
+}

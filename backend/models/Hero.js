@@ -47,7 +47,7 @@ const heroSchema = new mongoose.Schema({
   },
   bgImageUrl: {
     type: String,
-    default: 'assets/images/hero.jpg'
+    default: 'assets/images/hero_colorful_plant.jpg'
   },
   logoUrl: {
     type: String,

@@ -1,0 +1,48 @@
+<svg viewBox="0 0 100 100" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="favBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F2544" />
+      <stop offset="100%" stop-color="#081528" />
+    </linearGradient>
+    <linearGradient id="favBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="favSteel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#E2E8F0" />
+      <stop offset="100%" stop-color="#94A3B8" />
+    </linearGradient>
+    <linearGradient id="favAmber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+  </defs>
+
+  <rect width="100" height="100" rx="20" fill="url(#favBg)" stroke="rgba(96, 165, 250, 0.4)" stroke-width="3"/>
+  
+  <!-- Left Raking Column -->
+  <path d="M 20 82 L 48 18 L 52 18 L 24 82 Z" fill="url(#favSteel)" />
+  <!-- Right Raking Column -->
+  <path d="M 80 82 L 52 18 L 48 18 L 76 82 Z" fill="url(#favSteel)" />
+
+  <!-- Top T-Flange -->
+  <rect x="16" y="18" width="68" height="9" rx="2" fill="url(#favBlue)" />
+  <!-- Central Web -->
+  <rect x="46" y="26" width="8" height="56" rx="1.5" fill="url(#favBlue)" />
+
+  <!-- Middle Tie -->
+  <rect x="29" y="49" width="42" height="6" rx="1.5" fill="url(#favSteel)" />
+  <!-- Bottom Tie -->
+  <rect x="22" y="76" width="56" height="6" rx="1.5" fill="url(#favSteel)" />
+
+  <!-- X Bracing -->
+  <line x1="33" y1="55" x2="46" y2="76" stroke="#60A5FA" stroke-width="3" stroke-linecap="round" />
+  <line x1="46" y1="55" x2="33" y2="76" stroke="#60A5FA" stroke-width="3" stroke-linecap="round" />
+  <line x1="54" y1="55" x2="67" y2="76" stroke="#60A5FA" stroke-width="3" stroke-linecap="round" />
+  <line x1="67" y1="55" x2="54" y2="76" stroke="#60A5FA" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Apex Amber Node -->
+  <circle cx="50" cy="22.5" r="4.5" fill="url(#favAmber)" />
+  <circle cx="50" cy="22.5" r="2" fill="#FFFFFF" />
+</svg>

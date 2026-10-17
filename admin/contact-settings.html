@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Settings Admin · Thirupathi ENGINEERING</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+  <div class="admin-wrapper">
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-badge">
+          <div class="brand-icon">TE</div>
+          <div class="brand-text"><h2>Thirupathi</h2><span>Admin Suite</span></div>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Navigation</div>
+        <a href="dashboard.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg><span>Dashboard</span></a>
+        <a href="hero.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><span>Hero Banner</span></a>
+        <a href="timeline.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>Timeline</span></a>
+        <a href="projects.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span>Projects</span></a>
+        <a href="gallery.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg><span>Gallery</span></a>
+        <a href="services.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg><span>Services</span></a>
+        <a href="profile.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><span>Profile & Skills</span></a>
+        <a href="inquiries.html" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span>Inquiries</span></a>
+        <a href="contact-settings.html" class="nav-link active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>Contact Settings</span></a>
+        <div class="nav-section-title" style="margin-top:1rem;">Live Website</div>
+        <a href="/" target="_blank" class="nav-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span>Open Public Site ↗</span></a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-avatar">MM</div>
+          <div class="user-info"><div class="user-name" id="adminUserName">Managing Partner</div><div class="user-role">Administrator</div></div>
+          <button id="logoutBtn" title="Logout" style="background:none;border:none;color:var(--accent-rose);cursor:pointer;padding:0.4rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="menu-toggle" id="sidebarToggle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+          <div class="page-title-badge"><h1>Contact & Company Settings</h1></div>
+        </div>
+        <div class="topbar-right">
+          <a href="/" target="_blank" class="btn-icon-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg><span>View Live Site</span></a>
+        </div>
+      </header>
+
+      <div class="admin-content">
+
+        <!-- Contact Information -->
+        <div class="card-panel" style="margin-bottom:1.5rem;">
+          <div class="panel-header">
+            <div class="panel-title"><h3>Contact Information</h3><p>Update phone numbers, email addresses, and office address. Changes appear on the public contact section after saving.</p></div>
+          </div>
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Primary Phone (M. Mohan)</label>
+                <input type="text" id="csPhone" class="form-input" placeholder="+91 9043288002">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Secondary Phone (K. Gopala Krishnan)</label>
+                <input type="text" id="csSecondaryPhone" class="form-input" placeholder="+91 9790520126">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Primary Email</label>
+                <input type="email" id="csEmail" class="form-input" placeholder="thirupathiengineerings@gmail.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Secondary Email</label>
+                <input type="email" id="csSecondaryEmail" class="form-input" placeholder="gopalkannan5@gmail.com">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Office Address</label>
+              <textarea id="csAddress" class="form-textarea" rows="3" placeholder="Industrial Estate, Virudhunagar / R.R. Nagar Works, Tamil Nadu, India - 626204"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Working Hours</label>
+                <input type="text" id="csWorkingHours" class="form-input" placeholder="Monday – Saturday: 8:00 AM – 7:00 PM">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Google Maps Link (optional)</label>
+                <input type="text" id="csMapLocation" class="form-input" placeholder="https://goo.gl/maps/...">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="contactSaveBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Save Contact Info
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="loadContactSettings()">Reset to Saved</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Social Links -->
+        <div class="card-panel" style="margin-bottom:1.5rem;">
+          <div class="panel-header">
+            <div class="panel-title"><h3>Social Links & WhatsApp</h3><p>Social profile and WhatsApp links displayed in the footer and contact section.</p></div>
+          </div>
+          <form id="socialForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">WhatsApp Link</label>
+                <input type="text" id="ssWhatsapp" class="form-input" placeholder="https://wa.me/919043288002">
+              </div>
+              <div class="form-group">
+                <label class="form-label">LinkedIn URL</label>
+                <input type="text" id="ssLinkedin" class="form-input" placeholder="https://linkedin.com/company/...">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Instagram URL</label>
+                <input type="text" id="ssInstagram" class="form-input" placeholder="https://instagram.com/...">
+              </div>
+              <div class="form-group">
+                <label class="form-label">YouTube URL</label>
+                <input type="text" id="ssYoutube" class="form-input" placeholder="https://youtube.com/...">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="socialSaveBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Save Social Links
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Company Details -->
+        <div class="card-panel">
+          <div class="panel-header">
+            <div class="panel-title"><h3>Company Details</h3><p>GST number, business registration details, and copyright text.</p></div>
+          </div>
+          <form id="companyForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">GST Number</label>
+                <input type="text" id="cdGst" class="form-input" placeholder="33AAHFT1234F1Z5">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Business Type</label>
+                <input type="text" id="cdBusinessType" class="form-input" placeholder="Partnership Firm">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Company Tagline</label>
+                <input type="text" id="cdTagline" class="form-input" placeholder="Mechanical Industrial Structures & Equipment Erection">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Copyright Text</label>
+                <input type="text" id="cdCopyright" class="form-input" placeholder="© 2026 Thirupathi ENGINEERING. All rights reserved.">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="companySaveBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Save Company Details
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+  <script>
+    checkAuth();
+
+    let savedContactSettings = {};
+    let savedSiteSettings    = {};
+
+    async function loadContactSettings() {
+      try {
+        const [csRes, stRes] = await Promise.all([
+          fetch(`${API_BASE}/contact-settings`, { credentials:'include', headers:{'Cache-Control':'no-cache'} }),
+          fetch(`${API_BASE}/settings`, { credentials:'include', headers:{'Cache-Control':'no-cache'} })
+        ]);
+        if (csRes.ok) {
+          const csData = await csRes.json();
+          if (csData.success && csData.data) {
+            const cs = csData.data;
+            savedContactSettings = cs;
+            document.getElementById('csPhone').value          = cs.phone || '';
+            document.getElementById('csSecondaryPhone').value = cs.secondaryPhone || '';
+            document.getElementById('csEmail').value          = cs.email || '';
+            document.getElementById('csSecondaryEmail').value = cs.secondaryEmail || cs.email2 || '';
+            document.getElementById('csAddress').value        = cs.address || '';
+            document.getElementById('csWorkingHours').value   = cs.workingHours || '';
+            document.getElementById('csMapLocation').value    = cs.mapLocation || '';
+
+            if (cs.socialLinks) {
+              document.getElementById('ssWhatsapp').value  = cs.socialLinks.whatsapp || '';
+              document.getElementById('ssLinkedin').value  = cs.socialLinks.linkedin || '';
+              document.getElementById('ssInstagram').value = cs.socialLinks.instagram || '';
+              document.getElementById('ssYoutube').value   = cs.socialLinks.youtube || '';
+            }
+          }
+        }
+        if (stRes.ok) {
+          const stData = await stRes.json();
+          if (stData.success && stData.data) {
+            const st = stData.data;
+            savedSiteSettings = st;
+            document.getElementById('cdGst').value          = st.gstNumber || '';
+            document.getElementById('cdBusinessType').value = st.businessType || '';
+            document.getElementById('cdTagline').value      = st.tagline || '';
+            document.getElementById('cdCopyright').value    = st.copyrightText || '';
+          }
+        }
+      } catch (err) {
+        showToast('Could not load settings: ' + err.message, 'error');
+      }
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('contactSaveBtn');
+      btn.disabled = true; btn.textContent = 'Saving...';
+
+      const payload = {
+        phone:          document.getElementById('csPhone').value.trim(),
+        secondaryPhone: document.getElementById('csSecondaryPhone').value.trim(),
+        email:          document.getElementById('csEmail').value.trim(),
+        secondaryEmail: document.getElementById('csSecondaryEmail').value.trim(),
+        address:        document.getElementById('csAddress').value.trim(),
+        workingHours:   document.getElementById('csWorkingHours').value.trim(),
+        mapLocation:    document.getElementById('csMapLocation').value.trim()
+      };
+
+      try {
+        const res = await fetch(`${API_BASE}/contact-settings`, {
+          method: 'PUT', credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        showToast(data.success ? 'Contact info saved! Public site will use updated details.' : (data.message || 'Save failed.'), data.success ? 'success' : 'error');
+      } catch (err) {
+        showToast('Network error: ' + err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Save Contact Info';
+      }
+    });
+
+    document.getElementById('socialForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('socialSaveBtn');
+      btn.disabled = true; btn.textContent = 'Saving...';
+
+      const socialLinks = {
+        whatsapp:  document.getElementById('ssWhatsapp').value.trim(),
+        linkedin:  document.getElementById('ssLinkedin').value.trim(),
+        instagram: document.getElementById('ssInstagram').value.trim(),
+        youtube:   document.getElementById('ssYoutube').value.trim()
+      };
+
+      try {
+        const res = await fetch(`${API_BASE}/contact-settings`, {
+          method: 'PUT', credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ socialLinks })
+        });
+        const data = await res.json();
+        showToast(data.success ? 'Social links saved!' : (data.message || 'Save failed.'), data.success ? 'success' : 'error');
+      } catch (err) {
+        showToast('Network error: ' + err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Save Social Links';
+      }
+    });
+
+    document.getElementById('companyForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('companySaveBtn');
+      btn.disabled = true; btn.textContent = 'Saving...';
+
+      const payload = {
+        gstNumber:    document.getElementById('cdGst').value.trim(),
+        businessType: document.getElementById('cdBusinessType').value.trim(),
+        tagline:      document.getElementById('cdTagline').value.trim(),
+        copyrightText: document.getElementById('cdCopyright').value.trim()
+      };
+
+      try {
+        const res = await fetch(`${API_BASE}/settings`, {
+          method: 'PUT', credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        showToast(data.success ? 'Company details saved!' : (data.message || 'Save failed.'), data.success ? 'success' : 'error');
+      } catch (err) {
+        showToast('Network error: ' + err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Save Company Details';
+      }
+    });
+
+    loadContactSettings();
+  </script>
+</body>
+</html>

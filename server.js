@@ -19,6 +19,7 @@ import { errorHandler } from './backend/middleware/errorHandler.js';
 
 // Route Imports
 import authRoutes from './backend/routes/authRoutes.js';
+import heroRoutes from './backend/routes/heroRoutes.js';
 import timelineRoutes from './backend/routes/timelineRoutes.js';
 import projectRoutes from './backend/routes/projectRoutes.js';
 import profileRoutes from './backend/routes/profileRoutes.js';
@@ -122,6 +123,17 @@ app.use('/css', express.static(path.resolve(__dirname, 'css')));
 app.use('/js', express.static(path.resolve(__dirname, 'js')));
 app.use('/admin', express.static(path.resolve(__dirname, 'admin')));
 
+// Favicon endpoints
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'favicon.ico'));
+});
+app.get('/favicon.svg', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'favicon.svg'));
+});
+app.get('/favicon.png', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'favicon.png'));
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({
@@ -133,6 +145,7 @@ app.get('/api/health', (req, res) => {
 
 // API Routes
 app.use('/api/auth', authLimiter, authRoutes);
+app.use('/api/hero', heroRoutes);
 app.use('/api/timeline', timelineRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/profile', profileRoutes);

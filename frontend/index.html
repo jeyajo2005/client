@@ -22,8 +22,13 @@
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
     rel="stylesheet">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="/favicon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="/css/style.css?v=19">
+  <link rel="stylesheet" href="css/style.css?v=26">
 </head>
 
 <body>
@@ -64,43 +69,46 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero" id="home">
-    <div class="hero-bg-overlay"></div>
+      <!-- Hero Section — Split Layout: Original Content on Left + Mechanical Industrial Image on Right -->
+  <section class="hero hero--split" id="home">
+    <div class="hero-dark-backdrop"></div>
+    <div class="hero-ambient-glow" aria-hidden="true"></div>
 
-    <div class="container hero-container">
-      <!-- Top Right Floating Badge -->
-      <div class="hero-top-badge">
-        <div class="badge-status-row">
-          <span class="status-dot"></span>
-          <span>MECHANICAL & INDUSTRIAL STRUCTURES</span>
+    <div class="container hero-split-container">
+      
+      <!-- LEFT COLUMN: Exact Original Hero Content with Typing Animation -->
+      <div class="hero-split-left">
+
+        <!-- Top Status Badge -->
+        <div class="hero-top-badge">
+          <div class="badge-status-row">
+            <span class="status-dot"></span>
+            <span class="status-badge-text">MECHANICAL &amp; INDUSTRIAL STRUCTURES</span>
+          </div>
+          <div class="badge-loc">TAMIL NADU · INDIA</div>
         </div>
-        <div class="badge-loc">TAMIL NADU · INDIA</div>
-      </div>
 
-      <!-- Hero Main Content -->
-      <div class="hero-content">
-        <!-- Accent line -->
+        <!-- Accent Line -->
         <div class="hero-accent-line"></div>
 
-        <!-- The names 1 by 1 in large, thin white typography with typing animation -->
+        <!-- Dynamic Typing Animated Partner Names -->
         <h1 class="hero-name-title" aria-label="M. Mohan, K. Gopala Krishnan">
           <span class="hero-name-line">
             <span id="heroName1"></span><span class="typing-cursor" id="cursor1"></span>
           </span>
-          <span class="hero-name-line">
+          <span class="hero-name-line hero-name-line--second">
             <span id="heroName2"></span><span class="typing-cursor" id="cursor2" style="display: none;"></span>
           </span>
         </h1>
 
-        <!-- Subtitle bar -->
+        <!-- Role Subtitle -->
         <div class="hero-role-subtitle">
           MANAGING PARTNERS · THIRUPATHI ENGINEERING
         </div>
 
-        <!-- Short description -->
+        <!-- Short Description -->
         <p class="hero-description">
-          Premier mechanical industrial structural & equipment erection partnership firm. Proven execution in 20 MW
+          Premier mechanical industrial structural &amp; equipment erection partnership firm. Proven execution in 20 MW
           thermal power plant non-IBR structures, ACC cooling towers, cement plant clinker silos, packing plants, sizer
           crushers, and bulk handling systems.
         </p>
@@ -119,17 +127,54 @@
             View Project Record
           </a>
         </div>
+
+        <!-- Metric highlights strip -->
+        <div class="hero-split-metrics">
+          <div class="h-metric">
+            <div class="h-metric-val">50+<span class="h-metric-unit">Yrs</span></div>
+            <div class="h-metric-lbl">Lineage</div>
+          </div>
+          <div class="h-metric-sep"></div>
+          <div class="h-metric">
+            <div class="h-metric-val">20<span class="h-metric-unit">MW</span></div>
+            <div class="h-metric-lbl">Power Plant</div>
+          </div>
+          <div class="h-metric-sep"></div>
+          <div class="h-metric">
+            <div class="h-metric-val">0</div>
+            <div class="h-metric-lbl">Zero LTI</div>
+          </div>
+          <div class="h-metric-sep"></div>
+          <div class="h-metric">
+            <div class="h-metric-val">10+</div>
+            <div class="h-metric-lbl">Major Plants</div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Bottom Right Vertical Scroll Marker -->
-      <div class="hero-scroll-indicator">
-        <span>SCROLL DOWN</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <line x1="12" y1="5" x2="12" y2="19"></line>
-          <polyline points="19 12 12 19 5 12"></polyline>
-        </svg>
+      <!-- RIGHT COLUMN: Cinematic Mechanical Industrial Image Showcase -->
+      <div class="hero-split-right">
+        <div class="hero-image-frame">
+          <img src="assets/images/hero_colorful_plant.jpg" 
+               alt="Thirupathi Engineering Heavy Mechanical Industrial Plant" 
+               class="hero-cinematic-img" 
+               id="heroMainImage">
+          
+          <div class="hero-frame-vignette" aria-hidden="true"></div>
+        </div>
       </div>
+
+    </div>
+
+    <!-- Bottom Scroll Indicator -->
+    <div class="hero-scroll-indicator">
+      <span>SCROLL DOWN</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <polyline points="19 12 12 19 5 12"></polyline>
+      </svg>
     </div>
   </section>
 
@@ -569,575 +614,334 @@
     </div>
   </section>
 
-  <!-- Section: Chronological Project Track Record & Milestones -->
-  <section class="timeline-section" id="track-record">
+    <!-- Section: Chronological Project Track Record (Editorial Stack Layout) -->
+  <section class="timeline-stack-section" id="track-record">
     <div class="container">
-      <div class="mono-label">CHRONOLOGICAL TRACK RECORD & HISTORIC MILESTONES</div>
-      <h2 class="section-title">Complete Project Timeline & Industrial Lineage.</h2>
-      <p class="section-desc">
-        A documented track record spanning more than five decades of industrial mechanical structural erection, heavy
-        equipment installations, and plant commissioning across premier steel, power, and cement manufacturing
-        enterprises.
-      </p>
 
-      <!-- Vertical Serpentine Pill-Card Infographic Timeline (Adobe Stock / Pinterest Vector Template) -->
-      <div class="serpentine-timeline-wrap">
-        <!-- Center Dotted Serpentine S-Curve Path -->
-        <svg class="serpentine-svg-bg" id="serpentineSvg" viewBox="0 0 140 1900" preserveAspectRatio="none">
-          <circle id="serpentineTopDot" cx="70" cy="20" r="6" fill="#94A3B8" />
-          <path id="serpentinePath"
-            d="M 70 20 C 110 50 110 110 70 140 C 30 170 30 230 70 260 C 110 290 110 350 70 380 C 30 410 30 470 70 500 C 110 530 110 590 70 620 C 30 650 30 710 70 740 C 110 770 110 830 70 860 C 30 890 30 950 70 980 C 110 1010 110 1070 70 1100 C 30 1130 30 1190 70 1220 C 110 1250 110 1310 70 1340 C 30 1370 30 1430 70 1460 C 110 1490 110 1550 70 1580 C 30 1610 30 1670 70 1700 C 110 1730 110 1790 70 1820 C 50 1845 70 1865 70 1880"
-            fill="none" stroke="#94A3B8" stroke-width="2.5" stroke-dasharray="5 7" />
-          <circle id="serpentineBottomDot" cx="70" cy="1880" r="6" fill="#94A3B8" />
-        </svg>
-
-        <!-- STEP 01 · 1985 (LEFT) -->
-        <div class="serpentine-row row-left">
-          <div class="serpentine-pill theme-teal">
-            <div class="pill-text">
-              <h4 class="pill-title">Industrial Erection Career Origin</h4>
-              <span class="pill-client">Steel Plants & Heavy Framing</span>
-              <p class="pill-desc">Inception of Mr. M. Mohan's 50+ year legacy in heavy structural framing & machinery
-                installation.</p>
-            </div>
-            <div class="pill-disc-anchor">
-              <div class="pill-white-disc">
-                <img src="assets/images/gallery/site-img-024.jpg" alt="1985 Steel Plants" loading="lazy">
-              </div>
-              <span class="pointer-arrow"></span>
-            </div>
-          </div>
-          <div class="serpentine-node-center">
-            <div class="target-ring" style="border-color: #0D9488; box-shadow: 0 0 0 5px rgba(13, 148, 136, 0.22);">
-              <span class="target-ring-dot" style="background: #0D9488;"></span>
-            </div>
-          </div>
-          <div class="serpentine-meta">
-            <span class="meta-step-year" style="color: #0D9488;">1985</span>
-          </div>
-        </div>
-
-        <!-- STEP 02 · 1992 (RIGHT) -->
-        <div class="serpentine-row row-right">
-          <div class="serpentine-meta">
-            <span class="meta-step-year" style="color: #0284C7;">1992</span>
-          </div>
-          <div class="serpentine-node-center">
-            <div class="target-ring" style="border-color: #0284C7; box-shadow: 0 0 0 5px rgba(2, 132, 199, 0.22);"><span
-                class="target-ring-dot" style="background: #0284C7;"></span></div>
-          </div>
-          <div class="serpentine-pill theme-ocean">
-            <div class="pill-text">
-              <h4 class="pill-title">Gold Star Steel Plant Commissioning</h4>
-              <span class="pill-client">Gold Star Steel Plant</span>
-              <p class="pill-desc">Foundational turnkey steel plant machinery commissioning and heavy mill structural
-                erection.</p>
-            </div>
-            <div class="pill-disc-anchor">
-              <div class="pill-white-disc">
-                <img src="assets/images/gallery/site-img-018.jpg" alt="1992 Gold Star Steel" loading="lazy">
-              </div>
-              <span class="pointer-arrow"></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 03 · 1998 (LEFT) -->
-        <div class="serpentine-row row-left">
-          <div class="serpentine-pill theme-marine">
-            <div class="pill-text">
-              <h4 class="pill-title">Camplastic Pipe Total Plant Erection</h4>
-              <span class="pill-client">Camplastic Pipe Ltd.</span>
-              <p class="pill-desc">Full manufacturing shed erection, extrusion line supports, and industrial
-                infrastructure.</p>
-            </div>
-            <div class="pill-disc-anchor">
-              <div class="pill-white-disc">
-                <img src="assets/images/gallery/site-img-014.jpg" alt="1998 Camplastic Pipe" loading="lazy">
-              </div>
-              <span class="pointer-arrow"></span>
-            </div>
-          </div>
-          <div class="serpentine-node-center">
-            <div class="target-ring" style="border-color: #0F766E; box-shadow: 0 0 0 5px rgba(15, 118, 110, 0.22);">
-              <span class="target-ring-dot" style="background: #0F766E;"></span>
-            </div>
-          </div>
-          <div class="serpentine-meta">
-            <span class="meta-step-year" style="color: #0F766E;">1998</span>
-          </div>
-        </div>
-
-        <!-- STEP 04 · 2005 (RIGHT) -->
-        <div class="serpentine-row row-right">
-          <div class="serpentine-meta">
-            <span class="meta-step-year" style="color: #D97706;">2005</span>
-          </div>
-          <div class="serpentine-node-center">
-            <div class="target-ring" style="border-color: #D97706; box-shadow: 0 0 0 5px rgba(217, 119, 6, 0.22);"><span
-                class="target-ring-dot" style="background: #D97706;"></span></div>
-          </div>
-          <div class="serpentine-pill theme-gold">
-            <div class="pill-text">
-              <h4 class="pill-title">Parryware Tiles Total Plant Erection</h4>
-              <span class="pill-client">Parryware Tiles</span>
-              <p class="pill-desc">Complete industrial plant structural framing, kiln line mechanical erection, and
-                factory sheds.</p>
-            </div>
-            <div class="pill-disc-anchor">
-              <div class="pill-white-disc">
-                <img src="assets/images/gallery/site-img-008.jpg" alt="2005 Parryware Tiles" loading="lazy">
-              </div>
-              <span class="pointer-arrow"></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 05 · 2016-21 (LEFT) -->
-        <div class="serpentine-row row-left">
-          <div class="serpentine-pill theme-navy">
-            <div class="pill-text">
-              <h4 class="pill-title">Coal Stacker, Reclaimer & Packing</h4>
-              <span class="pill-client">The Ramco Cements Ltd.</span>
-              <p class="pill-desc">Heavy traveling stacker & reclaimer machinery, gantry rail steel, and automated
-                packing plants.</p>
-            </div>
-            <div class="pill-disc-anchor">
-              <div class="pill-white-disc">
-                <img src="assets/images/flsmidth_crane_lift.jpg" alt="Coal Stacker & Reclaimer" loading="lazy">
-              </div>
-              <span class="pointer-arrow"></span>
-            </div>
-          </div>
-          <div class="serpentine-node-center">
-            <div class="target-ring" style="border-color: #1E40AF; box-shadow: 0 0 0 5px rgba(30, 64, 175, 0.22);"><span
-                class="target-ring-dot" style="background: #1E40AF;"></span></div>
-          </div>
-          <div class="serpentine-meta">
-            <span class="meta-step-year" style="color: #1E40AF;">2016–21</span>
-          </div>
-        </div>
-
-        <!-- STEP 06 · 2022 (RIGHT) -->
-        <div class="serpentine-row row-right">
-          <div class="serpentine-meta">
-            <span class="meta-step-year" style="color: #475569;">2022</span>
-          </div>
-          <div class="serpentine-node-center">
-            <div class="target-ring" style="border-color: #475569; box-shadow: 0 0 0 5px rgba(71, 85, 105, 0.22);"><span
-                class="target-ring-dot" style="background: #475569;"></span></div>
-          </div>
-          <div class="serpentine-pill theme-slate">
-            <div class="pill-text">
-              <h4 class="pill-title">Washing Plant Beneficiation Erection</h4>
-              <span class="pill-client">The Ramco Cements Ltd.</span>
-              <p class="pill-desc">Turnkey mineral washing plant facilities, screening decks, slurry piping, and pump
-                house frameworks.</p>
-            </div>
-            <div class="pill-disc-anchor">
-              <div class="pill-white-disc">
-                <img src="assets/images/washing_plant.jpg" alt="Washing Plant Erection" loading="lazy">
-              </div>
-              <span class="pointer-arrow"></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 07 · 2023 (LEFT) -->
-        <div class="serpentine-row row-left">
-          <div class="serpentine-pill theme-royal">
-            <div class="pill-text">
-              <h4 class="pill-title">Line-3 Kiln Coal Mill & Galleries</h4>
-              <span class="pill-client">The Ramco Cements Ltd.</span>
-              <p class="pill-desc">Multi-level coal mill building framing, overhead conveyor galleries, and transfer
-                towers.</p>
-            </div>
-            <div class="pill-disc-anchor">
-              <div class="pill-white-disc">
-                <img src="assets/images/gallery/site-img-002.jpg" alt="Line-3 Kiln Coal Mill Building" loading="lazy">
-              </div>
-              <span class="pointer-arrow"></span>
-            </div>
-          </div>
-          <div class="serpentine-node-center">
-            <div class="target-ring" style="border-color: #2563EB; box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.22);"><span
-                class="target-ring-dot" style="background: #2563EB;"></span></div>
-          </div>
-          <div class="serpentine-meta">
-            <span class="meta-step-year" style="color: #2563EB;">2023</span>
-          </div>
-        </div>
-
-        <!-- STEP 08 · 2025 (RIGHT) -->
-        <div class="serpentine-row row-right">
-          <div class="serpentine-meta">
-            <span class="meta-step-year" style="color: #1E293B;">2025</span>
-          </div>
-          <div class="serpentine-node-center">
-            <div class="target-ring" style="border-color: #1E293B; box-shadow: 0 0 0 5px rgba(30, 41, 59, 0.22);"><span
-                class="target-ring-dot" style="background: #1E293B;"></span></div>
-          </div>
-          <div class="serpentine-pill theme-darknavy">
-            <div class="pill-text">
-              <h4 class="pill-title">20 MW Power Plant Non-IBR & ACC</h4>
-              <span class="pill-client">Tecksk Projects / ISGEC (Zero LTI)</span>
-              <p class="pill-desc">Non-IBR boiler framing, ACC cooling towers, steam ducting supports, and pipe racks.
-              </p>
-            </div>
-            <div class="pill-disc-anchor">
-              <div class="pill-white-disc">
-                <img src="assets/images/power_plant_acc.jpg" alt="20 MW Power Plant Non-IBR ACC" loading="lazy">
-              </div>
-              <span class="pointer-arrow"></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 09 · 2025 (LEFT) -->
-        <div class="serpentine-row row-left">
-          <div class="serpentine-pill theme-steel">
-            <div class="pill-text">
-              <h4 class="pill-title">Clinker Silo Structures & Bridges</h4>
-              <span class="pill-client">The Ramco Cements Ltd.</span>
-              <p class="pill-desc">Heavy silo mechanical structural steel and elevated conveyor bridges inside active
-                operational plant.</p>
-            </div>
-            <div class="pill-disc-anchor">
-              <div class="pill-white-disc">
-                <img src="assets/images/clinker_silo.jpg" alt="Clinker Silo Structures" loading="lazy">
-              </div>
-              <span class="pointer-arrow"></span>
-            </div>
-          </div>
-          <div class="serpentine-node-center">
-            <div class="target-ring" style="border-color: #3B82F6; box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.22);">
-              <span class="target-ring-dot" style="background: #3B82F6;"></span>
-            </div>
-          </div>
-          <div class="serpentine-meta">
-            <span class="meta-step-year" style="color: #3B82F6;">2025</span>
-          </div>
-        </div>
-
-        <!-- STEP 10 · 2026 (RIGHT) -->
-        <div class="serpentine-row row-right">
-          <div class="serpentine-meta">
-            <span class="meta-step-year" style="color: #4F46E5;">2026</span>
-          </div>
-          <div class="serpentine-node-center">
-            <div class="target-ring" style="border-color: #4F46E5; box-shadow: 0 0 0 5px rgba(79, 70, 229, 0.22);"><span
-                class="target-ring-dot" style="background: #4F46E5;"></span></div>
-          </div>
-          <div class="serpentine-pill theme-cobalt">
-            <div class="pill-text">
-              <h4 class="pill-title">Sizer Crusher Mechanical Structures</h4>
-              <span class="pill-client">Ramco Mines, Virudhunagar</span>
-              <p class="pill-desc">Primary mineral sizer crusher machinery, heavy rock chutes, and vibration-damped
-                structural towers.</p>
-            </div>
-            <div class="pill-disc-anchor">
-              <div class="pill-white-disc">
-                <img src="assets/images/sizer_crusher.jpg" alt="Sizer Crusher Ramco Mines" loading="lazy">
-              </div>
-              <span class="pointer-arrow"></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 11 · 2026 (LEFT) -->
-        <div class="serpentine-row row-left">
-          <div class="serpentine-pill theme-emerald">
-            <div class="pill-text">
-              <h4 class="pill-title">Dry Mix Unit: Packing Plant & Hopper</h4>
-              <span class="pill-client">The Ramco Cements Ltd. · RR Nagar [ONGOING]</span>
-              <p class="pill-desc">Active ongoing execution: mechanical equipment structure, packing plant, and bulk
-                material hoppers.</p>
-            </div>
-            <div class="pill-disc-anchor">
-              <div class="pill-white-disc">
-                <img src="assets/images/drymix_packing.jpg" alt="Dry Mix Unit RR Nagar" loading="lazy">
-              </div>
-              <span class="pointer-arrow"></span>
-            </div>
-          </div>
-          <div class="serpentine-node-center">
-            <div class="target-ring" style="border-color: #059669; box-shadow: 0 0 0 5px rgba(5, 150, 105, 0.22);"><span
-                class="target-ring-dot" style="background: #059669;"></span></div>
-          </div>
-          <div class="serpentine-meta">
-            <span class="meta-step-year" style="color: #059669;">2026</span>
-          </div>
-        </div>
-
+      <!-- Stack Section Header Matching Reference -->
+      <div class="timeline-stack-header">
+        <div class="timeline-stack-mono">CHRONOLOGICAL TRACK RECORD &amp; HISTORIC MILESTONES</div>
+        <h2 class="timeline-stack-title">
+          THE COMPLETE<br>
+          <span class="title-accent">INDUSTRIAL</span> STACK!
+        </h2>
+        <p class="timeline-stack-desc">
+          A documented track record spanning more than five decades of industrial mechanical structural erection, heavy
+          equipment installations, and plant commissioning across premier steel, power, and cement manufacturing
+          enterprises.
+        </p>
       </div>
 
-      <!-- Classic Grid View (Toggleable via button) -->
-      <div class="timeline-grid" id="timelineGridView" style="display: none;">
-
-        <!-- 2026 ONGOING -->
-        <div class="timeline-card">
-          <div>
-            <div class="timeline-card-header">
-              <span class="timeline-year-tag">2026</span>
-              <span class="timeline-status-tag ongoing">ONGOING PROJECT</span>
+      <!-- Master Stack Container -->
+      <div class="timeline-stack-container" id="timelineStackContainer">
+        <!-- MILESTONE 01 · Industrial Erection Career Origin -->
+        <div class="timeline-stack-row row-left-text" data-step="01">
+          <div class="stack-col-text">
+            <div class="stack-year-badge">
+              <span class="badge-dot"></span>
+              <span>1985 · FOUNDATIONAL ERA</span>
             </div>
-            <h3 class="timeline-card-title">Dry Mix Unit: Packing Plant & Hopper Work</h3>
-            <div class="timeline-client-meta">
-              <span>Client: The Ramco Cements Ltd. · RR Nagar, Virudhunagar</span>
+            <h3 class="stack-title">Industrial Erection Career Origin</h3>
+            <div class="stack-accent-bar"></div>
+            <p class="stack-desc">Inception of Mr. M. Mohan's 50+ year legacy in heavy structural framing & machinery installation across premier industrial complexes.</p>
+            <div class="stack-client-meta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+              <span>Steel Plants & Heavy Framing</span>
             </div>
-            <p class="timeline-card-desc">
-              Active mechanical industrial equipment structure erection, packing plant structural framing, heavy bulk
-              hoppers, and conveyor chutes inside the operational RR Nagar cement complex.
-            </p>
+            <div class="stack-tags">
+              <span class="stack-tag">Heavy Framing</span>
+              <span class="stack-tag">50+ Yrs Legacy</span>
+              <span class="stack-tag">Steel Erection</span>
+            </div>
           </div>
-          <div class="timeline-tags-row">
-            <span class="timeline-pill">Dry Mix Unit</span>
-            <span class="timeline-pill">Packing Plant</span>
-            <span class="timeline-pill">Storage Hoppers</span>
-            <span class="timeline-pill">Ramco Cements</span>
+
+          <div class="stack-col-number">
+            <div class="stack-number-anchor" data-open-capability="true">
+              <span class="stack-mask-number" style="background-image: url('assets/images/gallery/site-img-024.jpg');" aria-label="01">01</span>
+              <span class="stack-quick-pill">View Landmark Record ↗</span>
+            </div>
           </div>
         </div>
-
-        <!-- 2026 COMPLETED -->
-        <div class="timeline-card">
-          <div>
-            <div class="timeline-card-header">
-              <span class="timeline-year-tag">2026</span>
-              <span class="timeline-status-tag completed">COMPLETED PROJECT</span>
+        <!-- MILESTONE 02 · Gold Star Steel Plant Commissioning -->
+        <div class="timeline-stack-row row-right-text" data-step="02">
+          <div class="stack-col-text">
+            <div class="stack-year-badge">
+              <span class="badge-dot"></span>
+              <span>1992 · STEEL MILLS COMMISSIONING</span>
             </div>
-            <h3 class="timeline-card-title">Sizer Crusher Mechanical & Equipment Structure Work</h3>
-            <div class="timeline-client-meta">
-              <span>Client: The Ramco Cements Ltd. · Ramco Mines, Virudhunagar</span>
+            <h3 class="stack-title">Gold Star Steel Plant Commissioning</h3>
+            <div class="stack-accent-bar"></div>
+            <p class="stack-desc">Total plant mechanical commissioning, heavy process machinery alignment, and multi-bay structural steel fabrication.</p>
+            <div class="stack-client-meta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+              <span>Gold Star Steel Ltd. / Ramco Cements</span>
             </div>
-            <p class="timeline-card-desc">
-              Turnkey mechanical structural erection and equipment installation for primary mineral sizer crusher
-              machinery, heavy rock chutes, and vibration-damped structural towers.
-            </p>
+            <div class="stack-tags">
+              <span class="stack-tag">Total Plant Erection</span>
+              <span class="stack-tag">Process Machinery</span>
+              <span class="stack-tag">Foundational Site</span>
+            </div>
           </div>
-          <div class="timeline-tags-row">
-            <span class="timeline-pill">Sizer Crusher</span>
-            <span class="timeline-pill">Mining Equipment</span>
-            <span class="timeline-pill">Ramco Mines</span>
-            <span class="timeline-pill">Impact Chutes</span>
+
+          <div class="stack-col-number">
+            <div class="stack-number-anchor" data-open-capability="true">
+              <span class="stack-mask-number" style="background-image: url('assets/images/gallery/site-img-018.jpg');" aria-label="02">02</span>
+              <span class="stack-quick-pill">View Landmark Record ↗</span>
+            </div>
           </div>
         </div>
-
-        <!-- 2025 POWER PLANT -->
-        <div class="timeline-card">
-          <div>
-            <div class="timeline-card-header">
-              <span class="timeline-year-tag">2025</span>
-              <span class="timeline-status-tag completed">COMPLETED</span>
+        <!-- MILESTONE 03 · Camplastic Pipe Total Plant Erection -->
+        <div class="timeline-stack-row row-left-text" data-step="03">
+          <div class="stack-col-text">
+            <div class="stack-year-badge">
+              <span class="badge-dot"></span>
+              <span>1998 · TURNKEY INDUSTRIAL FACILITY</span>
             </div>
-            <h3 class="timeline-card-title">20 MW Power Plant Non-IBR Structures & ACC Erection</h3>
-            <div class="timeline-client-meta">
-              <span>Clients: Tecksk Projects & ISGEC Heavy Engineering</span>
+            <h3 class="stack-title">Camplastic Pipe Total Plant Erection</h3>
+            <div class="stack-accent-bar"></div>
+            <p class="stack-desc">Full manufacturing facility mechanical erection, high-capacity extruder framing, and integrated continuous processing lines.</p>
+            <div class="stack-client-meta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+              <span>Camplastic Pipes Ltd.</span>
             </div>
-            <p class="timeline-card-desc">
-              Complete non-IBR heavy steel framing, Air-Cooled Condenser (ACC) cooling towers, fan decks, steam ducting
-              supports, and pipe bridges executed with zero lost-time incidents (Zero LTI).
-            </p>
+            <div class="stack-tags">
+              <span class="stack-tag">Extruder Lines</span>
+              <span class="stack-tag">Factory Shed</span>
+              <span class="stack-tag">Turnkey Execution</span>
+            </div>
           </div>
-          <div class="timeline-tags-row">
-            <span class="timeline-pill">20 MW Power Plant</span>
-            <span class="timeline-pill">Non-IBR Steel</span>
-            <span class="timeline-pill">ACC Cooling Towers</span>
-            <span class="timeline-pill">ISGEC / Tecksk</span>
+
+          <div class="stack-col-number">
+            <div class="stack-number-anchor" data-open-capability="true">
+              <span class="stack-mask-number" style="background-image: url('assets/images/gallery/site-img-021.jpg');" aria-label="03">03</span>
+              <span class="stack-quick-pill">View Landmark Record ↗</span>
+            </div>
           </div>
         </div>
-
-        <!-- 2025 CLINKER SILO -->
-        <div class="timeline-card">
-          <div>
-            <div class="timeline-card-header">
-              <span class="timeline-year-tag">2025</span>
-              <span class="timeline-status-tag completed">COMPLETED</span>
+        <!-- MILESTONE 04 · Parryware Tiles Total Plant Erection -->
+        <div class="timeline-stack-row row-right-text" data-step="04">
+          <div class="stack-col-text">
+            <div class="stack-year-badge">
+              <span class="badge-dot"></span>
+              <span>2005 · CERAMIC MANUFACTURING EXPANSION</span>
             </div>
-            <h3 class="timeline-card-title">Clinker Silo Structures Work</h3>
-            <div class="timeline-client-meta">
-              <span>Client: The Ramco Cements Ltd.</span>
+            <h3 class="stack-title">Parryware Tiles Total Plant Erection</h3>
+            <div class="stack-accent-bar"></div>
+            <p class="stack-desc">Heavy industrial tile manufacturing plant installation, kiln foundations, high-temperature furnace structures, and automated lines.</p>
+            <div class="stack-client-meta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+              <span>Parryware Roca</span>
             </div>
-            <p class="timeline-card-desc">
-              Heavy mechanical structural steel execution, high-elevation transfer galleries, and bulk storage silo
-              feeder frameworks delivered without disrupting continuous cement manufacturing.
-            </p>
+            <div class="stack-tags">
+              <span class="stack-tag">Parryware Roca</span>
+              <span class="stack-tag">Kiln Foundations</span>
+              <span class="stack-tag">Furnace Steel</span>
+            </div>
           </div>
-          <div class="timeline-tags-row">
-            <span class="timeline-pill">Clinker Silos</span>
-            <span class="timeline-pill">Conveyor Galleries</span>
-            <span class="timeline-pill">Ramco Cements</span>
-            <span class="timeline-pill">High Elevation</span>
+
+          <div class="stack-col-number">
+            <div class="stack-number-anchor" data-open-capability="true">
+              <span class="stack-mask-number" style="background-image: url('assets/images/gallery/site-img-015.jpg');" aria-label="04">04</span>
+              <span class="stack-quick-pill">View Landmark Record ↗</span>
+            </div>
           </div>
         </div>
-
-        <!-- 2023 LINE-3 KILN -->
-        <div class="timeline-card">
-          <div>
-            <div class="timeline-card-header">
-              <span class="timeline-year-tag">2023</span>
-              <span class="timeline-status-tag completed">COMPLETED</span>
+        <!-- MILESTONE 05 · Coal Stacker, Reclaimer & Packing -->
+        <div class="timeline-stack-row row-left-text" data-step="05">
+          <div class="stack-col-text">
+            <div class="stack-year-badge">
+              <span class="badge-dot"></span>
+              <span>2016–21 · BULK HANDLING INFRASTRUCTURE</span>
             </div>
-            <h3 class="timeline-card-title">Line-3 Kiln Coal Mill Building & Conveyors Gallery Erection</h3>
-            <div class="timeline-client-meta">
-              <span>Client: The Ramco Cements Ltd.</span>
+            <h3 class="stack-title">Coal Stacker, Reclaimer & Packing</h3>
+            <div class="stack-accent-bar"></div>
+            <p class="stack-desc">Heavy circular stacker-reclaimer mechanical assembly, high-speed automated packing plant, and bulk materials handling galleries.</p>
+            <div class="stack-client-meta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+              <span>The Ramco Cements Ltd.</span>
             </div>
-            <p class="timeline-card-desc">
-              Comprehensive structural fabrication and erection of the Line-3 Kiln Coal Mill multi-level building,
-              overhead conveyor galleries, and transfer junctions under strict alignment tolerances.
-            </p>
+            <div class="stack-tags">
+              <span class="stack-tag">Stacker-Reclaimer</span>
+              <span class="stack-tag">Conveyor Galleries</span>
+              <span class="stack-tag">Rotary Machinery</span>
+            </div>
           </div>
-          <div class="timeline-tags-row">
-            <span class="timeline-pill">Line-3 Kiln</span>
-            <span class="timeline-pill">Coal Mill Building</span>
-            <span class="timeline-pill">Conveyor Galleries</span>
-            <span class="timeline-pill">Ramco Cements</span>
+
+          <div class="stack-col-number">
+            <div class="stack-number-anchor" data-open-capability="true">
+              <span class="stack-mask-number" style="background-image: url('assets/images/gallery/site-img-001.jpg');" aria-label="05">05</span>
+              <span class="stack-quick-pill">View Landmark Record ↗</span>
+            </div>
           </div>
         </div>
-
-        <!-- 2022 WASHING PLANT -->
-        <div class="timeline-card">
-          <div>
-            <div class="timeline-card-header">
-              <span class="timeline-year-tag">2022</span>
-              <span class="timeline-status-tag completed">COMPLETED</span>
+        <!-- MILESTONE 06 · Washing Plant Beneficiation Erection -->
+        <div class="timeline-stack-row row-right-text" data-step="06">
+          <div class="stack-col-text">
+            <div class="stack-year-badge">
+              <span class="badge-dot"></span>
+              <span>2022 · MINERAL BENEFICIATION</span>
             </div>
-            <h3 class="timeline-card-title">Washing Plant Erection Work</h3>
-            <div class="timeline-client-meta">
-              <span>Client: The Ramco Cements Ltd.</span>
+            <h3 class="stack-title">Washing Plant Beneficiation Erection</h3>
+            <div class="stack-accent-bar"></div>
+            <p class="stack-desc">Turnkey mineral washing plant facilities, screening decks, slurry piping, and heavy pump house frameworks.</p>
+            <div class="stack-client-meta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+              <span>The Ramco Cements Ltd.</span>
             </div>
-            <p class="timeline-card-desc">
-              Complete turnkey structural and equipment erection of industrial mineral washing plant facilities,
-              screening decks, slurry piping supports, and pump house mechanical frameworks.
-            </p>
+            <div class="stack-tags">
+              <span class="stack-tag">Beneficiation</span>
+              <span class="stack-tag">Slurry Piping</span>
+              <span class="stack-tag">Vibrating Screens</span>
+            </div>
           </div>
-          <div class="timeline-tags-row">
-            <span class="timeline-pill">Washing Plant</span>
-            <span class="timeline-pill">Mineral Beneficiation</span>
-            <span class="timeline-pill">Ramco Cements</span>
-            <span class="timeline-pill">Equipment Steel</span>
+
+          <div class="stack-col-number">
+            <div class="stack-number-anchor" data-open-capability="true">
+              <span class="stack-mask-number" style="background-image: url('assets/images/washing_plant.jpg');" aria-label="06">06</span>
+              <span class="stack-quick-pill">View Landmark Record ↗</span>
+            </div>
           </div>
         </div>
-
-        <!-- 2016-2021 COAL STACKER & PACKING -->
-        <div class="timeline-card">
-          <div>
-            <div class="timeline-card-header">
-              <span class="timeline-year-tag">2016 – 2021</span>
-              <span class="timeline-status-tag completed">COMPLETED</span>
+        <!-- MILESTONE 07 · Line-3 Kiln Coal Mill & Galleries -->
+        <div class="timeline-stack-row row-left-text" data-step="07">
+          <div class="stack-col-text">
+            <div class="stack-year-badge">
+              <span class="badge-dot"></span>
+              <span>2023 · MAJOR CEMENT EXPANSION</span>
             </div>
-            <h3 class="timeline-card-title">Coal Stacker & Reclaimer Structures, Packing Plant</h3>
-            <div class="timeline-client-meta">
-              <span>Client: The Ramco Cements Ltd.</span>
+            <h3 class="stack-title">Line-3 Kiln Coal Mill & Galleries</h3>
+            <div class="stack-accent-bar"></div>
+            <p class="stack-desc">Multi-level vertical coal mill building framing, overhead conveyor galleries, and transfer towers inside active operating plant.</p>
+            <div class="stack-client-meta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+              <span>The Ramco Cements Ltd.</span>
             </div>
-            <p class="timeline-card-desc">
-              Execution of heavy traveling coal stacker and reclaimer mechanical structures, boom counterweight framing,
-              gantry rail steel, and complete automated cement packing plant facilities.
-            </p>
+            <div class="stack-tags">
+              <span class="stack-tag">Line-3 Expansion</span>
+              <span class="stack-tag">Vertical Coal Mill</span>
+              <span class="stack-tag">Overhead Galleries</span>
+            </div>
           </div>
-          <div class="timeline-tags-row">
-            <span class="timeline-pill">Stacker & Reclaimer</span>
-            <span class="timeline-pill">Packing Plant</span>
-            <span class="timeline-pill">Bulk Handling</span>
-            <span class="timeline-pill">Ramco Cements</span>
+
+          <div class="stack-col-number">
+            <div class="stack-number-anchor" data-open-capability="true">
+              <span class="stack-mask-number" style="background-image: url('assets/images/gallery/site-img-002.jpg');" aria-label="07">07</span>
+              <span class="stack-quick-pill">View Landmark Record ↗</span>
+            </div>
           </div>
         </div>
-
-        <!-- MULTI-SITE CEMENT MILLS -->
-        <div class="timeline-card">
-          <div>
-            <div class="timeline-card-header">
-              <span class="timeline-year-tag">CONTINUOUS</span>
-              <span class="timeline-status-tag completed">MULTI-SITE</span>
+        <!-- MILESTONE 08 · 20 MW Power Plant Non-IBR & ACC -->
+        <div class="timeline-stack-row row-right-text" data-step="08">
+          <div class="stack-col-text">
+            <div class="stack-year-badge">
+              <span class="badge-dot"></span>
+              <span>2025 · THERMAL POWER GENERATION</span>
             </div>
-            <h3 class="timeline-card-title">Cement Mill Erection Across Various Sites</h3>
-            <div class="timeline-client-meta">
-              <span>Client: The Ramco Cements Ltd. (Multiple Locations)</span>
+            <h3 class="stack-title">20 MW Power Plant Non-IBR & ACC</h3>
+            <div class="stack-accent-bar"></div>
+            <p class="stack-desc">Non-IBR boiler framing, air-cooled condenser (ACC) cooling towers, steam ducting supports, and high-pressure pipe racks.</p>
+            <div class="stack-client-meta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+              <span>Tecksk Projects / ISGEC (Zero LTI)</span>
             </div>
-            <p class="timeline-card-desc">
-              Mechanical equipment installation and heavy structural framing for high-capacity cement grinding mills,
-              dynamic separator circuits, and heavy material circulation bucket elevators.
-            </p>
+            <div class="stack-tags">
+              <span class="stack-tag">20 MW Power Plant</span>
+              <span class="stack-tag">ACC Columns</span>
+              <span class="stack-tag">Zero LTI Handover</span>
+            </div>
           </div>
-          <div class="timeline-tags-row">
-            <span class="timeline-pill">Cement Mills</span>
-            <span class="timeline-pill">Grinding Systems</span>
-            <span class="timeline-pill">Multiple Sites</span>
-            <span class="timeline-pill">Ramco Cements</span>
+
+          <div class="stack-col-number">
+            <div class="stack-number-anchor" data-open-capability="true">
+              <span class="stack-mask-number" style="background-image: url('assets/images/power_plant_acc.jpg');" aria-label="08">08</span>
+              <span class="stack-quick-pill">View Landmark Record ↗</span>
+            </div>
           </div>
         </div>
-
-        <!-- 2005 PARRYWARE -->
-        <div class="timeline-card">
-          <div>
-            <div class="timeline-card-header">
-              <span class="timeline-year-tag">2005</span>
-              <span class="timeline-status-tag milestone">HISTORIC MILESTONE</span>
+        <!-- MILESTONE 09 · Clinker Silo Structures & Bridges -->
+        <div class="timeline-stack-row row-left-text" data-step="09">
+          <div class="stack-col-text">
+            <div class="stack-year-badge">
+              <span class="badge-dot"></span>
+              <span>2025 · BULK STORAGE HEAVY STEEL</span>
             </div>
-            <h3 class="timeline-card-title">Parryware Tiles Company Total Erection</h3>
-            <div class="timeline-client-meta">
-              <span>Client: Parryware Tiles</span>
+            <h3 class="stack-title">Clinker Silo Structures & Bridges</h3>
+            <div class="stack-accent-bar"></div>
+            <p class="stack-desc">Heavy silo mechanical structural steel and elevated conveyor bridges inside active operational cement production lines.</p>
+            <div class="stack-client-meta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+              <span>The Ramco Cements Ltd.</span>
             </div>
-            <p class="timeline-card-desc">
-              Complete industrial factory structural framing, manufacturing shed erection, heavy equipment foundations,
-              and kiln line structural mechanical assembly.
-            </p>
+            <div class="stack-tags">
+              <span class="stack-tag">Clinker Silo</span>
+              <span class="stack-tag">Elevated Bridges</span>
+              <span class="stack-tag">Live Plant Erection</span>
+            </div>
           </div>
-          <div class="timeline-tags-row">
-            <span class="timeline-pill">Parryware</span>
-            <span class="timeline-pill">Total Plant Erection</span>
-            <span class="timeline-pill">Industrial Factory</span>
-            <span class="timeline-pill">50+ Yrs Lineage</span>
+
+          <div class="stack-col-number">
+            <div class="stack-number-anchor" data-open-capability="true">
+              <span class="stack-mask-number" style="background-image: url('assets/images/clinker_silo.jpg');" aria-label="09">09</span>
+              <span class="stack-quick-pill">View Landmark Record ↗</span>
+            </div>
           </div>
         </div>
-
-        <!-- 1998 CAMPLASTIC -->
-        <div class="timeline-card">
-          <div>
-            <div class="timeline-card-header">
-              <span class="timeline-year-tag">1998</span>
-              <span class="timeline-status-tag milestone">HISTORIC MILESTONE</span>
+        <!-- MILESTONE 10 · Sizer Crusher Mechanical Structures -->
+        <div class="timeline-stack-row row-right-text" data-step="10">
+          <div class="stack-col-text">
+            <div class="stack-year-badge">
+              <span class="badge-dot"></span>
+              <span>2026 · MINING & IMPACT CRUSHING</span>
             </div>
-            <h3 class="timeline-card-title">Camplastic Pipe Total Plant Erection</h3>
-            <div class="timeline-client-meta">
-              <span>Client: Camplastic Pipe</span>
+            <h3 class="stack-title">Sizer Crusher Mechanical Structures</h3>
+            <div class="stack-accent-bar"></div>
+            <p class="stack-desc">Primary mineral sizer crusher machinery, heavy rock chutes, and vibration-damped structural towers.</p>
+            <div class="stack-client-meta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+              <span>Ramco Mines, Virudhunagar</span>
             </div>
-            <p class="timeline-card-desc">
-              Total turnkey plant structural erection, heavy machinery assembly, extrusion line structural supports, and
-              industrial manufacturing infrastructure.
-            </p>
+            <div class="stack-tags">
+              <span class="stack-tag">Primary Sizer</span>
+              <span class="stack-tag">Heavy Chutes</span>
+              <span class="stack-tag">Vibration Damped</span>
+            </div>
           </div>
-          <div class="timeline-tags-row">
-            <span class="timeline-pill">Camplastic Pipe</span>
-            <span class="timeline-pill">Total Plant Erection</span>
-            <span class="timeline-pill">Extrusion Facilities</span>
-            <span class="timeline-pill">50+ Yrs Lineage</span>
+
+          <div class="stack-col-number">
+            <div class="stack-number-anchor" data-open-capability="true">
+              <span class="stack-mask-number" style="background-image: url('assets/images/sizer_crusher.jpg');" aria-label="10">10</span>
+              <span class="stack-quick-pill">View Landmark Record ↗</span>
+            </div>
           </div>
         </div>
-
-        <!-- 1992 GOLD STAR -->
-        <div class="timeline-card">
-          <div>
-            <div class="timeline-card-header">
-              <span class="timeline-year-tag">1992</span>
-              <span class="timeline-status-tag milestone">FOUNDATIONAL</span>
+        <!-- MILESTONE 11 · Dry Mix Unit: Packing Plant & Bulk Hopper -->
+        <div class="timeline-stack-row row-left-text is-ongoing" data-step="11">
+          <div class="stack-col-text">
+            <div class="stack-year-badge">
+              <span class="badge-dot"></span>
+              <span>2026 · ACTIVE ONGOING EXPANSION</span>
             </div>
-            <h3 class="timeline-card-title">Gold Star Steel Plant Total Commissioning</h3>
-            <div class="timeline-client-meta">
-              <span>Client: Gold Star Steel Plant (Construction Career Origin: 1985)</span>
+            <h3 class="stack-title">Dry Mix Unit: Packing Plant & Bulk Hopper</h3>
+            <div class="stack-accent-bar"></div>
+            <p class="stack-desc">Active ongoing execution: mechanical equipment structure, packing plant, and bulk material hoppers under direct site supervision.</p>
+            <div class="stack-client-meta">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 21h18M3 7v14M21 7v14M6 7V3h12v4M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>
+              <span>The Ramco Cements Ltd. · RR Nagar [ONGOING]</span>
             </div>
-            <p class="timeline-card-desc">
-              Foundational total plant commissioning and heavy steel plant equipment erection. Part of Mr. M. Mohan's
-              extensive journey beginning in 1985 in steel plants and 1990 in cement plants.
-            </p>
+            <div class="stack-tags">
+              <span class="stack-tag">Dry Mix Mortar</span>
+              <span class="stack-tag">Bulk Hoppers</span>
+              <span class="stack-tag">Active Mobilization</span>
+            </div>
           </div>
-          <div class="timeline-tags-row">
-            <span class="timeline-pill">Gold Star Steel</span>
-            <span class="timeline-pill">Steel Plant Commissioning</span>
-            <span class="timeline-pill">Origin: 1985</span>
-            <span class="timeline-pill">Veteran Lineage</span>
+
+          <div class="stack-col-number">
+            <div class="stack-number-anchor" data-open-capability="true">
+              <span class="stack-mask-number" style="background-image: url('assets/images/drymix_packing.jpg');" aria-label="11">11</span>
+              <span class="stack-quick-pill">View Landmark Record ↗</span>
+            </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -1150,9 +954,7 @@
           <div class="mono-label">ON-SITE VISUAL RECORD & ARCHIVE</div>
           <h2 class="section-title">Live Project & Erection Gallery</h2>
           <p class="section-desc" style="margin-bottom: 0;">
-            Comprehensive high-clarity photo archive documenting heavy crane lifts, plant machinery installations,
-            structural fabrication, hopper erections, and live mechanical executions across Ramco Cements and EPC
-            project sites.
+            Curated high-definition 4K photo showcase documenting landmark heavy mechanical industrial structures, rotary kilns, 20 MW power plants, clinker silos, and precision crane erections.
           </p>
         </div>
         <div class="gallery-clarity-badge">
@@ -1164,7 +966,7 @@
       <!-- Gallery Toolbar: Categories + View/Motion Controls -->
       <div class="gallery-toolbar">
         <div class="gallery-filters" role="tablist">
-          <button class="gallery-filter-btn active" data-gfilter="all">All Site Photos (98+)</button>
+          <button class="gallery-filter-btn active" data-gfilter="all">All Landmark Projects (20 HD Showcase)</button>
           <button class="gallery-filter-btn" data-gfilter="cranes">Cranes & Heavy Rigging</button>
           <button class="gallery-filter-btn" data-gfilter="machinery">Dry Mix & Machinery</button>
           <button class="gallery-filter-btn" data-gfilter="hoppers">Hoppers & Fabrication</button>
@@ -1956,6 +1758,18 @@
             Tamil Nadu, India. Overseeing corporate partnerships, engineering drawing reviews, procurement coordination,
             and commercial project contracts.
           </p>
+          <div class="office-address-card">
+            <svg class="oab-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <address class="office-full-address">
+              <strong>Official GST Registered Address</strong>
+              2/610, Nakkeran Salai, Mugappair East,<br>
+              Chennai, Thiruvallur District,<br>
+              Tamil Nadu – 600037
+            </address>
+          </div>
           <div class="gst-indicator">
             <span></span>
             <strong>As noted in GST Registration</strong>
@@ -1969,6 +1783,18 @@
             Thoothukudi District, Tamil Nadu, India. Directing regional structural fabrication coordination, site
             workforce logistics, and operational dispatch.
           </p>
+          <div class="office-address-card">
+            <svg class="oab-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <address class="office-full-address">
+              <strong>Principal Place of Business (GST)</strong>
+              No. 131G/4, Lakshmi Mill Colony, Unnamed Road,<br>
+              (Nearby Sri Chandra Sekaran Industry), KOV Verravanji Nagar,<br>
+              Kovilpatti, Thoothukudi District, Tamil Nadu – 628501
+            </address>
+          </div>
           <div class="gst-indicator">
             <span></span>
             <strong>As noted in GST Paper</strong>
@@ -2176,7 +2002,7 @@
   </div>
 
   <!-- JavaScript Engine -->
-  <script src="/js/main.js?v=19"></script>
+  <script src="js/main.js?v=20"></script>
 </body>
 
 </html>
